@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {View, Text, Button, Alert, StyleSheet} from 'react-native';
+import styles from "../styles/loginStyle";
 
 const login = () => {
     return (
         <View style={loginStyle.container}>
-            <Text> Login </Text>
+            <Text style={styles.title}> Login </Text>
             <Button 
                 title="Login"
                 onPress={() => Alert.alert("Login Button Clicked!")}
@@ -13,14 +14,6 @@ const login = () => {
     );
 };
 
-const loginStyle = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
 
 
 export default login;
