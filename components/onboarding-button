@@ -1,0 +1,23 @@
+import React from 'react';
+import { Button } from 'react-native-elements';
+
+const backgroundColor = isLight => (isLight ? 'blue' : 'lightblue');
+const color = isLight => backgroundColor(!isLight);
+
+const Continue = ({ isLight, ...props }) => (
+  <Button
+    title={'Done'}
+    buttonStyle={{
+      backgroundColor: backgroundColor(isLight),
+    }}
+    containerViewStyle={{
+      marginVertical: 10,
+      width: 70,
+      backgroundColor: backgroundColor(isLight),
+    }}
+    textStyle={{ color: color(isLight) }}
+    {...props}
+  />
+);
+
+export default Continue;
