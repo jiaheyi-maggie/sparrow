@@ -1,68 +1,50 @@
 import React  from 'react';
-import { Text, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Button, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 // Customize Button Styles (put in ../components later) -> doesn't work right now
 const backgroundColor = isLight => (isLight ? '#264653' : 'aliceblue');
 const color = isLight => backgroundColor(!isLight);
 
+//dummy onPress 
+const dummyPress = () => Alert.alert("Button pressed");
 
-// customized button style
-const OnboardingNextButton = ({onPress, ...props }) => (
-    <Button
-        title={'Next'}
-        onPress={onPress}
-        activeOpacity={0.8}
-        buttonStyle={{
-            backgroundColor: "#264653",
-          }}
-        containerViewStyle={onboardingStyle.buttonContainer}
-        textStyle={onboardingStyle.buttonText}
-        {...props}
-    />
+/* TODO: Pass in title instead of having hard-coded button titles */
+
+// Done Button
+  const DoneButton = () => (
+      <TouchableOpacity
+        style={onboardingStyle.buttonContainer}
+      >
+          <Text style={onboardingStyle.buttonText}> Done </Text>
+      </TouchableOpacity>
+  );
+
+  // Continue Button
+  const ContinueButton = () => (
+    <TouchableOpacity
+      style={onboardingStyle.buttonContainer}
+    >
+        <Text style={onboardingStyle.buttonText}> Continue </Text>
+    </TouchableOpacity>
 );
 
-const Skip = ({ isLight, skipLabel, ...props }) => (
-    <Button
-      title={'Skip'}
-      buttonStyle={{
-        backgroundColor: backgroundColor(isLight),
-      }}
-      containerViewStyle={{
-        marginVertical: 10,
-        width: 70,
-      }}
-      textStyle={{ color: color(isLight) }}
-      {...props}
+// Skip Button
+const SkipButton = () => (
+    <TouchableOpacity
+      style={onboardingStyle.buttonContainer}
     >
-      {skipLabel}
-    </Button>
-  );
-
-  const Done = ({ isLight, ...props }) => (
-    <Button
-      title={'Done'}
-      buttonStyle={{
-        backgroundColor: backgroundColor(isLight),
-      }}
-      containerViewStyle={{
-        marginVertical: 10,
-        width: 80,
-        margin: 50,
-        backgroundColor: backgroundColor(isLight),
-      }}
-      textStyle={{ color: color(isLight) }}
-      {...props}
-    />
-  );
+        <Text style={onboardingStyle.buttonText}> Skip </Text>
+    </TouchableOpacity>
+);
 
 const onboarding = ({navigation}) => {
     return (
         <Onboarding
-        NextButtonComponent={OnboardingNextButton}
-        SkipButtonComponent={Skip}
-        DoneButtonComponent={Done}
-        titleStyles={{color: '#264653'}}
+        NextButtonComponent={ContinueButton}
+        SkipButtonComponent={SkipButton}
+        DoneButtonComponent={DoneButton}
+
         pages={[
             {
                 backgroundColor: '#EFEFEF',
@@ -85,6 +67,16 @@ const onboarding = ({navigation}) => {
                         style={onboardingStyle.title}> Mark Categories </Text>,
                 subtitle: <Text style={onboardingStyle.subtitle}>This does not have to be perfect, just an estimate!</Text>,
             },
+            {
+                backgroundColor: '#EFEFEF',
+                image: <Image 
+                    source={require('../assets/onboarding-welcome.png')} 
+                    resizeMode='contain'
+                    style={{width: 200, height: 200}}
+                />,
+                title: <Text style={onboardingStyle.title}> Do you have a long-term budget? </Text>,
+                subtitle: <Text style={onboardingStyle.subtitle}> This way we can start by suggesting a budget that works for you. </Text>,
+            },
         ]}
         />
     );
@@ -100,7 +92,8 @@ const onboardingStyle = StyleSheet.create({
     title: {
         color: '#264653',
         fontWeight: 'bold',
-        fontSize: 40
+        fontSize: 40,
+        textAlign: 'center'
     },
     subtitle: {
         color: '#E76F51',
@@ -113,13 +106,13 @@ const onboardingStyle = StyleSheet.create({
         elevation: 8,
         backgroundColor: "#264653",
         borderRadius: 10,
-        paddingVertical: 10,
-        paddingHorizontal: 12
+        paddingVertical: 9,
+        paddingHorizontal: 9,
+        margin: 10
     },
     buttonText : {
-        fontSize: 18,
+        fontSize: 15,
         color: "#fff",
-        fontWeight: "bold",
         alignSelf: "center",
         textTransform: "uppercase"
     }
