@@ -2,55 +2,12 @@ import React  from 'react';
 import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
+import categories from '../data/categories';
+
 
 
 //dummy onPress 
 const dummyPress = () => Alert.alert("Button pressed");
-
-// function that generates unique id for each categories
-function guidGenerator() {
-    var S4 = function() {
-       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
-}
-
-// Categories for the category selection page
-const DATA = [
-    {
-        id: guidGenerator(),
-        title: 'Groceries',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Utilities',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Eating Out',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Rent',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Entertainment',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Gas/Transportation',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Insurance',
-    },
-    {
-        id: guidGenerator(),
-        title: 'Debt',
-    },
-  ];
-
 
   // Category list item
   const ListItem = ({ title }) => (
@@ -149,7 +106,7 @@ const onboarding = ({navigation}) => {
                             style={styles.imageContainer}
                             />
                         <FlatList
-                            data={DATA}
+                            data={categories}
                             renderItem={renderItem}
                             keyExtractor={item => item.id}
                             />
