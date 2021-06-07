@@ -11,14 +11,24 @@ const onboardingStyle = StyleSheet.create({
       color: '#264653',
       fontWeight: 'bold',
       fontSize: 40,
-      textAlign: 'center'
+      textAlign: 'left',
+      margin: 20
   },
   subtitle: {
       color: '#E76F51',
       fontWeight: 'bold',
-      textAlign: 'center',
+      textAlign: 'left',
       fontSize: 18,
-      margin: 15
+      margin: 5,
+      marginLeft: 20,
+      marginRight: 10
+  },
+  longtitle: {
+      color: '#264653',
+      fontWeight: 'bold',
+      fontSize: 30,
+      textAlign: 'left',
+      margin: 20
   },
   buttonContainer: {
       elevation: 8,
@@ -33,6 +43,26 @@ const onboardingStyle = StyleSheet.create({
       color: "#fff",
       alignSelf: "center",
       textTransform: "uppercase"
+  },
+  imageContainer: {
+    width: 400,
+    height: 400,
+    alignContent: 'center'
+  },
+  listitem: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  listtitle: {
+    color: '#264653',
+    fontWeight: 'bold',
+    textAlign: 'left',
+    fontSize: 18,
+    margin: 5,
+    marginLeft: 20,
+    marginRight: 10
   }
 });
 

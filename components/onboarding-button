@@ -1,23 +1,29 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { TouchableOpacity } from 'react-native-elements';
 
-const backgroundColor = isLight => (isLight ? 'blue' : 'lightblue');
-const color = isLight => backgroundColor(!isLight);
-
-const Continue = ({ isLight, ...props }) => (
-  <Button
-    title={'Done'}
-    buttonStyle={{
-      backgroundColor: backgroundColor(isLight),
-    }}
-    containerViewStyle={{
-      marginVertical: 10,
-      width: 70,
-      backgroundColor: backgroundColor(isLight),
-    }}
-    textStyle={{ color: color(isLight) }}
-    {...props}
-  />
+// Done Button
+const DoneButton = () => (
+    <TouchableOpacity
+      style={styles.buttonContainer}
+    >
+        <Text style={styles.buttonText}> Done </Text>
+    </TouchableOpacity>
 );
 
-export default Continue;
+// Continue Button
+const ContinueButton = () => (
+  <TouchableOpacity
+    style={styles.buttonContainer}
+  >
+      <Text style={styles.buttonText}> Continue </Text>
+  </TouchableOpacity>
+);
+
+// Skip Button
+const SkipButton = () => (
+  <TouchableOpacity
+    style={styles.buttonContainer}
+  >
+      <Text style={styles.buttonText}> Skip </Text>
+  </TouchableOpacity>
+);
