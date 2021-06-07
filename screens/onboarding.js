@@ -1,5 +1,5 @@
 import React  from 'react';
-import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
 
@@ -54,9 +54,9 @@ const DATA = [
 
   // Category list item
   const ListItem = ({ title }) => (
-    <View style={styles.listitem}>
+    <TouchableOpacity style={styles.listitem}>
       <Text style={styles.listtitle}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   // function to render list items
@@ -124,34 +124,37 @@ const onboarding = ({navigation}) => {
                         source={require('../assets/onboarding/welcome.png')} 
                         resizeMode='contain'
                         style={styles.imageContainer}
-                    />
+                        />
                 </SafeAreaView>
                 ),
             },
             {
                 // TODO: Need a Flatlist for category selection
+                
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
                 image: (
-                <SafeAreaView>
-                    <View>
-                        <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
-                        </View>
-                    <View>
-                        <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories.</Text>
-                        </View>
-                    <Image 
-                        source={require('../assets/onboarding/mark-categories.png')} 
-                        resizeMode='contain'
-                        style={styles.imageContainer}
-                        />
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id}
-                    />
+                <ScrollView style={styles.scrollviewContainer}>
+                    <SafeAreaView>
+                        <View>
+                            <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
+                            </View>
+                        <View>
+                            <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories.</Text>
+                            </View>
+                        <Image 
+                            source={require('../assets/onboarding/mark-categories.png')} 
+                            resizeMode='contain'
+                            style={styles.imageContainer}
+                            />
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id}
+                            />
                     </SafeAreaView>
+                </ScrollView>
                 ),
             },
             {

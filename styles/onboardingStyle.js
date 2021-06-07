@@ -50,10 +50,11 @@ const onboardingStyle = StyleSheet.create({
     alignContent: 'center'
   },
   listitem: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#FFF4CB',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderRadius: 20
   },
   listtitle: {
     color: '#264653',
@@ -63,6 +64,9 @@ const onboardingStyle = StyleSheet.create({
     margin: 5,
     marginLeft: 20,
     marginRight: 10
+  },
+  scrollviewContainer: {
+    marginTop: 50
   }
 });
 
