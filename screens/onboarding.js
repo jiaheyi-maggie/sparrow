@@ -47,32 +47,32 @@ const onboarding = ({navigation}) => {
 
         pages={[
             {
-                backgroundColor: '#EFEFEF',
+                backgroundColor: '#fff',
                 image: <Image 
-                    source={require('../assets/onboarding-welcome.png')} 
+                    source={require('../assets/onboarding/welcome.png')} 
                     resizeMode='contain'
-                    style={{width: 200, height: 200}}
+                    style={{width: 300, height: 300}}
                 />,
                 title: <Text style={onboardingStyle.title}> Welcome </Text>,
                 subtitle: <Text style={onboardingStyle.subtitle}> Congrats on taking the fist step to managing your money efficiently! Let us get to know your spending habits with some basic questions :))</Text>,
             },
             {
-                backgroundColor: '#EFEFEF',
+                backgroundColor: '#fff',
                 image: <Image 
-                    source={require('../assets/mark-categories.png')} 
+                    source={require('../assets/onboarding/mark-categories.png')} 
                     resizeMode='contain'
-                    style={{width: 200, height: 200}}
+                    style={{width: 300, height: 300}}
                 />,
                 title: <Text adjustFontSizeToFit minimumFontScale={.5} 
                         style={onboardingStyle.title}> Mark Categories </Text>,
                 subtitle: <Text style={onboardingStyle.subtitle}>This does not have to be perfect, just an estimate!</Text>,
             },
             {
-                backgroundColor: '#EFEFEF',
+                backgroundColor: '#fff',
                 image: <Image 
-                    source={require('../assets/onboarding-welcome.png')} 
+                    source={require('../assets/onboarding/long-term.png')} 
                     resizeMode='contain'
-                    style={{width: 200, height: 200}}
+                    style={{width: 300, height: 300, alignContent: 'center'}}
                 />,
                 title: <Text style={onboardingStyle.title}> Do you have a long-term budget? </Text>,
                 subtitle: <Text style={onboardingStyle.subtitle}> This way we can start by suggesting a budget that works for you. </Text>,
