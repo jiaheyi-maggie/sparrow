@@ -51,9 +51,9 @@ const onboardingStyle = StyleSheet.create({
   },
   listitem: {
     backgroundColor: '#FFF4CB',
-    padding: 10,
+    padding: 8,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal:16,
     borderRadius: 20
   },
   listtitle: {
