@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const componentStyle = StyleSheet.create({
   input: {
@@ -22,7 +22,20 @@ const componentStyle = StyleSheet.create({
     borderRadius: 4,
     marginHorizontal: 100,
     alignItems:'center'
-    }
+  },
+  //also unused because it doesn't render
+  circle : {
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    width: Dimensions.get('window').width * 0.42,
+    height: Dimensions.get('window').width * 0.42,
+    backgroundColor:'#2A94AF',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  reviewText :{
+    color: '#FFF4CB',
+    fontSize: 40
+  }
 });
 
 export default componentStyle;

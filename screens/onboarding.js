@@ -6,6 +6,8 @@ import categories from '../data/categories';
 import ListItem from '../components/ListItem';
 import NumberTextInput from '../components/NumberTextInput';
 import TimePeriodDropdown from '../components/TimePeriodDropdown';
+import CategoryDetail from './category-detail';
+import BudgetCircle from '../components/budget-circle';
 
 
 //dummy onPress 
@@ -112,7 +114,14 @@ const onboarding = ({navigation}) => {
                 </ScrollView>
                 ),
             },
-
+            // {
+            //     title: '',
+            //     subtitle: '',
+            //     backgroundColor: '#fff',
+            //     image: (
+            //         <CategoryDetail /> 
+            //     ),
+            // },
             {
                 title: '',
                 subtitle: '',
@@ -139,6 +148,7 @@ const onboarding = ({navigation}) => {
                     </SafeAreaView>
                 ),
             },
+            // TODO: change dummy numbers
             {
                 title: '',
                 subtitle: '',
@@ -151,11 +161,11 @@ const onboarding = ({navigation}) => {
                     <View>
                         <Text style={styles.subtitle}>Tap on any number to edit!</Text>
                         </View>
-                    <Image 
-                        source={require('../assets/onboarding/long-term.png')} 
-                        resizeMode='contain'
-                        style={styles.imageContainer}
-                        />
+                    <View style={{flexDirection: 'row', padding: 10}}>
+                        <BudgetCircle sum={1000} />
+
+                        <BudgetCircle sum={2000}/>
+                    </View>
                     </SafeAreaView>
                 ),
             },

@@ -23,6 +23,7 @@ const TimePeriodDropdown = () => {
                 <Picker.Item label="Quarter" value="Quarter" color='#264653'/>
                 <Picker.Item label="Month" value="Month" color='#264653'/>
                 <Picker.Item label="Week" value="Week" color='#264653'/>
+                <Picker.Item label="Day" value="Day" color='#264653'/>
             </Picker>
         </View>
     );
