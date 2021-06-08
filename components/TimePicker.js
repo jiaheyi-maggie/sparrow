@@ -3,15 +3,14 @@ import { View } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import styles from '../styles/componentStyle';
 
-const TimePeriodDropdown = () => {
+const TimePicker = () => {
+    //TODO: fix time picker style
     const [selected, setSelected ] = useState("year");
     return (
         <View style={{ 
-                borderWidth: 3, 
-                borderColor: '#264653', 
-                borderRadius: 4,
-                alignItems:'center',
-                width: 200
+                alignItems: 'center',
+                width: 30,
+                padding: 10
                 }}>
             <Picker 
                 selectedValue={selected}
@@ -29,4 +28,4 @@ const TimePeriodDropdown = () => {
     );
 };
 
-export default TimePeriodDropdown;
+export default TimePicker;

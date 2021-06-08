@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { View, Dimensions, TouchableHighlight, Text, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
 import styles from '../styles/componentStyle';
 import NumberTextInput from './NumberTextInput';
+import TimePeriodDropdown from './TimePeriodDropdown';
+import TimePicker from './TimePicker';
 
 // TODO: add budget sum into circle
-const BudgetCircle = ({ sum }) => {
+const BudgetCircle = ({ term }) => {
 
     const [number, onChangeNumber] = useState(null);
-
 
     return (
         <SafeAreaView style={{alignItems: 'center'}}>
@@ -33,7 +34,12 @@ const BudgetCircle = ({ sum }) => {
                 selectionColor='aliceblue'
                 textAlign= 'center'
             />
-            <Text style={styles.reviewText}> Term </Text>
+            <Text style={styles.reviewText} > {term} Term</Text>
+            <SafeAreaView style={{flexDirection: 'row'}}>
+                <Text style={styles.reviewText} >every</Text>
+                <TimePicker />
+            </SafeAreaView>
+
         </SafeAreaView>
     );
 }

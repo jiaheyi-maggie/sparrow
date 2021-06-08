@@ -13,7 +13,7 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 40,
       textAlign: 'left',
       margin: 10,
-      marginTop: 70
+      marginTop: 10
   },
   subtitle: {
       color: '#E76F51',
@@ -68,7 +68,10 @@ const onboardingStyle = StyleSheet.create({
     marginBottom: 13
   },
   scrollviewContainer: {
-    marginTop: 50
+    marginTop: 20
+  },
+  safeareaWithScroll : {
+    marginTop: 30
   },
   checkboxContainer : {
     alignContent: 'center',
@@ -90,9 +93,8 @@ const onboardingStyle = StyleSheet.create({
     marginVertical: 5
   },
   withTitleContainer: {
-    marginTop: 120,
-    flexDirection: 'column',
-    padding:0
+    marginTop: 100,
+    padding:10
   }
 });
 
