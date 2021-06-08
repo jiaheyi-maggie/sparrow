@@ -6,14 +6,20 @@ import styles from '../styles/componentStyle';
 const TimePeriodDropdown = () => {
     const [selected, setSelected ] = useState("year");
     return (
-        <View style={styles.container}>
+        <View style={{ 
+                borderWidth: 3, 
+                borderColor: '#264653', 
+                borderRadius: 4,
+                marginHorizontal: 100,
+                alignItems:'center'
+                }}>
             <Picker 
                 selectedValue={selected}
                 itemStyle={styles.pickerItem}
                 style={styles.dropdown}
                 onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
                 >
-                <Picker.Item label="Year" value="Year" itemStyle={styles.pickerItem}/>
+                <Picker.Item label="Year" value="Year" />
                 <Picker.Item label="Quarter" value="Quarter" />
                 <Picker.Item label="Month" value="Month" />
                 <Picker.Item label="Week" value="Week" />

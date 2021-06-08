@@ -14,15 +14,14 @@ const componentStyle = StyleSheet.create({
     height: 50, 
     width: 150
   },
-  container: {
-    flex: 1,
-    paddingTop: 40,
-    alignItems: "center"
-  },
-  pickerItem :{
-      fontSize: 40,
-      fontWeight: 'bold'
-  }
+  //unused because somehow it doesn't render
+  pickerContainer: { 
+    borderWidth: 3, 
+    borderColor: '#264653', 
+    borderRadius: 4,
+    marginHorizontal: 100,
+    alignItems:'center'
+    }
 });
 
 export default componentStyle;

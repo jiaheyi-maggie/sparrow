@@ -72,12 +72,12 @@ const onboardingStyle = StyleSheet.create({
     marginTop: 50
   },
   checkboxContainer : {
-    width: 30,
-    height: 30,
     alignContent: 'center',
-    marginLeft: 10,
     marginTop: 10,
-    flexDirection: 'row'
+    marginLeft: 10,
+    flexDirection: 'row',
+    height: 30,
+    width: 30
   },
   checkbox: {
     alignSelf: 'center'
@@ -91,7 +91,8 @@ const onboardingStyle = StyleSheet.create({
     marginVertical: 20
   },
   withTitleContainer: {
-    marginTop: 100
+    marginTop: 120,
+    flexDirection: 'column'
   }
 });
 
