@@ -19,10 +19,10 @@ const TimePeriodDropdown = () => {
                 style={styles.dropdown}
                 onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
                 >
-                <Picker.Item label="Year" value="Year" />
-                <Picker.Item label="Quarter" value="Quarter" />
-                <Picker.Item label="Month" value="Month" />
-                <Picker.Item label="Week" value="Week" />
+                <Picker.Item label="Year" value="Year" color='#264653'/>
+                <Picker.Item label="Quarter" value="Quarter" color='#264653'/>
+                <Picker.Item label="Month" value="Month" color='#264653'/>
+                <Picker.Item label="Week" value="Week" color='#264653'/>
             </Picker>
         </View>
     );
