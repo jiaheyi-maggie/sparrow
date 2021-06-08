@@ -1,16 +1,14 @@
-import React  from 'react';
-import { Checkbox, View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { Checkbox, View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView, TextInput } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
 import categories from '../data/categories';
 import ListItem from '../components/ListItem';
-
+import NumberTextInput from '../components/NumberTextInput';
 
 
 //dummy onPress 
 const dummyPress = () => Alert.alert("Button pressed");
-
-
 
 
 // TODO: add checkbox
@@ -50,8 +48,10 @@ const SkipButton = ({ ... props}) => (
 );
 
 
+
+
 // Onboarding swipper
-const onboarding = ({navigation}) => {
+const onboarding = ({navigation}) => {  
     return (
         <Onboarding
         NextButtonComponent={ContinueButton}
@@ -82,6 +82,8 @@ const onboarding = ({navigation}) => {
                 </SafeAreaView>
                 ),
             },
+
+            //TODO: checkbox
             {
                 title: '',
                 subtitle: '',
@@ -110,18 +112,21 @@ const onboarding = ({navigation}) => {
                 ),
             },
 
-            //TODO: Render a page for each category selected
             {
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
-                image: (
-                <SafeAreaView>
+                image: ( 
+                <SafeAreaView style={styles.withTitleContainer}>
                     <View>
                         <Text style={styles.title}>Do you have a long-term budget? </Text>
                         </View>
                     <View>
                         <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you. </Text>
+                        </View>
+                    <View>
+                        <Text style={styles.emphasizeText}>I plan to spend</Text>
+                        <NumberTextInput />
                         </View>
                     <Image 
                         source={require('../assets/onboarding/long-term.png')} 

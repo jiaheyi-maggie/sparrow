@@ -75,7 +75,22 @@ const onboardingStyle = StyleSheet.create({
     height: 30,
     alignContent: 'center',
     marginLeft: 10,
-    marginTop: 10
+    marginTop: 10,
+    flexDirection: 'row'
+  },
+  checkbox: {
+    alignSelf: 'center'
+  },
+  emphasizeText: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+    marginHorizontal: 60,
+    marginVertical: 20
+  },
+  withTitleContainer: {
+    marginTop: 100
   }
 });
 
