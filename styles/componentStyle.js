@@ -30,8 +30,7 @@ const componentStyle = StyleSheet.create({
     height: Dimensions.get('window').width * 0.42,
     backgroundColor:'#2A94AF',
     justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
+    alignItems: 'center'
   },
   circleText :{
     color: '#FFF4CB',

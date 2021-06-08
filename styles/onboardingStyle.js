@@ -65,13 +65,17 @@ const onboardingStyle = StyleSheet.create({
     marginLeft: 80,
     marginRight: 10,
     marginTop: -27,
-    marginBottom: 13
+    marginBottom: 13,
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   scrollviewContainer: {
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 0
   },
   safeareaWithScroll : {
-    marginTop: 30
+    marginTop: 30,
+    marginBottom: 0
   },
   checkboxContainer : {
     alignContent: 'center',
@@ -95,7 +99,22 @@ const onboardingStyle = StyleSheet.create({
   withTitleContainer: {
     marginTop: 100,
     padding:10
-  }
+  },
+  listSummaryItem: {
+    backgroundColor: '#FFF4CB',
+    padding: 20,
+    marginVertical: 5,
+    marginHorizontal:16,
+    borderRadius: 20
+  },
+  listSummaryTitle: {
+    color: '#264653',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    textAlign: 'left',
+    fontSize: 20,
+    color: "#E76F51"
+  },
 });
 
 export default onboardingStyle;

@@ -8,6 +8,7 @@ import NumberTextInput from '../components/NumberTextInput';
 import TimePeriodDropdown from '../components/TimePeriodDropdown';
 import CategoryDetail from './category-detail';
 import BudgetCircle from '../components/BudgetCircle';
+import SummaryListItem from '../components/SummaryListItem';
 
 
 //dummy onPress 
@@ -20,7 +21,9 @@ const renderItem = ({ item }) => (
 );
 
 // // render items without checkbox
-// const
+const renderSummaryItem = ({ item }) => (
+    <SummaryListItem title={item.title} />
+);
 
 // Done Button
 const DoneButton = ({ ... props}) => (
@@ -177,7 +180,7 @@ const onboarding = ({navigation}) => {
                             </View>
                             <FlatList
                                     data={categories}
-                                    renderItem={renderItem}
+                                    renderItem={renderSummaryItem}
                                     keyExtractor={item => item.id}
                                     />
                         </ScrollView>
