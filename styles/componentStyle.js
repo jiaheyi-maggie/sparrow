@@ -6,6 +6,7 @@ const componentStyle = StyleSheet.create({
     textAlign: 'left',
     height: 40,
     marginHorizontal: 100,
+    marginTop:10,
     borderBottomColor: '#264653',
     borderBottomWidth: 3,
     alignContent: 'center'

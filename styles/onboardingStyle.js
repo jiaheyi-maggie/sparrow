@@ -12,7 +12,7 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 40,
       textAlign: 'left',
-      margin: 20,
+      margin: 10,
       marginTop: 70
   },
   subtitle: {
@@ -20,7 +20,6 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       textAlign: 'left',
       fontSize: 18,
-      margin: 5,
       marginLeft: 20,
       marginRight: 10
   },
@@ -46,8 +45,8 @@ const onboardingStyle = StyleSheet.create({
       textTransform: "uppercase"
   },
   imageContainer: {
-    width: 400,
-    height: 400,
+    width: 380,
+    height: 380,
     alignContent: 'center'
   },
   listitem: {
@@ -88,11 +87,12 @@ const onboardingStyle = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     marginHorizontal: 60,
-    marginVertical: 20
+    marginVertical: 5
   },
   withTitleContainer: {
     marginTop: 120,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    padding:0
   }
 });
 
