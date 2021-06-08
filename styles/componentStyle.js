@@ -30,11 +30,20 @@ const componentStyle = StyleSheet.create({
     height: Dimensions.get('window').width * 0.42,
     backgroundColor:'#2A94AF',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    textAlign: 'center'
   },
-  reviewText :{
+  circleText :{
     color: '#FFF4CB',
     fontSize: 40
+  },
+  reviewText: {
+    color: '#264653',
+    fontWeight: 'bold',
+    textAlign: 'left',
+    fontSize: 18,
+    marginLeft: 20,
+    marginRight: 10
   }
 });
 
