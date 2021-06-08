@@ -51,7 +51,7 @@ const onboardingStyle = StyleSheet.create({
   },
   listitem: {
     backgroundColor: '#FFF4CB',
-    padding: 20,
+    padding: 10,
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 20
@@ -62,11 +62,20 @@ const onboardingStyle = StyleSheet.create({
     textAlign: 'left',
     fontSize: 18,
     margin: 5,
-    marginLeft: 20,
-    marginRight: 10
+    marginLeft: 80,
+    marginRight: 10,
+    marginTop: -27,
+    marginBottom: 13
   },
   scrollviewContainer: {
     marginTop: 50
+  },
+  checkboxContainer : {
+    width: 30,
+    height: 30,
+    alignContent: 'center',
+    marginLeft: 10,
+    marginTop: 10
   }
 });
 

@@ -1,5 +1,5 @@
 import React  from 'react';
-import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView } from 'react-native';
+import { Checkbox, View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
 import categories from '../data/categories';
@@ -10,10 +10,9 @@ import ListItem from '../components/ListItem';
 //dummy onPress 
 const dummyPress = () => Alert.alert("Button pressed");
 
-//TODO: checkbox component
 
 
-// function to render list items
+
 // TODO: add checkbox
 const renderItem = ({ item }) => (
     <ListItem title={item.title} />
