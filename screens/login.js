@@ -4,7 +4,7 @@ import styles from "../styles/loginStyle";
 
 const login = () => {
     return (
-        <View style={loginStyle.container}>
+        <View style={styles.container}>
             <Text style={styles.title}> Login </Text>
             <Button 
                 title="Login"

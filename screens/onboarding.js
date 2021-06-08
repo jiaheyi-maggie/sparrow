@@ -3,45 +3,41 @@ import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, Scr
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
 import categories from '../data/categories';
+import ListItem from '../components/ListItem';
 
 
 
 //dummy onPress 
 const dummyPress = () => Alert.alert("Button pressed");
 
-  // Category list item
-  const ListItem = ({ title }) => (
-    <TouchableOpacity style={styles.listitem}>
-      <Text style={styles.listtitle}>{title}</Text>
-    </TouchableOpacity>
-  );
-
-  // function to render list items
-  const renderItem = ({ item }) => (
-      <ListItem title={item.title} />
-  );
+//TODO: checkbox component
 
 
-/* TODO: Pass in title instead of having hard-coded button titles */
+// function to render list items
+// TODO: add checkbox
+const renderItem = ({ item }) => (
+    <ListItem title={item.title} />
+);
+
 
 // Done Button
-  const DoneButton = ({ ... props}) => (
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        { ... props}
-      >
-          <Text style={styles.buttonText}> Done </Text>
-      </TouchableOpacity>
-  );
-
-  // Continue Button
-  const ContinueButton = ({ ... props}) => (
+const DoneButton = ({ ... props}) => (
     <TouchableOpacity
-      style={styles.buttonContainer}
-      {...props}
+    style={styles.buttonContainer}
+    { ... props}
     >
-        <Text style={styles.buttonText}> Continue </Text>
+        <Text style={styles.buttonText}> Done </Text>
     </TouchableOpacity>
+);
+
+// Continue Button
+const ContinueButton = ({ ... props}) => (
+<TouchableOpacity
+    style={styles.buttonContainer}
+    {...props}
+>
+    <Text style={styles.buttonText}> Continue </Text>
+</TouchableOpacity>
 );
 
 // Skip Button
@@ -54,6 +50,8 @@ const SkipButton = ({ ... props}) => (
     </TouchableOpacity>
 );
 
+
+// Onboarding swipper
 const onboarding = ({navigation}) => {
     return (
         <Onboarding
@@ -86,8 +84,6 @@ const onboarding = ({navigation}) => {
                 ),
             },
             {
-                // TODO: Need a Flatlist for category selection
-                
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
@@ -114,6 +110,8 @@ const onboarding = ({navigation}) => {
                 </ScrollView>
                 ),
             },
+
+            //TODO: Render a page for each category selected
             {
                 title: '',
                 subtitle: '',

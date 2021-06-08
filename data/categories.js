@@ -12,34 +12,42 @@ const categories = [
     {
         id: guidGenerator(),
         title: 'Groceries',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Utilities',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Eating Out',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Rent',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Entertainment',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Gas/Transportation',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Insurance',
+        checked: false,
     },
     {
         id: guidGenerator(),
         title: 'Debt',
+        checked: false,
     },
   ];
 
