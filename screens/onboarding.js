@@ -5,6 +5,7 @@ import styles from '../styles/onboardingStyle';
 import categories from '../data/categories';
 import ListItem from '../components/ListItem';
 import NumberTextInput from '../components/NumberTextInput';
+import TimePeriodDropdown from '../components/TimePeriodDropdown';
 
 
 //dummy onPress 
@@ -127,6 +128,28 @@ const onboarding = ({navigation}) => {
                     <View>
                         <Text style={styles.emphasizeText}>I plan to spend</Text>
                         <NumberTextInput />
+                        <Text style={styles.emphasizeText}>per</Text>
+                        </View>
+                    <TimePeriodDropdown />
+                    <Image 
+                        source={require('../assets/onboarding/long-term.png')} 
+                        resizeMode='contain'
+                        style={styles.imageContainer}
+                        />
+                    </SafeAreaView>
+                ),
+            },
+            {
+                title: '',
+                subtitle: '',
+                backgroundColor: '#fff',
+                image: ( 
+                <SafeAreaView style={styles.withTitleContainer}>
+                    <View>
+                        <Text style={styles.title}>Budget Overview </Text>
+                        </View>
+                    <View>
+                        <Text style={styles.subtitle}>Tap on any number to edit!</Text>
                         </View>
                     <Image 
                         source={require('../assets/onboarding/long-term.png')} 

@@ -12,7 +12,8 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 40,
       textAlign: 'left',
-      margin: 20
+      margin: 20,
+      marginTop: 70
   },
   subtitle: {
       color: '#E76F51',

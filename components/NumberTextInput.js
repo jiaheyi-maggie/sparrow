@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { SafeAreaView, TextInput } from "react-native";
 import styles from '../styles/componentStyle';
 
 const NumberTextInput = () => {
