@@ -16,6 +16,14 @@ const componentStyle = StyleSheet.create({
     padding: 20,
     marginHorizontal: 8
   },
+  buttonContainer: {
+    elevation: 10,
+    backgroundColor: "#2A94AF",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 9,
+    margin: 10
+  },
   title: {
     color: '#264653',
     fontWeight: 'bold',

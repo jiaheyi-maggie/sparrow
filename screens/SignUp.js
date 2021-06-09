@@ -20,6 +20,12 @@ const SignUp = () => {
             >
                 <Text style={styles.buttonText}> Register </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+                style={componentStyle.buttonContainer}
+                onPress={() => Alert.alert("Login Button Clicked!")}
+            >
+                <Text style={styles.buttonText}> I already have an account </Text>
+            </TouchableOpacity>
         </View>
     );
 };
