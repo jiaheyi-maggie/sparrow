@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-
-import onboarding from './screens/onboarding';
 import SignUp from './screens/SignUp';
 import SignIn from './screens/SignIn';
 import OnboardingNavigation from './screens/onboarding/OnboardingNavigation';

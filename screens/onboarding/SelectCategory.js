@@ -16,41 +16,45 @@ const SelectCategory = ({ navigation }) => {
             <ScrollView style={styles.scrollviewContainer}>
                 <View>
                     <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
-                    </View>
+                </View>
+
                 <View>
                     <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories. You can customize categories later too!</Text>
-                    </View>
+                </View>
+
                 <Image 
                     source={require('../../assets/onboarding/mark-categories.png')} 
                     resizeMode='contain'
                     style={styles.imageContainer}
-                    />
+                />
+
                 <FlatList
                     data={categories}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
-                    />
+                />
+
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
-                    >
+                        >
                         <Text style={styles.buttonText}> Back </Text>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
                     {/* Continue Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.navigate('categories')}
-                    >
+                        >
                         <Text style={styles.buttonText}> Continue </Text>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
 
                 </View>
 
             </ScrollView>
-
+            
         </SafeAreaView>
     );
 };

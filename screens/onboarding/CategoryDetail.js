@@ -15,39 +15,47 @@ const CategoryDetail = ({ navigation }) => {
             margin: 10, 
             justifyContent: 'center',
             backgroundColor: '#fff'
-            }}>
+        }}>
             <Text style={styles.itemDescription}>I spend</Text>
+
             <NumberTextInput /> 
+
             <Text style={styles.itemDescription}>on</Text>
+
             <Text style={styles.itemTitle}>groceries</Text>
+
             <Text style={styles.itemDescription}>per</Text>
+
             <TimePeriodDropdown /> 
+            
             <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
-                    {/* Back Button */}
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.goBack()}
-                        >
-                        <Text style={styles.buttonText}> Back </Text>
-                    </TouchableOpacity>
 
-                    {/* Skip Button : TODO change this so it does to the next detail page */}
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('longTerm')}
-                        >
-                        <Text style={styles.buttonText}> Skip </Text>
-                    </TouchableOpacity>
+                {/* Back Button */}
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.goBack()}
+                    >
+                    <Text style={styles.buttonText}> Back </Text>
+                </TouchableOpacity>
 
-                    {/* Next Button */}
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('longTerm')}
-                        >
-                        <Text style={styles.buttonText}> Next </Text>
-                    </TouchableOpacity>
+                {/* Skip Button : TODO change this so it does to the next detail page */}
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate('longTerm')}
+                    >
+                    <Text style={styles.buttonText}> Skip </Text>
+                </TouchableOpacity>
 
-                </View>
+                {/* Next Button */}
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate('longTerm')}
+                    >
+                    <Text style={styles.buttonText}> Next </Text>
+                </TouchableOpacity>
+
+            </View>
+
         </SafeAreaView>
     );
 };

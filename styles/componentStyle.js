@@ -73,7 +73,7 @@ const componentStyle = StyleSheet.create({
     marginRight: 10
   },
   infofieldtitle: {
-    color: '#264653',
+    color: '#7E9181',
     fontSize: 20,
     textAlign: 'left',
     padding: 10

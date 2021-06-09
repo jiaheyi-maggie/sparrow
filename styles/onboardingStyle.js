@@ -19,7 +19,7 @@ const onboardingStyle = StyleSheet.create({
       color: '#E76F51',
       fontWeight: 'bold',
       textAlign: 'left',
-      fontSize: 18,
+      fontSize: 20,
       paddingVertical: 5,
       paddingHorizontal: 15
   },
