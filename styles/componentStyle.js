@@ -43,6 +43,20 @@ const componentStyle = StyleSheet.create({
     fontSize: 18,
     marginLeft: 20,
     marginRight: 10
+  },
+  infofieldtitle: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'left'
+  },
+  infofield: {
+    elevation: 8,
+    backgroundColor: "#EFEFEF",
+    borderRadius: 10,
+    paddingVertical: 9,
+    paddingHorizontal: 9,
+    margin: 10
   }
 });
 

@@ -13,7 +13,8 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 40,
       textAlign: 'left',
       margin: 10,
-      marginTop: 10
+      marginTop: 10,
+      fontFamily: 'Ubuntu-Medium'
   },
   subtitle: {
       color: '#E76F51',
@@ -21,7 +22,8 @@ const onboardingStyle = StyleSheet.create({
       textAlign: 'left',
       fontSize: 18,
       marginLeft: 20,
-      marginRight: 10
+      marginRight: 10,
+      fontFamily: 'Ubuntu'
   },
   longtitle: {
       color: '#264653',
