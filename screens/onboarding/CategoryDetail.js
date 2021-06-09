@@ -1,6 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Image } from 'react-native';
-import categories from '../../data/categories';
+import { SafeAreaView, Text } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 

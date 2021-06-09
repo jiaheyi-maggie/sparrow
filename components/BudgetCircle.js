@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { View, Dimensions, TouchableHighlight, Text, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Dimensions, Text, TextInput, SafeAreaView } from 'react-native';
 import styles from '../styles/componentStyle';
-import NumberTextInput from './NumberTextInput';
-import TimePeriodDropdown from './TimePeriodDropdown';
 import TimePicker from './TimePicker';
 
 // TODO: add budget sum into circle

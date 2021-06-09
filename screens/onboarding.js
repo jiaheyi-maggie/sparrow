@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Alert, SafeAreaView, FlatList, ScrollView, TextInput } from 'react-native';
+import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import styles from '../styles/onboardingStyle';
-import categories from '../data/categories';
-import ListItem from '../components/ListItem';
-import NumberTextInput from '../components/NumberTextInput';
-import TimePeriodDropdown from '../components/TimePeriodDropdown';
-import CategoryDetail from './category-detail';
-import BudgetCircle from '../components/BudgetCircle';
-import SummaryListItem from '../components/SummaryListItem';
 import Welcome from '../screens/onboarding/Welcome';
 import SelectCategory from './onboarding/SelectCategory';
 import LongTerm from './onboarding/LongTerm';
