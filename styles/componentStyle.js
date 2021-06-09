@@ -32,6 +32,13 @@ const componentStyle = StyleSheet.create({
     margin: 10,
     marginTop: 10
   },
+  subtitle: {
+    color: '#E76F51',
+    fontWeight: 'bold',
+    textAlign: 'left',
+    fontSize: 18,
+    marginLeft: 10,
+  },  
   dropdown : {
     height: 50, 
     width: 150
@@ -78,7 +85,12 @@ const componentStyle = StyleSheet.create({
     paddingVertical: 9,
     marginHorizontal: 10,
     justifyContent: 'space-between'
-  }
+  },
+  imageContainer : {
+    width: 300,
+    height: 300,
+    alignContent: 'center'
+  },
 });
 
 export default componentStyle;

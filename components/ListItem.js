@@ -1,5 +1,5 @@
 import React  from 'react';
-import { TouchableOpacity, Text, Image } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import styles from '../styles/onboardingStyle';
 import { useState } from 'react/cjs/react.development';

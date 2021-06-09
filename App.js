@@ -7,6 +7,8 @@ import { useFonts } from 'expo-font';
 
 import onboarding from './screens/onboarding';
 import SignUp from './screens/SignUp';
+import SignIn from './screens/SignIn';
+import OnboardingNavigation from './screens/onboarding/OnboardingNavigation';
 
 const Stack = createStackNavigator();
 
@@ -23,9 +25,11 @@ const App = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          headerMode='none'>
-          <Stack.Screen name='onboarding' component={onboarding}/>
-          <Stack.Screen name='login' component={SignUp}/>
+          headerMode='none'
+          initialRouteName='onboarding'>
+          <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
+          <Stack.Screen name='signup' component={SignUp}/>
+          <Stack.Screen name='signin' component={SignIn}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

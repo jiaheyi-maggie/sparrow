@@ -47,8 +47,8 @@ const onboarding = ({ navigation }) => {
         SkipButtonComponent={SkipButton}
         DoneButtonComponent={DoneButton}
 
-        onSkip={() => navigation.navigate('login')}
-        onDone={() => navigation.navigate('login')}
+        onSkip={() => navigation.navigate('signup')}
+        onDone={() => navigation.navigate('signup')}
 
         pages={[
             /* Welcome Page */

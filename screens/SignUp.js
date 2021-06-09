@@ -3,8 +3,10 @@ import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import InfoField from '../components/InfoField';
 import styles from "../styles/onboardingStyle";
 import componentStyle from '../styles/componentStyle';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
     return (
         <View style={componentStyle.container}>
             <Text style={componentStyle.title}>Sign Up </Text>
@@ -22,14 +24,13 @@ const SignUp = () => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={componentStyle.buttonContainer}
-                onPress={() => Alert.alert("Login Button Clicked!")}
+                onPress={() => navigation.navigate('signin')}
             >
                 <Text style={styles.buttonText}> I already have an account </Text>
             </TouchableOpacity>
         </View>
     );
 };
-
 
 
 export default SignUp;
