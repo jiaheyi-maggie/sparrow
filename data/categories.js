@@ -46,7 +46,7 @@ const categories = [
     },
     {
         id: guidGenerator(),
-        title: 'Debt',
+        title: 'Debt / Loan',
         checked: false,
     },
   ];

@@ -115,6 +115,18 @@ const onboardingStyle = StyleSheet.create({
     fontSize: 20,
     color: "#E76F51"
   },
+  itemTitle: {
+    color: '#E76F51',
+    fontWeight: 'bold',
+    fontSize: 40,
+    margin: 0
+},
+  itemDescription: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 40,
+    margin: 0
+  },
 });
 
 export default onboardingStyle;

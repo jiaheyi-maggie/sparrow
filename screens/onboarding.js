@@ -9,21 +9,11 @@ import TimePeriodDropdown from '../components/TimePeriodDropdown';
 import CategoryDetail from './category-detail';
 import BudgetCircle from '../components/BudgetCircle';
 import SummaryListItem from '../components/SummaryListItem';
+import Welcome from '../screens/onboarding/Welcome';
+import SelectCategory from './onboarding/SelectCategory';
+import LongTerm from './onboarding/LongTerm';
+import BudgetOverview from './onboarding/BudgetOverview';
 
-
-//dummy onPress 
-const dummyPress = () => Alert.alert("Button pressed");
-
-
-// render items with checkbox
-const renderItem = ({ item }) => (
-    <ListItem title={item.title} />
-);
-
-// // render items without checkbox
-const renderSummaryItem = ({ item }) => (
-    <SummaryListItem title={item.title} />
-);
 
 // Done Button
 const DoneButton = ({ ... props}) => (
@@ -56,10 +46,8 @@ const SkipButton = ({ ... props}) => (
 );
 
 
-
-
 // Onboarding swipper
-const onboarding = ({navigation}) => {  
+const onboarding = ({ navigation }) => {  
     return (
         <Onboarding
         NextButtonComponent={ContinueButton}
@@ -75,89 +63,24 @@ const onboarding = ({navigation}) => {
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
-                image: (
-                    <SafeAreaView style={styles.withTitleContainer}>
-                        <View>
-                            <Text style={styles.title}> Welcome </Text>
-                            </View>
-                        <View>
-                            <Text style={styles.subtitle}>Congrats on taking the fist step to managing your money efficiently! Let us get to know your spending habits with some basic questions :))</Text>
-                            </View>
-                        <Image 
-                            source={require('../assets/onboarding/welcome.png')} 
-                            resizeMode='contain'
-                            style={styles.imageContainer}
-                            />
-                    </SafeAreaView>
-                ),
+                image: (<Welcome />),
             },
 
-            //TODO: checkbox connects to backend
+            // TODO: checkbox connects to backend
             /* Select Category Page */
             {
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
-                image: (
-                    <SafeAreaView style={styles.safeareaWithScroll}>
-                        <ScrollView style={styles.scrollviewContainer}>
-                            <View>
-                                <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
-                                </View>
-                            <View>
-                                <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories.</Text>
-                                </View>
-                            <Image 
-                                source={require('../assets/onboarding/mark-categories.png')} 
-                                resizeMode='contain'
-                                style={styles.imageContainer}
-                                />
-                            <FlatList
-                                data={categories}
-                                renderItem={renderItem}
-                                keyExtractor={item => item.id}
-                                />
-                        </ScrollView>
-                    </SafeAreaView>
-
-                ),
+                image: (<SelectCategory />),
             },
-            // {
-            //     title: '',
-            //     subtitle: '',
-            //     backgroundColor: '#fff',
-            //     image: (
-            //         <CategoryDetail /> 
-            //     ),
-            // },
 
             /* Long Term Budget Page */
             {
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
-                image: ( 
-                    <SafeAreaView style={styles.withTitleContainer}>
-                        <View>
-                            <Text style={styles.title}>Do you have a long-term budget? </Text>
-                        </View>
-                        <View>
-                            <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you. </Text>
-                        </View>
-                        <View style={{alignItems: 'center'}}>
-                            <Text style={styles.emphasizeText}>I plan to spend</Text>
-                            <NumberTextInput />
-                            <Text style={styles.emphasizeText}>per</Text>
-                            <TimePeriodDropdown />
-                        </View>
-
-                        <Image 
-                            source={require('../assets/onboarding/long-term.png')} 
-                            resizeMode='contain'
-                            style={styles.imageContainer}
-                            />
-                    </SafeAreaView>
-                ),
+                image: (<LongTerm />),
             },
             // TODO: change dummy numbers
             /* Budget Overview Page */
@@ -165,28 +88,7 @@ const onboarding = ({navigation}) => {
                 title: '',
                 subtitle: '',
                 backgroundColor: '#fff',
-                image: ( 
-                    <SafeAreaView style={styles.safeareaWithScroll}>
-                        <ScrollView style={styles.scrollviewContainer}>
-                            <View>
-                                <Text style={styles.title}>Budget Overview </Text>
-                                </View>
-                            <View>
-                                <Text style={styles.subtitle}>Tap on any number to edit!</Text>
-                                </View>
-                            <View style={{flexDirection: 'row', padding: 10}}>
-                                <BudgetCircle term={'Short'} />
-                                <BudgetCircle term={'Long'} />
-                            </View>
-                            <FlatList
-                                    data={categories}
-                                    renderItem={renderSummaryItem}
-                                    keyExtractor={item => item.id}
-                                    />
-                        </ScrollView>
-                    </SafeAreaView>
-
-                ),
+                image: ( <BudgetOverview />),
             },
         ]}
         />

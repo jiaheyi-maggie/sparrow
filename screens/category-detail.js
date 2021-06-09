@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import NumberTextInput from '../components/NumberTextInput';
 import TimePeriodDropdown from '../components/TimePeriodDropdown';
 import categories from '../data/categories';
-import styles from '../styles/onboardingStyle'
+import styles from '../styles/onboardingStyle';
 
-const CategoryDetail = () => {
-    
+
+
+const CategoryDetail = (props) => {
+
     //check the props for each category in the array
     function categoryChecked(props) {
         const isChecked = props.checked;
