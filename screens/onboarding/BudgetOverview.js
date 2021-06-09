@@ -5,7 +5,7 @@ import styles from '../../styles/onboardingStyle';
 import BudgetCircle from '../../components/BudgetCircle';
 import SummaryListItem from '../../components/SummaryListItem';
 
-const BudgetOverview = () => {
+const BudgetOverview = ({ navigation }) => {
 
     // render items without checkbox
     const renderSummaryItem = ({ item }) => (

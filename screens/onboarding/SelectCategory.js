@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Image, ScrollView, FlatList } from 'react-native';
+import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import styles from "../../styles/onboardingStyle";
 import ListItem from '../../components/ListItem';
 import categories from '../../data/categories';
 
-const SelectCategory = () => {
+const SelectCategory = ({ navigation }) => {
 
     // render items with checkbox
     const renderItem = ({ item }) => (
@@ -30,7 +30,27 @@ const SelectCategory = () => {
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     />
+                <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
+                    {/* Back Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.goBack()}
+                    >
+                        <Text style={styles.buttonText}> Back </Text>
+                        </TouchableOpacity>
+
+                    {/* Continue Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.navigate('categories')}
+                    >
+                        <Text style={styles.buttonText}> Continue </Text>
+                        </TouchableOpacity>
+
+                </View>
+
             </ScrollView>
+
         </SafeAreaView>
     );
 };

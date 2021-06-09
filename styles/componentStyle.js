@@ -91,6 +91,13 @@ const componentStyle = StyleSheet.create({
     height: 300,
     alignContent: 'center'
   },
+  buttonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: "#264653",
+    alignSelf: "center",
+    textTransform: "uppercase"
+  }
 });
 
 export default componentStyle;

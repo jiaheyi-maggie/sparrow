@@ -1,12 +1,19 @@
-import React from 'react';
-import { SafeAreaView, View, Text, Image } from 'react-native';
+import React, { Fragment } from 'react';
+import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
 
-const LongTerm = () => {
+const LongTerm = ({ navigation }) => {
     return (
-        <SafeAreaView style={styles.withTitleContainer}>
+        <Fragment>
+            <SafeAreaView style={{ flex:0, backgroundColor: 'red' }} />
+            <SafeAreaView style={{ flex:1, 
+                backgroundColor: '#fff', 
+                margin: 10,
+                flexDirection: 'column', 
+                justifyContent: 'space-around',
+                alignItems: 'center' }}>
             <View>
                 <Text style={styles.title}>Do you have a long-term budget? </Text>
             </View>
@@ -20,12 +27,32 @@ const LongTerm = () => {
                 <TimePeriodDropdown />
             </View>
 
-            <Image 
+            {/* <Image 
                 source={require('../../assets/onboarding/long-term.png')} 
                 resizeMode='contain'
                 style={styles.imageContainer}
-                />
+                /> */}
+            
+            <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
+                    {/* Back Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.goBack()}
+                    >
+                        <Text style={styles.buttonText}> Back </Text>
+                        </TouchableOpacity>
+
+                    {/* Next Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.navigate('budgeOverview')}
+                    >
+                        <Text style={styles.buttonText}> Continue </Text>
+                        </TouchableOpacity>
+
+                </View>
         </SafeAreaView>
+        </Fragment>
     );
 };
 

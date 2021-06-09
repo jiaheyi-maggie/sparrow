@@ -11,7 +11,8 @@ const TimePeriodDropdown = () => {
                 borderColor: '#264653', 
                 borderRadius: 4,
                 alignItems:'center',
-                width: 200
+                width: 200,
+                marginVertical: 10
                 }}>
             <Picker 
                 selectedValue={selected}

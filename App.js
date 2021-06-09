@@ -9,6 +9,7 @@ import onboarding from './screens/onboarding';
 import SignUp from './screens/SignUp';
 import SignIn from './screens/SignIn';
 import OnboardingNavigation from './screens/onboarding/OnboardingNavigation';
+import theme from './assets/theme';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,7 @@ const App = () => {
     return <AppLoading />
   } else {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={theme}>
         <Stack.Navigator
           headerMode='none'
           initialRouteName='onboarding'>

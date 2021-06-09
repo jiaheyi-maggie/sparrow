@@ -10,20 +10,18 @@ const onboardingStyle = StyleSheet.create({
   title: {
       color: '#264653',
       fontWeight: 'bold',
-      fontSize: 40,
+      fontSize: 45,
       textAlign: 'left',
-      margin: 10,
-      marginTop: 10,
-      fontFamily: 'Ubuntu-Medium'
+      paddingTop: 10,
+      paddingLeft: 15
   },
   subtitle: {
       color: '#E76F51',
       fontWeight: 'bold',
       textAlign: 'left',
       fontSize: 18,
-      marginLeft: 20,
-      marginRight: 10,
-      fontFamily: 'Ubuntu-Light'
+      paddingVertical: 5,
+      paddingHorizontal: 15
   },
   longtitle: {
       color: '#264653',
@@ -36,12 +34,13 @@ const onboardingStyle = StyleSheet.create({
       elevation: 8,
       backgroundColor: "#264653",
       borderRadius: 10,
-      paddingVertical: 9,
+      paddingVertical: 15,
       paddingHorizontal: 9,
       margin: 10
   },
   buttonText : {
-      fontSize: 15,
+      fontSize: 18,
+      fontWeight: 'bold',
       color: "#fff",
       alignSelf: "center",
       textTransform: "uppercase"
@@ -76,8 +75,8 @@ const onboardingStyle = StyleSheet.create({
     marginBottom: 0
   },
   safeareaWithScroll : {
-    marginTop: 30,
-    marginBottom: 0
+    backgroundColor: '#fff',
+    margin: 10
   },
   checkboxContainer : {
     alignContent: 'center',
@@ -99,8 +98,9 @@ const onboardingStyle = StyleSheet.create({
     marginVertical: 5
   },
   withTitleContainer: {
-    marginTop: 100,
-    padding:10
+    backgroundColor: '#fff',
+    margin: 10,
+    color: '#fff'
   },
   listSummaryItem: {
     backgroundColor: '#FFF4CB',
