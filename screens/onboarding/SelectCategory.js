@@ -11,8 +11,10 @@ const SelectCategory = ({ navigation }) => {
         <ListItem title={item.title} />
     );
 
+
     return (
         <SafeAreaView style={styles.safeareaWithScroll}>
+            
             <ScrollView style={styles.scrollviewContainer}>
                 <View>
                     <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
@@ -25,13 +27,20 @@ const SelectCategory = ({ navigation }) => {
                 <Image 
                     source={require('../../assets/onboarding/mark-categories.png')} 
                     resizeMode='contain'
-                    style={styles.imageContainer}
+                    style={{
+                        width: 300,
+                        height: 300,
+                        alignContent: 'center'
+                    }}
                 />
 
-                <FlatList
+                <FlatList 
                     data={categories}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                    }}
                 />
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
