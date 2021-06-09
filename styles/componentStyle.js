@@ -11,6 +11,19 @@ const componentStyle = StyleSheet.create({
     borderBottomWidth: 3,
     alignContent: 'center'
   },
+  container: {
+    alignItems: 'stretch',
+    padding: 20,
+    marginHorizontal: 8
+  },
+  title: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 50,
+    textAlign: 'left',
+    margin: 10,
+    marginTop: 10
+  },
   dropdown : {
     height: 50, 
     width: 150
@@ -46,17 +59,17 @@ const componentStyle = StyleSheet.create({
   },
   infofieldtitle: {
     color: '#264653',
-    fontWeight: 'bold',
-    fontSize: 30,
-    textAlign: 'left'
+    fontSize: 20,
+    textAlign: 'left',
+    padding: 10
   },
   infofield: {
     elevation: 8,
     backgroundColor: "#EFEFEF",
     borderRadius: 10,
     paddingVertical: 9,
-    paddingHorizontal: 9,
-    margin: 10
+    marginHorizontal: 10,
+    justifyContent: 'space-between'
   }
 });
 

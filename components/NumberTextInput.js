@@ -9,7 +9,7 @@ const NumberTextInput = () => {
       <SafeAreaView>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeNumber}
+          onChangeText={(number) => onChangeNumber(number)}
           value={number}
           placeholder="$2000"
           placeholderTextColor='#FFF4CB'

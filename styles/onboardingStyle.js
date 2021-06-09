@@ -23,7 +23,7 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 18,
       marginLeft: 20,
       marginRight: 10,
-      fontFamily: 'Ubuntu'
+      fontFamily: 'Ubuntu-Light'
   },
   longtitle: {
       color: '#264653',

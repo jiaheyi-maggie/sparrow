@@ -1,18 +1,22 @@
-import React from 'react';
-import { SafeAreaView, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, TextInput, Text } from 'react-native';
 import styles from '../styles/componentStyle';
 
 const InfoField = ({ fieldName }) => {
+
+    const [text, setText] = useState('');
+    
+    // TODO: research this bug
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{alignItems: 'stretch'}}>
             <Text style={styles.infofieldtitle}>{fieldName}</Text>
             <TextInput
                 style={styles.infofield}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder="$2000"
+                onChangeText={(text) => setText(text)}
+                value={text}
+                placeholder={fieldName}
                 placeholderTextColor='#FFF4CB'
-                keyboardType='default'
+                keyboardType='web-search'
             > </TextInput>
         </SafeAreaView>
     );
