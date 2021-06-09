@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text, ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, ScrollView, FlatList } from 'react-native';
 import categories from '../../data/categories';
 import styles from '../../styles/onboardingStyle';
 import BudgetCircle from '../../components/BudgetCircle';

@@ -13,7 +13,7 @@ const Welcome = () => {
             <Text style={styles.subtitle}>Congrats on taking the fist step to managing your money efficiently! Let us get to know your spending habits with some basic questions :))</Text>
             </View>
         <Image 
-            source={require('../assets/onboarding/welcome.png')} 
+            source={require('../../assets/onboarding/welcome.png')} 
             resizeMode='contain'
             style={styles.imageContainer}
             />
