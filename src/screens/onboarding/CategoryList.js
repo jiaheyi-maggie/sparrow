@@ -8,10 +8,11 @@ import categories from '../../data/categories';
 const CategoryList = () => {
 
     const [checkedCategories, setCheckedCategories] = useState(categories);
-    const checkedArray = [];
+    var checkedArray = [];
 
 
     // find item through id, change 'checked field' to true (default false)
+    // why is this changing everything to true? 
     const changeCheckField = (id) => {
         for (var i in categories) {
             if (categories[i].id = id) {
@@ -30,15 +31,10 @@ const CategoryList = () => {
         }
     }
 
-    // allow other classes to have access to checkedArray
-    const getCheckedArray = () => {
-        return checkedArray;
-    }
-
     // when user press on an item, add item to checkedCategories
     const pressHandler = (id) => {
         changeCheckField(id);
-        updateSelectedList(checkedCategories);
+        updateSelectedList(categories);
         console.log(checkedArray);
         setCheckedCategories((prevCategories) => {
             return prevCategories.filter( category => category.id != id);
