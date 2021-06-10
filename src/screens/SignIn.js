@@ -4,7 +4,10 @@ import InfoField from '../components/InfoField';
 import styles from "../styles/onboardingStyle";
 import componentStyle from '../styles/componentStyle';
 
+
 const SignIn = ({ navigation }) => {
+
+    // UI Component
     return (
         <View style={{
             margin: 10,
