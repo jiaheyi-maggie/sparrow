@@ -1,6 +1,6 @@
 // List of categories with data 
 // PureComponent to prevent unnecessary updates
-import React, { PureComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Image, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import CategoryItem from '../../components/CategoryItem';
 import categories from '../../data/categories';
@@ -10,11 +10,12 @@ const CategoryList = () => {
 
     const [checkedCategories, setCheckedCategories] = useState(categories);
 
-    // find item through id, change 'checked field' to true (default false)
+    // find item through id, change 'checked field' to true (default false): un
     const changeCheckField = (id) => {
         for (var i in categories) {
             if (categories[i].id = id) {
                 categories[i].checked = true;
+                console.log(categories[i]);
                 break;
             }
         }
@@ -28,8 +29,7 @@ const CategoryList = () => {
         //update checkedCategoriesList
         setCheckedCategories(
             (prevCategories) => {
-                return prevCategories.push(categories.find(item => item.checked === true));
-                // return prevCategories.push(categories.find(item => item.id = id));
+                return prevCategories.filter(item => item.id != id);
             }
         )
     };
@@ -37,7 +37,7 @@ const CategoryList = () => {
     // iterate through checkedCategories and render 
     return (
         <FlatList 
-            data={categories}
+            data={checkedCategories}
             renderItem={({item}) => (<CategoryItem item={item} pressHandler={pressHandler} />)}
             keyExtractor={item => item.id}
             contentContainerStyle={{

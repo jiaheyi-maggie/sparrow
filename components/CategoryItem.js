@@ -1,28 +1,41 @@
 // replacement ListItem
 import React  from 'react';
 import { TouchableOpacity, Text } from "react-native";
-import styles from '../styles/onboardingStyle';
+import Checkbox from '@react-native-community/checkbox';
+import { useState } from 'react/cjs/react.development';
 
 const CategoryItem = ({ item, pressHandler }) => {
+
+    const [isChecked, setCheck] = useState(false);
+
     return (
         <TouchableOpacity
             style={{
-                height: 40, 
+                height: 60, 
                 backgroundColor: '#FFF4CB', 
-                borderRadius: 15, 
-                marginHorizontal:16, 
-                padding: 10, 
-                flexDirection: 'column'
+                borderRadius: 20, 
+                margin:10, 
+                padding: 5, 
+                flexDirection: 'column-reverse'
             }}
             onPress={() => pressHandler(item.id)}
         >
-            {/* <Checkbox 
+            <Checkbox 
                 style={{flexDirection: 'column', marginTop: 8}}
                 disabled={false}
                 value={isChecked}
-                onValueChange={() => setCheckBool(!isChecked)}
-            /> */}
-            <Text style={styles.listtitle}>{item.title}</Text>
+                onValueChange={() => setCheck(!isChecked)}
+            />
+            
+            <Text style={{    
+                color: '#264653',
+                fontWeight: 'bold',
+                textAlign: 'left',
+                fontSize: 23,
+                marginLeft: 80
+                }}>
+                    {item.title}
+            </Text>
         </TouchableOpacity>
     );
 };
