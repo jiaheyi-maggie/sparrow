@@ -3,6 +3,7 @@ import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity
 import styles from "../../styles/onboardingStyle";
 import ListItem from '../../components/ListItem';
 import categories from '../../data/categories';
+import CategoryList from './CategoryList';
 
 // Home screen (to category details)
 
@@ -36,14 +37,16 @@ const SelectCategory = ({ navigation }) => {
                     }}
                 />
 
-                <FlatList 
+                <CategoryList />
+
+                {/* <FlatList 
                     data={categories}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     contentContainerStyle={{
                         flexGrow: 1,
                     }}
-                />
+                /> */}
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}

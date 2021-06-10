@@ -8,7 +8,7 @@ function guidGenerator() {
 }
 
 // Categories for the category selection page
-const categories = [
+var categories = [
     {
         id: guidGenerator(),
         title: 'Groceries',
