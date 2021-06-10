@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import InfoField from '../components/InfoField';
 import styles from "../styles/onboardingStyle";
 import componentStyle from '../styles/componentStyle';

@@ -4,18 +4,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import SignUp from './screens/SignUp';
-import SignIn from './screens/SignIn';
-import OnboardingNavigation from './screens/onboarding/OnboardingNavigation';
-import theme from './assets/theme';
+import SignUp from './src/screens/SignUp';
+import SignIn from './src/screens/SignIn';
+import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
+import theme from './src/assets/theme';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   // TODO: setup app font
   let [fontLoaded] = useFonts({
-    'Ubuntu-Medium': require('./assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
-    'Ubuntu-Light': require('./assets/fonts/Ubuntu/Ubuntu-Light.ttf'),
+    'Ubuntu-Medium': require('./src/assets/fonts/Ubuntu/Ubuntu-Medium.ttf'),
+    'Ubuntu-Light': require('./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf'),
   });
 
   if (!fontLoaded) {
