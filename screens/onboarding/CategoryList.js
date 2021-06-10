@@ -8,7 +8,7 @@ import categories from '../../data/categories';
 const CategoryList = () => {
 
     const [checkedCategories, setCheckedCategories] = useState(categories);
-
+    const checkedArray = [];
 
     // find item through id, change 'checked field' to true (default false)
     const changeCheckField = (id) => {
@@ -22,12 +22,18 @@ const CategoryList = () => {
     }
 
     // update checkedCategory list 
-    const updateSelectedList = () => {
+    const updateSelectedList = (list) => {
+        for (var i in list) {
+            if (list[i].checked = true) {
+                checkedArray.push(list[i]);
+            }
+        }
     }
 
     // when user press on an item, add item to checkedCategories
     const pressHandler = (id) => {
         changeCheckField(id);
+        updateSelectedList(categories);
         setCheckedCategories((prevCategories) => {
             return prevCategories.filter( category => category.id != id);
         })
@@ -36,7 +42,7 @@ const CategoryList = () => {
     // iterate through checkedCategories and render 
     return (
         <FlatList 
-            data={categories}
+            data={checkedCategories}
             renderItem={({item}) => (<CategoryItem item={item} pressHandler={pressHandler} />)}
             keyExtractor={item => item.id}
             contentContainerStyle={{
