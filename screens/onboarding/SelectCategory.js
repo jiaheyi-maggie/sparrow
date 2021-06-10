@@ -4,6 +4,8 @@ import styles from "../../styles/onboardingStyle";
 import ListItem from '../../components/ListItem';
 import categories from '../../data/categories';
 
+// Home screen (to category details)
+
 const SelectCategory = ({ navigation }) => {
 
     // render items with checkbox
@@ -55,8 +57,8 @@ const SelectCategory = ({ navigation }) => {
                     {/* Continue Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('categories')}
-                        >
+                        onPress={() => {navigation.navigate('categories')
+                    }}>
                         <Text style={styles.buttonText}> Continue </Text>
                     </TouchableOpacity>
 

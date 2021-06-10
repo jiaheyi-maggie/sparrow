@@ -6,7 +6,13 @@ import styles from '../../styles/onboardingStyle';
 
 // TODO: checkbox connects to backend, pass in data
 
-const CategoryDetail = ({ navigation }) => {
+//Detail Screen 
+
+const CategoryDetail = ({ navigation, route }) => {
+
+    //get params of route
+    // const { checkedCategories } = route.params;
+
     return (
         <SafeAreaView style={{
             alignItems: 'center', 
