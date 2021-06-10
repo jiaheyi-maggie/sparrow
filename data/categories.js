@@ -1,51 +1,43 @@
 
-// function that generates unique id for each categories
-function guidGenerator() {
-    var S4 = function() {
-       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
-}
-
 // Categories for the category selection page
 var categories = [
     {
-        id: guidGenerator(),
+        id: '0',
         title: 'Groceries',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '1',
         title: 'Utilities',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '2',
         title: 'Eating Out',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '3',
         title: 'Rent',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '4',
         title: 'Entertainment',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '5',
         title: 'Gas/Transportation',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '6',
         title: 'Insurance',
         checked: false,
     },
     {
-        id: guidGenerator(),
+        id: '7',
         title: 'Debt / Loan',
         checked: false,
     },
