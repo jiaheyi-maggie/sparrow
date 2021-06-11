@@ -1,20 +1,21 @@
 // replacement ListItem
 import React  from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import { useState } from 'react/cjs/react.development';
-import selected from '../data/selected';
+
 import styles from '../styles/componentStyle';
+import categories from '../data/categories';
 
 const CategoryItem = ({ item, pressHandler }) => {
 
-    // extract data from selected array
-    const [isSelected, setSelected] = useState(selected[item.id].checked);
+    // extract data from selected array: specific item boolean
+    // const [isSelected, setSelected] = useState(selected[item.id].checked);
+    const [isSelected, setSelected] = useState(categories[item.id].checked);
 
     const handleCheckbox = () => {
-        setSelected(selected[item.id].checked = !selected[item.id].checked);
+        setSelected(categories[item.id].checked = !categories[item.id].checked);
         console.log(isSelected);
-        console.log(selected);
     }
 
     return (
@@ -26,7 +27,7 @@ const CategoryItem = ({ item, pressHandler }) => {
                     <View style={styles.listTextAlign}>
                         <Checkbox 
                             disabled={false}
-                            value={!isSelected}
+                            value={isSelected}
                             onValueChange={handleCheckbox}
                         />
 
