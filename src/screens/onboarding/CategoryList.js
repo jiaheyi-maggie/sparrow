@@ -13,8 +13,7 @@ const CategoryList = () => {
     const [checkedCategories, setCheckedCategories] = useState(new Set());
 
     //get selected boolean (for check box)
-    const [selectedList, setSelectedList]= useState(selected);
-
+    // const [selectedList, setSelectedList]= useState(selected);
 
     // when user press on an item, add item to checkedCategories
     const pressHandler = (id) => {
@@ -30,14 +29,14 @@ const CategoryList = () => {
         
         setCheckedCategories(updatedCategories);
 
-        // update selected list 
-        selectedList[id].checked = !selectedList[id].checked;
+        // // update selected list
+        // selectedList[id].checked = !selectedList[id].checked;
 
-        setSelectedList(selectedList);
+        // setSelectedList(selectedList);
 
-        console.log(categories[id]);
+        // console.log(categories[id]);
         console.log(checkedCategories);
-        console.log(selectedList);
+        // console.log(selectedList);
     };
 
     // iterate through checkedCategories and render 

@@ -12,7 +12,7 @@ import CategoryList from '../onboarding/CategoryList';
 const CategoryDetail = ({ navigation, route }) => {
 
     //get params of route
-    const { checkedCategories } = route.params;
+    // const { checkedCategories } = route.params;
 
     return (
         <SafeAreaView style={{        
