@@ -1,5 +1,5 @@
 // List of categories with data 
-// PureComponent to prevent unnecessary updates
+// moved to SelectCategory
 import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 
@@ -13,7 +13,7 @@ const CategoryList = () => {
     const [checkedCategories, setCheckedCategories] = useState(new Set());
 
     //get selected boolean (for check box)
-    // const [selectedList, setSelectedList]= useState(selected);
+    const [selectedList, setSelectedList]= useState(selected);
 
     // when user press on an item, add item to checkedCategories
     const pressHandler = (id) => {
@@ -29,21 +29,25 @@ const CategoryList = () => {
         
         setCheckedCategories(updatedCategories);
 
-        // // update selected list
-        // selectedList[id].checked = !selectedList[id].checked;
+        // update selected list
+        selectedList[id].checked = !selectedList[id].checked;
 
-        // setSelectedList(selectedList);
+        setSelectedList(selectedList);
+
+        /* TODO: update checkbox */
 
         // console.log(categories[id]);
         console.log(checkedCategories);
-        // console.log(selectedList);
+        console.log(selectedList);
     };
 
     // iterate through checkedCategories and render 
     return (
         <FlatList 
             data={categories}
-            renderItem={({item}) => (<CategoryItem item={item} pressHandler={pressHandler} />)}
+            renderItem={({item}) => (
+                <CategoryItem item={item} pressHandler={pressHandler} />
+            )}
             keyExtractor={item => item.id}
             contentContainerStyle={{
                 flexGrow: 1,

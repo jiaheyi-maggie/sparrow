@@ -6,17 +6,16 @@ import Checkbox from '@react-native-community/checkbox';
 import styles from '../styles/componentStyle';
 import selected from '../data/selected';
 
-const CategoryItem = ({ item, pressHandler, isChecked }) => {
+const CategoryItem = ({ item, pressHandler }) => {
 
     // extract data from selected array: specific item boolean
-    const [isSelected, setSelected] = useState(isChecked);
+    const [isSelected, setSelected] = useState(selected[item.id].checked);
     
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
                 onPress={() => pressHandler(item.id)}
             >
-
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}

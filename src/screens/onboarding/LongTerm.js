@@ -13,7 +13,9 @@ const LongTerm = ({ navigation }) => {
                 paddingTop: 60
             }}>
                 <View>
-                    <Text style={styles.title}>Do you have a long-term budget? </Text>
+                    <Text style={styles.title}>
+                        Do you have a long-term budget? 
+                    </Text>
                 </View>
 
                 <View>

@@ -4,7 +4,9 @@ import styles from '../../styles/homeStyle';
 
 const HomeTab = () => {
     return (
-        <Text style={styles.title}> This is home!</Text>
+        <View>
+            <Text style={styles.title}> This is home!</Text>
+        </View>
     );
 }
 export default HomeTab;

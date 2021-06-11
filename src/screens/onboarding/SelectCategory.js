@@ -1,18 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import styles from "../../styles/onboardingStyle";
-import ListItem from '../../components/ListItem';
-import categories from '../../data/categories';
-import CategoryList from './CategoryList';
 
-// Home screen (to category details)
+import CategoryItem from '../../components/CategoryItem';
+import categories from '../../data/categories';
+import selected from '../../data/selected';
+
+// Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
 
-    // render items with checkbox
-    const renderItem = ({ item }) => (
-        <ListItem title={item.title} />
-    );
+    // TODO: get the updated state from CategoryList
+    // Idea: merge CategoryList into this file so the entire page have access to state variables
+
+    // get selected categories
+    const [checkedCategories, setCheckedCategories] = useState(new Set());
+
+    //get selected boolean (for check box)
+    const [selectedList, setSelectedList]= useState(selected);
+
+    // when user press on an item, add item to checkedCategories
+    const pressHandler = (id) => {
+
+        // udpate selected categories list
+        const updatedCategories = new Set(checkedCategories);
+
+        if (checkedCategories.has(categories[id])) {
+            updatedCategories.delete(categories[id]);
+        } else {
+            updatedCategories.add(categories[id]);    
+        }
+        
+        setCheckedCategories(updatedCategories);
+
+        // update selected list
+        selectedList[id].checked = !selectedList[id].checked;
+
+        setSelectedList(selectedList);
+
+        /* TODO: update checkbox */
+
+        // console.log(categories[id]);
+        console.log(checkedCategories);
+        console.log(selectedList);
+    };
 
 
     return (
@@ -37,31 +68,33 @@ const SelectCategory = ({ navigation }) => {
                     }}
                 />
 
-                <CategoryList />
-
-                {/* <FlatList 
+                {/* CATEGORY LIST HERE */}
+                <FlatList 
                     data={categories}
-                    renderItem={renderItem}
+                    renderItem={({item}) => (
+                        <CategoryItem item={item} pressHandler={pressHandler} />
+                        )}
                     keyExtractor={item => item.id}
                     contentContainerStyle={{
                         flexGrow: 1,
                     }}
-                /> */}
+                />
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
-                        >
+                    >
                         <Text style={styles.buttonText}> Back </Text>
                     </TouchableOpacity>
 
                     {/* Continue Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        onPress={() => {navigation.navigate('categories')
-                    }}>
+                        // PASSED IN ROUTE PARAMS HERE
+                        onPress={() => {navigation.navigate('categories'), {checkedCategories}}}
+                    >
                         <Text style={styles.buttonText}> Continue </Text>
                     </TouchableOpacity>
 

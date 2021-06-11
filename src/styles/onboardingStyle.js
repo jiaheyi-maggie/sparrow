@@ -71,7 +71,7 @@ const onboardingStyle = StyleSheet.create({
     alignItems: 'center'
   },
   scrollviewContainer: {
-    marginTop: 20,
+    marginTop: 20
   },
   safeareaWithScroll : {
     backgroundColor: '#fff'

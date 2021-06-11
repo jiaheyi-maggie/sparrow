@@ -5,6 +5,7 @@ import SelectCategory from './SelectCategory';
 import LongTerm from './LongTerm';
 import BudgetOverview from './BudgetOverview';
 import CategoryDetail from './CategoryDetail';
+import selected from '../../data/selected';
 
 /* Add the onboarding navigation stack here */
 const OnboardingStack = createStackNavigator();

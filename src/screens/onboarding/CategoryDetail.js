@@ -3,16 +3,12 @@ import { SafeAreaView, Text, TouchableOpacity, View, StyleSheet } from 'react-na
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
-import CategoryList from '../onboarding/CategoryList';
 
-// TODO: checkbox connects to backend, pass in data
+// TODO: checkbox connects to backend, GET PREVIOUS SCREEN DATA FROM NAVIGATION
 
-//Detail Screen 
+const CategoryDetail = ({ navigation }) => {
 
-const CategoryDetail = ({ navigation, route }) => {
-
-    //get params of route
-    // const { checkedCategories } = route.params;
+    //get params
 
     return (
         <SafeAreaView style={{        
@@ -34,7 +30,7 @@ const CategoryDetail = ({ navigation, route }) => {
 
             <TimePeriodDropdown /> 
             
-            <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
+            <View style={{flexDirection: 'row'}}> 
 
                 {/* Back Button */}
                 <TouchableOpacity
