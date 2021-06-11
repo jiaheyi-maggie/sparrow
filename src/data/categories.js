@@ -4,42 +4,42 @@ var categories = [
     {
         id: '0',
         title: 'Groceries',
-        checked: false,
+        // checked: false,
     },
     {
         id: '1',
         title: 'Utilities',
-        checked: false,
+        // checked: false,
     },
     {
         id: '2',
         title: 'Eating Out',
-        checked: false,
+        // checked: false,
     },
     {
         id: '3',
         title: 'Rent',
-        checked: false,
+        // checked: false,
     },
     {
         id: '4',
         title: 'Entertainment',
-        checked: false,
+        // checked: false,
     },
     {
         id: '5',
         title: 'Gas/Transportation',
-        checked: false,
+        // checked: false,
     },
     {
         id: '6',
         title: 'Insurance',
-        checked: false,
+        // checked: false,
     },
     {
         id: '7',
         title: 'Debt / Loan',
-        checked: false,
+        // checked: false,
     },
   ];
 
