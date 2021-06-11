@@ -18,11 +18,23 @@ const CategoryList = () => {
     // when user press on an item, add item to checkedCategories
     const pressHandler = (id) => {
         setChecked(selected[id].checked = !selected[id].checked);
-        console.log(selected);
-        //[...checkedCategories, categories[id]]
+        // console.log(selected);
 
-        // is this memory expensive? 
-        setCheckedCategories(prev => new Set([...checkedCategories, categories[id]]));
+        const updatedCategories = new Set(checkedCategories);
+
+        if (checkedCategories.has(categories[id])) {
+            setCheckedCategories(categories[id].checked = !categories[id].checked);
+            updatedCategories.delete(categories[id]);
+        } else {
+            setCheckedCategories(categories[id].checked = !categories[id].checked);
+            updatedCategories.add(categories[id]);
+        }
+
+        // setCheckedCategories(categories[id].checked = !categories[id].checked);
+        // is this memory expensive? same as spread array tho
+        // setCheckedCategories(prev => new Set([...checkedCategories, categories[id]]));
+
+        setCheckedCategories(updatedCategories);
         console.log(checkedCategories);
     };
 
