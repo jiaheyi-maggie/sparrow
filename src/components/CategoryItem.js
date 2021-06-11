@@ -3,25 +3,32 @@ import React  from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import { useState } from 'react/cjs/react.development';
+import selected from '../data/selected';
 
 const CategoryItem = ({ item, pressHandler }) => {
 
-    const [isChecked, setCheck] = useState(false);
+    // extract data from selected array
+    const [isSelected, setSelected] = useState(selected[item.id].checked);
+
+    const handleCheckbox = () => {
+        setSelected(selected[item.id].checked = !selected[item.id].checked);
+        console.log(isSelected);
+        console.log(selected);
+    }
 
     return (
                 <TouchableOpacity
                     style={style.container}
                     onPress={() => pressHandler(item.id)}
                 >
+
                     <View style={style.textAlign}>
                         <Checkbox 
                             disabled={false}
-                            value={isChecked}
-                            onValueChange={() => setCheck(!isChecked)}
+                            value={!isSelected}
+                            onValueChange={handleCheckbox}
                         />
 
-                        {/* replacement checkbox */}
-                        
                         <Text style={style.title}>
                                 {item.title}
                         </Text>

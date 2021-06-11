@@ -21,7 +21,7 @@ const CategoryList = () => {
         // setCheckedCategories((prev) => {
         //     // return prev.filter( category => category.id != id);
         // })
-        setChecked(selected[id].checked = true);
+        setChecked(selected[id].checked = !selected[id].checked);
         console.log(selected);
         setCheckedCategories([...checkedCategories, categories[id]]);
         // console.log(checkedCategories);
