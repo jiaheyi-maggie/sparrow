@@ -6,15 +6,11 @@ import styles from '../../styles/onboardingStyle';
 
 const LongTerm = ({ navigation }) => {
     return (
-        <Fragment>
-            <SafeAreaView style={{ flex:0, backgroundColor: 'red' }} />
-            <SafeAreaView style={{ 
-                flex:1, 
-                backgroundColor: '#fff', 
-                margin: 10,
-                flexDirection: 'column', 
-                justifyContent: 'space-around',
-                alignItems: 'center' 
+            <SafeAreaView style={{
+                backgroundColor:'#fff', 
+                flex: 1,
+                justifyContent: 'flex-start',
+                paddingTop: 60
             }}>
                 <View>
                     <Text style={styles.title}>Do you have a long-term budget? </Text>
@@ -57,7 +53,6 @@ const LongTerm = ({ navigation }) => {
 
             </SafeAreaView>
 
-        </Fragment>
     );
 };
 

@@ -14,7 +14,10 @@ const componentStyle = StyleSheet.create({
   container: {
     alignItems: 'stretch',
     padding: 20,
-    marginHorizontal: 8
+    margin: 10,
+    backgroundColor: '#FFF4CB',
+    flexDirection: 'column',
+    flex: 1
   },
   buttonContainer: {
     elevation: 10,
@@ -29,8 +32,8 @@ const componentStyle = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 50,
     textAlign: 'left',
-    margin: 10,
-    marginTop: 10
+    marginTop: 20,
+    marginLeft: 20
   },
   subtitle: {
     color: '#E76F51',
@@ -74,16 +77,16 @@ const componentStyle = StyleSheet.create({
   },
   infofieldtitle: {
     color: '#7E9181',
-    fontSize: 20,
+    fontSize: 19,
+    fontWeight: 'bold',
     textAlign: 'left',
-    padding: 10
+    padding: 5
   },
   infofield: {
-    elevation: 8,
-    backgroundColor: "#EFEFEF",
+    elevation: 3,
+    backgroundColor: 'aliceblue',
     borderRadius: 10,
     paddingVertical: 9,
-    marginHorizontal: 10,
     justifyContent: 'space-between'
   },
   imageContainer : {
@@ -92,9 +95,9 @@ const componentStyle = StyleSheet.create({
     alignContent: 'center'
   },
   buttonText: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: "#264653",
+    color: "#FAA381",
     alignSelf: "center",
     textTransform: "uppercase"
   },

@@ -8,7 +8,7 @@ const InfoField = ({ fieldName }) => {
     
     // TODO: research this bug
     return (
-        <SafeAreaView style={{alignItems: 'stretch'}}>
+        <SafeAreaView style={{alignItems: 'stretch', marginHorizontal: 20, marginBottom: 10}}>
             <Text style={styles.infofieldtitle}>{fieldName}</Text>
             <TextInput
                 style={styles.infofield}

@@ -19,7 +19,6 @@ const CategoryDetail = ({ navigation, route }) => {
             alignItems: 'center', 
             flexDirection: 'column',
             flex: 1, 
-            margin: 10, 
             justifyContent: 'center',
             backgroundColor: '#fff'
         }}>

@@ -13,7 +13,7 @@ const BudgetOverview = ({ navigation }) => {
     );
 
     return (
-        <SafeAreaView style={styles.safeareaWithScroll}>
+        <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
             
             <ScrollView style={styles.scrollviewContainer}>
 

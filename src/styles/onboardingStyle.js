@@ -13,15 +13,15 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 45,
       textAlign: 'left',
       paddingTop: 10,
-      paddingLeft: 15
+      paddingLeft: 20
   },
   subtitle: {
       color: '#E76F51',
       fontWeight: 'bold',
       textAlign: 'left',
-      fontSize: 20,
+      fontSize: 22,
       paddingVertical: 5,
-      paddingHorizontal: 15
+      marginHorizontal: 20
   },
   longtitle: {
       color: '#264653',
@@ -72,11 +72,9 @@ const onboardingStyle = StyleSheet.create({
   },
   scrollviewContainer: {
     marginTop: 20,
-    marginBottom: 0
   },
   safeareaWithScroll : {
-    backgroundColor: '#fff',
-    margin: 10
+    backgroundColor: '#fff'
   },
   checkboxContainer : {
     alignContent: 'center',

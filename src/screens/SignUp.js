@@ -1,24 +1,33 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import InfoField from '../components/InfoField';
 import styles from "../styles/onboardingStyle";
 import componentStyle from '../styles/componentStyle';
 
 const SignUp = ({ navigation }) => {
     return (
-        <View style={componentStyle.container}>
+        <SafeAreaView style={{
+            backgroundColor: '#FFF4CB',
+            flexDirection: 'column',
+            flex: 1
+        }}>
 
-            <Text style={componentStyle.title}>Sign Up </Text>
+            <View style={{marginTop: 50, marginBottom: 15}}> 
+                <Text style={componentStyle.title}>Sign Up </Text>
+            </View>
 
-            <InfoField fieldName={'First Name'}/>
+            <View style={{flexDirection: 'column', marginBottom: 20}}>
+                <InfoField fieldName={'First Name'}/>
 
-            <InfoField fieldName={'Last Name'}/>
+                <InfoField fieldName={'Last Name'}/>
 
-            <InfoField fieldName={'Username'}/>
+                <InfoField fieldName={'Username'}/>
 
-            <InfoField fieldName={'Email'}/>
+                <InfoField fieldName={'Email'}/>
 
-            <InfoField fieldName={'Password'}/>
+                <InfoField fieldName={'Password'}/>
+            </View>
+            
 
             <TouchableOpacity
                 style={styles.buttonContainer}
@@ -28,13 +37,12 @@ const SignUp = ({ navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={componentStyle.buttonContainer}
                 onPress={() => navigation.navigate('signin')}
                 >
-                <Text style={styles.buttonText}> I already have an account </Text>
+                <Text style={componentStyle.buttonText}> I already have an account </Text>
             </TouchableOpacity>
 
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -10,8 +10,7 @@ const SignIn = ({ navigation }) => {
     // UI Component
     return (
         <SafeAreaView style={{
-            margin: 10,
-            backgroundColor: '#fff',
+            backgroundColor: '#FFF4CB',
             flexDirection: 'column',
             flex: 1
         }}>
