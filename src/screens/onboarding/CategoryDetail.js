@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
+import CategoryList from '../onboarding/CategoryList';
 
 // TODO: checkbox connects to backend, pass in data
 
@@ -11,10 +12,10 @@ import styles from '../../styles/onboardingStyle';
 const CategoryDetail = ({ navigation, route }) => {
 
     //get params of route
-    // const { checkedCategories } = route.params;
+    const { checkedCategories } = route.params;
 
     return (
-        <SafeAreaView style={{
+        <SafeAreaView style={{        
             alignItems: 'center', 
             flexDirection: 'column',
             flex: 1, 
