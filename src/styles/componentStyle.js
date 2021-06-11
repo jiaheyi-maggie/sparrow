@@ -97,6 +97,27 @@ const componentStyle = StyleSheet.create({
     color: "#264653",
     alignSelf: "center",
     textTransform: "uppercase"
+  },
+  clickContainer: {
+    height: 60, 
+    backgroundColor: '#FFF4CB', 
+    borderRadius: 20, 
+    margin: 10,
+    paddingBottom: 15,
+    paddingHorizontal: 10,
+    flexDirection: 'column-reverse'
+  },
+  listTextAlign: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      flexWrap: 'wrap'
+  },
+  clickTitle: {
+      color: '#264653',
+      fontWeight: 'bold',
+      textAlign: 'left',
+      fontSize: 23,
+      marginLeft: 50
   }
 });
 
