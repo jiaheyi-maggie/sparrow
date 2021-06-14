@@ -17,20 +17,19 @@ const CategoryItem = ({ item, pressHandler, checked }) => {
 
 	const handleCheckboxClick = (id) => {
 		dispatch(toggleCheck({ id, checked: !checked }));
-        console.log(onboardingStore.categories);
 	};
     
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
                 // onPress={() => pressHandler(item.id)}
-                onPress={pressHandler(item.id)}
+                onPress={handleCheckboxClick(item.id)}
             >
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}
                         value={checked}
-                        onValueChange={pressHandler(item.id)}
+                        onValueChange={handleCheckboxClick(item.id)}
                     />
 
                     <Text style={styles.clickTitle}>

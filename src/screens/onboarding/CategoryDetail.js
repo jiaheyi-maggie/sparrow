@@ -9,9 +9,10 @@ import { useSelector } from 'react-redux';
 
 const CategoryDetail = ({ navigation }) => {
 
+    // extract data from selected array: specific item boolean
     // get params : DOESN'T WORK RIGHT NOW
     const categories = useSelector((state) => 
-        state.categories.filter((category) => category.checked === true)
+        state.categories.filter((category) => {category.checked === true})
     );
 
 

@@ -3,10 +3,11 @@ import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
-import categories from '../../data/categories';
+import categories from '../../data/categories-bool';
 import selected from '../../data/selected';
 import { toggleCheck } from './selectCategorySlice';
 import { useDispatch } from 'react-redux';
+import onboardingStore from '../../app/onboardingStore';
 
 // Categories screen (to CategoryDetail)
 
@@ -49,7 +50,7 @@ const SelectCategory = ({ navigation }) => {
     const dispatch = useDispatch();
 
     // when clicked, toggle checked boolean and update list
-    const handleClick = (id) => {
+    const pressHandler = (id) => {
         dispatch(toggleCheck({id, checked: !checked}));
     }
 
@@ -77,18 +78,16 @@ const SelectCategory = ({ navigation }) => {
                 />
 
                 {/* CATEGORY LIST HERE */}
-                {/* <CategoriesProvider value={checkedCategories}> */}
-                    <FlatList 
-                        data={categories}
-                        renderItem={({item}) => (
-                            <CategoryItem item={item} pressHandler={handleClick} checked={item.checked} />
-                            )}
-                        keyExtractor={item => item.id}
-                        contentContainerStyle={{
-                            flexGrow: 1,
-                        }}
-                    />
-                {/* </CategoriesProvider> */}
+                <FlatList 
+                    data={categories}
+                    renderItem={({ item }) => (
+                        <CategoryItem item={item} pressHandler={pressHandler} />
+                        )}
+                    keyExtractor={item => item.id}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                    }}
+                />
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
@@ -103,7 +102,7 @@ const SelectCategory = ({ navigation }) => {
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         // PASSED IN ROUTE PARAMS HERE
-                        onPress={() => {navigation.navigate('categories'), { checkedCategories, selectedList }}}
+                        onPress={() => {navigation.navigate('categories')}}
                     >
                         <Text style={styles.buttonText}> Continue </Text>
                     </TouchableOpacity>

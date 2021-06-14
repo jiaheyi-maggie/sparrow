@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import toBeSelected from '../../data/categories-bool';
+import categoriesWithValue from '../../data/categories-bool';
 
 export const selectCategorySlice = createSlice(
     {
         name: 'categories',
-        initialState: toBeSelected,
+        initialState: categoriesWithValue,
         reducers: {
-            // change checked field to true of the array in store
+            // change checked field in array in store
             toggleCheck: (state, action) => {
                 const index = state.findIndex(
                     (category) => category.id === action.payload.id

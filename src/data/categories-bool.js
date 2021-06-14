@@ -1,5 +1,5 @@
 // Categories for the category selection page WITH BOOLEAN
-const categories = [
+const categoriesWithValue = [
     {
         id: '0',
         title: 'Groceries',
@@ -50,4 +50,4 @@ const categories = [
     },
   ];
 
-  export default categories;
+  export default categoriesWithValue;
