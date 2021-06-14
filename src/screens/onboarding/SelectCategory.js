@@ -5,20 +5,11 @@ import styles from "../../styles/onboardingStyle";
 import CategoryItem from '../../components/CategoryItem';
 import categories from '../../data/categories';
 import selected from '../../data/selected';
+import { useDispatch } from 'react-redux';
 
 // Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
-
-    // create action: when button pressed REDUX LOGIC
-    const categoryPressed = (category) => {
-        return {
-            type: 'categoryList/checkCategory',
-            payload: category
-        }
-    };
-
-
 
     // get selected categories
     const [checkedCategories, setCheckedCategories] = useState(new Set());
@@ -80,7 +71,7 @@ const SelectCategory = ({ navigation }) => {
                     <FlatList 
                         data={categories}
                         renderItem={({item}) => (
-                            <CategoryItem item={item} pressHandler={pressHandler} />
+                            <CategoryItem item={item} pressHandler={pressHandler} checked={item.checked} />
                             )}
                         keyExtractor={item => item.id}
                         contentContainerStyle={{

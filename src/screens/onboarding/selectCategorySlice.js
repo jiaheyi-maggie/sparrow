@@ -5,19 +5,16 @@ export const selectCategorySlice = createSlice({
     name: 'categories',
     initialState: toBeSelected,
     reducers: {
-        changeCheckField: (state, action) => {
+        // change checked field to true
+        toggleCheck: (state, action) => {
+            const index = state.findIndex(
+                (category) => category.id === action.payload.id
+            );
+            state[index].checked = action.payload.checked;
+        },
 
-            // change checked field to true
-            if (action.type === 'categoryList/checkCategory') {
-                return {
-                    ...state,
-                    //update category check field
-
-                }
-            }
-        }
-    }
+    },
 });
 
-export const { changeCheckField } = selectCategorySlice.actions;
+export const { toggleCheck } = selectCategorySlice.actions;
 export default selectCategorySlice.reducer; 

@@ -2,25 +2,35 @@
 import React , { useState } from 'react';
 import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
+import { useDispatch } from 'react-redux';
+import { toggleCheck } from '../screens/onboarding/selectCategorySlice';
 
 import styles from '../styles/componentStyle';
 import selected from '../data/selected';
 
-const CategoryItem = ({ item, pressHandler }) => {
+const CategoryItem = ({ item, pressHandler, checked }) => {
 
     // extract data from selected array: specific item boolean
-    const [isSelected, setSelected] = useState(selected[item.id].checked);
+    // const [isSelected, setSelected] = useState(selected[item.id].checked);
+
+    // allow action sending to store
+    const dispatch = useDispatch();
+
+    const handleCheckbox = (id) => {
+        dispatch(toggleCheck({id, checked: !checked}));
+    }
     
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
-                onPress={() => pressHandler(item.id)}
+                // onPress={() => pressHandler(item.id)}
+                onPress={handleCheckbox(item.id)}
             >
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}
-                        value={isSelected}
-                        onValueChange={() => setSelected(!isSelected)}
+                        value={checked}
+                        onValueChange={handleCheckbox(item.id)}
                     />
 
                     <Text style={styles.clickTitle}>

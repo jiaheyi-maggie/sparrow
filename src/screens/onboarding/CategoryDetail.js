@@ -3,21 +3,22 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
-import categories from '../../data/categories';
+import { useSelector } from 'react-redux';
 
-
-// TODO: checkbox connects to backend, GET PREVIOUS SCREEN DATA FROM NAVIGATION
-// TODO: when user add values, store value (in firebase or just onboarding?)
+// TODO: update title based on category data 
 
 const CategoryDetail = ({ navigation }) => {
 
-    // //get params
-    // const checkedCategories = useContext(CategoriesContext);
+    // get params : DOESN'T WORK RIGHT NOW
+    const categories = useSelector((state) => 
+        state.categories.filter((category) => category.checked === true)
+    );
+
 
     // ISSUE: MAP just returns blank page
     const renderDetailPage = () => {
         return (         
-            // categories.map((category) => {
+            categories.map((category) => {
                 <SafeAreaView style={{        
                     alignItems: 'center', 
                     flexDirection: 'column',
@@ -32,7 +33,7 @@ const CategoryDetail = ({ navigation }) => {
                     <Text style={styles.itemDescription}>on</Text>
         
                     {/* pass categories into here */}
-                    <Text style={styles.itemTitle}>groceries</Text>
+                    <Text style={styles.itemTitle}>{category.title}</Text>
         
                     <Text style={styles.itemDescription}>per</Text>
         
@@ -67,7 +68,7 @@ const CategoryDetail = ({ navigation }) => {
                     </View>
         
                 </SafeAreaView>
-            // })
+             })
         );
     };
 

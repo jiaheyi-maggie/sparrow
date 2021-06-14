@@ -21,6 +21,7 @@ const App = () => {
     'Ubuntu-Light': require('./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf'),
   });
 
+  // TODO: reducer for app's store
   if (!fontLoaded) {
     return <AppLoading />
   } else {
