@@ -4,6 +4,7 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
+import categories from '../../data/categories';
 
 
 // TODO: checkbox connects to backend, GET PREVIOUS SCREEN DATA FROM NAVIGATION
@@ -12,8 +13,9 @@ import styles from '../../styles/onboardingStyle';
 const CategoryDetail = ({ navigation, route }) => {
 
     // //get params
-    const checkedCategories = useContext(CategoriesContext);
+    // const checkedCategories = useContext(CategoriesContext);
 
+    // ISSUE: MAP just returns blank page
     const renderDetailPage = (categories) => {
         return (         
             categories.map((category) => {
@@ -71,7 +73,7 @@ const CategoryDetail = ({ navigation, route }) => {
     };
 
     return (
-        renderDetailPage(checkedCategories)
+        renderDetailPage(categories)
     );
 };
 

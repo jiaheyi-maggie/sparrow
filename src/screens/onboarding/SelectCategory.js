@@ -67,7 +67,7 @@ const SelectCategory = ({ navigation }) => {
                 />
 
                 {/* CATEGORY LIST HERE */}
-                <CategoriesProvider value={checkedCategories}>
+                {/* <CategoriesProvider value={checkedCategories}> */}
                     <FlatList 
                         data={categories}
                         renderItem={({item}) => (
@@ -78,7 +78,7 @@ const SelectCategory = ({ navigation }) => {
                             flexGrow: 1,
                         }}
                     />
-                </CategoriesProvider>
+                {/* </CategoriesProvider> */}
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
