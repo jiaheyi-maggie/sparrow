@@ -11,8 +11,9 @@ import selected from '../data/selected';
 
 const CategoryItem = ({ item, pressHandler, checked }) => {
 
-    // extract data from selected array: specific item boolean
+    
     // const [isSelected, setSelected] = useState(selected[item.id].checked);
+    // this should be redundant
     const dispatch = useDispatch();
 
 	const handleCheckboxClick = (id) => {
