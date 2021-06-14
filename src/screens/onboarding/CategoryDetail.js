@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { CategoriesContext } from './CategoriesContext';
+import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
@@ -10,15 +9,15 @@ import categories from '../../data/categories';
 // TODO: checkbox connects to backend, GET PREVIOUS SCREEN DATA FROM NAVIGATION
 // TODO: when user add values, store value (in firebase or just onboarding?)
 
-const CategoryDetail = ({ navigation, route }) => {
+const CategoryDetail = ({ navigation }) => {
 
     // //get params
     // const checkedCategories = useContext(CategoriesContext);
 
     // ISSUE: MAP just returns blank page
-    const renderDetailPage = (categories) => {
+    const renderDetailPage = () => {
         return (         
-            categories.map((category) => {
+            // categories.map((category) => {
                 <SafeAreaView style={{        
                     alignItems: 'center', 
                     flexDirection: 'column',
@@ -33,7 +32,7 @@ const CategoryDetail = ({ navigation, route }) => {
                     <Text style={styles.itemDescription}>on</Text>
         
                     {/* pass categories into here */}
-                    <Text style={styles.itemTitle}>{category.title}</Text>
+                    <Text style={styles.itemTitle}>groceries</Text>
         
                     <Text style={styles.itemDescription}>per</Text>
         
@@ -68,12 +67,12 @@ const CategoryDetail = ({ navigation, route }) => {
                     </View>
         
                 </SafeAreaView>
-            })
+            // })
         );
     };
 
     return (
-        renderDetailPage(categories)
+        renderDetailPage()
     );
 };
 

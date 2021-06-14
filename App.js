@@ -9,6 +9,8 @@ import SignIn from './src/screens/SignIn';
 import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
 import theme from './src/assets/theme';
 import HomeNavigation from './src/screens/main/HomeNavigation';
+import { Provider } from 'react-redux';
+import store from './src/app/store';
 
 const Stack = createStackNavigator();
 
@@ -23,16 +25,18 @@ const App = () => {
     return <AppLoading />
   } else {
     return (
-      <NavigationContainer theme={theme}>
-        <Stack.Navigator
-          headerMode='none'
-          initialRouteName='onboarding'>
-          <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
-          <Stack.Screen name='signup' component={SignUp}/>
-          <Stack.Screen name='signin' component={SignIn}/>
-          <Stack.Screen name='home' component={HomeNavigation}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer theme={theme}>
+          <Stack.Navigator
+            headerMode='none'
+            initialRouteName='onboarding'>
+            <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
+            <Stack.Screen name='signup' component={SignUp}/>
+            <Stack.Screen name='signin' component={SignIn}/>
+            <Stack.Screen name='home' component={HomeNavigation}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }

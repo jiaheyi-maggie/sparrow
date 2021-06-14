@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
-import { CategoriesProvider } from './CategoriesContext';
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
@@ -10,6 +9,16 @@ import selected from '../../data/selected';
 // Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
+
+    // create action: when button pressed REDUX LOGIC
+    const categoryPressed = (category) => {
+        return {
+            type: 'categoryList/checkCategory',
+            payload: category
+        }
+    };
+
+
 
     // get selected categories
     const [checkedCategories, setCheckedCategories] = useState(new Set());

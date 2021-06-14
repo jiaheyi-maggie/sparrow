@@ -8,7 +8,7 @@ const HomeStack = createStackNavigator();
 const HomeNavigation = () => {
     return(
         <HomeStack.Navigator >
-            <HomeStack.Screen name='home' component={HomeTab}/>
+            <HomeStack.Screen name='Home' component={HomeTab}/>
         </HomeStack.Navigator>
     );
 };
