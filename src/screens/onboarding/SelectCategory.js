@@ -5,43 +5,53 @@ import styles from "../../styles/onboardingStyle";
 import CategoryItem from '../../components/CategoryItem';
 import categories from '../../data/categories';
 import selected from '../../data/selected';
+import { toggleCheck } from './selectCategorySlice';
 import { useDispatch } from 'react-redux';
 
 // Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
 
+
+    /* One way data flow implementation: discard later */
     // get selected categories
-    const [checkedCategories, setCheckedCategories] = useState(new Set());
+    // const [checkedCategories, setCheckedCategories] = useState(new Set());
 
     //get selected boolean (for check box)
-    const [selectedList, setSelectedList]= useState(selected);
+    // const [selectedList, setSelectedList]= useState(selected);
 
     // when user press on an item, add item to checkedCategories
-    const pressHandler = (id) => {
+    // const pressHandler = (id) => {
 
         // udpate selected categories list
-        const updatedCategories = new Set(checkedCategories);
+    //     const updatedCategories = new Set(checkedCategories);
 
-        if (checkedCategories.has(categories[id])) {
-            updatedCategories.delete(categories[id]);
-        } else {
-            updatedCategories.add(categories[id]);    
-        }
+    //     if (checkedCategories.has(categories[id])) {
+    //         updatedCategories.delete(categories[id]);
+    //     } else {
+    //         updatedCategories.add(categories[id]);    
+    //     }
         
-        setCheckedCategories(updatedCategories);
+    //     setCheckedCategories(updatedCategories);
 
-        // update selected list
-        selectedList[id].checked = !selectedList[id].checked;
+    //     // update selected list
+    //     selectedList[id].checked = !selectedList[id].checked;
 
-        setSelectedList(selectedList);
+    //     setSelectedList(selectedList);
 
-        /* TODO: update checkbox */
+    //     // console.log(categories[id]);
+    //     console.log(checkedCategories);
+    //     console.log(selectedList);
+    // };
 
-        // console.log(categories[id]);
-        console.log(checkedCategories);
-        console.log(selectedList);
-    };
+
+    /* Redux data flow */
+    const dispatch = useDispatch();
+
+    // when clicked, toggle checked boolean and update list
+    const handleClick = (id) => {
+        dispatch(toggleCheck({id, checked: !checked}));
+    }
 
 
     return (
@@ -71,7 +81,7 @@ const SelectCategory = ({ navigation }) => {
                     <FlatList 
                         data={categories}
                         renderItem={({item}) => (
-                            <CategoryItem item={item} pressHandler={pressHandler} checked={item.checked} />
+                            <CategoryItem item={item} pressHandler={handleClick} checked={item.checked} />
                             )}
                         keyExtractor={item => item.id}
                         contentContainerStyle={{

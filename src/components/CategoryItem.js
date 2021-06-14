@@ -4,6 +4,7 @@ import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import { useDispatch } from 'react-redux';
 import { toggleCheck } from '../screens/onboarding/selectCategorySlice';
+import onboardingStore from '../app/onboardingStore';
 
 import styles from '../styles/componentStyle';
 import selected from '../data/selected';
@@ -12,25 +13,24 @@ const CategoryItem = ({ item, pressHandler, checked }) => {
 
     // extract data from selected array: specific item boolean
     // const [isSelected, setSelected] = useState(selected[item.id].checked);
-
-    // allow action sending to store
     const dispatch = useDispatch();
 
-    const handleCheckbox = (id) => {
-        dispatch(toggleCheck({id, checked: !checked}));
-    }
+	const handleCheckboxClick = (id) => {
+		dispatch(toggleCheck({ id, checked: !checked }));
+        console.log(onboardingStore.categories);
+	};
     
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
                 // onPress={() => pressHandler(item.id)}
-                onPress={handleCheckbox(item.id)}
+                onPress={pressHandler(item.id)}
             >
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}
                         value={checked}
-                        onValueChange={handleCheckbox(item.id)}
+                        onValueChange={pressHandler(item.id)}
                     />
 
                     <Text style={styles.clickTitle}>
