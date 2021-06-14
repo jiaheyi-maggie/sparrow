@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { CategoriesProvider } from './CategoriesContext';
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
@@ -9,9 +10,6 @@ import selected from '../../data/selected';
 // Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
-
-    // TODO: get the updated state from CategoryList
-    // Idea: merge CategoryList into this file so the entire page have access to state variables
 
     // get selected categories
     const [checkedCategories, setCheckedCategories] = useState(new Set());
@@ -69,16 +67,18 @@ const SelectCategory = ({ navigation }) => {
                 />
 
                 {/* CATEGORY LIST HERE */}
-                <FlatList 
-                    data={categories}
-                    renderItem={({item}) => (
-                        <CategoryItem item={item} pressHandler={pressHandler} />
-                        )}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                    }}
-                />
+                <CategoriesProvider value={checkedCategories}>
+                    <FlatList 
+                        data={categories}
+                        renderItem={({item}) => (
+                            <CategoryItem item={item} pressHandler={pressHandler} />
+                            )}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                        }}
+                    />
+                </CategoriesProvider>
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
@@ -93,7 +93,7 @@ const SelectCategory = ({ navigation }) => {
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         // PASSED IN ROUTE PARAMS HERE
-                        onPress={() => {navigation.navigate('categories'), {checkedCategories}}}
+                        onPress={() => {navigation.navigate('categories'), { checkedCategories, selectedList }}}
                     >
                         <Text style={styles.buttonText}> Continue </Text>
                     </TouchableOpacity>
