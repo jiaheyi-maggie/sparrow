@@ -1,15 +1,76 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeTab from './HomeTab';
+import { View, Image, Text } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons/Ionicons';
+import Home from './Home';
+import Profile from './Profile';
+import styles from '../../styles/homeStyle';
 
 /* Add the onboarding navigation stack here */
-const HomeStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const HomeNavigation = () => {
-    return(
-        <HomeStack.Navigator >
-            <HomeStack.Screen name='Home' component={HomeTab}/>
-        </HomeStack.Navigator>
+    return (
+        <Tab.Navigator
+            tabBarOptions={{
+                showLabel: false,
+                style: {
+                    position: 'absolute',
+                    bottom: 10,
+                    left: 10,
+                    right: 10,
+                    elevation: 0,
+                    backgroundColor: '#fff',
+                    borderRadius: 15,
+                    height: 80,
+                    ...styles.shadow
+                }
+              }}
+        >
+            <Tab.Screen name='Home' component={Home} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/home.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ? '#e32f45' : '#748c94'
+                                }}>HOME
+                            </Text> 
+                        </View>
+                        ),
+                }} 
+            />
+                
+            <Tab.Screen name='Profile' component={Profile} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/profile.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ? '#e32f45' : '#748c94'
+                                }}>PROFILE
+                            </Text> 
+                        </View>
+                    ),
+                }} 
+            />
+        </Tab.Navigator>
     );
 };
 
