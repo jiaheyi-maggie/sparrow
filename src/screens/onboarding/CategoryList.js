@@ -1,5 +1,5 @@
 // List of categories with data 
-// moved to SelectCategory
+// MOVVED TO SELECTCATEGORY;  NO LONGER NEEDED
 import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 
