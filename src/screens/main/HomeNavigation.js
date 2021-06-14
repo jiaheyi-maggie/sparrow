@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons/Ionicons';
 import Home from './Home';
 import Profile from './Profile';
+import Notification from './Notification';
 import styles from '../../styles/homeStyle';
 
 /* Add the onboarding navigation stack here */
@@ -41,11 +42,37 @@ const HomeNavigation = () => {
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#e32f45' : '#748c94'
-                                }}>HOME
+                                    color: focused ? '#e32f45' : '#748c94',
+                                    fontSize: 15
+                                }}>
+                                    HOME
                             </Text> 
                         </View>
                         ),
+                }} 
+            />
+
+            <Tab.Screen name='Notification' component={Notification} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/notification.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ?  '#e32f45' : '#748c94',
+                                    fontSize: 15
+                                }}>
+                                    NOTIFICATION
+                            </Text> 
+                        </View>
+                    ),
                 }} 
             />
                 
@@ -63,13 +90,17 @@ const HomeNavigation = () => {
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#e32f45' : '#748c94'
-                                }}>PROFILE
+                                    color: focused ? '#e32f45' : '#748c94',
+                                    fontSize: 15
+                                }}>
+                                    PROFILE
                             </Text> 
                         </View>
                     ),
                 }} 
             />
+
+
         </Tab.Navigator>
     );
 };
