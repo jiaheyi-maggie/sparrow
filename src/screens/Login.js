@@ -1,36 +1,32 @@
-// a class component for Register (replace SignUp later)
+// a class component for Login (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
+import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
 import firebase from 'firebase';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
-export default class Register extends Component {
+export default class Login extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: '',
-            username: '',
             email: '',
             password: '',
         }
 
         // allow onSignUp() to access the state of the class
-        this.onSignUp = this.onSignUp.bind(this);
+        this.onSignUp = this.onSignIn.bind(this);
     }
 
     // implement firebase logic here
-    onSignUp() {
-        const { firstName, lastName, username, email, password } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+    onSignIn() {
+        const { email, password } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, password)
             .then((result) => {
-                // TODO: Take to Home Page!
                 console.log(result);
+                // TODO: navigate to home (login successful)
             })
-            // TODO: add alert here
             .catch((error) => {
                 console.log(error);
             })
@@ -52,62 +48,62 @@ export default class Register extends Component {
                         fontSize: 50,
                         textAlign: 'left',
                         marginTop: 20
-                    }}>Sign Up </Text>
+                    }}>Sign In </Text>
+                    <Text style={{      
+                        color: '#E76F51',
+                        fontWeight: 'bold',
+                        textAlign: 'left',
+                        fontSize: 22,
+                        paddingVertical: 5
+                        }}>Welcome back! </Text>
                 </View>
+                
+                {/* logo */}
+                <Image 
+                source={require('../assets/icon-transparent.png')} 
+                resizeMode='contain'
+                style={
+                    {
+                        alignSelf: 'center',
+                        width: 250,
+                        height: 250
+                    }
+                }
+                />
 
                 <View style={{
                     flexDirection: 'column', 
                     marginBottom: 20
                     }}>
-                    <Text style={componentStyle.infofieldtitle}>First Name</Text>
-                    <TextInput
-                        placeholder='John'
-                        onChangeText={(firstName) => this.setState({ firstName })}
-                        style={componentStyle.infofield}
-                    />
-
-                    <Text style={componentStyle.infofieldtitle}>Last Name</Text>
-                    <TextInput
-                        placeholder='Doe'
-                        onChangeText={(lastName) => this.setState({ lastName })}
-                        style={componentStyle.infofield}
-                    />
-
-                    <Text style={componentStyle.infofieldtitle}>Username</Text>
-                    <TextInput
-                        placeholder='john.doe07'
-                        onChangeText={(username) => this.setState({ username })}
-                        style={componentStyle.infofield}
-                    />
-
+                    
                     <Text style={componentStyle.infofieldtitle}>Email</Text>
                     <TextInput
-                        placeholder='johndoe@gmail.com'
+                        placeholder='Email'
                         onChangeText={(email) => this.setState({ email })}
                         style={componentStyle.infofield}
                     />
 
                     <Text style={componentStyle.infofieldtitle}>Password</Text>
                     <TextInput
-                        placeholder='1234567890'
+                        placeholder='Password'
                         onChangeText={(password) => this.setState({ password })}
                         style={componentStyle.infofield}
                     />
                 </View>
 
-                <View style={{width: 400, height: 80}}><Text></Text></View>
+                <View style={{width: 400, height: 65}}><Text></Text></View>
 
                 <TouchableOpacity
                     style={styles.buttonContainer}
-                    onPress={() => this.onSignUp()}
+                    onPress={() => this.onSignIn()}
                 >
-                    <Text style={styles.buttonText}> Register </Text>
+                    <Text style={styles.buttonText}> Log In </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('signin')}
+                    onPress={() => this.props.navigation.navigate('register')}
                 >
-                    <Text style={componentStyle.buttonText}> I already have an account </Text>
+                    <Text style={componentStyle.buttonText}> Create an account </Text>
                 </TouchableOpacity>
                 
             </SafeAreaView>

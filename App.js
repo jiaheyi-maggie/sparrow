@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import store from './src/app/store';
 
 import * as firebase from 'firebase';
+import Login from './src/screens/Login';
 
 
 const Stack = createStackNavigator();
@@ -44,8 +45,9 @@ const App = () => {
           initialRouteName='onboarding'>
           <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
           <Stack.Screen name='register' component={Register} />
+          <Stack.Screen name='signin' component={Login} />
           {/* <Stack.Screen name='signup' component={SignUp}/> */}
-          <Stack.Screen name='signin' component={SignIn}/>
+          {/* <Stack.Screen name='signin' component={SignIn}/> */}
           <Stack.Screen name='home' component={HomeNavigation}/>
         </Stack.Navigator>
       </NavigationContainer>
