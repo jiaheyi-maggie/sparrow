@@ -47,12 +47,12 @@ const SelectCategory = ({ navigation }) => {
 
 
     /* Redux data flow */
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // when clicked, toggle checked boolean and update list
-    const pressHandler = (id) => {
-        dispatch(toggleCheck({id, checked: !checked}));
-    }
+    // const pressHandler = (id) => {
+    //     dispatch(toggleCheck({id, checked: !checked}));
+    // }
 
 
     return (
@@ -81,7 +81,7 @@ const SelectCategory = ({ navigation }) => {
                 <FlatList 
                     data={categories}
                     renderItem={({ item }) => (
-                        <CategoryItem item={item} pressHandler={pressHandler} />
+                        <CategoryItem item={item} checked={item.checked} />
                         )}
                     keyExtractor={item => item.id}
                     contentContainerStyle={{

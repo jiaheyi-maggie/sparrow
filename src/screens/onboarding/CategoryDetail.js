@@ -4,6 +4,7 @@ import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
 import { useSelector } from 'react-redux';
+import onboardingStore from '../../app/onboardingStore';
 
 // TODO: update title based on category data 
 
@@ -11,15 +12,17 @@ const CategoryDetail = ({ navigation }) => {
 
     // extract data from selected array: specific item boolean
     // get params : DOESN'T WORK RIGHT NOW
-    const categories = useSelector((state) => 
-        state.categories.filter((category) => {category.checked === true})
-    );
+
+    const categories = onboardingStore.getState();
+    console.log('bulllllllshit dick');
+    console.log(categories);
+    const checkedCategories = categories.filter((category) => {category.checked === true});
 
 
     // ISSUE: MAP just returns blank page
     const renderDetailPage = () => {
         return (         
-            categories.map((category) => {
+            checkedCategories.map((category) => {
                 <SafeAreaView style={{        
                     alignItems: 'center', 
                     flexDirection: 'column',

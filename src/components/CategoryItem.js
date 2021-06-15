@@ -4,37 +4,41 @@ import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import { useDispatch } from 'react-redux';
 import { toggleCheck } from '../screens/onboarding/selectCategorySlice';
+import { toggleCheckMaybe } from '../screens/onboarding/selectCategorySlice';
 import onboardingStore from '../app/onboardingStore';
 
 import styles from '../styles/componentStyle';
 import selected from '../data/selected';
 
-const CategoryItem = ({ item, pressHandler, checked }) => {
+const CategoryItem = ({ item, checked }) => {
 
-    
-    // const [isSelected, setSelected] = useState(selected[item.id].checked);
-    // this should be redundant
-    const dispatch = useDispatch();
+    // action for reducer
+    const pressButton = item => {
+        return {
+            type: 'pressButton',
+            payload: item
+        }
+    };
 
-	const handleCheckboxClick = (id) => {
-		dispatch(toggleCheck({ id, checked: !checked }));
-	};
-    
+    const pressHandler = () => {
+        onboardingStore.dispatch(pressButton(item));
+    }
+
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
-                // onPress={() => pressHandler(item.id)}
-                onPress={handleCheckboxClick(item.id)}
+                // onPress={pressHandler()}
+                onPress={() => pressHandler()}
             >
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}
                         value={checked}
-                        onValueChange={handleCheckboxClick(item.id)}
+                        onValueChange={() => pressHandler()}
                     />
 
                     <Text style={styles.clickTitle}>
-                            {item.title}
+                        {item.title}
                     </Text>
                 </View>
             </TouchableOpacity>
