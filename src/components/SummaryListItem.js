@@ -1,13 +1,28 @@
 import React  from 'react';
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
+import { TextInput } from 'react-native-gesture-handler';
 import styles from '../styles/onboardingStyle';
 
-const SummaryListItem = ({ title }) => {
+const SummaryListItem = ({ item }) => {
 
     return (
-        <TouchableOpacity style={styles.listSummaryItem}>
-            <Text style={styles.listSummaryTitle}>{title}</Text>
-        </TouchableOpacity>
+        <View style={styles.listSummaryItem}>
+            <TouchableOpacity >
+                <Text style={styles.listSummaryTitle}>{item.title}</Text>
+            </TouchableOpacity>
+            <TextInput
+                style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#FFF4CB',
+                    width: 50
+                }}
+                placeholderTextColor='#E76F51'
+                placeholder='$200'
+                keyboardType="numeric"
+            >
+            </TextInput>
+        </View>
     );
 };
 

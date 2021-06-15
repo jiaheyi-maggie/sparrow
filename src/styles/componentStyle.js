@@ -43,7 +43,7 @@ const componentStyle = StyleSheet.create({
   },  
   dropdown : {
     height: 50, 
-    width: 150
+    width: 100
   },
   //also unused because it doesn't render
   circle : {

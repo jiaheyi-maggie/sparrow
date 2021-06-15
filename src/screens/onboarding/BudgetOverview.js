@@ -4,13 +4,12 @@ import categories from '../../data/categories';
 import styles from '../../styles/onboardingStyle';
 import BudgetCircle from '../../components/BudgetCircle';
 import SummaryListItem from '../../components/SummaryListItem';
+import store from '../../app/store';
 
 const BudgetOverview = ({ navigation }) => {
 
-    // render items without checkbox
-    const renderSummaryItem = ({ item }) => (
-        <SummaryListItem title={item.title} />
-    );
+    // extract data from store: specific item boolean
+    const list = store.getState();
 
     return (
         <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
@@ -30,11 +29,22 @@ const BudgetOverview = ({ navigation }) => {
                     <BudgetCircle term={'Long'} />
                 </View>
 
-                <FlatList
-                        data={categories}
-                        renderItem={renderSummaryItem}
-                        keyExtractor={item => item.id}
+                <FlatList 
+                    data={list}
+                    renderItem={({ item }) => (
+                        <SummaryListItem item={item}  />
+                    )}
+                    keyExtractor={item => item.id}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                    }}
                 />
+
+                {/* <FlatList
+                        data={list}
+                        renderItem={renderList}
+                        keyExtractor={item => item.id}
+                /> */}
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}

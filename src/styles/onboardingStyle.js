@@ -103,6 +103,9 @@ const onboardingStyle = StyleSheet.create({
   },
   listSummaryItem: {
     backgroundColor: '#FFF4CB',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 20,
     marginVertical: 5,
     marginHorizontal:16,
