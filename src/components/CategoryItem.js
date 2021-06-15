@@ -1,14 +1,10 @@
 // replacement ListItem
-import React , { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
-import { useDispatch } from 'react-redux';
-import { toggleCheck } from '../screens/onboarding/selectCategorySlice';
-import { toggleCheckMaybe } from '../screens/onboarding/selectCategorySlice';
 import onboardingStore from '../app/onboardingStore';
 
 import styles from '../styles/componentStyle';
-import selected from '../data/selected';
 
 const CategoryItem = ({ item, checked }) => {
 
