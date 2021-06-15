@@ -58,7 +58,7 @@ const BudgetOverview = ({ navigation }) => {
                     {/* Next Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('signup')}
+                        onPress={() => navigation.navigate('register')}
                         >
                         <Text style={styles.buttonText}> Looks Good! </Text>
                     </TouchableOpacity>

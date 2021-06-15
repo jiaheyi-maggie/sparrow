@@ -71,14 +71,18 @@ const componentStyle = StyleSheet.create({
     fontSize: 19,
     fontWeight: 'bold',
     textAlign: 'left',
-    padding: 5
+    padding: 5,
+    paddingTop: 15
   },
   infofield: {
     elevation: 3,
     backgroundColor: 'aliceblue',
     borderRadius: 10,
     paddingVertical: 9,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    textAlign: 'left',
+    paddingLeft: 15,
+    fontSize: 18
   },
   imageContainer : {
     width: 300,
