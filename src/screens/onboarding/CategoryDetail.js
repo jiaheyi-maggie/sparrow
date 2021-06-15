@@ -26,34 +26,40 @@ const CategoryDetail = ({ navigation }) => {
                     <Text> </Text>
                 </View>
 
-                <Text style={styles.itemDescription}>I spend</Text>
-
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}> 
-                    <Text style={styles.itemDescription}>$</Text>
+                    <Text style={styles.itemDescription}>I spend</Text>
+
+                    
+                    <Text style={styles.itemDescription}> $</Text>
                     <NumberTextInput item={category} /> 
                 </View>
                 
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.itemDescription}>on</Text>
+                    <Text style={styles.itemTitle}> {category.title}</Text>
+                </View>
     
-                <Text style={styles.itemDescription}>on</Text>
-    
-                {/* pass categories into here */}
-                <Text style={styles.itemTitle}>{category.title}</Text>
-    
-                <Text style={styles.itemDescription}>per</Text>
-    
-                <TimePeriodDropdown /> 
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.itemDescription}>per </Text>
+                    <TimePeriodDropdown /> 
+                </View>
 
-                <View style={{width: 25, height: 150}}>
+                <View style={{width: 25, height: 300}}>
                     <Text> </Text>
                 </View>
                 
-                <View style={{flexDirection: 'row'}}> 
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'stretch',
+                    width: 350
+                }}> 
                     {/* Back Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
                         >
-                        <Text style={styles.buttonText}> Back </Text>
+                        <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
     
                     {/* Skip Button : TODO change this so it does to the next detail page */}
@@ -61,7 +67,7 @@ const CategoryDetail = ({ navigation }) => {
                         style={styles.buttonContainer}
                         onPress={() => navigation.navigate('longTerm')}
                         >
-                        <Text style={styles.buttonText}> Skip </Text>
+                        <Text style={styles.buttonText}>     Skip     </Text>
                     </TouchableOpacity>
     
                     {/* Next Button */}
@@ -69,7 +75,7 @@ const CategoryDetail = ({ navigation }) => {
                         style={styles.buttonContainer}
                         onPress={() => navigation.push('categories')}
                         >
-                        <Text style={styles.buttonText}> Next </Text>
+                        <Text style={styles.buttonText}>     Next     </Text>
                     </TouchableOpacity>
     
                 </View>

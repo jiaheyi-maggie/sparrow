@@ -22,26 +22,34 @@ const LongTerm = ({ navigation }) => {
                     <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you. </Text>
                 </View>
 
-                <View style={{alignItems: 'center'}}>
-                    <Text style={styles.emphasizeText}>I plan to spend</Text>
-                    <NumberTextInput />
-                    <Text style={styles.emphasizeText}>per</Text>
-                    <TimePeriodDropdown />
+                <View style={{
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    alignContent: 'space-between',
+                    flexDirection: 'column'
+                }}>
+                    <Text style={styles.itemDescription}>I plan to spend</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.itemDescription}>$ </Text>
+                        <NumberTextInput />
+                    </View>
+                    
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.itemDescription}>per </Text>
+                        <TimePeriodDropdown />
+                    </View>
+
+                    <View style={{height: 230}}><Text></Text></View>
                 </View>
 
-                {/* <Image 
-                    source={require('../../assets/onboarding/long-term.png')} 
-                    resizeMode='contain'
-                    style={styles.imageContainer}
-                    /> */}
-                
+
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
                         >
-                        <Text style={styles.buttonText}> Back </Text>
+                        <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
 
                     {/* Next Button */}

@@ -8,15 +8,15 @@ const NumberTextInput = ({ item }) => {
   var val = React.createRef(); 
 
   // action for text input
-  const inputNumber = (item) => {
+  const inputNumber = (item, number) => {
     return {
         type: 'inputNumber',
-        payload: item
+        payload: {item, number}
     }
   };
 
   const inputHandler = () => {
-    store.dispatch(inputNumber(item));
+    store.dispatch(inputNumber(item, val));
     console.log(item);
   }
 

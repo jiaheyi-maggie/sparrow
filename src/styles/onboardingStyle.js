@@ -125,7 +125,7 @@ const onboardingStyle = StyleSheet.create({
   itemDescription: {
     color: '#264653',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 42,
     margin: 0
   },
 });

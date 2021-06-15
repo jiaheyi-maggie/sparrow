@@ -43,13 +43,19 @@ const SelectCategory = ({ navigation }) => {
                     }}
                 />
 
-                <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
+                <View style={{
+                    alignContent: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'stretch',
+                    width: 400
+                }}> 
                     {/* Back Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
                     >
-                        <Text style={styles.buttonText}> Back </Text>
+                        <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
 
                     {/* Continue Button */}

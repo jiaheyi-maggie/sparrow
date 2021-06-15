@@ -3,12 +3,11 @@ import { StyleSheet, Dimensions } from 'react-native';
 const componentStyle = StyleSheet.create({
   input: {
     fontSize: 40,
-    textAlign: 'left',
+    textAlign: 'center',
     height: 40,
-    marginHorizontal: 10,
     marginTop:10,
     borderBottomColor: '#264653',
-    borderBottomWidth: 3,
+    borderBottomWidth: 5,
     alignContent: 'center'
   },
   container: {
@@ -45,14 +44,6 @@ const componentStyle = StyleSheet.create({
   dropdown : {
     height: 50, 
     width: 150
-  },
-  //unused because somehow it doesn't render
-  pickerContainer: { 
-    borderWidth: 3, 
-    borderColor: '#264653', 
-    borderRadius: 4,
-    marginHorizontal: 100,
-    alignItems:'center'
   },
   //also unused because it doesn't render
   circle : {

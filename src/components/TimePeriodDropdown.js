@@ -6,17 +6,14 @@ import styles from '../styles/componentStyle';
 const TimePeriodDropdown = () => {
     const [selected, setSelected ] = useState("year");
     return (
-        <View style={{ 
-                borderWidth: 3, 
-                borderColor: '#264653', 
-                borderRadius: 4,
-                alignItems:'center',
-                width: 200,
-                marginVertical: 10
-                }}>
+        <View >
             <Picker 
                 selectedValue={selected}
-                itemStyle={styles.pickerItem}
+                itemStyle={{
+                    backgroundColor: 'grey',
+                    color: 'blue',
+                    fontSize: 20
+                }}
                 style={styles.dropdown}
                 onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
                 >
