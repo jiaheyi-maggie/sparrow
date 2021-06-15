@@ -3,19 +3,20 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
-import onboardingStore from '../../app/onboardingStore';
+import store from '../../app/store';
+import { useSelector } from 'react-redux';
 
 // TODO: update title based on category data 
 
 const CategoryDetail = ({ navigation }) => {
 
-    // extract data from selected array: specific item boolean
-    // get params : DOESN'T WORK RIGHT NOW
+    // extract data from store: specific item boolean
 
-    const categories = onboardingStore.getState();
+    const categories = store.getState();
     console.log('bulllllllshit dick');
     console.log(categories);
-    const checkedCategories = categories.filter((category) => {category.checked === true});
+    const checkedCategories = categories.filter((category) => { return category.checked === true});
+    console.log(checkedCategories);
 
 
     // ISSUE: MAP just returns blank page

@@ -21,12 +21,11 @@ const App = () => {
     'Ubuntu-Light': require('./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf'),
   });
 
-  // TODO: reducer for app's store
   if (!fontLoaded) {
     return <AppLoading />
   } else {
     return (
-      // <Provider store={store}>
+      <Provider store={store}>
         <NavigationContainer theme={theme}>
           <Stack.Navigator
             headerMode='none'
@@ -37,7 +36,7 @@ const App = () => {
             <Stack.Screen name='home' component={HomeNavigation}/>
           </Stack.Navigator>
         </NavigationContainer>
-      // </Provider>
+      </Provider>
     );
   }
 }

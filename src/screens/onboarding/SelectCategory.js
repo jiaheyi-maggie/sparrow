@@ -35,7 +35,7 @@ const SelectCategory = ({ navigation }) => {
                 <FlatList 
                     data={categories}
                     renderItem={({ item }) => (
-                        <CategoryItem item={item} checked={item.checked} />
+                        <CategoryItem item={item}  />
                         )}
                     keyExtractor={item => item.id}
                     contentContainerStyle={{

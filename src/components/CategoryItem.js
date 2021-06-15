@@ -1,8 +1,7 @@
-// replacement ListItem
 import React from 'react';
 import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
-import onboardingStore from '../app/onboardingStore';
+import store from '../app/store';
 
 import styles from '../styles/componentStyle';
 import { useSelector } from 'react-redux';
@@ -23,7 +22,7 @@ const CategoryItem = ({ item }) => {
 
     // dispatch action
     const pressHandler = () => {
-        onboardingStore.dispatch(pressButton(item));
+        store.dispatch(pressButton(item));
     }
 
     return (

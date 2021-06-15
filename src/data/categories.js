@@ -1,4 +1,4 @@
-
+// old structure: not using
 // Categories for the category selection page
 var categories = [
     {
