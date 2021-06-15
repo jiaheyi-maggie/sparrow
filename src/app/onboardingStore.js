@@ -16,40 +16,38 @@ import categoriesWithValue from "../data/categories-bool";
 // WATCH OUT FOR INDEXING
 const reducer = (state = [], action) => {
     switch (action.type) {
-        case 'pressButton':
-            const newItem = {
-                id: action.payload.id,
-                title: action.payload.title,
-                checked: !action.payload.checked,
-                value: action.payload.value
-            };
-            const newState = [...state];
-            // const index = state.indexOf(action.payload);
-            const index = action.payload.id;
-            newState[index] = newItem;
-            console.log(index);
+        case 'pressButton': 
+            const index = state.findIndex(
+                (category) => category.id === action.payload.id
+            );
             console.log(state);
+            const newState = [...state];
+            newState[index].checked = !action.payload.checked;
             return newState;
-            // return {
-            //     ...state,
-            //     [index]: newItem
-            // }
         default: 
             return state;
     }
-    // if (action.type === 'pressButton') {
-    //     const index = state.findIndex(
-    //         (category) => category.id === action.payload.id
-    //     );
 
-    //     // state[index].checked = action.payload.checked;
-    //     console.log(state);
-    //     console.log(action);
-    //     const newState = [...state];
-    //     newState[index].checked = action.payload.checked;
-    //     return newState;
-    // } else {
-    //     return state;
+    // switch (action.type) {
+    //     case 'pressButton':
+    //         const newItem = {
+    //             id: action.payload.id,
+    //             title: action.payload.title,
+    //             checked: !action.payload.checked,
+    //             value: action.payload.value
+    //         };
+    //         const newState = [...state];
+    //         const index = action.payload.id;
+    //         newState[index] = newItem;
+    //         console.log(index);
+    //         console.log(state);
+    //         return newState;
+    //         // return {
+    //         //     ...state,
+    //         //     [index]: newItem
+    //         // }
+    //     default: 
+    //         return state;
     // }
 };
 

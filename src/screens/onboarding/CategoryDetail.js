@@ -3,7 +3,6 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
-import { useSelector } from 'react-redux';
 import onboardingStore from '../../app/onboardingStore';
 
 // TODO: update title based on category data 

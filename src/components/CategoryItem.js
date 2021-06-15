@@ -5,8 +5,13 @@ import Checkbox from '@react-native-community/checkbox';
 import onboardingStore from '../app/onboardingStore';
 
 import styles from '../styles/componentStyle';
+import { useSelector } from 'react-redux';
 
-const CategoryItem = ({ item, checked }) => {
+const CategoryItem = ({ item }) => {
+
+    /* Redux data flow */
+    // get most updated state for re-rendering
+    const checked = useSelector((state) => state[item.id].checked);
 
     // action for reducer
     const pressButton = item => {
@@ -16,6 +21,7 @@ const CategoryItem = ({ item, checked }) => {
         }
     };
 
+    // dispatch action
     const pressHandler = () => {
         onboardingStore.dispatch(pressButton(item));
     }
@@ -23,7 +29,6 @@ const CategoryItem = ({ item, checked }) => {
     return (
             <TouchableOpacity
                 style={styles.clickContainer}
-                // onPress={pressHandler()}
                 onPress={() => pressHandler()}
             >
                 <View style={styles.listTextAlign}>

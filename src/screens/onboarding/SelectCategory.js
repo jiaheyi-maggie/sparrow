@@ -1,59 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
 import categories from '../../data/categories-bool';
-import selected from '../../data/selected';
-import { toggleCheck } from './selectCategorySlice';
-import { useDispatch } from 'react-redux';
-import onboardingStore from '../../app/onboardingStore';
 
 // Categories screen (to CategoryDetail)
 
 const SelectCategory = ({ navigation }) => {
-
-
-    /* One way data flow implementation: discard later */
-    // get selected categories
-    // const [checkedCategories, setCheckedCategories] = useState(new Set());
-
-    //get selected boolean (for check box)
-    // const [selectedList, setSelectedList]= useState(selected);
-
-    // when user press on an item, add item to checkedCategories
-    // const pressHandler = (id) => {
-
-        // udpate selected categories list
-    //     const updatedCategories = new Set(checkedCategories);
-
-    //     if (checkedCategories.has(categories[id])) {
-    //         updatedCategories.delete(categories[id]);
-    //     } else {
-    //         updatedCategories.add(categories[id]);    
-    //     }
-        
-    //     setCheckedCategories(updatedCategories);
-
-    //     // update selected list
-    //     selectedList[id].checked = !selectedList[id].checked;
-
-    //     setSelectedList(selectedList);
-
-    //     // console.log(categories[id]);
-    //     console.log(checkedCategories);
-    //     console.log(selectedList);
-    // };
-
-
-    /* Redux data flow */
-    // const dispatch = useDispatch();
-
-    // when clicked, toggle checked boolean and update list
-    // const pressHandler = (id) => {
-    //     dispatch(toggleCheck({id, checked: !checked}));
-    // }
-
 
     return (
         <SafeAreaView style={styles.safeareaWithScroll}>
@@ -101,7 +55,6 @@ const SelectCategory = ({ navigation }) => {
                     {/* Continue Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        // PASSED IN ROUTE PARAMS HERE
                         onPress={() => {navigation.navigate('categories')}}
                     >
                         <Text style={styles.buttonText}> Continue </Text>

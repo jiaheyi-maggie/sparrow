@@ -1,3 +1,5 @@
+// another approach to multiple reducers
+
 // import { createSlice } from "@reduxjs/toolkit";
 
 // import categoriesWithValue from '../../data/categories-bool';
