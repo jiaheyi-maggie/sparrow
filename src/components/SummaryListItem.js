@@ -5,6 +5,7 @@ import styles from '../styles/onboardingStyle';
 
 const SummaryListItem = ({ item }) => {
 
+    // TODO: Move this into budget overview and update field according to state
     return (
         <View style={styles.listSummaryItem}>
             <TouchableOpacity >

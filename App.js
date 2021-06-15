@@ -4,21 +4,19 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './src/screens/Register';
+import Login from './src/screens/Login';
 import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
-import theme from './src/assets/theme';
 import HomeNavigation from './src/screens/main/HomeNavigation';
+import theme from './src/assets/theme';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
 
-
-
 import * as firebase from 'firebase';
-import Login from './src/screens/Login';
+
 
 
 // initialize navigation 
 const Stack = createStackNavigator();
-
 
 // setup firebase
 // TODO: use environment variable to hide keys

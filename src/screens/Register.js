@@ -1,6 +1,6 @@
 // a class component for Register (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
+import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
 import firebase from 'firebase';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
@@ -61,35 +61,127 @@ export default class Register extends Component {
                     }}>
                     
                     {/* TODO: when tap, fit the textfield where users can see it */}
-                    <Text style={componentStyle.infofieldtitle}>First Name</Text>
+
+                    {/* First Name */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/first-name.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>First Name</Text>
+                    </View>
                     <TextInput
                         placeholder='John'
                         onChangeText={(firstName) => this.setState({ firstName })}
                         style={componentStyle.infofield}
                     />
 
-                    <Text style={componentStyle.infofieldtitle}>Last Name</Text>
+                    {/* Last Name */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/last-name.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Last Name</Text>
+                    </View>
                     <TextInput
                         placeholder='Doe'
                         onChangeText={(lastName) => this.setState({ lastName })}
                         style={componentStyle.infofield}
                     />
 
-                    <Text style={componentStyle.infofieldtitle}>Username</Text>
+
+                    {/* Username */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/at.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Username</Text>
+                    </View>
                     <TextInput
                         placeholder='john.doe07'
                         onChangeText={(username) => this.setState({ username })}
                         style={componentStyle.infofield}
                     />
 
-                    <Text style={componentStyle.infofieldtitle}>Email</Text>
+                    {/* Email */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/email.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Email</Text>
+                    </View>
                     <TextInput
                         placeholder='johndoe@gmail.com'
                         onChangeText={(email) => this.setState({ email })}
                         style={componentStyle.infofield}
                     />
 
-                    <Text style={componentStyle.infofieldtitle}>Password</Text>
+                    {/* Password */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/password.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Password</Text>
+                    </View>
                     <TextInput
                         placeholder='1234567890'
                         onChangeText={(password) => this.setState({ password })}
