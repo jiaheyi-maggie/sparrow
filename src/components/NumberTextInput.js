@@ -4,37 +4,35 @@ import store from "../app/store";
 import styles from '../styles/componentStyle';
 
 const NumberTextInput = ({ item }) => {
-    var val = item.value;
 
-    // action for text input
-    const inputNumber = (number, item) => {
-      return {
-          type: 'inputNumber',
-          payload:
-            number,
-            item
-      }
-    };
+  var val = React.createRef(); 
 
-    const inputHandler = () => {
-      store.dispatch(inputNumber(val,item));
-      console.log(item);
-      console.log(val);
+  // action for text input
+  const inputNumber = (item) => {
+    return {
+        type: 'inputNumber',
+        payload: item
     }
-
-    return (
-      <SafeAreaView>
-        <TextInput
-          ref={(input)=> {val=input;}}
-          style={styles.input}
-          onChangeText={()=>inputHandler()}
-          value={item.value}
-          placeholder="$2000"
-          placeholderTextColor='#FFF4CB'
-          keyboardType="numeric"
-        />
-      </SafeAreaView>
-    );
   };
+
+  const inputHandler = () => {
+    store.dispatch(inputNumber(item));
+    console.log(item);
+  }
+
+  return (
+    <SafeAreaView>
+      <TextInput
+        ref={(input)=> {val=input}}
+        style={styles.input}
+        onChangeText={()=>inputHandler()}
+        value={val}
+        placeholder="2000"
+        placeholderTextColor='#FFF4CB'
+        keyboardType="numeric"
+      />
+    </SafeAreaView>
+  );
+};
 
   export default NumberTextInput;

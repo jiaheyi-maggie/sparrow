@@ -17,7 +17,7 @@ const reducer = (state = [], action) => {
             );
             console.log(state);
             const valueState = [...state];
-            valueState[item].value = number; 
+            valueState[item].value = action.payload.input;
             return valueState;
 
         default: 

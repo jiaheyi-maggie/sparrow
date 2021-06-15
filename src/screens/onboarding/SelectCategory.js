@@ -61,9 +61,7 @@ const SelectCategory = ({ navigation }) => {
                     </TouchableOpacity>
 
                 </View>
-
             </ScrollView>
-            
         </SafeAreaView>
     );
 };
