@@ -4,35 +4,35 @@ import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
 import store from '../../app/store';
-import { useSelector } from 'react-redux';
 
 // TODO: update title based on category data 
 
 const CategoryDetail = ({ navigation }) => {
 
     // extract data from store: specific item boolean
-
     const categories = store.getState();
-    console.log('bulllllllshit dick');
-    console.log(categories);
     const checkedCategories = categories.filter((category) => { return category.checked === true});
-    console.log(checkedCategories);
 
 
     // ISSUE: MAP just returns blank page
     const renderDetailPage = () => {
         return (         
             checkedCategories.map((category) => {
-                <SafeAreaView style={{        
-                    alignItems: 'center', 
-                    flexDirection: 'column',
-                    flex: 1, 
+                return (
+                <SafeAreaView style={{
+                    alignContent: 'center',
                     justifyContent: 'center',
-                    backgroundColor: '#fff'
+                    backgroundColor: 'white',
+                    flex: 1,
+                    alignItems: 'center'
                 }}>
+                    <View style={{width: 25, height: 200}}>
+                        <Text> </Text>
+                    </View>
+
                     <Text style={styles.itemDescription}>I spend</Text>
         
-                    <NumberTextInput /> 
+                    <NumberTextInput item={category} /> 
         
                     <Text style={styles.itemDescription}>on</Text>
         
@@ -42,9 +42,12 @@ const CategoryDetail = ({ navigation }) => {
                     <Text style={styles.itemDescription}>per</Text>
         
                     <TimePeriodDropdown /> 
+
+                    <View style={{width: 25, height: 150}}>
+                        <Text> </Text>
+                    </View>
                     
                     <View style={{flexDirection: 'row'}}> 
-        
                         {/* Back Button */}
                         <TouchableOpacity
                             style={styles.buttonContainer}
@@ -64,7 +67,7 @@ const CategoryDetail = ({ navigation }) => {
                         {/* Next Button */}
                         <TouchableOpacity
                             style={styles.buttonContainer}
-                            onPress={() => navigation.navigate('longTerm')}
+                            onPress={() => navigation.push('categories')}
                             >
                             <Text style={styles.buttonText}> Next </Text>
                         </TouchableOpacity>
@@ -72,7 +75,9 @@ const CategoryDetail = ({ navigation }) => {
                     </View>
         
                 </SafeAreaView>
+                );
              })
+             
         );
     };
 

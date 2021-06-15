@@ -8,10 +8,18 @@ const reducer = (state = [], action) => {
             const index = state.findIndex(
                 (category) => category.id === action.payload.id
             );
-            console.log(state);
             const newState = [...state];
             newState[index].checked = !action.payload.checked;
             return newState;
+        case 'inputNumber':
+            const item = state.findIndex(
+                (category) => category.id === action.payload.id
+            );
+            console.log(state);
+            const valueState = [...state];
+            valueState[item].value = number; 
+            return valueState;
+
         default: 
             return state;
     }

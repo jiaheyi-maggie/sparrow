@@ -9,7 +9,9 @@ import CategoryDetail from './CategoryDetail';
 /* Add the onboarding navigation stack here */
 const OnboardingStack = createStackNavigator();
 
+
 const OnboardingNavigation = () => {
+
     return(
         <OnboardingStack.Navigator headerMode='none'>
             <OnboardingStack.Screen name='welcome' component={Welcome}/>
