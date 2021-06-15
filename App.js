@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignIn from './src/screens/SignIn';
 import Register from './src/screens/Register';
 import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
 import theme from './src/assets/theme';
