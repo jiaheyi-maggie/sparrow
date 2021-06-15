@@ -16,26 +16,27 @@ import * as firebase from 'firebase';
 import Login from './src/screens/Login';
 
 
+// initialize navigation 
 const Stack = createStackNavigator();
 
 
-  // setup firebase
-  // TODO: use environment variable to hide keys
-  const firebaseConfig = {
-    apiKey: "AIzaSyDCkkAAUGHzctGZcwCy40NgzdmEW-3_ijo",
-    authDomain: "sparrow-budget.firebaseapp.com",
-    databaseURL: "https://sparrow-budget-default-rtdb.firebaseio.com",
-    projectId: "sparrow-budget",
-    storageBucket: "sparrow-budget.appspot.com",
-    messagingSenderId: "894285912383",
-    appId: "1:894285912383:web:c75b2f71cc5ea2a34a1b8a",
-    measurementId: "G-DRRHWERZCY"
-  };
+// setup firebase
+// TODO: use environment variable to hide keys
+const firebaseConfig = {
+  apiKey: "AIzaSyDCkkAAUGHzctGZcwCy40NgzdmEW-3_ijo",
+  authDomain: "sparrow-budget.firebaseapp.com",
+  databaseURL: "https://sparrow-budget-default-rtdb.firebaseio.com",
+  projectId: "sparrow-budget",
+  storageBucket: "sparrow-budget.appspot.com",
+  messagingSenderId: "894285912383",
+  appId: "1:894285912383:web:c75b2f71cc5ea2a34a1b8a",
+  measurementId: "G-DRRHWERZCY"
+};
 
-  // ensure that firebase was not initialized on startup
-  if (firebase.apps.length === 0) {
-    firebase.initializeApp(firebaseConfig);
-  } 
+// ensure that firebase was not initialized on startup
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+} 
 
 export default class App extends Component {
 

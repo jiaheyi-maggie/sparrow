@@ -60,15 +60,15 @@ export default class Login extends Component {
                 
                 {/* logo */}
                 <Image 
-                source={require('../assets/icon-transparent.png')} 
-                resizeMode='contain'
-                style={
-                    {
-                        alignSelf: 'center',
-                        width: 250,
-                        height: 250
+                    source={require('../assets/icon-transparent.png')} 
+                    resizeMode='contain'
+                    style={
+                        {
+                            alignSelf: 'center',
+                            width: 250,
+                            height: 250
+                        }
                     }
-                }
                 />
 
                 <View style={{
@@ -76,20 +76,58 @@ export default class Login extends Component {
                     marginBottom: 20
                     }}>
                     
+                    {/* Email */}
                     {/* TODO: when tap, fit the textfield where users can see it */}
-                    <Text style={componentStyle.infofieldtitle}>Email</Text>
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/email.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Email</Text>
+                    </View>
                     <TextInput
                         placeholder='Email'
                         onChangeText={(email) => this.setState({ email })}
                         style={componentStyle.infofield}
                     />
 
-                    <Text style={componentStyle.infofieldtitle}>Password</Text>
+
+                    {/* Password */}
+                    <View style={{
+                        flexDirection: 'row', 
+                        justifyContent: 'flex-start',
+                        alignItems: 'center'
+                    }}> 
+                        <Image 
+                            source={require('../assets/Icons/password.png')} 
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 30,
+                                marginTop: 10,
+                                marginRight: 5,
+                                tintColor: "#7E9181"
+                            }}
+                        />
+                        <Text style={componentStyle.infofieldtitle}>Password</Text>
+                    </View>  
                     <TextInput
                         placeholder='Password'
                         onChangeText={(password) => this.setState({ password })}
                         style={componentStyle.infofield}
                     />
+
                 </View>
 
                 <View style={{width: 400, height: 65}}><Text></Text></View>
