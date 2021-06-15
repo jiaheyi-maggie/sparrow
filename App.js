@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignIn from './src/screens/SignIn';
@@ -22,7 +23,7 @@ const Stack = createStackNavigator();
 
 // setup firebase
 // TODO: use environment variable to hide keys
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDCkkAAUGHzctGZcwCy40NgzdmEW-3_ijo",
   authDomain: "sparrow-budget.firebaseapp.com",
   databaseURL: "https://sparrow-budget-default-rtdb.firebaseio.com",
@@ -38,25 +39,71 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 } 
 
-export default class App extends Component {
+export class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+    }
+  }
+
+  // auth state listener
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(!user) {
+        this.setState({
+          loggedIn: false,
+          loaded: true,
+        })
+      } else {
+        this.setState({
+          loggedIn: true,
+          loaded: true,
+        })
+      }
+    })
+  }
+  
   // TODO: setup app font
-  render() {
-    return (
-      <Provider store={store}>
-        <NavigationContainer theme={theme}>
-          <Stack.Navigator
-            headerMode='none'
-            initialRouteName='onboarding'>
-            <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
-            <Stack.Screen name='register' component={Register} />
-            <Stack.Screen name='signin' component={Login} />
-            {/* <Stack.Screen name='signup' component={SignUp}/> */}
-            {/* <Stack.Screen name='signin' component={SignIn}/> */}
-            <Stack.Screen name='home' component={HomeNavigation}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
-    );
+  render() { 
+    const {loggedIn, loaded } = this.state;
+    if (!loaded) {
+      return (
+        <View>
+          <Text>Loading</Text>
+        </View>
+      );
+    }
+    if(!loggedIn) {
+      return (
+        <Provider store={store}>
+          <NavigationContainer theme={theme}>
+            <Stack.Navigator
+              headerMode='none'
+              initialRouteName='onboarding'>
+              <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
+              <Stack.Screen name='register' component={Register} />
+              <Stack.Screen name='signin' component={Login} />
+              <Stack.Screen name='home' component={HomeNavigation}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      );
+    } else {
+      return (
+        <Provider store={store}>
+          <NavigationContainer theme={theme}>
+            <Stack.Navigator
+              headerMode='none'
+              initialRouteName='home'>
+              <Stack.Screen name='home' component={HomeNavigation}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
+      )
+    }
   }
 }
+
+export default App;
