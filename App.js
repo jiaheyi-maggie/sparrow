@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './src/screens/Register';
@@ -67,9 +67,16 @@ export class App extends Component {
     const {loggedIn, loaded } = this.state;
     if (!loaded) {
       return (
-        <View>
-          <Text>Loading</Text>
-        </View>
+        <SafeAreaView>
+          <Image 
+            source={require('./src/assets/splash.png')} 
+            resizeMode='contain'
+            style={{
+              flexDirection: 'column',
+              flex: 1
+            }}
+          />
+        </SafeAreaView>
       );
     }
     if(!loggedIn) {
