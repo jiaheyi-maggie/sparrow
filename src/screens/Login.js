@@ -76,6 +76,7 @@ export default class Login extends Component {
                     marginBottom: 20
                     }}>
                     
+                    {/* TODO: when tap, fit the textfield where users can see it */}
                     <Text style={componentStyle.infofieldtitle}>Email</Text>
                     <TextInput
                         placeholder='Email'

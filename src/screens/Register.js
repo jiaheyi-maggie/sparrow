@@ -59,6 +59,8 @@ export default class Register extends Component {
                     flexDirection: 'column', 
                     marginBottom: 20
                     }}>
+                    
+                    {/* TODO: when tap, fit the textfield where users can see it */}
                     <Text style={componentStyle.infofieldtitle}>First Name</Text>
                     <TextInput
                         placeholder='John'
