@@ -76,8 +76,8 @@ export default class Login extends Component {
                     marginBottom: 20
                     }}>
                     
-                    {/* Email */}
                     {/* TODO: when tap, fit the textfield where users can see it */}
+                    {/* Email */}
                     <View style={{
                         flexDirection: 'row', 
                         justifyContent: 'flex-start',
