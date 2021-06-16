@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
-import categories from '../../data/categories';
 import styles from '../../styles/onboardingStyle';
 import BudgetCircle from '../../components/BudgetCircle';
 import SummaryListItem from '../../components/SummaryListItem';
@@ -8,8 +7,8 @@ import store from '../../app/store';
 
 const BudgetOverview = ({ navigation }) => {
 
-    // extract data from store: specific item boolean
-    const list = store.getState();
+    // extract whole category list from store
+    const list = store.getState().reducer;
 
     return (
         <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>

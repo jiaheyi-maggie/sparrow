@@ -49,7 +49,8 @@ const BudgetCircle = ({ term }) => {
                 alignItems: 'center'
                 }}>
                 <Text style={styles.reviewText} >every</Text>
-                <TimePeriodDropdown />
+                {/* <TimePeriodDropdown /> */}
+                {/* TODO: Time period dropdown */}
             </SafeAreaView>
 
         </SafeAreaView>

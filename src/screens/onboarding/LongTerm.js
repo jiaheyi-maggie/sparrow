@@ -50,12 +50,11 @@ const LongTerm = ({ navigation }) => {
                     <Text style={styles.itemDescription}>I plan to spend</Text>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.itemDescription}>$ </Text>
-                        {/* <NumberTextInput /> */}
                         <TextInput
                             style={componentStyle.input}
                             onChangeText={(input) => inputHandler(input)}
                             value={input}
-                            placeholder="20000"
+                            placeholder="5000"
                             placeholderTextColor='#FFF4CB'
                             keyboardType="numeric"
                         />

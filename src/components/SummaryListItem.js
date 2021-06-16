@@ -9,7 +9,7 @@ const SummaryListItem = ({ item }) => {
     return (
         <View style={styles.listSummaryItem}>
             <TouchableOpacity >
-                <Text style={styles.listSummaryTitle}>{item.title}</Text>
+                <Text style={styles.listSummaryTitle}>{item.title} ({item.period})</Text>
             </TouchableOpacity>
             <TextInput
                 style={{
@@ -23,6 +23,7 @@ const SummaryListItem = ({ item }) => {
                 keyboardType="numeric"
             >
             </TextInput>
+
         </View>
     );
 };
