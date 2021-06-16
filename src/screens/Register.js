@@ -22,6 +22,14 @@ export default class Register extends Component {
         this.onSignUp = this.onSignUp.bind(this);
     }
 
+    // TODO: action for current user (to be passed into reducers)
+    setUserInfo = () => {
+        return {
+            type: 'setUserInfo',
+            payload: this.state
+        }
+    };
+
     // Handles firebase authentication and Firestore 
     onSignUp() {
         const { firstName, lastName, username, email, password } = this.state;

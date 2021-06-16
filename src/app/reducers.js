@@ -1,9 +1,7 @@
-import { combineReducers, createStore } from "redux";
-import { onboardingReducer, userReducers } from './reducers';
 import categoriesWithValue from "../data/categories-bool";
-
+// Reducers for Onboarding
 // WATCH OUT FOR INDEXING
-const reducer = (state = [], action) => {
+export default reducer = (state = categoriesWithValue, action) => {
     switch (action.type) {
         case 'pressButton': 
             const index = state.findIndex(
@@ -27,12 +25,14 @@ const reducer = (state = [], action) => {
     }
 };
 
-// const rootReducer = combineReducers({
-//     onboardingReducer,
-//     userReducers
-// })
 
-const store = createStore(reducer, categoriesWithValue);
-// const store = createStore(rootReducer);
-
-export default store;
+// Reducers for user
+export const userReducers = (state = null, action) => {
+    switch (action.type) {
+        case 'setUserInfo':
+            // TODO: change user info if firestore changes
+            return state;
+        default:
+            return state;
+    }
+}
