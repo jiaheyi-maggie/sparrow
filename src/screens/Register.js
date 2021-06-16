@@ -1,6 +1,6 @@
 // a class component for Register (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
 import firebase from 'firebase';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
@@ -22,13 +22,23 @@ export default class Register extends Component {
         this.onSignUp = this.onSignUp.bind(this);
     }
 
-    // implement firebase logic here
+    // Handles firebase authentication and Firestore 
     onSignUp() {
         const { firstName, lastName, username, email, password } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((result) => {
-                // TODO: Take to Home Page!
-                console.log(result);
+            .then((userCredentials) => {
+                // TODO: Add user to firestore
+                var currUserID = firebase.auth().currentUser.uid;
+                firebase.firestore().collection("users")
+                    .doc(currUserID)
+                    .set({
+                        firstName,
+                        lastName,
+                        username,
+                        email
+                    })
+
+                console.log(userCredentials);
             })
             // TODO: add alert here
             .catch((error) => {
