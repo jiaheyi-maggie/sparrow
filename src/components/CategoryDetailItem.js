@@ -43,7 +43,7 @@ const CategoryDetailItem = ({ item }) => {
                         }}
                         value={value}
                         onChangeText={(value)=>setValue(value)}
-                        placeholder="2000 "
+                        placeholder=" 2000 "
                         placeholderTextColor='#D7CEB2'
                         keyboardType="numeric"
                     />
