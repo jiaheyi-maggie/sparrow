@@ -1,0 +1,10 @@
+[
+    {
+        "component": "SelectCategory",
+        "navigation": ["OnboardingNavigation"]
+    },
+    {
+        "component": "CategoryDetail",
+        "navigation": ["OnboardingNavigation"]
+    }
+]
