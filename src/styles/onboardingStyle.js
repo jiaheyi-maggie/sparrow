@@ -72,10 +72,11 @@ const onboardingStyle = StyleSheet.create({
     alignItems: 'center'
   },
   scrollviewContainer: {
-    marginTop: 20
+    marginTop: 30,
   },
   safeareaWithScroll : {
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    flex: 1
   },
   checkboxContainer : {
     alignContent: 'center',
@@ -120,15 +121,15 @@ const onboardingStyle = StyleSheet.create({
     color: "#E76F51"
   },
   itemTitle: {
-    color: '#E76F51',
+    color: '#FAA381',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 30,
     margin: 0
 },
   itemDescription: {
     color: '#264653',
     fontWeight: 'bold',
-    fontSize: 42,
+    fontSize: 30,
     margin: 0
   },
 });

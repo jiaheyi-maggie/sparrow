@@ -6,8 +6,6 @@ import styles from '../../styles/onboardingStyle';
 import store from '../../app/store';
 import CategoryDetailItem from '../../components/CategoryDetailItem';
  
-// TODO: change this to scroll view
-
 const CategoryDetail = ({ navigation }) => {
 
     // extract data from store: specific item boolean
@@ -20,18 +18,51 @@ const CategoryDetail = ({ navigation }) => {
 
     const renderList = () => {
         return (
-            <ScrollView>
-                <FlatList 
-                    data={checkedCategories}
-                    renderItem={({ item }) => (
-                        <CategoryDetailItem item={item}  />
-                    )}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                    }}
-                />
-            </ScrollView>
+            <SafeAreaView style={styles.safeareaWithScroll}>
+                <ScrollView style={styles.scrollviewContainer}>
+
+                    <View>
+                        <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
+                    </View>
+
+                    <View>
+                        <Text style={styles.subtitle}>This is the first step to making a budget estimation :)</Text>
+                    </View>
+
+                    <FlatList 
+                        data={checkedCategories}
+                        renderItem={({ item }) => (
+                            <CategoryDetailItem item={item}  />
+                        )}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                        }}
+                    />
+                </ScrollView>
+
+                {/* Button View  */}
+                <View style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-around'
+                    }}> 
+                    {/* Back Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.goBack()}
+                        >
+                        <Text style={styles.buttonText}>     Back     </Text>
+                    </TouchableOpacity>
+    
+                    {/* Next Button */}
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.push('longTerm')}
+                        >
+                        <Text style={styles.buttonText}>     Next     </Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
         );
     }
 
@@ -108,7 +139,6 @@ const CategoryDetail = ({ navigation }) => {
                             >
                             <Text style={styles.buttonText}>     Next     </Text>
                         </TouchableOpacity>
-        
                     </View>
         
                 </SafeAreaView>   
