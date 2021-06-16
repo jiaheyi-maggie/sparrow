@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const componentStyle = StyleSheet.create({
   input: {
-    fontSize: 39,
+    fontSize: 37,
     fontWeight: 'bold',
     textAlign: 'center',
     height: 40,

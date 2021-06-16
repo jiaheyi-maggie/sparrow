@@ -37,6 +37,7 @@ export default class Register extends Component {
             .then((userCredentials) => {
                 // TODO: Add user to firestore
                 var currUserID = firebase.auth().currentUser.uid;
+                console.log(currUserID);
                 firebase.firestore().collection("users")
                     .doc(currUserID)
                     .set({

@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from "redux";
-import { onboardingReducer, userReducers } from './reducers';
 import categoriesWithValue from "../data/categories-bool";
 
+// reducer for onboarding
 // WATCH OUT FOR INDEXING
 const reducer = (state = [], action) => {
     switch (action.type) {
@@ -19,7 +19,7 @@ const reducer = (state = [], action) => {
                 (category) => category.id === action.payload.item.id
             );
             const valueState = [...state];
-            valueState[itemIndex].value = action.payload.number;
+            valueState[itemIndex].value = action.payload.item.value;
             return valueState;
 
         default: 
@@ -31,6 +31,9 @@ const reducer = (state = [], action) => {
 //     onboardingReducer,
 //     userReducers
 // })
+// TODO: reducer for long term goal
+
+// TODO: reducer for users
 
 const store = createStore(reducer, categoriesWithValue);
 // const store = createStore(rootReducer);

@@ -1,5 +1,5 @@
 import categoriesWithValue from "../data/categories-bool";
-// Reducers for Onboarding
+// reducer for onboarding
 // WATCH OUT FOR INDEXING
 export default reducer = (state = categoriesWithValue, action) => {
     switch (action.type) {
@@ -9,30 +9,18 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const newState = [...state];
             newState[index].checked = !action.payload.checked;
+            console.log(state);
             return newState;
-        // number field change doesn't work right now
+        // TODO: number field change doesn't work right now
         case 'inputNumber':
-            const item = state.findIndex(
+            const itemIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
             );
-            console.log(state);
             const valueState = [...state];
-            valueState[item].value = action.payload.input;
+            valueState[itemIndex].value = action.payload.item.value;
             return valueState;
 
         default: 
             return state;
     }
 };
-
-
-// Reducers for user
-export const userReducers = (state = null, action) => {
-    switch (action.type) {
-        case 'setUserInfo':
-            // TODO: change user info if firestore changes
-            return state;
-        default:
-            return state;
-    }
-}

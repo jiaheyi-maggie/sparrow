@@ -1,10 +1,19 @@
-import React, { Fragment } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import React, { Fragment, useState } from 'react';
+import { SafeAreaView, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
+import componentStyle from '../../styles/componentStyle';
 import styles from '../../styles/onboardingStyle';
 
 const LongTerm = ({ navigation }) => {
+
+    const [longTermGoal, setLongTermGoal] = useState(0);
+
+    const inputHandler = (input) => {
+        setLongTermGoal(input);
+    }
+    
+
     return (
             <SafeAreaView style={{
                 backgroundColor:'#fff', 
@@ -31,12 +40,20 @@ const LongTerm = ({ navigation }) => {
                     <Text style={styles.itemDescription}>I plan to spend</Text>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.itemDescription}>$ </Text>
-                        <NumberTextInput />
+                        {/* <NumberTextInput /> */}
+                        <TextInput
+                            style={componentStyle.input}
+                            onChangeText={(input) => inputHandler(input)}
+                            value={longTermGoal}
+                            placeholder="20000"
+                            placeholderTextColor='#FFF4CB'
+                            keyboardType="numeric"
+                        />
                     </View>
                     
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.itemDescription}>per </Text>
-                        <TimePeriodDropdown />
+                        {/* <TimePeriodDropdown /> */}
                     </View>
 
                     <View style={{height: 230}}><Text></Text></View>
