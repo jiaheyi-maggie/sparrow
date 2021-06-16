@@ -19,6 +19,15 @@ export default reducer = (state = categoriesWithValue, action) => {
             const valueState = [...state];
             valueState[itemIndex].value = action.payload.item.value;
             return valueState;
+        // TODO: period field change doesn't work right now (same issue as number field)
+        case 'changePeriod':
+            const periodIndex = state.findIndex(
+                (category) => category.id === action.payload.id
+            );
+            const periodState = [...state];
+            periodState[periodIndex].period = action.payload.period;
+            console.log(periodState);
+            return periodState;
 
         default: 
             return state;

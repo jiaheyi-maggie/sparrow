@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { useSelector } from 'react-redux';
+import store from '../../app/store';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import componentStyle from '../../styles/componentStyle';
@@ -7,12 +9,20 @@ import styles from '../../styles/onboardingStyle';
 
 const LongTerm = ({ navigation }) => {
 
-    const [longTermGoal, setLongTermGoal] = useState(0);
+    // grab long term goal from store
+    const input = useSelector((state) => state.longTerm);
+
+    // action to change long term value
+    const changeLongTerm = input => {
+        return {
+            type: 'changeLongTerm',
+            payload: input
+        }
+    }
 
     const inputHandler = (input) => {
-        setLongTermGoal(input);
+        store.dispatch(changeLongTerm(input));
     }
-    
 
     return (
             <SafeAreaView style={{
@@ -44,7 +54,7 @@ const LongTerm = ({ navigation }) => {
                         <TextInput
                             style={componentStyle.input}
                             onChangeText={(input) => inputHandler(input)}
-                            value={longTermGoal}
+                            value={input}
                             placeholder="20000"
                             placeholderTextColor='#FFF4CB'
                             keyboardType="numeric"

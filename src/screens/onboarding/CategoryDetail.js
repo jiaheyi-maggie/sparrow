@@ -51,7 +51,7 @@ const CategoryDetail = ({ navigation }) => {
     
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Text style={styles.itemDescription}>per </Text>
-                    {/* <TimePeriodDropdown item={category}/>  */}
+                    <TimePeriodDropdown item={category}/> 
                 </View>
 
                 <View style={{width: 25, height: 300}}>

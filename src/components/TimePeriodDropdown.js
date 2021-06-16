@@ -1,41 +1,54 @@
-import React, { useState } from "react";
-import { View } from "react-native";
+import React from "react";
 import { Picker } from '@react-native-picker/picker';
 import { useSelector } from "react-redux";
 import styles from '../styles/componentStyle';
+import store from '../app/store';
 
 const TimePeriodDropdown = ({ item }) => {
 
     // get state from store
-    const checked = useSelector((state) => state[item.id].checked);
+    const period = useSelector((state) => state.reducer[item.id].period);
 
     // action for reducer
-    const pressButton = item => {
+    const changePeriod = item => {
         return {
-            type: 'pressButton',
+            type: 'changePeriod',
             payload: item
         }
     };
 
     // dispatch action
-    const pressHandler = () => {
-        store.dispatch(pressButton(item));
+    const handlePeriodChange = () => {
+        store.dispatch(changePeriod(item));
     }
 
-    // map period 
+    // Map period for calculating sum for budget overview
+    const mapPeriodToValue = (selection) => {
+        switch (selection) {
+            case 'Year':
+                return 1;
+            case 'Quarter':
+                return 4;
+            case 'Month':
+                return 12;
+            case 'Week':
+                return 48;
+            case 'Day':
+                return 365;
+        }
+    }
 
-    const [selected, setSelected ] = useState("year");
     return (
         <Picker 
-            selectedValue={selected}
+            selectedValue={period}
             itemStyle={{
                 backgroundColor: 'grey',
                 color: 'blue',
                 fontSize: 20
             }}
             style={styles.dropdown}
-            onValueChange={(itemValue, itemIndex) => setSelected(itemValue)}
-            >
+            onValueChange={() => handlePeriodChange()}
+        >
             <Picker.Item label="Year" value="Year" color='#264653'/>
             <Picker.Item label="Quarter" value="Quarter" color='#264653'/>
             <Picker.Item label="Month" value="Month" color='#264653'/>
