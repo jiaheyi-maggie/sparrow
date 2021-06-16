@@ -71,9 +71,9 @@ const LongTerm = ({ navigation }) => {
 
  
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('budgetOverview')}
+                    onPress={() => navigation.navigate('budgetOverview')}
                 >
-                    <Text style={componentStyle.buttonText}> I don't know </Text>
+                    <Text style={componentStyle.buttonText}> I don't know, review budget! </Text>
                 </TouchableOpacity>
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
