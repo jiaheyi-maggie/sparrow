@@ -9,6 +9,11 @@ const BudgetOverview = ({ navigation }) => {
 
     // extract whole category list from store
     const list = store.getState().reducer;
+    const longTermValue = store.getState().longTerm;
+
+    // default short term: monthly
+    const shortTermValue = longTermValue/12;
+
 
     return (
         <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
@@ -24,8 +29,8 @@ const BudgetOverview = ({ navigation }) => {
                 </View>
 
                 <View style={{flexDirection: 'row', padding: 10}}>
-                    <BudgetCircle term={'Short'} />
-                    <BudgetCircle term={'Long'} />
+                    <BudgetCircle term={'Short'} value={shortTermValue} />
+                    <BudgetCircle term={'Long'} value={longTermValue} />
                 </View>
 
                 <FlatList 
@@ -38,12 +43,6 @@ const BudgetOverview = ({ navigation }) => {
                         flexGrow: 1,
                     }}
                 />
-
-                {/* <FlatList
-                        data={list}
-                        renderItem={renderList}
-                        keyExtractor={item => item.id}
-                /> */}
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}

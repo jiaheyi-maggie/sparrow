@@ -28,7 +28,14 @@ export default reducer = (state = categoriesWithValue, action) => {
             periodState[periodIndex].period = action.payload.period;
             console.log(periodState);
             return periodState;
-
+        // TODO: period field change doesn't work right now (same issue as number field)
+        case 'changeCategorySum':
+            const sumIndex = state.findIndex(
+                (category) => category.id === action.payload.id
+            );
+            const sumState = [...state];
+            sumState[sumIndex].sum = action.payload.sum;
+            return sumState;
         default: 
             return state;
     }

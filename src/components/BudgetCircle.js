@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dimensions, Text, TextInput, SafeAreaView, View } from 'react-native';
+import store from '../app/store';
 import styles from '../styles/componentStyle';
 import TimePeriodDropdown from './TimePeriodDropdown';
 import TimePicker from './TimePicker';
 
 // TODO: add budget sum into circle
-const BudgetCircle = ({ term }) => {
+const BudgetCircle = ({ term, value }) => {
 
-    const [number, onChangeNumber] = useState(null);
+    // const [number, onChangeNumber] = useState(null);
+    const onChangeNumber = (value) => {
+        if (term === 'Long') {
+            store.dispatch(changeLongTerm(value));
+        } else if (term === 'Short') {
+            store.dispatch(changeShortTerm(value));
+        }
+    };
 
     return (
         <SafeAreaView style={{alignItems: 'center'}}>
@@ -28,14 +36,13 @@ const BudgetCircle = ({ term }) => {
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#FFF4CB', fontSize: 40, fontWeight: 'bold'}}>$ </Text>
                     <TextInput
-                        onChangeText={onChangeNumber}
-                        value={number}
-                        placeholder="2000"
+                        onChangeText={(value) => onChangeNumber(value)}
+                        value={value}
                         placeholderTextColor='#FFF4CB'
                         keyboardType="phone-pad"
                         selectionColor='aliceblue'
                         textAlign= 'center'
-                        style={{fontSize: 40, fontWeight: 'bold'}}
+                        style={{fontSize: 40, fontWeight: 'bold', color: '#FFF4CB'}}
                     />
                 </View>
             </View>
