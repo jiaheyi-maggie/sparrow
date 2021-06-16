@@ -18,7 +18,7 @@ const OnboardingNavigation = () => {
             <OnboardingStack.Screen name='selectCategory' component={SelectCategory}/>
             <OnboardingStack.Screen name='categories' component={CategoryDetail}/>
             <OnboardingStack.Screen name='longTerm' component={LongTerm}/>
-            <OnboardingStack.Screen name='budgeOverview' component={BudgetOverview}/>
+            <OnboardingStack.Screen name='budgetOverview' component={BudgetOverview}/>
         </OnboardingStack.Navigator>
     );
 

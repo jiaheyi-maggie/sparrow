@@ -54,11 +54,18 @@ const LongTerm = ({ navigation }) => {
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={styles.itemDescription}>per </Text>
                         {/* <TimePeriodDropdown /> */}
+                        {/* TODO: IMPLEMENT TIMER PERIOD DROPDOWN  */}
                     </View>
 
                     <View style={{height: 230}}><Text></Text></View>
                 </View>
 
+ 
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('budgetOverview')}
+                >
+                    <Text style={componentStyle.buttonText}> I don't know </Text>
+                </TouchableOpacity>
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
                     {/* Back Button */}
@@ -72,11 +79,13 @@ const LongTerm = ({ navigation }) => {
                     {/* Next Button */}
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('budgeOverview')}
+                        onPress={() => navigation.navigate('budgetOverview')}
                         >
                         <Text style={styles.buttonText}> Continue </Text>
                     </TouchableOpacity>
                 </View>
+
+
 
             </SafeAreaView>
 

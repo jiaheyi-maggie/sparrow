@@ -10,7 +10,8 @@ const CategoryItem = ({ item }) => {
 
     /* Redux data flow */
     // get most updated state for re-rendering
-    const checked = useSelector((state) => state[item.id].checked);
+    // const checked = useSelector((state) => state[item.id].checked);
+    const checked = useSelector((state) => state.reducer[item.id].checked);
 
     // action for reducer
     const pressButton = item => {

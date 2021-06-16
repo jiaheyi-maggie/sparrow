@@ -1,4 +1,4 @@
-import categoriesWithValue from "../data/categories-bool";
+import categoriesWithValue from "../../data/categories-bool";
 // reducer for onboarding
 // WATCH OUT FOR INDEXING
 export default reducer = (state = categoriesWithValue, action) => {

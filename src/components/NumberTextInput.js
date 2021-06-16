@@ -9,7 +9,8 @@ const NumberTextInput = ({ item }) => {
 
   // const ref = useRef();
 
-  const textValue = useSelector((state) => state[item.id].value);
+  // const textValue = useSelector((state) => state[item.id].value);
+  const textValue = useSelector((state) => state.reducer[item.id].value);
 
   // action for text input
   const inputNumber = (item, number) => {

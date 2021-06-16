@@ -9,7 +9,8 @@ import store from '../../app/store';
 const CategoryDetail = ({ navigation }) => {
 
     // extract data from store: specific item boolean
-    const categories = store.getState();
+    // const categories = store.getState();
+    const categories = store.getState().reducer;
     const checkedCategories = categories.filter((category) => { return category.checked === true});
     // value of each category
     // const categoryValues = checkedCategories.map((category) => category.value);
@@ -50,7 +51,7 @@ const CategoryDetail = ({ navigation }) => {
     
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                     <Text style={styles.itemDescription}>per </Text>
-                    <TimePeriodDropdown item={category}/> 
+                    {/* <TimePeriodDropdown item={category}/>  */}
                 </View>
 
                 <View style={{width: 25, height: 300}}>
@@ -126,6 +127,7 @@ const CategoryDetail = ({ navigation }) => {
                 </SafeAreaView>
             );
         } else {
+            console.log(checkedCategories);
             return (
                 checkedCategories.map((category) => {
                     return renderDetailPage(category);
