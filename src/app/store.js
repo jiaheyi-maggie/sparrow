@@ -11,15 +11,15 @@ const reducer = (state = [], action) => {
             );
             const newState = [...state];
             newState[index].checked = !action.payload.checked;
+            console.log(state);
             return newState;
-        // number field change doesn't work right now
+        // TODO: number field change doesn't work right now
         case 'inputNumber':
-            const item = state.findIndex(
+            const itemIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
             );
-            console.log(state);
             const valueState = [...state];
-            valueState[item].value = action.payload.input;
+            valueState[itemIndex].value = action.payload.number;
             return valueState;
 
         default: 

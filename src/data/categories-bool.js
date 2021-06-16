@@ -6,6 +6,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0,
         period: 'year',
+        sum: 0,
     },
     {
         id: 1,
@@ -13,6 +14,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
     {
         id: 2,
@@ -20,6 +22,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
     {
         id: 3,
@@ -27,6 +30,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
     {
         id: 4,
@@ -34,13 +38,15 @@ const categoriesWithValue = [
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
     {
         id: 5,
-        title: 'Gas/Transportation',
+        title: 'Gas / Transportation',
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
     {
         id: 6,
@@ -48,6 +54,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0,
         period: 'year', 
+        sum: 0,
     },
     {
         id: 7,
@@ -55,6 +62,7 @@ const categoriesWithValue = [
         checked: false,
         value: 0, 
         period: 'year',
+        sum: 0,
     },
   ];
 

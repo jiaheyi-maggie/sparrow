@@ -1,17 +1,19 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View, Image } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
 import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import styles from '../../styles/onboardingStyle';
 import store from '../../app/store';
-
-// TODO: update title based on category data 
+ 
 
 const CategoryDetail = ({ navigation }) => {
 
     // extract data from store: specific item boolean
     const categories = store.getState();
     const checkedCategories = categories.filter((category) => { return category.checked === true});
+    // value of each category
+    // const categoryValues = checkedCategories.map((category) => category.value);
+
 
     const renderDetailPage = (category) => {
         return (         
@@ -28,10 +30,17 @@ const CategoryDetail = ({ navigation }) => {
 
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}> 
                     <Text style={styles.itemDescription}>I spend</Text>
-
-                    
                     <Text style={styles.itemDescription}> $</Text>
                     <NumberTextInput item={category} /> 
+
+                    {/* <TextInput
+                        style={styles.input}
+                        onChangeText={()=>inputHandler()}
+                        value={category.value}
+                        placeholder="2000"
+                        placeholderTextColor='#FFF4CB'
+                        keyboardType="numeric"
+                    /> */}
                 </View>
                 
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>

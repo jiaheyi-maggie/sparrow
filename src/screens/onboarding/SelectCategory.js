@@ -31,6 +31,16 @@ const SelectCategory = ({ navigation }) => {
                     }}
                 />
 
+                <View>
+                    <Text style={{
+                        color: '#264653',
+                        textAlign: 'left',
+                        fontSize: 20,
+                        paddingVertical: 5,
+                        marginHorizontal: 20
+                        }}>(Optional)</Text>
+                </View>
+
                 {/* CATEGORY LIST HERE */}
                 <FlatList 
                     data={categories}

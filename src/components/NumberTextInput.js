@@ -5,7 +5,7 @@ import styles from '../styles/componentStyle';
 
 const NumberTextInput = ({ item }) => {
 
-  var val = React.createRef(); 
+  let value = React.createRef(); 
 
   // action for text input
   const inputNumber = (item, number) => {
@@ -16,6 +16,7 @@ const NumberTextInput = ({ item }) => {
   };
 
   const inputHandler = () => {
+    const val = value.current.inputField;
     store.dispatch(inputNumber(item, val));
     console.log(item);
   }
@@ -23,10 +24,10 @@ const NumberTextInput = ({ item }) => {
   return (
     <SafeAreaView>
       <TextInput
-        ref={(input)=> {val=input}}
+        ref={value}
         style={styles.input}
         onChangeText={()=>inputHandler()}
-        value={val}
+        value={value}
         placeholder="2000"
         placeholderTextColor='#FFF4CB'
         keyboardType="numeric"
