@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 const onboardingStyle = StyleSheet.create({
+  // onboarding page container
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   longtermContainer :{
@@ -21,7 +21,7 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 45,
       textAlign: 'left',
       paddingTop: 10,
-      paddingLeft: 20
+      paddingLeft: 15
   },
   // subtitle for onboarding
   subtitle: {
@@ -72,25 +72,48 @@ const onboardingStyle = StyleSheet.create({
     height: 380,
     alignContent: 'center'
   },
-  listitem: {
-    backgroundColor: '#FFF4CB',
-    padding: 8,
-    marginVertical: 8,
-    marginHorizontal:16,
-    borderRadius: 20
+  // onboarding small image
+  smallImage: {
+    width: 300,
+    height: 300,
+    alignContent: 'center'
   },
-  listtitle: {
+  // horizontal containing multiple buttons
+  multipleButtonContainer: {
+    alignContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'stretch',
+    width: 400
+  },
+  // text to indicate optional
+  optionalText: {
     color: '#264653',
-    fontWeight: 'bold',
     textAlign: 'left',
-    fontSize: 18,
-    margin: 5,
-    marginLeft: 80,
-    marginRight: 10,
-    marginTop: -27,
-    marginBottom: 13,
-    flexDirection: 'column',
-    alignItems: 'center'
+    fontSize: 20,
+    paddingVertical: 5,
+    marginHorizontal: 20
+  },
+  // blue category card
+  categoryCard :{
+    alignContent: 'center',
+    backgroundColor: 'aliceblue',
+    alignItems: 'flex-start',
+    borderRadius: 15,
+    padding: 20,
+    margin: 10,
+    flex: 1
+  },
+  // for aligning generic texts + other components
+  genericRowAlign: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'center'
+  },
+  textInputContainer: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#264653',
+    flexDirection: 'row'
   },
   scrollviewContainer: {
     marginTop: 30,
@@ -133,6 +156,7 @@ const onboardingStyle = StyleSheet.create({
     marginHorizontal:16,
     borderRadius: 20
   },
+  // list item text for BudgetOverview
   listSummaryTitle: {
     color: '#264653',
     fontWeight: 'bold',

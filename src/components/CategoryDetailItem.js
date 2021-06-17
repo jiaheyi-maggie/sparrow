@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView } from 'react-native';
-import NumberTextInput from './NumberTextInput';
 import TimePeriodDropdown from './TimePeriodDropdown';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 
 const CategoryDetailItem = ({ item }) => {
 
-    // TODO: update redux when value changes
-    // Dummy text input
     const [value, setValue] = useState(0);
 
     // update redux into categories' value field
@@ -25,29 +22,13 @@ const CategoryDetailItem = ({ item }) => {
     }
 
     return (
-        <SafeAreaView style={{
-            alignContent: 'center',
-            backgroundColor: 'aliceblue',
-            alignItems: 'flex-start',
-            borderRadius: 15,
-            padding: 20,
-            margin: 10,
-            flex: 1
-        }}>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={styles.itemTitle}> {item.title} :</Text>
+        <SafeAreaView style={styles.categoryCard}>
+            <View style={styles.genericRowAlign}>
+                <Text style={styles.itemTitle}>{item.title} :</Text>
             </View>
 
-            <View style={{
-                flexDirection: 'row', 
-                alignItems: 'center', 
-                justifyContent: 'center'
-            }}>
-                <View style={{
-                    borderBottomWidth: 3,
-                    borderBottomColor: '#264653',
-                    flexDirection: 'row'
-                }}>
+            <View style={styles.genericRowAlign}>
+                <View style={styles.textInputContainer}>
                     <Text style={styles.itemDescription}>$</Text>
                     <TextInput
                         style={{
@@ -60,14 +41,10 @@ const CategoryDetailItem = ({ item }) => {
                         placeholderTextColor='#D7CEB2'
                         keyboardType="numeric"
                     />
-                    
                 </View>
                 <Text style={styles.itemDescription}> per </Text>
                 <TimePeriodDropdown item={item}/> 
             </View>
-
-            {/* <TimePeriodDropdown item={category} /> */}
-
         </SafeAreaView>
     );
 };

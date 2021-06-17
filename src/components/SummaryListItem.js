@@ -15,8 +15,6 @@ const SummaryListItem = ({ item }) => {
     // calculate initial sum based on "period" and "value" of item
     // return yearly value
     const calculateSumBasedOnPeriod = (p, v) => {
-        // console.log(period);
-        // console.log(value);
         if (v === 0) {
             return 0;
         }

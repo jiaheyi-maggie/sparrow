@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text, TextInput, SafeAreaView, View } from 'react-native';
+import { Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
 import styles from '../styles/componentStyle';
 import TimePeriodDropdown from './TimePeriodDropdown';

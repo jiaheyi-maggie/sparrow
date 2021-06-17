@@ -1,9 +1,12 @@
 import React from 'react';
 import { SafeAreaView, View, Text, ScrollView, FlatList, TouchableOpacity } from 'react-native';
-import styles from '../../styles/onboardingStyle';
+
 import BudgetCircle from '../../components/BudgetCircle';
 import SummaryListItem from '../../components/SummaryListItem';
+
 import store from '../../app/store';
+
+import styles from '../../styles/onboardingStyle';
 
 const BudgetOverview = ({ navigation }) => {
 
@@ -14,21 +17,13 @@ const BudgetOverview = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
-            
             <ScrollView style={styles.scrollviewContainer}>
-
-                <View>
-                    <Text style={styles.title}>Budget Overview </Text>
-                </View>
-
-                <View>
-                    <Text style={styles.subtitle}>Tap on any number to edit!</Text>
-                </View>
+                <Text style={styles.title}>Budget Overview </Text>
+                <Text style={styles.subtitle}>Tap on any number to edit!</Text>
 
                 <View style={{flexDirection: 'row', padding: 10}}>
                     <BudgetCircle term={'Short'} value={shortTermValue} />
                     <BudgetCircle term={'Long'} value={longTermValue} />
-                    
                 </View>
 
                 <FlatList 
@@ -42,26 +37,19 @@ const BudgetOverview = ({ navigation }) => {
                     }}
                 />
 
-                <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
+                {/* Button View */}
+                <View style={styles.multipleButtonContainer}> 
                     {/* Back Button */}
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.goBack()}
-                        >
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
                         <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
 
                     {/* Next Button */}
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate('register')}
-                        >
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('register')}>
                         <Text style={styles.buttonText}> Looks Good! </Text>
                     </TouchableOpacity>
                 </View>
-
             </ScrollView>
-
         </SafeAreaView>
     );
 };

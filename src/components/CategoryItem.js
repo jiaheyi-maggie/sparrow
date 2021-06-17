@@ -10,7 +10,6 @@ const CategoryItem = ({ item }) => {
 
     /* Redux data flow */
     // get most updated state for re-rendering
-    // const checked = useSelector((state) => state[item.id].checked);
     const checked = useSelector((state) => state.reducer[item.id].checked);
 
     // action for reducer
@@ -27,10 +26,7 @@ const CategoryItem = ({ item }) => {
     }
 
     return (
-            <TouchableOpacity
-                style={styles.clickContainer}
-                onPress={() => pressHandler()}
-            >
+            <TouchableOpacity style={styles.clickContainer} onPress={() => pressHandler()}>
                 <View style={styles.listTextAlign}>
                     <Checkbox 
                         disabled={false}
@@ -38,9 +34,7 @@ const CategoryItem = ({ item }) => {
                         onValueChange={() => pressHandler()}
                     />
 
-                    <Text style={styles.clickTitle}>
-                        {item.title}
-                    </Text>
+                    <Text style={styles.clickTitle}>{item.title}</Text>
                 </View>
             </TouchableOpacity>
     );
