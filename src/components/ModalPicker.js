@@ -1,6 +1,6 @@
 /* Customized picker  */
 import React, { useState } from 'react';
-import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View } from 'react-native';
+import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image } from 'react-native';
 
 const ModalPicker = ({ item }) => {
     const [chosen, setChosen] = useState('time period');
@@ -8,33 +8,40 @@ const ModalPicker = ({ item }) => {
 
     return (
         <SafeAreaView style={styles.startView}>
-          <Modal
+            <Modal
             animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {setModalVisible(!modalVisible)}}
-          >
-            {/* View for the list of time periods */}
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
-                <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>Hide Modal</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            >
+                {/* View for the list of time periods */}
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Hello World!</Text>
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
 
-          </Modal>
-
-          <TouchableOpacity
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={styles.textStyle}>Time Period</Text>
-          </TouchableOpacity>
+            {/* Time Period closed picker view */}
+            <TouchableOpacity
+                style={[styles.button, styles.buttonOpen]}
+                onPress={() => setModalVisible(true)}
+            >
+                <View style={{flexDirection:'row', alignItems: 'center'}}>
+                    <Text style={styles.textStyle}> time period </Text>
+                    <Image 
+                        source={require('../assets/Icons/down-arrow.png')} 
+                        resizeMode='contain'
+                        style={{marginTop: 5, width: 25, height: 25}}
+                    />
+                </View>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -67,8 +74,10 @@ const styles = StyleSheet.create({
     },
     button: {
       borderRadius: 10,
-      padding: 3,
-      elevation: 2
+      paddingHorizontal: 8,
+      marginTop: 2,
+      elevation: 2,
+      padding: 2
     },
     buttonOpen: {
       backgroundColor: "#D7CEB2",
@@ -80,7 +89,7 @@ const styles = StyleSheet.create({
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 20
+      fontSize: 25
     },
     modalText: {
       marginBottom: 15,

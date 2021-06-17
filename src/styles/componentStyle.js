@@ -46,15 +46,6 @@ const componentStyle = StyleSheet.create({
     height: 50, 
     width: 100
   },
-  //also unused because it doesn't render
-  circle : {
-    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-    width: Dimensions.get('window').width * 0.42,
-    height: Dimensions.get('window').width * 0.42,
-    backgroundColor:'#2A94AF',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   circleText :{
     color: '#FFF4CB',
     fontSize: 40
