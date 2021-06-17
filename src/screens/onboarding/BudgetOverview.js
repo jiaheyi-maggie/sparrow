@@ -11,12 +11,16 @@ const BudgetOverview = ({ navigation }) => {
     const list = store.getState().reducer;
     const longTermValue = store.getState().longTerm;
 
-    // calculate initial sum based on "period" and "value" of item
-    // return monthly value
+    /* Calculate Short Term */
+
+    // convert to monthly value based on current period
     const calculateMonthlySumBasedOnPeriod = (p, v) => {
+        if (v === 0) {
+            return 0;
+        }
         switch (p) {
             case p === 'Year':
-                return v / 12;
+                return Math.floor(v / 12);
             case p === 'Quarter':
                 return Math.floor(v / 4);
             case p === 'Month':
@@ -30,17 +34,18 @@ const BudgetOverview = ({ navigation }) => {
         }
     }
 
-    // calculate short term value in store based on categories
+    // sum short term value in store based on categories
     const calculateShortTermValue = (l) => {
         var shortTermValue = 0; 
         l.forEach((category) => {
-            shortTermValue += calculateMonthlySumBasedOnPeriod(category.period, category.value);
+            const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value);
+            shortTermValue += parseFloat(currVal);
         })
+        console.log('fuck');
         console.log(shortTermValue);
         return shortTermValue;
     } 
 
-    // const shortTermValue = longTermValue / 12;
     const shortTermValue = calculateShortTermValue(list);
 
 

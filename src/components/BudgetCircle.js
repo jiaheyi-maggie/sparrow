@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dimensions, Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
 import styles from '../styles/componentStyle';
@@ -8,19 +8,12 @@ import TimePicker from './TimePicker';
 // TODO: debug short term sum
 const BudgetCircle = ({ term, value }) => {
 
-    // action to change short term value
-    const changeShortTerm = input => {
-        return {
-            type: 'changeShortTerm',
-            payload: input
-        }
-    }
-
-    // const [number, onChangeNumber] = useState(null);
+    const [number, setNumber] = useState(value);
     const onChangeNumber = (value) => {
+        setNumber(value);
         if (term === 'Long') {
             store.dispatch(changeLongTerm(value));
-        } else if (term === 'Short') {
+        } else {
             store.dispatch(changeShortTerm(value));
         }
     };
@@ -45,7 +38,7 @@ const BudgetCircle = ({ term, value }) => {
                     <Text style={{color: '#FFF4CB', fontSize: 40, fontWeight: 'bold'}}>$ </Text>
                     <TextInput
                         onChangeText={(value) => onChangeNumber(value)}
-                        value={value}
+                        value={number}
                         placeholder="?"
                         placeholderTextColor='#F8FAFB'
                         keyboardType="phone-pad"
