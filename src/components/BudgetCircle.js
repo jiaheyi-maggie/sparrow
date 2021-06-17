@@ -5,8 +5,16 @@ import styles from '../styles/componentStyle';
 import TimePeriodDropdown from './TimePeriodDropdown';
 import TimePicker from './TimePicker';
 
-// TODO: add budget sum into circle
+// TODO: debug short term sum
 const BudgetCircle = ({ term, value }) => {
+
+    // action to change short term value
+    const changeShortTerm = input => {
+        return {
+            type: 'changeShortTerm',
+            payload: input
+        }
+    }
 
     // const [number, onChangeNumber] = useState(null);
     const onChangeNumber = (value) => {
@@ -38,7 +46,8 @@ const BudgetCircle = ({ term, value }) => {
                     <TextInput
                         onChangeText={(value) => onChangeNumber(value)}
                         value={value}
-                        placeholderTextColor='#FFF4CB'
+                        placeholder="0"
+                        placeholderTextColor='#F8FAFB'
                         keyboardType="phone-pad"
                         selectionColor='aliceblue'
                         textAlign= 'center'

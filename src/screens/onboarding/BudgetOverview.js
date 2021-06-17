@@ -12,7 +12,7 @@ const BudgetOverview = ({ navigation }) => {
     const longTermValue = store.getState().longTerm;
 
     // default short term: monthly
-    const shortTermValue = longTermValue/12;
+    const shortTermValue = Math.floor(longTermValue / 12);
 
 
     return (

@@ -11,15 +11,15 @@ export default reducer = (state = categoriesWithValue, action) => {
             newState[index].checked = !action.payload.checked;
             console.log(state);
             return newState;
-        // for handling text input (CategoryDetailItem)
+        // for handling text input (CategoryDetailItem): works!
         case 'updateValue' :
             const valueIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
             );
             const valState = [...state];
             valState[valueIndex].value = action.payload.value;
-            console.log(action.payload.value);
-            console.log(action.payload.item);
+            // console.log(action.payload.value);
+            // console.log(action.payload.item);
             return valState;
         
         // TODO: number field change doesn't work right now
@@ -39,13 +39,15 @@ export default reducer = (state = categoriesWithValue, action) => {
             periodState[periodIndex].period = action.payload.period;
             console.log(periodState);
             return periodState;
+
         // TODO: period field change doesn't work right now (same issue as number field)
         case 'changeCategorySum':
             const sumIndex = state.findIndex(
-                (category) => category.id === action.payload.id
+                (category) => category.id === action.payload.item.id
             );
             const sumState = [...state];
             sumState[sumIndex].sum = action.payload.sum;
+            console.log(action.payload.item);
             return sumState;
         default: 
             return state;

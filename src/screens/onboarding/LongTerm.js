@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from 'react-redux';
 import store from '../../app/store';
-import NumberTextInput from '../../components/NumberTextInput';
 import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import componentStyle from '../../styles/componentStyle';
 import styles from '../../styles/onboardingStyle';
@@ -25,21 +24,9 @@ const LongTerm = ({ navigation }) => {
     }
 
     return (
-            <SafeAreaView style={{
-                backgroundColor:'#fff', 
-                flex: 1,
-                justifyContent: 'flex-start',
-                paddingTop: 60
-            }}>
+            <SafeAreaView style={styles.longtermContainer}>
                 <View>
-                    <Text style={{
-                        color: '#264653',
-                        fontWeight: 'bold',
-                        fontSize: 40,
-                        textAlign: 'left',
-                        paddingTop: 10,
-                        paddingLeft: 20
-                    }}>
+                    <Text style={styles.semiLongTitle}>
                         Do you have a long-term budget? 
                     </Text>
                 </View>
@@ -48,15 +35,10 @@ const LongTerm = ({ navigation }) => {
                     <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you. </Text>
                 </View>
 
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    alignContent: 'space-between',
-                    flexDirection: 'column'
-                }}>
-                    <Text style={styles.itemDescription}>I plan to spend</Text>
+                <View style={styles.longtermCenter}>
+                    <Text style={styles.longtermDescription}>I plan to spend</Text>
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={styles.itemDescription}>$ </Text>
+                        <Text style={styles.longtermDescription}>$ </Text>
                         <TextInput
                             style={componentStyle.input}
                             onChangeText={(input) => inputHandler(input)}
@@ -68,7 +50,7 @@ const LongTerm = ({ navigation }) => {
                     </View>
                     
                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={styles.itemDescription}>per </Text>
+                        <Text style={styles.longtermDescription}>per </Text>
                         {/* <TimePeriodDropdown /> */}
                         {/* TODO: IMPLEMENT TIMER PERIOD DROPDOWN  */}
                     </View>

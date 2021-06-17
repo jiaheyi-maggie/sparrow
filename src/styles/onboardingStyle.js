@@ -8,6 +8,13 @@ const onboardingStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  longtermContainer :{
+    backgroundColor:'#fff', 
+    flex: 1,
+    justifyContent: 'flex-start',
+    paddingTop: 60
+  },
+  // title for onboarding
   title: {
       color: '#264653',
       fontWeight: 'bold',
@@ -16,6 +23,7 @@ const onboardingStyle = StyleSheet.create({
       paddingTop: 10,
       paddingLeft: 20
   },
+  // subtitle for onboarding
   subtitle: {
       color: '#E76F51',
       fontWeight: 'bold',
@@ -24,6 +32,7 @@ const onboardingStyle = StyleSheet.create({
       paddingVertical: 5,
       marginHorizontal: 20
   },
+  // when onboarding title is long
   longtitle: {
       color: '#264653',
       fontWeight: 'bold',
@@ -31,6 +40,16 @@ const onboardingStyle = StyleSheet.create({
       textAlign: 'left',
       margin: 20
   },
+  // semi long title
+  semiLongTitle: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 40,
+    textAlign: 'left',
+    paddingTop: 10,
+    paddingLeft: 20
+  },
+  // onboarding buttons
   buttonContainer: {
       elevation: 8,
       backgroundColor: "#264653",
@@ -39,6 +58,7 @@ const onboardingStyle = StyleSheet.create({
       paddingHorizontal: 9,
       margin: 10
   },
+  // button text inside button
   buttonText : {
       fontSize: 18,
       fontWeight: 'bold',
@@ -46,6 +66,7 @@ const onboardingStyle = StyleSheet.create({
       alignSelf: "center",
       textTransform: "uppercase"
   },
+  // onboarding image
   imageContainer: {
     width: 380,
     height: 380,
@@ -117,7 +138,7 @@ const onboardingStyle = StyleSheet.create({
     fontWeight: 'bold',
     textDecorationLine: 'underline',
     textAlign: 'left',
-    fontSize: 20,
+    fontSize: 23,
     color: "#E76F51"
   },
   itemTitle: {
@@ -131,6 +152,19 @@ const onboardingStyle = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     margin: 0
+  },
+  longtermDescription: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 40,
+    margin: 0
+  },
+  // long term center screen text
+  longtermCenter: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
+    flexDirection: 'column'
   },
 });
 
