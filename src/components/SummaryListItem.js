@@ -32,9 +32,7 @@ const SummaryListItem = ({ item }) => {
         }
     }
 
-
     const itemCurrSum = calculateSumBasedOnPeriod(period, value);
-
 
     // update sum in state (action)
     const updateSumWithValue = sum => {
