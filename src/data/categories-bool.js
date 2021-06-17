@@ -5,7 +5,7 @@ const categoriesWithValue = [
         title: 'Groceries',
         checked: false,
         value: 0,
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -13,7 +13,7 @@ const categoriesWithValue = [
         title: 'Utilities',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -21,7 +21,7 @@ const categoriesWithValue = [
         title: 'Eating Out',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -29,7 +29,7 @@ const categoriesWithValue = [
         title: 'Rent',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -37,7 +37,7 @@ const categoriesWithValue = [
         title: 'Entertainment',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -45,7 +45,7 @@ const categoriesWithValue = [
         title: 'Gas / Transportation',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
     {
@@ -53,7 +53,7 @@ const categoriesWithValue = [
         title: 'Insurance',
         checked: false,
         value: 0,
-        period: 'year', 
+        period: 'Year', 
         sum: 0,
     },
     {
@@ -61,7 +61,7 @@ const categoriesWithValue = [
         title: 'Debt / Loan',
         checked: false,
         value: 0, 
-        period: 'year',
+        period: 'Year',
         sum: 0,
     },
   ];

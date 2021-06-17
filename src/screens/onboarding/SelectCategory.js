@@ -18,7 +18,7 @@ const SelectCategory = ({ navigation }) => {
                 </View>
 
                 <View>
-                    <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories. You can customize categories later too!</Text>
+                    <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories. You can customize these later too!</Text>
                 </View>
 
                 <Image 

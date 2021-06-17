@@ -3,6 +3,7 @@ import categoriesWithValue from "../../data/categories-bool";
 // WATCH OUT FOR INDEXING
 export default reducer = (state = categoriesWithValue, action) => {
     switch (action.type) {
+        // toggle checked field in categories (SelectCategory): works!
         case 'pressButton': 
             const index = state.findIndex(
                 (category) => category.id === action.payload.id
@@ -11,6 +12,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             newState[index].checked = !action.payload.checked;
             console.log(state);
             return newState;
+
         // for handling text input (CategoryDetailItem): works!
         case 'updateValue' :
             const valueIndex = state.findIndex(
@@ -40,15 +42,26 @@ export default reducer = (state = categoriesWithValue, action) => {
             console.log(periodState);
             return periodState;
 
-        // TODO: period field change doesn't work right now (same issue as number field)
+        // for handling text input (SummaryListItem): works!
         case 'changeCategorySum':
             const sumIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
             );
             const sumState = [...state];
             sumState[sumIndex].sum = action.payload.sum;
-            console.log(action.payload.item);
+            // console.log(action.payload.item);
             return sumState;
+
+        // update category sum based on value
+        case 'updateSumWithValue' :
+            const i = state.findIndex(
+                (category) => category.id === action.payload.item.id
+            );
+            const copyState = [...state];
+            copyState[i].sum = action.payload.sum;
+            // console.log(action.payload.sum);
+            return copyState;
+
         default: 
             return state;
     }
