@@ -11,6 +11,17 @@ export default reducer = (state = categoriesWithValue, action) => {
             newState[index].checked = !action.payload.checked;
             console.log(state);
             return newState;
+        // for handling text input (CategoryDetailItem)
+        case 'updateValue' :
+            const valueIndex = state.findIndex(
+                (category) => category.id === action.payload.item.id
+            );
+            const valState = [...state];
+            valState[valueIndex].value = action.payload.value;
+            console.log(action.payload.value);
+            console.log(action.payload.item);
+            return valState;
+        
         // TODO: number field change doesn't work right now
         case 'inputNumber':
             const itemIndex = state.findIndex(

@@ -32,7 +32,14 @@ const LongTerm = ({ navigation }) => {
                 paddingTop: 60
             }}>
                 <View>
-                    <Text style={styles.title}>
+                    <Text style={{
+                        color: '#264653',
+                        fontWeight: 'bold',
+                        fontSize: 40,
+                        textAlign: 'left',
+                        paddingTop: 10,
+                        paddingLeft: 20
+                    }}>
                         Do you have a long-term budget? 
                     </Text>
                 </View>
@@ -66,7 +73,7 @@ const LongTerm = ({ navigation }) => {
                         {/* TODO: IMPLEMENT TIMER PERIOD DROPDOWN  */}
                     </View>
 
-                    <View style={{height: 230}}><Text></Text></View>
+                    <View style={{height: 300}}><Text></Text></View>
                 </View>
 
  

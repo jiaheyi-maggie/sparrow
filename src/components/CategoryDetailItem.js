@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView } from 'react-native';
 import NumberTextInput from './NumberTextInput';
 import TimePeriodDropdown from './TimePeriodDropdown';
+import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 
 const CategoryDetailItem = ({ item }) => {
@@ -10,10 +11,22 @@ const CategoryDetailItem = ({ item }) => {
     // Dummy text input
     const [value, setValue] = useState(0);
 
+    // update redux into categories' value field
+    const updateValue = value => {
+        return {
+            type: 'updateValue',
+            payload: {item, value}
+        }
+    }
+
+    const handleTextInput = (value) => {
+        setValue(value);
+        store.dispatch(updateValue(value));
+    }
+
     return (
         <SafeAreaView style={{
             alignContent: 'center',
-            // justifyContent: 'center',
             backgroundColor: 'aliceblue',
             alignItems: 'flex-start',
             borderRadius: 15,
@@ -42,7 +55,7 @@ const CategoryDetailItem = ({ item }) => {
                             fontWeight: 'bold'
                         }}
                         value={value}
-                        onChangeText={(value)=>setValue(value)}
+                        onChangeText={(value) => handleTextInput(value)}
                         placeholder=" 2000 "
                         placeholderTextColor='#D7CEB2'
                         keyboardType="numeric"
