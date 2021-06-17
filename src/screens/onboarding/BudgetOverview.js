@@ -19,32 +19,33 @@ const BudgetOverview = ({ navigation }) => {
             return 0;
         }
         switch (p) {
-            case p === 'Year':
-                return Math.floor(v / 12);
-            case p === 'Quarter':
+            case 'Year':
+                const val = Math.floor(v / 12);
+                return val;
+            case 'Quarter':
                 return Math.floor(v / 4);
-            case p === 'Month':
+            case 'Month':
                 return v;
-            case p === 'Week':
+            case 'Week':
                 return v * 4;
-            case p === 'Day':
+            case 'Day':
                 return v * 30;
             default:
                 return v;
         }
     }
 
-    // sum short term value in store based on categories
+    // sum short term value in store based on categories: works
     const calculateShortTermValue = (l) => {
         var shortTermValue = 0; 
         l.forEach((category) => {
             const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value);
             shortTermValue += parseFloat(currVal);
-        })
-        console.log('fuck');
+        });
+        console.log("fuck");
         console.log(shortTermValue);
         return shortTermValue;
-    } 
+    };
 
     const shortTermValue = calculateShortTermValue(list);
 

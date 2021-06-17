@@ -13,19 +13,23 @@ const SummaryListItem = ({ item }) => {
     const value = store.getState().reducer[item.id].value;
 
     // calculate initial sum based on "period" and "value" of item
+    // return yearly value
     const calculateSumBasedOnPeriod = (p, v) => {
-        console.log(period);
-        console.log(value);
+        // console.log(period);
+        // console.log(value);
+        if (v === 0) {
+            return 0;
+        }
         switch (p) {
-            case p === 'Year':
+            case 'Year':
                 return v;
-            case p === 'Quarter':
+            case 'Quarter':
                 return v * 4;
-            case p === 'Month':
+            case 'Month':
                 return v * 12;
-            case p === 'Week':
+            case 'Week':
                 return v * 48;
-            case p === 'Day':
+            case 'Day':
                 return v * 365;
             default:
                 return v;
