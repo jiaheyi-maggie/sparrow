@@ -1,28 +1,93 @@
 /* Customized picker  */
 import React, { useState } from 'react';
-import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image } from 'react-native';
+import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, Dimensions, FlatList } from 'react-native';
+
 
 const ModalPicker = ({ item }) => {
+    // TODO: track time period selection
     const [chosen, setChosen] = useState('time period');
+    // toggle modal visibility
     const [modalVisible, setModalVisible] = useState(false);
+
+    //TODO: render list upon modal pop up
+    
+    const handleClickOpen = () => {
+        setModalVisible(true);
+    };
+
+    const handleClickClose = () => {
+        setModalVisible(false);
+        setChosen('Year');
+    }
+
+    const options = [
+        {
+            id: 0,
+            title: 'Year',
+        },
+        {
+            id: 1,
+            title: 'Quarter',
+        },
+        {
+            id: 2,
+            title: 'Month',
+        },
+        {
+            id: 3,
+            title: 'Week',
+        },
+        {
+            id: 4,
+            title: 'Day',
+        },
+    ];
 
     return (
         <SafeAreaView style={styles.startView}>
             <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {setModalVisible(!modalVisible)}}
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {setModalVisible(!modalVisible)}}
             >
                 {/* View for the list of time periods */}
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
+                        {/* TODO: change this to a render function */}
                         <TouchableOpacity
                             style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
+                            onPress={() => handleClickClose()}
                         >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            <Text style={styles.textStyle}>Year</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => handleClickClose()}
+                        >
+                            <Text style={styles.textStyle}>Quarter</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => handleClickClose()}
+                        >
+                            <Text style={styles.textStyle}>Month</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => handleClickClose()}
+                        >
+                            <Text style={styles.textStyle}>Week</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => handleClickClose()}
+                        >
+                            <Text style={styles.textStyle}>Day</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -31,10 +96,11 @@ const ModalPicker = ({ item }) => {
             {/* Time Period closed picker view */}
             <TouchableOpacity
                 style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}
+                // actions when time period button is clicked
+                onPress={() => handleClickOpen()}
             >
                 <View style={{flexDirection:'row', alignItems: 'center'}}>
-                    <Text style={styles.textStyle}> time period </Text>
+                    <Text style={styles.textStyle}> {chosen} </Text>
                     <Image 
                         source={require('../assets/Icons/down-arrow.png')} 
                         resizeMode='contain'
@@ -46,6 +112,7 @@ const ModalPicker = ({ item }) => {
     );
 };
 
+// small style for category card
 const styles = StyleSheet.create({
     startView: {
       flex: 1,
@@ -55,13 +122,13 @@ const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
     modalView: {
-      margin: 20,
       backgroundColor: "white",
+      width: 350,
       borderRadius: 20,
-      padding: 35,
+      padding: 20,
       alignItems: "center",
       shadowColor: "#000",
       shadowOffset: {
@@ -75,15 +142,21 @@ const styles = StyleSheet.create({
     button: {
       borderRadius: 10,
       paddingHorizontal: 8,
-      marginTop: 2,
       elevation: 2,
-      padding: 2
+      padding: 2,
+      marginVertical:10
     },
     buttonOpen: {
       backgroundColor: "#D7CEB2",
     },
     buttonClose: {
-      backgroundColor: "#2196F3",
+      backgroundColor: "#7E9181",
+      width: 280,
+      height: 50,
+      paddingTop: 8,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      textAlignVertical: 'center'
     },
     textStyle: {
       color: "white",
