@@ -1,4 +1,4 @@
-const shortTerm = (state = 0, action) => {
+export default shortTerm = (state = 0, action) => {
     switch (action.type) {
         case 'changeShortTerm':
             if (action.payload === null) {
@@ -9,5 +9,3 @@ const shortTerm = (state = 0, action) => {
             return state;
     }
 };
-
-export default shortTerm;

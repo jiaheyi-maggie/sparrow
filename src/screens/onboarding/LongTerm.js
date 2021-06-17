@@ -8,10 +8,12 @@ import styles from '../../styles/onboardingStyle';
 
 const LongTerm = ({ navigation }) => {
 
-    // grab long term goal from store
-    const input = useSelector((state) => state.longTerm);
+    /* Change longTerm and  shortTerm in store */
 
-    // action to change long term value
+    const input = useSelector((state) => state.longTerm);
+    const list = store.getState().reducer;
+
+    // actions
     const changeLongTerm = input => {
         return {
             type: 'changeLongTerm',
@@ -19,9 +21,54 @@ const LongTerm = ({ navigation }) => {
         }
     }
 
+    const changeShortTerm = val => {
+        return {
+            type: "changeShortTerm",
+            payload: val
+        }
+    }
+
+    // calculate short term
+    const calculateMonthlySumBasedOnPeriod = (p, v) => {
+        if (v === 0) {
+            return 0;
+        }
+        switch (p) {
+            case 'Year':
+                const val = Math.floor(v / 12);
+                return val;
+            case 'Quarter':
+                return Math.floor(v / 4);
+            case 'Month':
+                return v;
+            case 'Week':
+                return v * 4;
+            case 'Day':
+                return v * 30;
+            default:
+                return v;
+        }
+    }
+
+    const calculateShortTermValue = (l) => {
+        var shortTermValue = 0; 
+        l.forEach((category) => {
+            const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value);
+            shortTermValue += parseFloat(currVal);
+        });
+        return shortTermValue;
+    };
+
+    const shortTermValue = calculateShortTermValue(list);
+    
+    /* on set value */
     const inputHandler = (input) => {
+        store.dispatch(changeShortTerm(shortTermValue));
+        console.log(shortTermValue);
+        console.log(store.getState().shortTerm);
         store.dispatch(changeLongTerm(input));
     }
+
 
     return (
             <SafeAreaView style={styles.longtermContainer}>

@@ -10,45 +10,7 @@ const BudgetOverview = ({ navigation }) => {
     // extract whole category list from store
     const list = store.getState().reducer;
     const longTermValue = store.getState().longTerm;
-
-    /* Calculate Short Term */
-
-    // convert to monthly value based on current period
-    const calculateMonthlySumBasedOnPeriod = (p, v) => {
-        if (v === 0) {
-            return 0;
-        }
-        switch (p) {
-            case 'Year':
-                const val = Math.floor(v / 12);
-                return val;
-            case 'Quarter':
-                return Math.floor(v / 4);
-            case 'Month':
-                return v;
-            case 'Week':
-                return v * 4;
-            case 'Day':
-                return v * 30;
-            default:
-                return v;
-        }
-    }
-
-    // sum short term value in store based on categories: works
-    const calculateShortTermValue = (l) => {
-        var shortTermValue = 0; 
-        l.forEach((category) => {
-            const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value);
-            shortTermValue += parseFloat(currVal);
-        });
-        console.log("fuck");
-        console.log(shortTermValue);
-        return shortTermValue;
-    };
-
-    const shortTermValue = calculateShortTermValue(list);
-
+    const shortTermValue = store.getState().shortTerm;
 
     return (
         <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
@@ -66,6 +28,7 @@ const BudgetOverview = ({ navigation }) => {
                 <View style={{flexDirection: 'row', padding: 10}}>
                     <BudgetCircle term={'Short'} value={shortTermValue} />
                     <BudgetCircle term={'Long'} value={longTermValue} />
+                    
                 </View>
 
                 <FlatList 

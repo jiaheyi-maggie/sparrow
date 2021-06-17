@@ -117,6 +117,19 @@ const componentStyle = StyleSheet.create({
       textAlign: 'left',
       fontSize: 23,
       marginLeft: 50
+  },
+  budgetCircle : {
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    width: Dimensions.get('window').width * 0.42,
+    height: Dimensions.get('window').width * 0.42,
+    backgroundColor:'#2A94AF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    fontSize: 40,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#FFF4CB'
   }
 });
 
