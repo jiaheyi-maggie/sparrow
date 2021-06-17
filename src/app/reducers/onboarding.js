@@ -1,4 +1,4 @@
-/* Reducer for onboarding */
+/* Reducer for onboarding: contains categories*/
 
 import categoriesWithValue from "../../data/categories-bool";
 

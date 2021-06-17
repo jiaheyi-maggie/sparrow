@@ -32,6 +32,15 @@ const BudgetCircle = ({ term, value }) => {
         }
     };
 
+    // grab value from store for re-rendering
+    // const grabValue = () =>  {
+    //     if (term === 'Long') {
+    //         return store.getState().longTerm;
+    //     } else if (term === 'Short') {
+    //         return store.getState().shortTerm; 
+    //     }
+    // }
+
     return (
         <SafeAreaView style={{alignItems: 'center'}}>
             <View
