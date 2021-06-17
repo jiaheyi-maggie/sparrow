@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView } from 'react-native';
 import TimePeriodDropdown from './TimePeriodDropdown';
+import ModalPicker from './ModalPicker';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 
@@ -27,7 +28,7 @@ const CategoryDetailItem = ({ item }) => {
                 <Text style={styles.itemTitle}>{item.title} :</Text>
             </View>
 
-            <View style={styles.genericRowAlign}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <View style={styles.textInputContainer}>
                     <Text style={styles.itemDescription}>$</Text>
                     <TextInput
@@ -43,7 +44,8 @@ const CategoryDetailItem = ({ item }) => {
                     />
                 </View>
                 <Text style={styles.itemDescription}> per </Text>
-                <TimePeriodDropdown item={item}/> 
+                {/* <TimePeriodDropdown item={item}/>  */}
+                <ModalPicker item={item}/>
             </View>
         </SafeAreaView>
     );

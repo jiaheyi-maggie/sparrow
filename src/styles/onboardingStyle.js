@@ -110,42 +110,22 @@ const onboardingStyle = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center'
   },
+  // text with $
   textInputContainer: {
     borderBottomWidth: 3,
     borderBottomColor: '#264653',
     flexDirection: 'row'
   },
+  // scroll view
   scrollviewContainer: {
     marginTop: 30,
   },
+  // safe area with scroll view
   safeareaWithScroll : {
     backgroundColor: '#fff',
     flex: 1
   },
-  checkboxContainer : {
-    alignContent: 'center',
-    marginTop: 10,
-    marginLeft: 10,
-    flexDirection: 'row',
-    height: 30,
-    width: 30
-  },
-  checkbox: {
-    alignSelf: 'center'
-  },
-  emphasizeText: {
-    color: '#264653',
-    fontWeight: 'bold',
-    fontSize: 30,
-    textAlign: 'center',
-    marginHorizontal: 60,
-    marginVertical: 5
-  },
-  withTitleContainer: {
-    backgroundColor: '#fff',
-    margin: 10,
-    color: '#fff'
-  },
+  // budget summary list container
   listSummaryItem: {
     backgroundColor: '#FFF4CB',
     flexDirection: 'row',
@@ -165,18 +145,21 @@ const onboardingStyle = StyleSheet.create({
     fontSize: 23,
     color: "#E76F51"
   },
+  // blue card title
   itemTitle: {
     color: '#FAA381',
     fontWeight: 'bold',
     fontSize: 30,
     margin: 0
-},
+  },
+  // view containing text input
   itemDescription: {
     color: '#264653',
     fontWeight: 'bold',
     fontSize: 30,
     margin: 0
   },
+  // long term page text
   longtermDescription: {
     color: '#264653',
     fontWeight: 'bold',
