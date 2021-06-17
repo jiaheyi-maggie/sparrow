@@ -32,7 +32,9 @@ const SummaryListItem = ({ item }) => {
         }
     }
 
+
     const itemCurrSum = calculateSumBasedOnPeriod(period, value);
+
 
     // update sum in state (action)
     const updateSumWithValue = sum => {
@@ -59,7 +61,7 @@ const SummaryListItem = ({ item }) => {
         setSum(value);
         store.dispatch(changeCategorySum(value));
     }
-    
+
     return (
         <View style={styles.listSummaryItem}>
             <TouchableOpacity >
@@ -71,7 +73,7 @@ const SummaryListItem = ({ item }) => {
                 <TextInput
                     onChangeText={(value) => onChangeNumber(value)}
                     value={sum}
-                    placeholder='0'
+                    placeholder='?'
                     keyboardType="phone-pad"
                     selectionColor='#C2A878'
                     textAlign= 'center'

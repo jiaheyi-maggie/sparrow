@@ -46,7 +46,7 @@ const BudgetCircle = ({ term, value }) => {
                     <TextInput
                         onChangeText={(value) => onChangeNumber(value)}
                         value={value}
-                        placeholder="0"
+                        placeholder="?"
                         placeholderTextColor='#F8FAFB'
                         keyboardType="phone-pad"
                         selectionColor='aliceblue'

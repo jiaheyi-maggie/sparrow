@@ -1,5 +1,7 @@
+/* Reducer for onboarding */
+
 import categoriesWithValue from "../../data/categories-bool";
-// reducer for onboarding
+
 // WATCH OUT FOR INDEXING
 export default reducer = (state = categoriesWithValue, action) => {
     switch (action.type) {
@@ -10,7 +12,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const newState = [...state];
             newState[index].checked = !action.payload.checked;
-            console.log(state);
+            // console.log(state);
             return newState;
 
         // for handling text input (CategoryDetailItem): works!

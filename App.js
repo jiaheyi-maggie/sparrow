@@ -62,8 +62,6 @@ export class App extends Component {
     })
   }
 
-  // TODO: action to grab whether the user is loggined in or not
-  
   // TODO: setup app font
   render() { 
     const {loggedIn, loaded } = this.state;

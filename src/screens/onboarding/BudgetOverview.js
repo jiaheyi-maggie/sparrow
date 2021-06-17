@@ -11,8 +11,9 @@ const BudgetOverview = ({ navigation }) => {
     const list = store.getState().reducer;
     const longTermValue = store.getState().longTerm;
 
-    // default short term: monthly
-    const shortTermValue = Math.floor(longTermValue / 12);
+    // update short term value in store based on longTerm 
+    const shortTermValue = longTermValue / 12;
+
 
 
     return (
@@ -29,7 +30,7 @@ const BudgetOverview = ({ navigation }) => {
                 </View>
 
                 <View style={{flexDirection: 'row', padding: 10}}>
-                    <BudgetCircle term={'Short'} value={shortTermValue} />
+                    <BudgetCircle term={'Short'} value={longTermValue} />
                     <BudgetCircle term={'Long'} value={longTermValue} />
                 </View>
 
@@ -50,7 +51,7 @@ const BudgetOverview = ({ navigation }) => {
                         style={styles.buttonContainer}
                         onPress={() => navigation.goBack()}
                         >
-                        <Text style={styles.buttonText}> Back </Text>
+                        <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
 
                     {/* Next Button */}
