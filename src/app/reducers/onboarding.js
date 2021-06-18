@@ -52,17 +52,6 @@ export default reducer = (state = categoriesWithValue, action) => {
             const sumState = [...state];
             sumState[sumIndex].sum = action.payload.sum;
             return sumState;
-
-        // update category sum based on value
-        case 'updateSumWithValue' :
-            const i = state.findIndex(
-                (category) => category.id === action.payload.item.id
-            );
-            const copyState = [...state];
-            copyState[i].sum = action.payload.sum;
-            console.log(copyState[i]);
-            return copyState;
-
         default: 
             return state;
     }

@@ -7,7 +7,6 @@ import styles from '../styles/onboardingStyle';
 const SummaryListItem = ({ item }) => {
 
     /* Update sum according to 'value' */
-
     // fetch period from store
     const period = store.getState().reducer[item.id].period;
     const value = store.getState().reducer[item.id].value;
@@ -47,20 +46,8 @@ const SummaryListItem = ({ item }) => {
         return val; 
     }
 
-    const itemCurrSum = calculateSumBasedOnPeriod(period, value, optional);
 
-    // update sum in state (action)
-    const updateSumWithValue = sum => {
-        return {
-            type: 'updateSumWithValue',
-            payload: {item, sum}
-        }
-    }
-
-    store.dispatch(updateSumWithValue(itemCurrSum));
-
-    /* On change sum */
-    const [sum, setSum] = useState(itemCurrSum);
+    const [val, setVal] = useState(value);
 
     // action to change sum
     const changeCategorySum = sum => {
@@ -70,9 +57,19 @@ const SummaryListItem = ({ item }) => {
         }
     }
 
+    // action to change value
+    const updateValue = value => {
+        return {
+            type: 'updateValue',
+            payload: {item, value}
+        }
+    }
+
     const onChangeNumber = value => {
-        setSum(value);
-        store.dispatch(changeCategorySum(value));
+        setVal(value);
+        store.dispatch(updateValue(value));
+        store.dispatch(changeCategorySum(calculateSumBasedOnPeriod(period, value, optional)));
+        // console.log(item.sum);
     }
 
     return (
@@ -85,7 +82,7 @@ const SummaryListItem = ({ item }) => {
                 <Text style={styles.listSummaryTitle}>$</Text>
                 <TextInput
                     onChangeText={(value) => onChangeNumber(value)}
-                    value={sum}
+                    value={val}
                     placeholder='?'
                     keyboardType="phone-pad"
                     selectionColor='#C2A878'
