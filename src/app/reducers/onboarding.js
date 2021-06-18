@@ -5,7 +5,7 @@ import categoriesWithValue from "../../data/categories-bool";
 // WATCH OUT FOR INDEXING
 export default reducer = (state = categoriesWithValue, action) => {
     switch (action.type) {
-        // toggle checked field in categories (SelectCategory): works!
+        // toggle checked field in categories (SelectCategory)
         case 'pressButton': 
             const index = state.findIndex(
                 (category) => category.id === action.payload.id
@@ -14,7 +14,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             newState[index].checked = !action.payload.checked;
             return newState;
 
-        // for handling text input (CategoryDetailItem): works!
+        // for handling text input (CategoryDetailItem)
         case 'updateValue' :
             const valueIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
@@ -24,6 +24,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             console.log(valState[valueIndex]);
             return valState;
 
+        // for handling optional input (CategoryDetailItem)
         case 'updateOptional' :
             const optionalIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
@@ -33,7 +34,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             console.log(optionalState[optionalIndex]);
             return optionalState;
 
-        // for handling period selection (ModalPicker): works!
+        // for handling period selection (ModalPicker)
         case 'updatePeriod' :
             const periodIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id
@@ -42,17 +43,8 @@ export default reducer = (state = categoriesWithValue, action) => {
             periodState[periodIndex].period = action.payload.period;
             console.log(periodState[periodIndex]);
             return periodState;
-        
-        // TODO: number field change doesn't work right now
-        // case 'inputNumber':
-        //     const itemIndex = state.findIndex(
-        //         (category) => category.id === action.payload.item.id
-        //     );
-        //     const valueState = [...state];
-        //     valueState[itemIndex].value = action.payload.item.value;
-        //     return valueState;
 
-        // for handling text input (SummaryListItem): works!
+        // for handling text input (SummaryListItem)
         case 'changeCategorySum':
             const sumIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id

@@ -48,7 +48,7 @@ const CategoryDetailItem = ({ item }) => {
     
                 <View style={styles.genericRowAlign}>
                     <View style={styles.textInputContainer}>
-                        <Text style={styles.itemDescription}>$</Text>
+                        <Text style={styles.itemDescription}>$ </Text>
                         <TextInput
                             style={{
                                 fontSize: 30,
