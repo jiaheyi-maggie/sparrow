@@ -88,11 +88,9 @@ const LongTerm = ({ navigation }) => {
                         keyboardType="numeric"
                     />
                 </View>
-                
-                <View style={styles.genericRowAlign}>
+
+                <View style={{flexDirection:'row', paddingLeft:40}}>
                     <Text style={styles.longtermDescription}>per </Text>
-                    {/* <TimePeriodDropdown /> */}
-                    {/* TODO: IMPLEMENT TIMER PERIOD DROPDOWN  */}
                     <Picker />
                 </View>
 

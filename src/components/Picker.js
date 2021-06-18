@@ -17,7 +17,7 @@ const Picker = () => {
         setModalVisible(!modalVisible);
     };
 
-    // action to update reducer
+    // action to update long term time period
     const changeLongTermPeriod = period => {
         return {
             type: 'changeLongTermPeriod',
@@ -36,8 +36,6 @@ const Picker = () => {
                 {/* View for the list of time periods */}
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-
-                        {/* TIME PERIOD LIST HERE */}
                         <FlatList 
                             data={periods}
                             renderItem={({ item }) => (
@@ -50,12 +48,11 @@ const Picker = () => {
                                         store.dispatch(changeLongTermPeriod(item.title));
                                     }}
                                 >
-                                    <Text style={styles.textStyle}>{item.title}</Text>
+                                    <Text style={styles.selectionTextStyle}>{item.title}</Text>
                                 </TouchableOpacity>
                             )}
                             keyExtractor={item => item.id}
                         />
-
                     </View>
                 </View>
             </Modal>
@@ -123,14 +120,20 @@ const styles = StyleSheet.create({
       paddingTop: 8,
       flexDirection: 'row',
       justifyContent: 'center',
-      textAlignVertical: 'center'
+      textAlign: 'center'
     },
     textStyle: {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 25
+      fontSize: 35
     },
+    selectionTextStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 25
+      },
     modalText: {
       marginBottom: 15,
       textAlign: "center"

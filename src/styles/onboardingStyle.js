@@ -8,12 +8,6 @@ const onboardingStyle = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
-  longtermContainer :{
-    backgroundColor:'#fff', 
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingTop: 60
-  },
   // title for onboarding
   title: {
       color: '#264653',
@@ -159,6 +153,14 @@ const onboardingStyle = StyleSheet.create({
     fontSize: 30,
     margin: 0
   },
+  // long term column container
+  longtermContainer :{
+    backgroundColor:'#fff', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 60
+  },
   // long term page text
   longtermDescription: {
     color: '#264653',
@@ -168,9 +170,9 @@ const onboardingStyle = StyleSheet.create({
   },
   // long term center screen text
   longtermCenter: {
+    alignContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    alignContent: 'space-between',
     flexDirection: 'column'
   },
 });

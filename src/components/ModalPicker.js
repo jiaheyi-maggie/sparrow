@@ -1,4 +1,4 @@
-/* Customized picker  */
+/* Customized picker (requires item passed in)  */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, FlatList } from 'react-native';
 import store from '../app/store';
