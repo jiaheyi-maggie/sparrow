@@ -7,37 +7,47 @@ import periods from '../../data/periods';
 
 
 const OverviewPicker = ({ term }) => {
-    const [chosen, setChosen] = useState('time period');
 
-    // toggle modal visibility
-    const [modalVisible, setModalVisible] = useState(false);
+  // compare strings
+  const strcmp= (a, b) => {
+    if (a.toString() < b.toString()) return -1;
+    if (a.toString() > b.toString()) return 1;
+    return 0;
+  };
 
-    // when time period button is clicked
-    const handleClickOpen = () => {
-        setModalVisible(!modalVisible);
-    };
-
-    // action to update long term time period
-    const changeLongTermPeriod = period => {
-      return {
-          type: 'changeLongTermPeriod',
-          payload: period
-      }
-    };
-    
-    const changeShortTermPeriod = period => {
-      return {
-        type: 'changeShortTermPeriod',
-        payload: period
-      } 
+  const determineDefaultState = () => {
+    if (strcmp(term, 'Long') === 0) {
+      return store.getState().longTerm[1];
+    } else if (strcmp(term, 'Short') === 0) {
+      return store.getState().shortTerm[1];
     }
+  }; 
+  const [chosen, setChosen] = useState(determineDefaultState());
 
-    // compare strings
-    const strcmp= (a, b) => {
-      if (a.toString() < b.toString()) return -1;
-      if (a.toString() > b.toString()) return 1;
-      return 0;
-    };
+  // toggle modal visibility
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // when time period button is clicked
+  const handleClickOpen = () => {
+      setModalVisible(!modalVisible);
+  };
+
+  // action to update long term time period
+  const changeLongTermPeriod = period => {
+    return {
+        type: 'changeLongTermPeriod',
+        payload: period
+    }
+  };
+  
+  const changeShortTermPeriod = period => {
+    return {
+      type: 'changeShortTermPeriod',
+      payload: period
+    } 
+  }
+
+
 
     return (
         <SafeAreaView style={styles.startView}>
