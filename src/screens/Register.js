@@ -1,6 +1,6 @@
 // a class component for Register (replace SignUp later)
 import React, { Component } from 'react';
-import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert, ScrollView } from 'react-native';
 
 import store from '../app/store';
 
@@ -70,6 +70,7 @@ export default class Register extends Component {
 
     render() {
         return (
+            <ScrollView>
             <SafeAreaView style={{
                 backgroundColor: '#FFF4CB',
                 flexDirection: 'column',
@@ -246,9 +247,8 @@ export default class Register extends Component {
                     </View>
                     <TextInput
                         ref={(input) => {this.password = input;}}
-                        blurOnSubmit={false}
+                        // blurOnSubmit={false}
                         returnKeyType="done"
-                        autoCompleteType='name'
                         enablesReturnKeyAutomatically={true}
                         autoFocus={true}
                         value={this.state.password}
@@ -258,7 +258,7 @@ export default class Register extends Component {
                     />
                 </View>
 
-                <View style={{width: 400, height: 80}}><Text></Text></View>
+                <View style={{width: 390, height: 80}}><Text></Text></View>
 
                 <TouchableOpacity
                     style={styles.buttonContainer}
@@ -274,6 +274,7 @@ export default class Register extends Component {
                 </TouchableOpacity>
                 
             </SafeAreaView>
+            </ScrollView>
         )
     }
 }
