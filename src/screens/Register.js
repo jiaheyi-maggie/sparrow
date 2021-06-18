@@ -5,6 +5,7 @@ import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert, Sc
 import store from '../app/store';
 
 import firebase from 'firebase';
+import firestore from '@react-native-firebase/firestore';
 
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
@@ -42,16 +43,16 @@ export default class Register extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
                 // DEBUG: Add user to firestore
-                var currUserID = firebase.auth().currentUser.uid;
+                const currUserID = firebase.auth().currentUser.uid;
                 console.log(currUserID);
                 firebase.firestore().collection("users")
                     .doc(currUserID)
                     .set({
-                        firstName,
-                        lastName,
-                        username,
-                        email,
-                        budgetInfo
+                        firstName: firstName,
+                        lastName: lastName,
+                        username: username,
+                        email: email,
+                        budgetInfo: budgetInfo
                     })
                 console.log(userCredentials);
             })
