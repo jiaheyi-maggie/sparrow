@@ -53,10 +53,8 @@ const componentStyle = StyleSheet.create({
   reviewText: {
     color: '#264653',
     fontWeight: 'bold',
-    textAlign: 'left',
-    fontSize: 18,
-    marginLeft: 20,
-    marginRight: 10
+    textAlign: 'center',
+    fontSize: 20,
   },
   infofieldtitle: {
     color: '#7E9181',

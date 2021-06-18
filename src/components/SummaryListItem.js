@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { TouchableOpacity, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { TextInput } from 'react-native-gesture-handler';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
@@ -69,7 +69,6 @@ const SummaryListItem = ({ item }) => {
         setVal(value);
         store.dispatch(updateValue(value));
         store.dispatch(changeCategorySum(calculateSumBasedOnPeriod(period, value, optional)));
-        // console.log(item.sum);
     }
 
     return (
@@ -101,7 +100,6 @@ const SummaryListItem = ({ item }) => {
                     }}
                 />
             </View>
-
         </View>
     );
 };

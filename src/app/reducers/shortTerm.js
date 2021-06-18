@@ -1,4 +1,4 @@
-export default shortTerm = (state = [0, 'Month'], action) => {
+export default shortTerm = (state = [0, 'month'], action) => {
     switch (action.type) {
         case 'changeShortTerm':
             if (action.payload === null) {
@@ -6,13 +6,12 @@ export default shortTerm = (state = [0, 'Month'], action) => {
             }
             const shortTermState = [...state];
             shortTermState[0] = action.payload;
-            console.log(shortTermState);
+            // console.log(shortTermState);
             return shortTermState; 
         // update short term period
         case 'changeShortTermPeriod':
             const period = [...state];
             period[1] = action.payload;
-            console.log(period);
             return period; 
         default:
             return state;

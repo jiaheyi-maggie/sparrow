@@ -1,4 +1,4 @@
-export default longTerm = (state = [0, 'Year'], action) => {
+export default longTerm = (state = [0, 'year'], action) => {
     switch (action.type) {
         // update long term goal (LongTerm)
         case 'changeLongTerm':

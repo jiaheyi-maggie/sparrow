@@ -94,9 +94,9 @@ const OverviewPicker = ({ term }) => {
         <View style={{flexDirection:'row', alignItems: 'center'}}>
           <Text style={styles.textStyle}> {chosen} </Text>
           <Image 
-              source={require('../../assets/Icons/down-arrow.png')} 
-              resizeMode='contain'
-              style={{marginTop: 5, width: 25, height: 25}}
+            source={require('../../assets/Icons/down-arrow.png')} 
+            resizeMode='contain'
+            style={{marginTop: 5, width: 25, height: 25}}
           />
         </View>
       </TouchableOpacity>
@@ -139,6 +139,8 @@ const styles = StyleSheet.create({
     },
     buttonOpen: {
       backgroundColor: "#D7CEB2",
+      width: 170,
+      alignItems: 'center'
     },
     buttonClose: {
       backgroundColor: "#7E9181",

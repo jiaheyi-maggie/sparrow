@@ -39,35 +39,40 @@ const LongTerm = ({ navigation }) => {
         switch (p) {
             case 'year':
                 val = Math.floor(v / 12);
+                return val;
             case 'quarter':
                 if (o != 0) {
                     val = Math.floor(v * o / 12);
                 } else {
                     val = Math.floor(v / 4);
                 }
+                return val;
             case 'month':
                 if (o != 0) {
                     val = Math.floor(v * o / 12);
                 } else {
                     val = v; 
                 }
+                return val;
             case 'week':
                 if (o != 0) {
                     val = Math.floor(v * o / 12);
                 } else {
                     val = v * 4;
                 }
+                return val;
             case 'day':
                 if (o != 0) {
                     val = Math.floor(v * o / 12);
                 } else {
                     val = v * 30;
                 }
+                return val;
         }
         return val;
     }
 
-    // sum category values
+    // sum categories' calculated monthly value
     const calculateShortTermValue = (l) => {
         var shortTermValue = 0; 
         l.forEach((category) => {
@@ -78,11 +83,17 @@ const LongTerm = ({ navigation }) => {
     };
 
     const shortTermValue = calculateShortTermValue(list);
-    
-    /* On set value */
+
+    /* On set long term value */
     const inputHandler = (input) => {
-        store.dispatch(changeShortTerm(shortTermValue));
         store.dispatch(changeLongTerm(input));
+    }
+
+    // on button press
+    const handleButtonPress = () => {
+        store.dispatch(changeShortTerm(shortTermValue));
+        // console.log(store.getState().shortTerm);
+        navigation.navigate('budgetOverview');
     }
 
     return (
@@ -113,8 +124,8 @@ const LongTerm = ({ navigation }) => {
             </View>
 
 
-            <TouchableOpacity onPress={() => navigation.navigate('budgetOverview')}>
-                <Text style={componentStyle.buttonText}> I don't know, review budget! </Text>
+            <TouchableOpacity onPress={() => handleButtonPress()}>
+                <Text style={componentStyle.buttonText}> I don't know, review budget!</Text>
             </TouchableOpacity>
 
             <View style={styles.multipleButtonContainer}> 
@@ -124,7 +135,7 @@ const LongTerm = ({ navigation }) => {
                 </TouchableOpacity>
 
                 {/* Next Button */}
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('budgetOverview')}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => handleButtonPress()}>
                     <Text style={styles.buttonText}> Continue </Text>
                 </TouchableOpacity>
             </View>
