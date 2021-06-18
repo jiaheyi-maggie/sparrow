@@ -1,7 +1,7 @@
 /* Customized picker  */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, Dimensions, FlatList } from 'react-native';
-
+import periods from '../data/periods';
 
 const ModalPicker = ({ item }) => {
     // TODO: track time period selection
@@ -9,39 +9,22 @@ const ModalPicker = ({ item }) => {
     // toggle modal visibility
     const [modalVisible, setModalVisible] = useState(false);
 
-    //TODO: render list upon modal pop up
+    // TODO: render list upon modal pop up
+
+    // TODO: this is where to change categories' period field
     
+    // when time period button is clicked
     const handleClickOpen = () => {
-        setModalVisible(true);
+        setModalVisible(!modalVisible);
     };
 
+    // when user clicks on a time period
     const handleClickClose = () => {
         setModalVisible(false);
-        setChosen('Year');
+        // dummy 
+        setChosen(item.title);
     }
 
-    const options = [
-        {
-            id: 0,
-            title: 'Year',
-        },
-        {
-            id: 1,
-            title: 'Quarter',
-        },
-        {
-            id: 2,
-            title: 'Month',
-        },
-        {
-            id: 3,
-            title: 'Week',
-        },
-        {
-            id: 4,
-            title: 'Day',
-        },
-    ];
 
     return (
         <SafeAreaView style={styles.startView}>
@@ -54,41 +37,24 @@ const ModalPicker = ({ item }) => {
                 {/* View for the list of time periods */}
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        {/* TODO: change this to a render function */}
-                        <TouchableOpacity
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => handleClickClose()}
-                        >
-                            <Text style={styles.textStyle}>Year</Text>
-                        </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => handleClickClose()}
-                        >
-                            <Text style={styles.textStyle}>Quarter</Text>
-                        </TouchableOpacity>
+                        {/* TIME PERIOD LIST HERE */}
+                        <FlatList 
+                            data={periods}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => {
+                                        setModalVisible(false); 
+                                        setChosen(item.title);
+                                    }}
+                                >
+                                    <Text style={styles.textStyle}>{item.title}</Text>
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={item => item.id}
+                        />
 
-                        <TouchableOpacity
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => handleClickClose()}
-                        >
-                            <Text style={styles.textStyle}>Month</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => handleClickClose()}
-                        >
-                            <Text style={styles.textStyle}>Week</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => handleClickClose()}
-                        >
-                            <Text style={styles.textStyle}>Day</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
