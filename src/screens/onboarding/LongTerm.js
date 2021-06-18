@@ -30,7 +30,7 @@ const LongTerm = ({ navigation }) => {
         }
     }
 
-    // calculate short term (monthly)
+    // calculate monthly average for each cateogory
     const calculateMonthlySumBasedOnPeriod = (p, v, o) => {
         if (v === 0) {
             return 0;

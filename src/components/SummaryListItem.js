@@ -11,30 +11,43 @@ const SummaryListItem = ({ item }) => {
     // fetch period from store
     const period = store.getState().reducer[item.id].period;
     const value = store.getState().reducer[item.id].value;
+    const optional = store.getState().reducer[item.id].optional;
 
-    // calculate initial sum based on "period" and "value" of item
+    // calculate initial sum based on "period", "value", and "optional" of item
     // return yearly value
-    const calculateSumBasedOnPeriod = (p, v) => {
+    const calculateSumBasedOnPeriod = (p, v, o) => {
         if (v === 0) {
             return 0;
         }
+        var val = 0; 
         switch (p) {
-            case 'Year':
+            case 'year':
                 return v;
-            case 'Quarter':
+            case 'quarter':
                 return v * 4;
-            case 'Month':
-                return v * 12;
-            case 'Week':
-                return v * 48;
-            case 'Day':
-                return v * 365;
-            default:
-                return v;
+            case 'month':
+                if (o != 0) {
+                    val = v * o;
+                } else {
+                    val = v * 12;
+                }
+            case 'week':
+                if (o != 0) {
+                    val = v * o; 
+                } else {
+                    val = v * 48;
+                }
+            case 'day':
+                if (o != 0) {
+                    val = v * o;
+                } else {
+                    val = v * 365;
+                }
         }
+        return val; 
     }
 
-    const itemCurrSum = calculateSumBasedOnPeriod(period, value);
+    const itemCurrSum = calculateSumBasedOnPeriod(period, value, optional);
 
     // update sum in state (action)
     const updateSumWithValue = sum => {
