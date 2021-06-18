@@ -27,26 +27,26 @@ const SelectCategory = ({ navigation }) => {
                     data={categories}
                     renderItem={({ item }) => (
                         <CategoryItem item={item}  />
-                        )}
+                    )}
                     keyExtractor={item => item.id}
                     contentContainerStyle={{
                         flexGrow: 1,
                     }}
-                />
-
-                {/* Button View */}
-                <View style={styles.multipleButtonContainer}> 
-                    {/* Back Button */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                        <Text style={styles.buttonText}>     Back     </Text>
-                    </TouchableOpacity>
-
-                    {/* Continue Button */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => {navigation.navigate('categories')}}>
-                        <Text style={styles.buttonText}>   Continue   </Text>
-                    </TouchableOpacity>
-                </View>
+                />                
             </ScrollView>
+            
+            {/* Button View */}
+            <View style={styles.multipleButtonContainer}> 
+                {/* Back Button */}
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+                    <Text style={styles.buttonText}>     Back     </Text>
+                </TouchableOpacity>
+
+                {/* Continue Button */}
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => {navigation.navigate('categories')}}>
+                    <Text style={styles.buttonText}>   Continue   </Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 };

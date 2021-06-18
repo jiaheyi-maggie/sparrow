@@ -48,61 +48,60 @@ const OverviewPicker = ({ term }) => {
   }
 
 
+  return (
+    <SafeAreaView style={styles.startView}>
+      <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {setModalVisible(!modalVisible)}}
+      >
+        {/* View for the list of time periods */}
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <FlatList 
+              data={periods}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => {
+                    setModalVisible(false); 
+                    setChosen(item.title);
+                    // update term period
+                    if (strcmp(term, 'Long') === 0) {
+                      store.dispatch(changeLongTermPeriod(item.title));
+                    } 
+                    else if (strcmp(term, 'Short') === 0) {
+                      store.dispatch(changeShortTermPeriod(item.title));
+                    }
+                  }}
+                >
+                  <Text style={styles.textStyle}>{item.title}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        </View>
+      </Modal>
 
-    return (
-        <SafeAreaView style={styles.startView}>
-          <Modal
-              animationType="fade"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {setModalVisible(!modalVisible)}}
-          >
-            {/* View for the list of time periods */}
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <FlatList 
-                  data={periods}
-                  renderItem={({ item }) => (
-                    <TouchableOpacity
-                      style={[styles.button, styles.buttonClose]}
-                      onPress={() => {
-                        setModalVisible(false); 
-                        setChosen(item.title);
-                        // update term period
-                        if (strcmp(term, 'Long') === 0) {
-                          store.dispatch(changeLongTermPeriod(item.title));
-                        } 
-                        else if (strcmp(term, 'Short') === 0) {
-                          store.dispatch(changeShortTermPeriod(item.title));
-                        }
-                      }}
-                    >
-                        <Text style={styles.textStyle}>{item.title}</Text>
-                    </TouchableOpacity>
-                  )}
-                  keyExtractor={item => item.id}
-                />
-              </View>
-            </View>
-          </Modal>
-
-            {/* Time Period closed picker view */}
-            <TouchableOpacity
-                style={[styles.button, styles.buttonOpen]}
-                // actions when time period button is clicked
-                onPress={() => handleClickOpen()}
-            >
-                <View style={{flexDirection:'row', alignItems: 'center'}}>
-                    <Text style={styles.textStyle}> {chosen} </Text>
-                    <Image 
-                        source={require('../../assets/Icons/down-arrow.png')} 
-                        resizeMode='contain'
-                        style={{marginTop: 5, width: 25, height: 25}}
-                    />
-                </View>
-            </TouchableOpacity>
-        </SafeAreaView>
-    );
+      {/* Time Period closed picker view */}
+      <TouchableOpacity
+        style={[styles.button, styles.buttonOpen]}
+        // actions when time period button is clicked
+        onPress={() => handleClickOpen()}
+      >
+        <View style={{flexDirection:'row', alignItems: 'center'}}>
+          <Text style={styles.textStyle}> {chosen} </Text>
+          <Image 
+              source={require('../../assets/Icons/down-arrow.png')} 
+              resizeMode='contain'
+              style={{marginTop: 5, width: 25, height: 25}}
+          />
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({

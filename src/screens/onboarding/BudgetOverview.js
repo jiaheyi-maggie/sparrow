@@ -13,10 +13,12 @@ const BudgetOverview = ({ navigation }) => {
     // extract whole category list from store
     const list = store.getState().reducer;
     const longTermValue = store.getState().longTerm[0];
-    const shortTermValue = store.getState().shortTerm;
+    const shortTermValue = store.getState().shortTerm[0];
+
+    // update each item's sum according to period and value
 
     return (
-        <SafeAreaView style={{backgroundColor: '#fff', paddingTop: 40}}>
+        <SafeAreaView style={{backgroundColor: '#fff'}}>
             <ScrollView style={styles.scrollviewContainer}>
                 <Text style={styles.title}>Budget Overview </Text>
                 <Text style={styles.subtitle}>Tap on any number to edit!</Text>

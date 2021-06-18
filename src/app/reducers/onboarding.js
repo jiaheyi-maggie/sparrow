@@ -21,7 +21,17 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const valState = [...state];
             valState[valueIndex].value = action.payload.value;
+            console.log(valState[valueIndex]);
             return valState;
+
+        case 'updateOptional' :
+            const optionalIndex = state.findIndex(
+                (category) => category.id === action.payload.item.id
+            );
+            const optionalState = [...state];
+            optionalState[optionalIndex].optional = action.payload.value;
+            console.log(optionalState[optionalIndex]);
+            return optionalState;
 
         // for handling period selection (ModalPicker): works!
         case 'updatePeriod' :
@@ -30,16 +40,17 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const periodState = [...state];
             periodState[periodIndex].period = action.payload.period;
+            console.log(periodState[periodIndex]);
             return periodState;
         
         // TODO: number field change doesn't work right now
-        case 'inputNumber':
-            const itemIndex = state.findIndex(
-                (category) => category.id === action.payload.item.id
-            );
-            const valueState = [...state];
-            valueState[itemIndex].value = action.payload.item.value;
-            return valueState;
+        // case 'inputNumber':
+        //     const itemIndex = state.findIndex(
+        //         (category) => category.id === action.payload.item.id
+        //     );
+        //     const valueState = [...state];
+        //     valueState[itemIndex].value = action.payload.item.value;
+        //     return valueState;
 
         // for handling text input (SummaryListItem): works!
         case 'changeCategorySum':
@@ -57,7 +68,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const copyState = [...state];
             copyState[i].sum = action.payload.sum;
-            // console.log(action.payload.sum);
+            console.log(copyState[i]);
             return copyState;
 
         default: 

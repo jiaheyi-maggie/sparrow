@@ -43,7 +43,7 @@ const CategoryDetail = ({ navigation }) => {
                     </TouchableOpacity>
     
                     {/* Next Button */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.push('longTerm')}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
                         <Text style={styles.buttonText}>     Next     </Text>
                     </TouchableOpacity>
                 </View>
@@ -76,7 +76,6 @@ const CategoryDetail = ({ navigation }) => {
                 </SafeAreaView>
             );
         } else {
-            // console.log(checkedCategories);
             return (
                 renderList()
             );

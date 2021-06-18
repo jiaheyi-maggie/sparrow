@@ -1,23 +1,23 @@
 const periods = [
     {
         id: '0',
-        title: 'Year',
+        title: 'year',
     },
     {
         id: '1',
-        title: 'Quarter',
+        title: 'quarter',
     },
     {
         id: '2',
-        title: 'Month',
+        title: 'month',
     },
     {
         id: '3',
-        title: 'Week',
+        title: 'week',
     },
     {
         id: '4',
-        title: 'Day',
+        title: 'day',
     },
 ];
 
