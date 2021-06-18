@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
 
@@ -27,11 +27,15 @@ const BudgetCircle = ({ term, value }) => {
     // updates store if numbers are edited
     const onChangeNumber = (value) => {
         if (term === 'Long') {
+            setVal(value);
             store.dispatch(changeLongTerm(value));
         } else if (term === 'Short') {
+            setVal(value);
             store.dispatch(changeShortTerm(value));
         }
     };
+
+    const [val, setVal] = useState(value);
 
     return (
         <SafeAreaView style={{alignItems: 'center'}}>
@@ -41,7 +45,7 @@ const BudgetCircle = ({ term, value }) => {
                 <View style={{flexDirection:'row'}}>
                     <Text style={{color: '#FFF4CB', fontSize: 40, fontWeight: 'bold'}}>$ </Text>
                     <TextInput
-                        value={value}
+                        value={val}
                         onChangeText={(value) => onChangeNumber(value)}
                         placeholder="?"
                         placeholderTextColor='#F8FAFB'

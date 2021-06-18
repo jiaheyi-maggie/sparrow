@@ -24,6 +24,7 @@ const BudgetOverview = ({ navigation }) => {
                 <Text style={styles.subtitle}>Tap on any number to edit!</Text>
 
                 <View style={{flexDirection: 'row', padding: 10}}>
+                    {/* LITTLE FUCKER WHY DON"T YOU WORK */}
                     <BudgetCircle term={'Short'} value={shortTermValue} />
                     <BudgetCircle term={'Long'} value={longTermValue} />
                 </View>

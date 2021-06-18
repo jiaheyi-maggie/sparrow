@@ -6,7 +6,7 @@ export default shortTerm = (state = [0, 'month'], action) => {
             }
             const shortTermState = [...state];
             shortTermState[0] = action.payload;
-            // console.log(shortTermState);
+            console.log(shortTermState);
             return shortTermState; 
         // update short term period
         case 'changeShortTermPeriod':
