@@ -1,18 +1,18 @@
 /* Onboarding Long Term */
 import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import Picker from '../../components/Picker';
 
 import { useSelector } from 'react-redux';
 import store from '../../app/store';
 
-import TimePeriodDropdown from '../../components/TimePeriodDropdown';
 import componentStyle from '../../styles/componentStyle';
 import styles from '../../styles/onboardingStyle';
 
 const LongTerm = ({ navigation }) => {
 
     /* Change longTerm and shortTerm in store */
-    const input = useSelector((state) => state.longTerm);
+    const input = useSelector((state) => state.longTerm[0]);
     const list = store.getState().reducer;
 
     // actions
@@ -93,6 +93,7 @@ const LongTerm = ({ navigation }) => {
                     <Text style={styles.longtermDescription}>per </Text>
                     {/* <TimePeriodDropdown /> */}
                     {/* TODO: IMPLEMENT TIMER PERIOD DROPDOWN  */}
+                    <Picker />
                 </View>
 
                 <View style={{height: 300}}><Text></Text></View>

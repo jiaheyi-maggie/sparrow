@@ -2,8 +2,7 @@ import React from 'react';
 import { Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
 import styles from '../styles/componentStyle';
-import TimePeriodDropdown from './TimePeriodDropdown';
-import TimePicker from './TimePicker';
+
 
 // TODO: debug short term sum
 const BudgetCircle = ({ term, value }) => {

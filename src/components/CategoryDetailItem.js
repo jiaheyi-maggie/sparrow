@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView } from 'react-native';
-import TimePeriodDropdown from './TimePeriodDropdown';
 import ModalPicker from './ModalPicker';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 
 const CategoryDetailItem = ({ item }) => {
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(null);
 
     // update redux into categories' value field
     const updateValue = value => {

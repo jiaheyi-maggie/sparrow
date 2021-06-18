@@ -1,11 +1,12 @@
-/* Customized picker  */
+/* Picker (without item passed in) */
+/* Customized picker (requires item passed in)  */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, FlatList } from 'react-native';
 import store from '../app/store';
 import periods from '../data/periods';
 
 
-const ModalPicker = ({ item }) => {
+const Picker = () => {
     const [chosen, setChosen] = useState('time period');
 
     // toggle modal visibility
@@ -17,10 +18,10 @@ const ModalPicker = ({ item }) => {
     };
 
     // action to update reducer
-    const updatePeriod = period => {
+    const changeLongTermPeriod = period => {
         return {
-            type: 'updatePeriod',
-            payload: {item, period}
+            type: 'changeLongTermPeriod',
+            payload: period
         }
     };
 
@@ -45,8 +46,8 @@ const ModalPicker = ({ item }) => {
                                     onPress={() => {
                                         setModalVisible(false); 
                                         setChosen(item.title);
-                                        // update reducer
-                                        store.dispatch(updatePeriod(item.title));
+                                        // update long term period
+                                        store.dispatch(changeLongTermPeriod(item.title));
                                     }}
                                 >
                                     <Text style={styles.textStyle}>{item.title}</Text>
@@ -137,4 +138,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default ModalPicker;
+export default Picker;

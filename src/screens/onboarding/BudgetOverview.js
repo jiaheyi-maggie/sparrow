@@ -12,7 +12,7 @@ const BudgetOverview = ({ navigation }) => {
 
     // extract whole category list from store
     const list = store.getState().reducer;
-    const longTermValue = store.getState().longTerm;
+    const longTermValue = store.getState().longTerm[0];
     const shortTermValue = store.getState().shortTerm;
 
     return (

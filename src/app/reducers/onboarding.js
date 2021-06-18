@@ -12,7 +12,6 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const newState = [...state];
             newState[index].checked = !action.payload.checked;
-            // console.log(state);
             return newState;
 
         // for handling text input (CategoryDetailItem): works!
@@ -22,8 +21,6 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const valState = [...state];
             valState[valueIndex].value = action.payload.value;
-            // console.log(action.payload.value);
-            // console.log(action.payload.item);
             return valState;
 
         // for handling period selection (ModalPicker): works!
@@ -51,7 +48,6 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const sumState = [...state];
             sumState[sumIndex].sum = action.payload.sum;
-            // console.log(action.payload.item);
             return sumState;
 
         // update category sum based on value
