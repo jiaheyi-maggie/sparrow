@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView } from 'react-native';
-import ModalPicker from './ModalPicker';
+import ModalPicker from './picker/ModalPicker';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 

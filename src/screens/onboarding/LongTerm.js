@@ -1,7 +1,7 @@
 /* Onboarding Long Term */
 import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import Picker from '../../components/Picker';
+import Picker from '../../components/picker/Picker';
 
 import { useSelector } from 'react-redux';
 import store from '../../app/store';

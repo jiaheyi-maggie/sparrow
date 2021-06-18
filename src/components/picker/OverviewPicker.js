@@ -1,12 +1,12 @@
-/* Picker (without item passed in) */
-/* Customized picker (requires item passed in)  */
+/* Picker for Overview (with term passed in): mainly style change */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, FlatList } from 'react-native';
-import store from '../app/store';
-import periods from '../data/periods';
+
+import store from '../../app/store';
+import periods from '../../data/periods';
 
 
-const Picker = ({term}) => {
+const OverviewPicker = ({ term }) => {
     const [chosen, setChosen] = useState('time period');
 
     // toggle modal visibility
@@ -41,40 +41,40 @@ const Picker = ({term}) => {
 
     return (
         <SafeAreaView style={styles.startView}>
-            <Modal
-                animationType="fade"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {setModalVisible(!modalVisible)}}
-            >
-                {/* View for the list of time periods */}
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <FlatList 
-                            data={periods}
-                            renderItem={({ item }) => (
-                                <TouchableOpacity
-                                    style={[styles.button, styles.buttonClose]}
-                                    onPress={() => {
-                                        setModalVisible(false); 
-                                        setChosen(item.title);
-                                        // update term period
-                                        if (strcmp(term, 'long') == 0) {
-                                          store.dispatch(changeLongTermPeriod(item.title));
-                                        } 
-                                        else {
-                                          store.dispatch(changeShortTermPeriod(item.title));
-                                        }
-                                    }}
-                                >
-                                    <Text style={styles.selectionTextStyle}>{item.title}</Text>
-                                </TouchableOpacity>
-                            )}
-                            keyExtractor={item => item.id}
-                        />
-                    </View>
-                </View>
-            </Modal>
+          <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {setModalVisible(!modalVisible)}}
+          >
+            {/* View for the list of time periods */}
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <FlatList 
+                  data={periods}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        setModalVisible(false); 
+                        setChosen(item.title);
+                        // update term period
+                        if (strcmp(term, 'Long') === 0) {
+                          store.dispatch(changeLongTermPeriod(item.title));
+                        } 
+                        else if (strcmp(term, 'Short') === 0) {
+                          store.dispatch(changeShortTermPeriod(item.title));
+                        }
+                      }}
+                    >
+                        <Text style={styles.textStyle}>{item.title}</Text>
+                    </TouchableOpacity>
+                  )}
+                  keyExtractor={item => item.id}
+                />
+              </View>
+            </View>
+          </Modal>
 
             {/* Time Period closed picker view */}
             <TouchableOpacity
@@ -85,7 +85,7 @@ const Picker = ({term}) => {
                 <View style={{flexDirection:'row', alignItems: 'center'}}>
                     <Text style={styles.textStyle}> {chosen} </Text>
                     <Image 
-                        source={require('../assets/Icons/down-arrow.png')} 
+                        source={require('../../assets/Icons/down-arrow.png')} 
                         resizeMode='contain'
                         style={{marginTop: 5, width: 25, height: 25}}
                     />
@@ -95,7 +95,6 @@ const Picker = ({term}) => {
     );
 };
 
-// small style for category card
 const styles = StyleSheet.create({
     startView: {
       flex: 1,
@@ -139,25 +138,18 @@ const styles = StyleSheet.create({
       paddingTop: 8,
       flexDirection: 'row',
       justifyContent: 'center',
-      textAlign: 'center'
+      textAlignVertical: 'center'
     },
     textStyle: {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 35
+      fontSize: 25
     },
-    selectionTextStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontSize: 25
-      },
     modalText: {
       marginBottom: 15,
       textAlign: "center"
     }
   });
-  
 
-export default Picker;
+export default OverviewPicker;

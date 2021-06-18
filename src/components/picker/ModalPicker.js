@@ -1,8 +1,8 @@
 /* Customized picker (requires item passed in)  */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, FlatList } from 'react-native';
-import store from '../app/store';
-import periods from '../data/periods';
+import store from '../../app/store';
+import periods from '../../data/periods';
 
 
 const ModalPicker = ({ item }) => {
@@ -68,7 +68,7 @@ const ModalPicker = ({ item }) => {
                 <View style={{flexDirection:'row', alignItems: 'center'}}>
                     <Text style={styles.textStyle}> {chosen} </Text>
                     <Image 
-                        source={require('../assets/Icons/down-arrow.png')} 
+                        source={require('../../assets/Icons/down-arrow.png')} 
                         resizeMode='contain'
                         style={{marginTop: 5, width: 25, height: 25}}
                     />

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
 
-import Picker from './Picker';
+import OverviewPicker from './picker/OverviewPicker';
 
 import styles from '../styles/componentStyle';
 
@@ -45,6 +45,7 @@ const BudgetCircle = ({ term, value }) => {
 
     return (
         <SafeAreaView style={{alignItems: 'center'}}>
+            <OverviewPicker term={term} />
             <View
                 style={styles.budgetCircle}>
                 <View style={{flexDirection:'row'}}>
@@ -63,17 +64,6 @@ const BudgetCircle = ({ term, value }) => {
             </View>
             
             <Text style={styles.reviewText} > {term} Term</Text>
-
-            <SafeAreaView style={{
-                flexDirection: 'row', 
-                width: 150, 
-                height: 30,
-                alignItems: 'center'
-                }}>
-                <Text style={styles.reviewText} >every</Text>
-                <Picker />
-            </SafeAreaView>
-
         </SafeAreaView>
     );
 }
