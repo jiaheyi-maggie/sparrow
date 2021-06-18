@@ -74,10 +74,16 @@ const SummaryListItem = ({ item }) => {
 
     return (
         <View style={styles.listSummaryItem}>
-            <TouchableOpacity >
-                <Text style={styles.listSummaryTitle}>{item.title} ({item.period})</Text>
-            </TouchableOpacity>
-
+            <View style={styles.genericRowAlign}>
+                <Text style={styles.listSummaryTitle}>{item.title}</Text>
+                <Text style={{
+                        color: '#264653',
+                        fontWeight: 'bold',
+                        textAlign: 'left',
+                        fontSize: 23,
+                        color: "#E76F51"
+                }}> ({item.period})</Text>
+            </View>
             <View style={{flexDirection: 'row'}}>
                 <Text style={styles.listSummaryTitle}>$</Text>
                 <TextInput
