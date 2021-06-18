@@ -12,7 +12,7 @@ import styles from '../../styles/onboardingStyle';
 const LongTerm = ({ navigation }) => {
 
     /* Change longTerm and shortTerm in store */
-    const input = useSelector((state) => state.longTerm[0]);
+    const input = useSelector((state) => state.longTerm);
     const list = store.getState().reducer;
 
     // actions
@@ -91,7 +91,7 @@ const LongTerm = ({ navigation }) => {
 
                 <View style={{flexDirection:'row', paddingLeft:40}}>
                     <Text style={styles.longtermDescription}>per </Text>
-                    <Picker />
+                    <Picker term={'long'}/>
                 </View>
 
                 <View style={{height: 300}}><Text></Text></View>

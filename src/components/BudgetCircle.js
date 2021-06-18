@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, TextInput, SafeAreaView, View } from 'react-native';
 import store from '../app/store';
+
+import Picker from './Picker';
+
 import styles from '../styles/componentStyle';
 
 
@@ -68,8 +71,7 @@ const BudgetCircle = ({ term, value }) => {
                 alignItems: 'center'
                 }}>
                 <Text style={styles.reviewText} >every</Text>
-                {/* <TimePeriodDropdown /> */}
-                {/* TODO: Time period dropdown */}
+                <Picker />
             </SafeAreaView>
 
         </SafeAreaView>

@@ -6,7 +6,7 @@ import store from '../app/store';
 import periods from '../data/periods';
 
 
-const Picker = () => {
+const Picker = ({term}) => {
     const [chosen, setChosen] = useState('time period');
 
     // toggle modal visibility
@@ -19,10 +19,24 @@ const Picker = () => {
 
     // action to update long term time period
     const changeLongTermPeriod = period => {
-        return {
-            type: 'changeLongTermPeriod',
-            payload: period
-        }
+      return {
+          type: 'changeLongTermPeriod',
+          payload: period
+      }
+    };
+    
+    const changeShortTermPeriod = period => {
+      return {
+        type: 'changeShortTermPeriod',
+        payload: period
+      } 
+    }
+
+    // compare strings
+    const strcmp= (a, b) => {
+      if (a.toString() < b.toString()) return -1;
+      if (a.toString() > b.toString()) return 1;
+      return 0;
     };
 
     return (
@@ -44,8 +58,13 @@ const Picker = () => {
                                     onPress={() => {
                                         setModalVisible(false); 
                                         setChosen(item.title);
-                                        // update long term period
-                                        store.dispatch(changeLongTermPeriod(item.title));
+                                        // update term period
+                                        if (strcmp(term, 'long') == 0) {
+                                          store.dispatch(changeLongTermPeriod(item.title));
+                                        } 
+                                        else {
+                                          store.dispatch(changeShortTermPeriod(item.title));
+                                        }
                                     }}
                                 >
                                     <Text style={styles.selectionTextStyle}>{item.title}</Text>
