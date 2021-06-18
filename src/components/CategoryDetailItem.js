@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text, View, TextInput, Alert } from 'react-native';
 import ModalPicker from './picker/ModalPicker';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
@@ -33,7 +33,56 @@ const CategoryDetailItem = ({ item }) => {
         store.dispatch(updateValue(value));
     };
 
+
+    // handle optional input with error catch
     const handleOptionalInput = (value) => {
+        switch (period) {
+            case 'quarter': 
+                if (value > 4) {
+                    Alert.alert(
+                        'Input not valid',
+                        'Cannot have more than 4 quarters in a year :(',
+                        [
+                            { text: "OK" }
+                        ],
+                        { cancelable: true }
+                    )
+                }
+            case 'month':
+                if (value > 12) {
+                    Alert.alert(
+                        'Input not valid',
+                        'Cannot have more than 12 months in a year :(',
+                        [
+                            { text: "OK" }
+                        ],
+                        { cancelable: true }
+                    )
+                }
+            case 'week':
+                if (value > 48) {
+                    Alert.alert(
+                        'Input not valid',
+                        'Cannot have more than 48 weeks in a year :(',
+                        [
+                            { text: "OK" }
+                        ],
+                        { cancelable: true }
+                    )
+                }
+            case 'day':
+                if (value > 365) {
+                    Alert.alert(
+                        'Input not valid',
+                        'Cannot have more than 365 days in a year :(',
+                        [
+                            { text: "OK" }
+                        ],
+                        { cancelable: true }
+                    )
+                }
+
+        }
         setOptional(value);
         store.dispatch(updateOptional(value));
     };
@@ -52,7 +101,8 @@ const CategoryDetailItem = ({ item }) => {
                         <TextInput
                             style={{
                                 fontSize: 30,
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                textAlign: 'center'
                             }}
                             value={value}
                             onChangeText={(value) => handleTextInput(value)}

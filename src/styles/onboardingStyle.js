@@ -109,7 +109,8 @@ const onboardingStyle = StyleSheet.create({
     borderBottomWidth: 3,
     borderBottomColor: '#264653',
     flexDirection: 'row',
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    textAlign: 'center'
   },
   // scroll view
   scrollviewContainer: {

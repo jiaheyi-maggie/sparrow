@@ -31,32 +31,47 @@ const LongTerm = ({ navigation }) => {
     }
 
     // calculate short term (monthly)
-    const calculateMonthlySumBasedOnPeriod = (p, v) => {
+    const calculateMonthlySumBasedOnPeriod = (p, v, o) => {
         if (v === 0) {
             return 0;
         }
+        var val = 0;
         switch (p) {
-            case 'Year':
-                const val = Math.floor(v / 12);
-                return val;
-            case 'Quarter':
-                return Math.floor(v / 4);
-            case 'Month':
-                return v;
-            case 'Week':
-                return v * 4;
-            case 'Day':
-                return v * 30;
-            default:
-                return v;
+            case 'year':
+                val = Math.floor(v / 12);
+            case 'quarter':
+                if (o != 0) {
+                    val = Math.floor(v * o / 12);
+                } else {
+                    val = Math.floor(v / 4);
+                }
+            case 'month':
+                if (o != 0) {
+                    val = Math.floor(v * o / 12);
+                } else {
+                    val = v; 
+                }
+            case 'week':
+                if (o != 0) {
+                    val = Math.floor(v * o / 12);
+                } else {
+                    val = v * 4;
+                }
+            case 'day':
+                if (o != 0) {
+                    val = Math.floor(v * o / 12);
+                } else {
+                    val = v * 30;
+                }
         }
+        return val;
     }
 
     // sum category values
     const calculateShortTermValue = (l) => {
         var shortTermValue = 0; 
         l.forEach((category) => {
-            const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value);
+            const currVal = calculateMonthlySumBasedOnPeriod(category.period, category.value, category.optional);
             shortTermValue += parseFloat(currVal);
         });
         return shortTermValue;
