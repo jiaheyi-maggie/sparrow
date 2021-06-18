@@ -6,6 +6,7 @@ import periods from '../../data/periods';
 
 
 const ModalPicker = ({ item }) => {
+  
   const [chosen, setChosen] = useState('time period');
 
   // toggle modal visibility

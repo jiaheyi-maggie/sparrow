@@ -1,7 +1,11 @@
 // a class component for Register (replace SignUp later)
 import React, { Component } from 'react';
-import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert } from 'react-native';
+
+import store from '../app/store';
+
 import firebase from 'firebase';
+
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
@@ -16,6 +20,7 @@ export default class Register extends Component {
             username: '',
             email: '',
             password: '',
+            budgetInfo: null
         }
 
         // allow onSignUp() to access the state of the class
@@ -32,10 +37,11 @@ export default class Register extends Component {
 
     // Handles firebase authentication and Firestore 
     onSignUp() {
-        const { firstName, lastName, username, email, password } = this.state;
+        this.budgetInfo = [store.getState().reducer, store.getState().longTerm, store.getState().shortTerm];
+        const { firstName, lastName, username, email, password, budgetInfo } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
-                // TODO: Add user to firestore
+                // DEBUG: Add user to firestore
                 var currUserID = firebase.auth().currentUser.uid;
                 console.log(currUserID);
                 firebase.firestore().collection("users")
@@ -44,14 +50,20 @@ export default class Register extends Component {
                         firstName,
                         lastName,
                         username,
-                        email
+                        email,
+                        budgetInfo
                     })
-
                 console.log(userCredentials);
             })
-            // TODO: add alert here
             .catch((error) => {
-                console.log(error);
+                Alert.alert(
+                    'Registration Failed :((',
+                    error.message,
+                    [
+                        { text: "Try Again" }
+                    ],
+                    { cancelable: true }
+                )
             })
 
     }
@@ -101,6 +113,13 @@ export default class Register extends Component {
                         <Text style={componentStyle.infofieldtitle}>First Name</Text>
                     </View>
                     <TextInput
+                        returnKeyType="next"
+                        autoCompleteType='name'
+                        enablesReturnKeyAutomatically={true}
+                        autoFocus={true}
+                        onSubmitEditing={() => {this.lastName.focus();}}
+                        blurOnSubmit={false}
+                        value={this.state.firstName}
                         placeholder='John'
                         onChangeText={(firstName) => this.setState({ firstName })}
                         style={componentStyle.infofield}
@@ -126,6 +145,14 @@ export default class Register extends Component {
                         <Text style={componentStyle.infofieldtitle}>Last Name</Text>
                     </View>
                     <TextInput
+                        ref={(input) => {this.lastName = input;}}
+                        onSubmitEditing={() => {this.username.focus();}}
+                        blurOnSubmit={false}
+                        returnKeyType="next"
+                        autoCompleteType='name'
+                        enablesReturnKeyAutomatically={true}
+                        autoFocus={true}
+                        value={this.state.lastName}
                         placeholder='Doe'
                         onChangeText={(lastName) => this.setState({ lastName })}
                         style={componentStyle.infofield}
@@ -152,6 +179,14 @@ export default class Register extends Component {
                         <Text style={componentStyle.infofieldtitle}>Username</Text>
                     </View>
                     <TextInput
+                        ref={(input) => {this.username = input;}}
+                        onSubmitEditing={() => {this.email.focus();}}
+                        blurOnSubmit={false}
+                        returnKeyType="next"
+                        autoCompleteType='name'
+                        enablesReturnKeyAutomatically={true}
+                        autoFocus={true}
+                        value={this.state.username}
                         placeholder='john.doe07'
                         onChangeText={(username) => this.setState({ username })}
                         style={componentStyle.infofield}
@@ -177,9 +212,17 @@ export default class Register extends Component {
                         <Text style={componentStyle.infofieldtitle}>Email</Text>
                     </View>
                     <TextInput
+                        ref={(input) => {this.email = input;}}
+                        onSubmitEditing={() => {this.password.focus();}}
+                        blurOnSubmit={false}
+                        returnKeyType="next"
+                        enablesReturnKeyAutomatically={true}
+                        autoFocus={true}
+                        value={this.state.email}
                         placeholder='johndoe@gmail.com'
                         onChangeText={(email) => this.setState({ email })}
                         style={componentStyle.infofield}
+                        keyboardType="email-address"
                     />
 
                     {/* Password */}
@@ -202,6 +245,13 @@ export default class Register extends Component {
                         <Text style={componentStyle.infofieldtitle}>Password</Text>
                     </View>
                     <TextInput
+                        ref={(input) => {this.password = input;}}
+                        blurOnSubmit={false}
+                        returnKeyType="done"
+                        autoCompleteType='name'
+                        enablesReturnKeyAutomatically={true}
+                        autoFocus={true}
+                        value={this.state.password}
                         placeholder='1234567890'
                         onChangeText={(password) => this.setState({ password })}
                         style={componentStyle.infofield}
