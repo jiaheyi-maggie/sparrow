@@ -25,6 +25,15 @@ export default reducer = (state = categoriesWithValue, action) => {
             // console.log(action.payload.value);
             // console.log(action.payload.item);
             return valState;
+
+        // for handling period selection (ModalPicker): works!
+        case 'updatePeriod' :
+            const periodIndex = state.findIndex(
+                (category) => category.id === action.payload.item.id
+            );
+            const periodState = [...state];
+            periodState[periodIndex].period = action.payload.period;
+            return periodState;
         
         // TODO: number field change doesn't work right now
         case 'inputNumber':
@@ -34,15 +43,6 @@ export default reducer = (state = categoriesWithValue, action) => {
             const valueState = [...state];
             valueState[itemIndex].value = action.payload.item.value;
             return valueState;
-        // TODO: period field change doesn't work right now (same issue as number field)
-        case 'changePeriod':
-            const periodIndex = state.findIndex(
-                (category) => category.id === action.payload.id
-            );
-            const periodState = [...state];
-            periodState[periodIndex].period = action.payload.period;
-            console.log(periodState);
-            return periodState;
 
         // for handling text input (SummaryListItem): works!
         case 'changeCategorySum':

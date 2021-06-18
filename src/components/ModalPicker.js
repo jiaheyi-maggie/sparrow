@@ -1,15 +1,14 @@
 /* Customized picker  */
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, Dimensions, FlatList } from 'react-native';
+import store from '../app/store';
 import periods from '../data/periods';
 
 const ModalPicker = ({ item }) => {
-    // TODO: track time period selection
     const [chosen, setChosen] = useState('time period');
+
     // toggle modal visibility
     const [modalVisible, setModalVisible] = useState(false);
-
-    // TODO: render list upon modal pop up
 
     // TODO: this is where to change categories' period field
     
@@ -18,13 +17,13 @@ const ModalPicker = ({ item }) => {
         setModalVisible(!modalVisible);
     };
 
-    // when user clicks on a time period
-    const handleClickClose = () => {
-        setModalVisible(false);
-        // dummy 
-        setChosen(item.title);
-    }
-
+    // action to update reducer
+    const updatePeriod = period => {
+        return {
+            type: 'updatePeriod',
+            payload: {item, period}
+        }
+    };
 
     return (
         <SafeAreaView style={styles.startView}>
@@ -47,6 +46,8 @@ const ModalPicker = ({ item }) => {
                                     onPress={() => {
                                         setModalVisible(false); 
                                         setChosen(item.title);
+                                        // update reducer
+                                        store.dispatch(updatePeriod(item.title));
                                     }}
                                 >
                                     <Text style={styles.textStyle}>{item.title}</Text>
