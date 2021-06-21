@@ -2,6 +2,7 @@ import firebase from "firebase";
 import { USER_STATE_CHANGE } from "../constants/index";
 
 export function fetchUser() {
+    // dispatch: only available with thunk
     return ((dispatch) =>  {
         firebase.firestore()
         .collection("users")
@@ -9,6 +10,7 @@ export function fetchUser() {
         .get()
         .then((snapshot) => {
             if(snapshot.exists) {
+                console.log(snapshot);
                 // dispatch to redux
                 dispatch(
                     // {

@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
+
 import store from '../../app/store';
+import { fetchUser } from '../../app/actions/fetchUser';
+
+// allow connect to redux
+import { connect } from 'react-redux';
+// bind actions to components
+import { bindActionCreators } from 'redux';
+
 
 import styles from '../../styles/homeStyle';
 
 const Home = () => {
 
-    const [currentUser, setCurrentUser] = useState(store.userState);
+    // const [currentUser, setCurrentUser] = useState(store.userState.currentUser);
 
-    // component did mount
+    // componentDidMount()
     useEffect(() => {
-
+        fetchUser();
     });
 
     return (
@@ -19,4 +27,12 @@ const Home = () => {
         </View>
     );
 }
-export default Home;
+
+const mapStateToProps = (store) => ({
+    currentUser: store.userState.currentUser
+});
+
+// bind component to redux
+const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(Home);
