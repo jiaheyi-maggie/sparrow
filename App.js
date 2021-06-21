@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { View, Text, Image, SafeAreaView } from 'react-native';
+import { Image, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './src/screens/Register';
@@ -10,7 +10,7 @@ import HomeNavigation from './src/screens/main/HomeNavigation';
 import theme from './src/assets/theme';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
-import keys from './src/config/firebase/keys';
+// import keys from './src/config/firebase/keys';
 
 import * as firebase from 'firebase';
 
@@ -114,6 +114,7 @@ export class App extends Component {
               headerMode='none'
               initialRouteName='home'>
               <Stack.Screen name='home' component={HomeNavigation}/>
+              <Stack.Screen name='signin' component={Login} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

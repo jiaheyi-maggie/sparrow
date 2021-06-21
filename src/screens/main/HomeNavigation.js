@@ -27,6 +27,7 @@ const HomeNavigation = () => {
                     ...styles.shadow
                 }
               }}
+            initialRouteName='Home'
         >
             <Tab.Screen name='Home' component={Home} 
                 options={{

@@ -6,11 +6,11 @@ import Login from '../Login';
 
 const Settings = ({ navigation }) => {
 
+  // TODO: navigate to sign in
   const loggingOut = () => {
     firebase.auth().signOut().then(() => {
       Alert.alert('User logged out');
-      navigation.navigate('signin', { screen: Login });
-      // navigation.navigate('Stack', { screen: 'signin'});
+      navigation.navigate('signin');
     }
     ).catch ((err) => {
       Alert.alert('There is something wrong!', err.message);
