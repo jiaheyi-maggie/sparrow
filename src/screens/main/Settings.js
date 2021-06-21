@@ -5,6 +5,7 @@ import styles from '../../styles/homeStyle';
 
 const Settings = () => {
 
+  // TODO: when logged out, return to SignIn page
   const loggingOut = () => {
     firebase.auth().signOut().then(() => {
       Alert.alert('User logged out');

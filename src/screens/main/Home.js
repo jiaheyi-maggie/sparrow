@@ -12,6 +12,50 @@ import { bindActionCreators } from 'redux';
 
 import styles from '../../styles/homeStyle';
 
+
+export class Home extends Component {
+    componentDidMount() {
+        this.props.fetchUser();
+    }
+
+    handleComponentDidMount(currentUser) {
+        if (currentUser) {
+            console.log(currentUser);
+            return (
+                <SafeAreaView style={styles.homeContainer}>
+                    <Text style={styles.title}> Hello, {currentUser.firstName}</Text>
+                </SafeAreaView>
+            );
+        } else {
+            return (
+                <SafeAreaView style={styles.homeContainer}>
+                    <Text style={styles.title}> User does not exist in database</Text>
+                </SafeAreaView>
+            );
+        }
+    }
+
+    render() {
+        const { currentUser } = this.props;
+
+        return(
+            this.handleComponentDidMount(currentUser)
+        )
+    }
+}
+
+// allow access to data in Home component
+const mapStateToProps = (store) => ({
+    currentUser: store.user.currentUser
+});
+
+// bind component to redux
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(Home);
+
+
+
 // const Home = () => {
 
 //     const [currentUser, setCurrentUser] = useState(null);
@@ -40,43 +84,3 @@ import styles from '../../styles/homeStyle';
 //         handleComponentDidMount()
 //     );
 // }
-
-export class Home extends Component {
-    componentDidMount() {
-        this.props.fetchUser();
-    }
-
-    handleComponentDidMount(currentUser) {
-        if (currentUser) {
-            return (
-                <SafeAreaView style={styles.homeContainer}>
-                    <Text style={styles.title}> Hello, {currentUser}</Text>
-                </SafeAreaView>
-            );
-        } else {
-            return (
-                <SafeAreaView style={styles.homeContainer}>
-                    <Text style={styles.title}> User does not exist in database</Text>
-                </SafeAreaView>
-            );
-        }
-    }
-
-    render() {
-        const { currentUser } = this.props;
-
-        return(
-            this.handleComponentDidMount(currentUser)
-        )
-    }
-}
-
-// allow access to data in Home component
-const mapStateToProps = (store) => ({
-    currentUser: store.user
-});
-
-// bind component to redux
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchProps)(Home);

@@ -7,18 +7,23 @@
 //     }
 // ];
 
+const initialState = {
+    currentUser: null
+}
+
 // use thunk to call firebase API
-export default user = (state = [], action) => {
+export default user = (state = initialState, action) => {
     // use redux thunk
     switch (action.type) {
         case "USER_STATE_CHANGE":
-            const user = [...state];
-            user = action.payload;
-            return user; 
-            // return {
-            //     ...state,
-            //     currentUser: action.currentUser
-            // }
+            // const user = [...state];
+            // user = action.payload;
+            // console.log(user);
+            // return user; 
+            return {
+                ...state,
+                currentUser: action.currentUser
+            }
         default:
             return state; 
     }

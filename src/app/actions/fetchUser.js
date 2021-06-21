@@ -15,8 +15,8 @@ export function fetchUser() {
                 // dispatch action to redux
                 dispatch(
                     {
-                        type: USER_STATE_CHANGE,
-                        payload: snapshot.data()
+                        type: "USER_STATE_CHANGE",
+                        currentUser: snapshot.data()
                     }
                 )
             } else {
