@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     reducer,
     longTerm,
     shortTerm,
-    user
+    user 
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

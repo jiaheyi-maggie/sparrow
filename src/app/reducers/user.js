@@ -1,15 +1,25 @@
-const initialState = {
-    currentUser: null
-}
+// const initialState = [
+//     currentUser= {
+//         firstName: '',
+//         lastName: '',
+//         username: '',
+//         email: ''
+//     }
+// ];
 
-export default user = (state = initialState, action) => {
+// use thunk to call firebase API
+export default user = (state = [], action) => {
+    // use redux thunk
     switch (action.type) {
-        // store user information in redux
-        case 'getUserInfo':
+        case "USER_STATE_CHANGE":
             const user = [...state];
-            user.currentUser = action.payload.currentUser;
+            user = action.payload;
             return user; 
+            // return {
+            //     ...state,
+            //     currentUser: action.currentUser
+            // }
         default:
-            return state;
+            return state; 
     }
-}
+};
