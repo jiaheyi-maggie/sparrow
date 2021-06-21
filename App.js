@@ -45,6 +45,7 @@ export const firebaseConfig = {
 // ensure that firebase was not initialized on startup
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
+  firebase.firestore().settings({ experimentalForceLongPolling: true });
 } 
 
 export class App extends Component {

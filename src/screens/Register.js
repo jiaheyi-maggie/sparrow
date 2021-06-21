@@ -43,7 +43,7 @@ export default class Register extends Component {
                         username: username,
                         email: email,
                     })
-                console.log(userCredentials);
+                // console.log(userCredentials);
             })
             .catch((error) => {
                 Alert.alert(
