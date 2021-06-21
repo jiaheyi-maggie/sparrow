@@ -81,7 +81,6 @@ const CategoryDetailItem = ({ item }) => {
                         { cancelable: true }
                     )
                 }
-
         }
         setOptional(value);
         store.dispatch(updateOptional(value));
@@ -159,9 +158,6 @@ const CategoryDetailItem = ({ item }) => {
                             keyboardType="phone-pad"
                         />
                     </View>
-                    {/* <TouchableOpacity value={period}>
-                        <Text style={styles.itemDescription}>{period.concat('s')}</Text>
-                    </TouchableOpacity> */}
                     <Text style={styles.itemDescription}>{period.concat('s')}</Text>
                     <Text style={styles.itemDescription}> per year</Text>
                 </View>

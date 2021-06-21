@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Platform } from 'react-native';
+
 
 const homeStyle = StyleSheet.create({
     title: {
@@ -30,6 +32,26 @@ const homeStyle = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.5,
         elevation: 5
+    },
+    buttonContainer: {
+        elevation: 8,
+        backgroundColor: "#264653",
+        borderRadius: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 9,
+        margin: 10
+    },
+    buttonText : {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: "#fff",
+        alignSelf: "center",
+        textTransform: "uppercase"
+    },
+    container: {
+        backgroundColor: '#fff',
+        flex: 1,
+        paddingTop: (Platform.OS === 'ios') ? 0: 40,
     }
  });
 

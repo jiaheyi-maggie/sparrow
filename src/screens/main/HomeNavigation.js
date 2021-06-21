@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Home';
-import Profile from './Profile';
+
 import Notification from './Notification';
 import styles from '../../styles/homeStyle';
+import Settings from './Settings';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -44,7 +45,7 @@ const HomeNavigation = () => {
                                     color: focused ? '#e32f45' : '#748c94',
                                     fontSize: 15
                                 }}>
-                                    HOME
+                                    Home
                             </Text> 
                         </View>
                         ),
@@ -68,14 +69,14 @@ const HomeNavigation = () => {
                                     color: focused ?  '#e32f45' : '#748c94',
                                     fontSize: 15
                                 }}>
-                                    NOTIFICATION
+                                    Notification
                             </Text> 
                         </View>
                     ),
                 }} 
             />
                 
-            <Tab.Screen name='Profile' component={Profile} 
+            <Tab.Screen name='Settings' component={Settings} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 
@@ -92,7 +93,7 @@ const HomeNavigation = () => {
                                     color: focused ? '#e32f45' : '#748c94',
                                     fontSize: 15
                                 }}>
-                                    PROFILE
+                                    Settings
                             </Text> 
                         </View>
                     ),
