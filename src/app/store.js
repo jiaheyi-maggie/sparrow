@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 import reducer from './reducers/onboarding';
 import longTerm from "./reducers/longTerm";
 import shortTerm from "./reducers/shortTerm";
@@ -11,6 +12,6 @@ const rootReducer = combineReducers({
     user
 })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
