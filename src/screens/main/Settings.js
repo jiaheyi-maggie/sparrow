@@ -1,29 +1,30 @@
 import React from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import firebase from 'firebase';
 import styles from '../../styles/homeStyle';
 
 const Settings = () => {
 
-    async function loggingOut() {
-        try {
-          await firebase.auth().signOut();
-        } catch (err) {
-          Alert.alert('There is something wrong!', err.message);
-        }
+  const loggingOut = () => {
+    firebase.auth().signOut().then(() => {
+      Alert.alert('User logged out');
     }
+    ).catch ((err) => {
+      Alert.alert('There is something wrong!', err.message);
+    });
+  }
 
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => loggingOut()}
-            > 
-                <Text style={styles.buttonText}> Log Out</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+  return (
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => loggingOut()}
+      > 
+        <Text style={styles.buttonText}> Log Out</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
 
-    );
+  );
 }
 export default Settings;

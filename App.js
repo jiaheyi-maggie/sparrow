@@ -10,6 +10,7 @@ import HomeNavigation from './src/screens/main/HomeNavigation';
 import theme from './src/assets/theme';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
+import keys from './src/config/firebase/keys';
 
 import * as firebase from 'firebase';
 
@@ -18,17 +19,27 @@ import * as firebase from 'firebase';
 // initialize navigation 
 const Stack = createStackNavigator();
 
-// setup firebase
+// setup firebase: OLD Firebase
 // TODO: use environment variable to hide keys
+// export const firebaseConfig = {
+//   apiKey: "AIzaSyDCkkAAUGHzctGZcwCy40NgzdmEW-3_ijo",
+//   authDomain: "sparrow-budget.firebaseapp.com",
+//   databaseURL: "https://sparrow-budget-default-rtdb.firebaseio.com",
+//   projectId: "sparrow-budget",
+//   storageBucket: "sparrow-budget.appspot.com",
+//   messagingSenderId: "894285912383",
+//   appId: "1:894285912383:web:c75b2f71cc5ea2a34a1b8a",
+//   measurementId: "G-DRRHWERZCY"
+// };
+
 export const firebaseConfig = {
-  apiKey: "AIzaSyDCkkAAUGHzctGZcwCy40NgzdmEW-3_ijo",
-  authDomain: "sparrow-budget.firebaseapp.com",
-  databaseURL: "https://sparrow-budget-default-rtdb.firebaseio.com",
-  projectId: "sparrow-budget",
-  storageBucket: "sparrow-budget.appspot.com",
-  messagingSenderId: "894285912383",
-  appId: "1:894285912383:web:c75b2f71cc5ea2a34a1b8a",
-  measurementId: "G-DRRHWERZCY"
+  apiKey: "AIzaSyCrBCsPWhsS8qWieNwva_TYHr4tY7A9OmE",
+  authDomain: "sparrow-648ac.firebaseapp.com",
+  projectId: "sparrow-648ac",
+  storageBucket: "sparrow-648ac.appspot.com",
+  messagingSenderId: "212971842173",
+  appId: "1:212971842173:web:7473957ae4962b64061f14",
+  measurementId: "G-SS6BGBLGZV"
 };
 
 // ensure that firebase was not initialized on startup
