@@ -3,13 +3,18 @@ import React, { Component } from 'react';
 import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert, ScrollView } from 'react-native';
 
 import store from '../app/store';
+import { addBudget } from '../app/actions/addBudget';
 
 import firebase from 'firebase';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
-export default class Register extends Component {
+// export default class Register extends Component {
+export class Register extends Component {
 
     constructor(props) {
         super(props);
@@ -20,19 +25,25 @@ export default class Register extends Component {
             username: '',
             email: '',
             password: '',
-            budgetInfo: []
+            // for budget info collection 
+            categories: store.reducer,
+            longTerm: store.longTerm,
+            shortTerm: store.shortTerm
         }
 
         // allow onSignUp() to access the state of the class
         this.onSignUp = this.onSignUp.bind(this);
-        this.sendBudgetInfoToFirestore = this.sendBudgetInfoToFirestore.bind(this);
     }
 
     // Handles firebase authentication and Firestore 
     onSignUp() {
         const { firstName, lastName, username, email, password } = this.state;
+        const { categories, longTerm, shortTerm } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
+
+                console.log(userCredentials);
+
                 const currUserID = firebase.auth().currentUser.uid;
                 firebase.firestore().collection("users")
                     .doc(currUserID)
@@ -42,8 +53,16 @@ export default class Register extends Component {
                         username: username,
                         email: email,
                     })
-                // console.log(userCredentials);
-                // this.sendBudgetInfoToFirestore();
+
+                // TODO: set budget information for users
+                // IDK if this works or not yet
+                const budgetData = {
+                    categories: categories,
+                    longTerm: longTerm,
+                    shortTerm: shortTerm
+                };
+                addBudget(budgetData);
+
             })
             .catch((error) => {
                 Alert.alert(
@@ -57,10 +76,6 @@ export default class Register extends Component {
             })
     }
 
-    // sendBudgetInfoToFirestore() {
-    //     this.budgetInfo = [store.reducer, store.longTerm, store.shortTerm];
-    //     console.log(this.budgetInfo);
-    // }
 
     render() {
         return (
@@ -269,4 +284,14 @@ export default class Register extends Component {
             </ScrollView>
         )
     }
-}
+};
+
+const mapStateToProps = (store) => ({
+    categories: store.reducer,
+    longTerm: store.longTerm,
+    shortTerm: store.shortTerm
+});
+
+const mapDispatchProps = (dispatch) => bindActionCreators({ addBudget }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(Register);
