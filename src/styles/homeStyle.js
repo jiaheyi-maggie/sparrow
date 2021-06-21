@@ -5,9 +5,10 @@ import { Platform } from 'react-native';
 const homeStyle = StyleSheet.create({
     title: {
         color: '#264653',
-        fontSize: 50,
-        textAlign: 'center',
-        marginTop: 60
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 40,
+        marginHorizontal: 20
     },
     tab: {
         position: 'absolute',
@@ -22,6 +23,7 @@ const homeStyle = StyleSheet.create({
     homeContainer: {
         backgroundColor: '#C2EABD', 
         flex:1,
+        paddingTop: (Platform.OS === 'ios') ? 0: 40,
     },
     shadow: {
         shadowColor: '#7F5DF0',
@@ -52,7 +54,15 @@ const homeStyle = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
-    }
+    },
+    subtitle: {
+        color: '#2A94AF',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 22,
+        paddingVertical: 5,
+        marginHorizontal: 20
+    },
  });
 
  export default homeStyle;

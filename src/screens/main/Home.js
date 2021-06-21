@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React  from 'react';
 import { Component } from 'react';
-import { Alert, Text, View, SafeAreaView } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 
-import store from '../../app/store';
 import { fetchUser } from '../../app/actions/fetchUser';
 
 // allow connect to redux
@@ -23,13 +22,15 @@ export class Home extends Component {
             console.log(currentUser);
             return (
                 <SafeAreaView style={styles.homeContainer}>
-                    <Text style={styles.title}> Hello, {currentUser.firstName}</Text>
+                    <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
+                    {/* TODO: access longTerm from store */}
+                    <Text style={styles.subtitle}>Your current long budget is: {currentUser.lastName} </Text>
                 </SafeAreaView>
             );
         } else {
             return (
                 <SafeAreaView style={styles.homeContainer}>
-                    <Text style={styles.title}> User does not exist in database</Text>
+                    <Text style={styles.subtitle}> User does not exist </Text>
                 </SafeAreaView>
             );
         }
@@ -40,7 +41,7 @@ export class Home extends Component {
 
         return(
             this.handleComponentDidMount(currentUser)
-        )
+        );
     }
 }
 
@@ -53,34 +54,3 @@ const mapStateToProps = (store) => ({
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Home);
-
-
-
-// const Home = () => {
-
-//     const [currentUser, setCurrentUser] = useState(null);
-
-//     // componentDidMount(): an async function
-//     useEffect(() => {
-//         fetchUser();
-//     });
-    
-
-//     const handleComponentDidMount = () => {
-//         if (currentUser) {
-//             return (
-//                 <SafeAreaView style={styles.homeContainer}>
-//                     <Text style={styles.title}> Hello, {currentUser.firstName}</Text>
-//                 </SafeAreaView>
-//             );
-//         } else {
-//             return (
-//                 Alert.alert("Current user is undefined!")
-//             );
-//         }
-//     }
-
-//     return (
-//         handleComponentDidMount()
-//     );
-// }

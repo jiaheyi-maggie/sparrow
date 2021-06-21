@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text, View , ScrollView } from 'react-native';
+import { Text, View , ScrollView, SafeAreaView } from 'react-native';
 import styles from '../../styles/homeStyle';
 
 const Notification = () => {
 
     return (
-        <ScrollView>
-            <Text style={styles.title}> This is Notification!</Text>
-        </ScrollView>
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.title}>Notification</Text>
+            <ScrollView style={styles.container}>
+                
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 export default Notification;

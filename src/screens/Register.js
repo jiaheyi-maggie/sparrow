@@ -6,7 +6,6 @@ import store from '../app/store';
 
 import firebase from 'firebase';
 
-
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
@@ -21,19 +20,19 @@ export default class Register extends Component {
             username: '',
             email: '',
             password: '',
+            budgetInfo: []
         }
 
         // allow onSignUp() to access the state of the class
         this.onSignUp = this.onSignUp.bind(this);
+        this.sendBudgetInfoToFirestore = this.sendBudgetInfoToFirestore.bind(this);
     }
 
     // Handles firebase authentication and Firestore 
     onSignUp() {
-        this.budgetInfo = [store.getState().reducer, store.getState().longTerm, store.getState().shortTerm];
         const { firstName, lastName, username, email, password } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
-                // DEBUG: Add user to firestore
                 const currUserID = firebase.auth().currentUser.uid;
                 firebase.firestore().collection("users")
                     .doc(currUserID)
@@ -44,6 +43,7 @@ export default class Register extends Component {
                         email: email,
                     })
                 // console.log(userCredentials);
+                // this.sendBudgetInfoToFirestore();
             })
             .catch((error) => {
                 Alert.alert(
@@ -56,6 +56,11 @@ export default class Register extends Component {
                 )
             })
     }
+
+    // sendBudgetInfoToFirestore() {
+    //     this.budgetInfo = [store.reducer, store.longTerm, store.shortTerm];
+    //     console.log(this.budgetInfo);
+    // }
 
     render() {
         return (

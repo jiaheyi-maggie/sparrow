@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import firebase from 'firebase';
 import styles from '../../styles/homeStyle';
+import Login from '../Login';
 
-const Settings = () => {
+const Settings = ({ navigation }) => {
 
-  // TODO: when logged out, return to SignIn page
   const loggingOut = () => {
     firebase.auth().signOut().then(() => {
       Alert.alert('User logged out');
+      navigation.navigate('signin');
     }
     ).catch ((err) => {
       Alert.alert('There is something wrong!', err.message);
@@ -18,6 +19,7 @@ const Settings = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Settings</Text>
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => loggingOut()}
