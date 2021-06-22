@@ -39,6 +39,7 @@ export class BudgetDetail extends Component {
                         justifyContent:'space-between',
                         alignItems: 'baseline'
                     }}>
+
                         {/* go back */}
                         <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                             <Image 
@@ -48,7 +49,7 @@ export class BudgetDetail extends Component {
                                     width: 23,
                                     height: 23,
                                     tintColor: '#7E9181',
-                                    marginLeft: 15,
+                                    marginLeft: 10,
                                 }}
                             />
                         </TouchableOpacity>
@@ -56,19 +57,20 @@ export class BudgetDetail extends Component {
                         {/* Display name */}
                         <Text style={styles.title}>Budget Detail</Text>
 
-                        {/* Log out */}
-                        <TouchableOpacity onPress={() => this.signOutUser()}>
+                        {/* Menu */}
+                        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                             <Image 
-                                source={require('../../assets/Icons/logout.png')}
+                                source={require('../../assets/Icons/menu.png')}
                                 resizeMode='contain'
                                 style={{
                                     width: 23,
                                     height: 23,
                                     tintColor: '#7E9181',
-                                    marginRight: 15,
+                                    marginRight: 15
                                 }}
                             />
                         </TouchableOpacity>
+
                     </View>
 
                     {/* budget overview card */}

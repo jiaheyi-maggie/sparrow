@@ -70,10 +70,10 @@ export class Home extends Component {
                             justifyContent:'space-between',
                             alignItems: 'baseline'
                         }}>
+                            
+                            
                             {/* Profile */}
-                            <TouchableOpacity
-                                onPress={() => this.props.navigation.navigate("Settings")}
-                            >
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Settings")}>
                                 <Image 
                                     source={require('../../assets/Icons/profile-user.png')}
                                     resizeMode='contain'
@@ -85,16 +85,15 @@ export class Home extends Component {
                                     }}
                                 />
                             </TouchableOpacity>
-                            
+
                             {/* Display name */}
                             <Text style={styles.title}>Hi, {currentUser.firstName}</Text>
-
-                            {/* Log out */}
-                            <TouchableOpacity
-                                onPress={() => this.signOutUser()}
-                            >
+                                                            
+                                                            
+                            {/* Menu */}
+                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                                 <Image 
-                                    source={require('../../assets/Icons/logout.png')}
+                                    source={require('../../assets/Icons/menu.png')}
                                     resizeMode='contain'
                                     style={{
                                         width: 23,
@@ -104,14 +103,44 @@ export class Home extends Component {
                                     }}
                                 />
                             </TouchableOpacity>
+
+                            {/* <View style={{flexDirection:'row', alignItems: 'baseline'}}>
+                                {/* Menu */}
+                                {/* <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                                    <Image 
+                                        source={require('../../assets/Icons/menu.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                            marginLeft: 15
+                                        }}
+                                    />
+                                </TouchableOpacity> */} 
+
+                                {/* Log out
+                                <TouchableOpacity onPress={() => this.signOutUser()}>
+                                    <Image 
+                                        source={require('../../assets/Icons/logout.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                            marginRight: 15
+                                        }}
+                                    />
+                                </TouchableOpacity> */}
+                            {/* </View> */}
+
                         </View>
+
                         {/* budget overview card */}
                         <Pressable 
                             style={({ pressed }) => [
                                 {
-                                    backgroundColor: pressed
-                                    ? 'aliceblue'
-                                    : 'white',
+                                    backgroundColor: pressed ? 'aliceblue' : 'white',
                                     borderRadius: 20,
                                     padding: 10,
                                     elevation: 2,
@@ -134,15 +163,12 @@ export class Home extends Component {
 
                             {/* View Details */}
                             <View style={styles.statusContainer}>
-                                <Text style={{
-                                    color: '#264653',
-                                    fontSize: 18,
-                                    marginHorizontal: 20
-                                }}>
-                                    View Details
-                                </Text> 
+                                <Text style={{color: '#264653',fontSize: 18,marginHorizontal: 20}}>View Details</Text> 
                             </View>
                         </Pressable>
+
+                        {/* TODO: Add Bar graph for actual spending */}
+
 
                     </ScrollView>
                 </SafeAreaView>
