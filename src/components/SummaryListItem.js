@@ -8,7 +8,7 @@ const SummaryListItem = ({ item }) => {
 
     /* Update sum according to 'value' */
     // fetch period from store
-    const period = store.getState().reducer[item.id].period;
+    const period = store.getState().reducer[item.id].period;  
     const value = store.getState().reducer[item.id].value;
     const optional = store.getState().reducer[item.id].optional;
 
@@ -18,41 +18,27 @@ const SummaryListItem = ({ item }) => {
         if (v === 0) {
             return 0;
         }
-        var val = 0; 
+        if (o !== 0) {
+            return v * o;
+        }
         switch (p) {
             case 'year':
                 return v;
             case 'quarter':
                 return v * 4;
             case 'month':
-                if (o != 0) {
-                    val = v * o;
-                } else {
-                    val = v * 12;
-                }
+                return v * 12;
             case 'week':
-                if (o != 0) {
-                    val = v * o; 
-                } else {
-                    val = v * 48;
-                }
+                return v * 48;
             case 'day':
-                if (o != 0) {
-                    val = v * o;
-                } else {
-                    val = v * 365;
-                }
+                return v * 365;
         }
-        return val; 
     }
 
-
-    const [val, setVal] = useState(value);
-
     // action to change sum
-    const changeCategorySum = sum => {
+    const updateSum = sum => {
         return {
-            type: 'changeCategorySum',
+            type: 'updateSum',
             payload: {item, sum}
         }
     }
@@ -68,8 +54,12 @@ const SummaryListItem = ({ item }) => {
     const onChangeNumber = value => {
         setVal(value);
         store.dispatch(updateValue(value));
-        store.dispatch(changeCategorySum(calculateSumBasedOnPeriod(period, value, optional)));
+
     }
+
+    const [val, setVal] = useState(value);
+    const sum = calculateSumBasedOnPeriod(period, val, optional);
+    store.dispatch(updateSum(sum));
 
     return (
         <View style={styles.listSummaryItem}>

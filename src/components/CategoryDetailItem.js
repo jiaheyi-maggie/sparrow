@@ -27,6 +27,7 @@ const CategoryDetailItem = ({ item }) => {
         };
     }
 
+
     // functions to handle input 
     const handleTextInput = (value) => {
         setValue(value);

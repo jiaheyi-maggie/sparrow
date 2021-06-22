@@ -20,6 +20,16 @@ export class BudgetDetail extends Component {
         this.props.fetchBudget();
     };
 
+    signOutUser = async () => {
+        try {
+            await firebase.auth().signOut();
+            Alert.alert('signed out');
+            this.props.navigation.navigate('signin');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     handleComponentDidMount(categories, shortTerm, longTerm) {
 
         return (
@@ -98,7 +108,7 @@ export class BudgetDetail extends Component {
                             </Text>
                             <Text style={styles.number}>${shortTerm[0]} / {shortTerm[1]}</Text>
                         </View>
-                        
+
                     </View>
 
                     {/* TODO: add pie chart for budget */}

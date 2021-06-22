@@ -21,7 +21,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const valState = [...state];
             valState[valueIndex].value = action.payload.value;
-            console.log(valState[valueIndex]);
+            // console.log(valState[valueIndex]);
             return valState;
 
         // for handling optional input (CategoryDetailItem)
@@ -31,7 +31,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const optionalState = [...state];
             optionalState[optionalIndex].optional = action.payload.value;
-            console.log(optionalState[optionalIndex]);
+            // console.log(optionalState[optionalIndex]);
             return optionalState;
 
         // for handling period selection (ModalPicker)
@@ -41,17 +41,16 @@ export default reducer = (state = categoriesWithValue, action) => {
             );
             const periodState = [...state];
             periodState[periodIndex].period = action.payload.period;
-            console.log(periodState[periodIndex]);
+            // console.log(periodState[periodIndex]);
             return periodState;
-
-        // for handling text input (SummaryListItem)
-        case 'changeCategorySum':
-            const sumIndex = state.findIndex(
-                (category) => category.id === action.payload.item.id
+        case 'updateSum' :
+            const i = state.findIndex(
+                (category) => category.id == action.payload.item.id
             );
-            const sumState = [...state];
-            sumState[sumIndex].sum = action.payload.sum;
-            return sumState;
+            return ([
+                ...state,
+                state[i].sum = action.payload.sum
+            ]);
         default: 
             return state;
     }

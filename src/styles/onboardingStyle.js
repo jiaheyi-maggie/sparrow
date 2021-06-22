@@ -6,7 +6,7 @@ const onboardingStyle = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   // title for onboarding
   title: {
