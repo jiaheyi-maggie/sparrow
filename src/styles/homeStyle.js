@@ -80,6 +80,25 @@ const homeStyle = StyleSheet.create({
         paddingVertical: 5,
         marginHorizontal: 20
     },
+    listContainer: {
+        backgroundColor:'#FFF4CB', 
+        margin: 5, 
+        flexDirection: 'row', 
+        padding: 12, 
+        borderRadius: 15, 
+        justifyContent: 'space-between',
+        marginHorizontal: 20
+    },
+    listText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color:'#264653'
+    },
+    listText2: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color:'#E76F51'
+    }
  });
 
  export default homeStyle;

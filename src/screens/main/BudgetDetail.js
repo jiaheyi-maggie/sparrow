@@ -125,8 +125,8 @@ export class BudgetDetail extends Component {
                     {/* Add Categories Button */}
                     <View style={{alignItems: 'center'}}>
                         {/* TODO: update firebase collection("budgets") */}
-                        <TouchableOpacity style={{backgroundColor:'#2A94AF', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                            <Text style={{fontSize: 16, color: '#FFF4CB', fontWeight: 'bold'}}> Add Categories</Text>
+                        <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -135,17 +135,9 @@ export class BudgetDetail extends Component {
                         data={usefulCategories}
                         renderItem={({ item }) => {
                             return (
-                                <View style={{
-                                    backgroundColor:'#FFF4CB', 
-                                    margin: 5, 
-                                    flexDirection: 'row', 
-                                    padding: 10, 
-                                    borderRadius: 15, 
-                                    justifyContent: 'space-between',
-                                    marginHorizontal: 20
-                                }}>
-                                    <Text>{item.title}</Text> 
-                                    <Text>$ {item.sum}</Text>
+                                <View style={styles.listContainer}>
+                                    <Text style={styles.listText}>{item.title}</Text> 
+                                    <Text style={styles.listText2}>$ {item.sum}</Text>
                                 </View>
                                 // <BudgetDetailItem item={item} />
                             );
