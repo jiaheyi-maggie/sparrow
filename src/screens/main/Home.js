@@ -1,9 +1,9 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Alert } from 'react-native';
 
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
-import SummaryListItem from '../../components/SummaryListItem';
+import firebase from 'firebase';
 
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 
 import styles from '../../styles/homeStyle';
-import store from '../../app/store';
+
 
 
 export class Home extends Component {
@@ -42,6 +42,15 @@ export class Home extends Component {
         this.props.fetchBudget();
     }
 
+    signOutUser = async () => {
+        try {
+            await firebase.auth().signOut();
+            Alert.alert('signed out');
+            this.props.navigation.navigate('signin');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         if (currentUser) {
@@ -52,12 +61,50 @@ export class Home extends Component {
             const d = new Date();
             const m = monthNames[d.getMonth()];
             const y = d.getFullYear();
+
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
-                        <TouchableOpacity></TouchableOpacity>
-                        <Text style={styles.title}>Hi, {currentUser.firstName}</Text>
+                        <View style={{
+                            flexDirection: 'row', 
+                            justifyContent:'space-between',
+                            alignItems: 'baseline'
+                        }}>
+                            {/* Profile */}
+                            <TouchableOpacity
+                                onPress={() => this.props.navigation.navigate("Settings")}
+                            >
+                                <Image 
+                                    source={require('../../assets/Icons/profile-user.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 33,
+                                        height: 33,
+                                        tintColor: '#264653',
+                                        marginLeft: 15
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            
+                            {/* Display name */}
+                            <Text style={styles.title}>Hi, {currentUser.firstName}</Text>
 
+                            {/* Log out */}
+                            <TouchableOpacity
+                                onPress={() => this.signOutUser()}
+                            >
+                                <Image 
+                                    source={require('../../assets/Icons/logout.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 28,
+                                        height: 28,
+                                        tintColor: '#264653',
+                                        marginRight: 15
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        </View>
                         {/* budget overview card */}
                         <Pressable 
                             style={({ pressed }) => [
