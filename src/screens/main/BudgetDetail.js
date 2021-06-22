@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
 
 import { fetchBudget } from '../../app/actions/fetchBudget';
 
@@ -49,7 +49,6 @@ export class BudgetDetail extends Component {
                                     height: 23,
                                     tintColor: '#7E9181',
                                     marginLeft: 15,
-                                    // marginTop: 10
                                 }}
                             />
                         </TouchableOpacity>
@@ -67,7 +66,6 @@ export class BudgetDetail extends Component {
                                     height: 23,
                                     tintColor: '#7E9181',
                                     marginRight: 15,
-                                    // marginTop: 10
                                 }}
                             />
                         </TouchableOpacity>
