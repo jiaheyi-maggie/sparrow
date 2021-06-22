@@ -47,10 +47,12 @@ export default reducer = (state = categoriesWithValue, action) => {
             const i = state.findIndex(
                 (category) => category.id == action.payload.item.id
             );
-            return ([
-                ...state,
-                state[i].sum = action.payload.sum
-            ]);
+            const sumState = [...state];
+            sumState[i].sum = action.payload.sum;
+            // return ([
+            //     ...state,
+            //     state[i].sum = action.payload.sum
+            // ]);
         default: 
             return state;
     }

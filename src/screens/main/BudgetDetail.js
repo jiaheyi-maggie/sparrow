@@ -1,6 +1,8 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
 
+import BudgetDetailItem from '../../components/main/BudgetDetailItem';
+
 import { fetchBudget } from '../../app/actions/fetchBudget';
 
 // allow connect to redux
@@ -30,6 +32,11 @@ export class BudgetDetail extends Component {
     }
 
     handleComponentDidMount(categories, shortTerm, longTerm) {
+        const usefulCategories = categories.filter((obj) => {
+            return obj.sum !== 0;
+        });
+
+        console.log(usefulCategories);
 
         return (
             <SafeAreaView style={styles.container}>
@@ -115,19 +122,32 @@ export class BudgetDetail extends Component {
 
                     {/* TODO: add pie chart for budget */}
 
+                    {/* Add Categories Button */}
+                    <View style={{alignItems: 'center'}}>
+                        {/* TODO: update firebase collection("budgets") */}
+                        <TouchableOpacity style={{backgroundColor:'#2A94AF', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                            <Text style={{fontSize: 16, color: '#FFF4CB', fontWeight: 'bold'}}> Add Categories</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                    {/* dummy flatlist */}
+                    {/* List */}
                     <FlatList 
-                        data={categories}
+                        data={usefulCategories}
                         renderItem={({ item }) => {
-
-                            // TODO: BudgetDetailItem
                             return (
-                                <View>
+                                <View style={{
+                                    backgroundColor:'#FFF4CB', 
+                                    margin: 5, 
+                                    flexDirection: 'row', 
+                                    padding: 10, 
+                                    borderRadius: 15, 
+                                    justifyContent: 'space-between',
+                                    marginHorizontal: 20
+                                }}>
                                     <Text>{item.title}</Text> 
-                                    <Text>{item.sum}</Text>
+                                    <Text>$ {item.sum}</Text>
                                 </View>
-                                
+                                // <BudgetDetailItem item={item} />
                             );
                         }}
                         keyExtractor={item => item.id}

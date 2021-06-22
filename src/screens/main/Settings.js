@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
 
 import { fetchBudget } from '../../app/actions/fetchBudget';
+import firebase from 'firebase';
 
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -22,7 +23,6 @@ export class Settings extends Component {
   signOutUser = async () => {
     try {
       await firebase.auth().signOut();
-      Alert.alert('signed out');
       this.props.navigation.navigate('signin');
     } catch (error) {
       console.log(error);
@@ -56,6 +56,7 @@ export class Settings extends Component {
             {/* Display name */}
             <Text style={styles.title}>Settings</Text>
 
+          <View style={{flexDirection:'row'}}>
             {/* Menu */}
             <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
               <Image 
@@ -69,8 +70,23 @@ export class Settings extends Component {
                 }}
               />
             </TouchableOpacity>
-            
+
+            {/* log out */}
+            <TouchableOpacity onPress={() => this.signOutUser()}>
+              <Image 
+                source={require('../../assets/Icons/logout.png')}
+                resizeMode='contain'
+                style={{
+                  width: 23,
+                  height: 23,
+                  tintColor: '#7E9181',
+                  marginRight: 15
+                }}
+              />
+            </TouchableOpacity>
           </View>
+        </View>
+
         </ScrollView>
       </SafeAreaView>
     );
