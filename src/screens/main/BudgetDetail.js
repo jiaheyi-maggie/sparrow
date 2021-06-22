@@ -137,7 +137,7 @@ export class BudgetDetail extends Component {
                             return (
                                 <View style={styles.listContainer}>
                                     <Text style={styles.listText}>{item.title}</Text> 
-                                    <Text style={styles.listText2}>$ {item.sum}</Text>
+                                    <Text style={styles.listText2}>$ {item.value} / {item.period} </Text>
                                 </View>
                                 // <BudgetDetailItem item={item} />
                             );
