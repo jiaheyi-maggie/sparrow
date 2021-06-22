@@ -2,21 +2,20 @@ import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-// import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './Home';
 
 import Notification from './Notification';
 import styles from '../../styles/homeStyle';
 import Settings from './Settings';
+import BudgetDetail from './BudgetDetail';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
-// const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-const HomeNavigation = () => {
-    // TODO: update badget
+const HomeTab = () => {
     return (
-        // <Drawer.Navigator initialRouteName="Home">
         <Tab.Navigator
             tabBarOptions={{
                 showLabel: false,
@@ -107,7 +106,16 @@ const HomeNavigation = () => {
                 }} 
             />
         </Tab.Navigator>
-        // </Drawer.Navigator>
+    );
+}
+
+const HomeNavigation = () => {
+    // TODO: update badget
+    return (
+        <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="Home" component={HomeTab} />
+            <Drawer.Screen name="Budget Detail" component={BudgetDetail} />
+        </Drawer.Navigator>
     );
 };
 
