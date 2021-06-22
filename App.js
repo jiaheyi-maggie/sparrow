@@ -114,7 +114,6 @@ export class App extends Component {
               headerMode='none'
               initialRouteName='home'>
               <Stack.Screen name='home' component={HomeNavigation}/>
-              <Stack.Screen name='signin' component={Login} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

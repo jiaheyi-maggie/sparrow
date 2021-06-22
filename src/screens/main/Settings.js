@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import firebase from 'firebase';
 import styles from '../../styles/homeStyle';
-import Login from '../Login';
+
 
 const Settings = ({ navigation }) => {
 

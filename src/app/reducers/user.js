@@ -1,8 +1,8 @@
 const initialState = {
     currentUser: null,
     categories: [],
-    longTerm: 0,
-    shortTerm: 0
+    longTerm: [],
+    shortTerm: []
 }
 
 // use thunk to call firebase API
@@ -13,6 +13,13 @@ export default user = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.currentUser
+            }
+        case "BUDGET_STATE_CHANGE":
+            return {
+                ...state,
+                // categories: action.categories,
+                longTerm: action.longTerm,
+                shortTerm: action.shortTerm
             }
         default:
             return state; 

@@ -11,6 +11,7 @@ import Settings from './Settings';
 const Tab = createBottomTabNavigator();
 
 const HomeNavigation = () => {
+    // TODO: update badget
     return (
         <Tab.Navigator
             tabBarOptions={{
@@ -23,10 +24,11 @@ const HomeNavigation = () => {
                     elevation: 0,
                     backgroundColor: '#fff',
                     borderRadius: 15,
-                    height: 80,
+                    height: 60,
                     ...styles.shadow
                 }
               }}
+            
             initialRouteName='Home'
         >
             <Tab.Screen name='Home' component={Home} 
@@ -100,8 +102,6 @@ const HomeNavigation = () => {
                     ),
                 }} 
             />
-
-
         </Tab.Navigator>
     );
 };

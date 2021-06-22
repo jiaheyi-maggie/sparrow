@@ -1,8 +1,8 @@
-import React  from 'react';
-import { Component } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import React, { Component }  from 'react';
+import { Text, SafeAreaView, View, ScrollView } from 'react-native';
 
 import { fetchUser } from '../../app/actions/fetchUser';
+import { fetchBudget } from '../../app/actions/fetchBudget';
 
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -15,38 +15,50 @@ import store from '../../app/store';
 
 export class Home extends Component {
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state ={
-            categories: [],
-            longTerm: 0,
-            shortTerm: 0
-        }
+    //     this.state ={
+    //         categories: [],
+    //         longTerm: 0,
+    //         shortTerm: 0
+    //     }
 
         // redux store listener
-        store.subscribe(() => {
-            this.setState({
-                categories: store.getState().reducer,
-                longTerm: store.getState().longTerm,
-                shortTerm: store.getState().shortTerm
-            })
-        })
-    }
+        // store.subscribe(() => {
+        //     this.setState({
+        //         categories: store.getState().reducer,
+        //         longTerm: store.getState().longTerm,
+        //         shortTerm: store.getState().shortTerm
+        //     })
+        // })
+    // }
 
     componentDidMount() {
         this.props.fetchUser();
+        this.props.fetchBudget();
     }
 
-    handleComponentDidMount(currentUser) {
+    handleComponentDidMount(currentUser, shortTerm, longTerm) {
         if (currentUser) {
-            console.log(currentUser);
+            // console.log(currentUser);
             return (
                 <SafeAreaView style={styles.homeContainer}>
+                    <ScrollView>
                     <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
-                    {/* TODO: access longTerm from store */}
-                    <Text style={styles.subtitle}>Current {this.state.shortTerm[1]}ly budget: ${this.state.shortTerm[0]} </Text>
-                    <Text style={styles.subtitle}>Current {this.state.longTerm[1]}ly budget: ${this.state.longTerm[0]} </Text>
+
+                        <View style={styles.statusContainer}>
+                            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                                <Text style={styles.subtitle}>Current {shortTerm[1]}ly budget:</Text>
+                                <Text style={styles.number}>${shortTerm[0]}</Text>
+                            </View>
+
+                            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                                <Text style={styles.subtitle}>Current {longTerm[1]}ly budget:</Text>
+                                <Text style={styles.number}>${longTerm[0]}</Text>
+                            </View>
+                        </View>
+                    </ScrollView>
                 </SafeAreaView>
             );
         } else {
@@ -59,20 +71,22 @@ export class Home extends Component {
     }
 
     render() {
-        const { currentUser } = this.props;
+        const { currentUser, shortTerm, longTerm } = this.props;
 
         return(
-            this.handleComponentDidMount(currentUser)
+            this.handleComponentDidMount(currentUser, shortTerm, longTerm)
         );
     }
 }
 
 // allow access to data in Home component
 const mapStateToProps = (store) => ({
-    currentUser: store.user.currentUser
+    currentUser: store.user.currentUser,
+    longTerm: store.user.longTerm,
+    shortTerm: store.user.shortTerm
 });
 
 // bind component to redux
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Home);

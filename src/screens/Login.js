@@ -1,7 +1,8 @@
 // a class component for Login (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image } from 'react-native';
+import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView } from 'react-native';
 import firebase from 'firebase';
+import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
@@ -13,7 +14,19 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            categories: [],
+            longTerm: 0,
+            shortTerm:0
         }
+
+        // redux store listener
+        store.subscribe(() => {
+            this.setState({
+                categories: store.getState().reducer,
+                longTerm: store.getState().longTerm,
+                shortTerm: store.getState().shortTerm
+            })
+        })
 
         // allow onSignUp() to access the state of the class
         this.onSignUp = this.onSignIn.bind(this);
@@ -35,12 +48,14 @@ export default class Login extends Component {
 
     render() {
         return (
+            <ScrollView>
             <SafeAreaView style={{
                 backgroundColor: '#FFF4CB',
                 flexDirection: 'column',
                 flex: 1,
                 padding: 20
             }}>
+                
                 <View style={{marginTop: 40, marginBottom: 15}}> 
                     <Text style={{
                         color: '#264653',
@@ -146,6 +161,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
                 
             </SafeAreaView>
+            </ScrollView>
         )
     }
 }

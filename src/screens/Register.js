@@ -27,8 +27,8 @@ export default class Register extends Component {
             password: '',
             // for budget info collection 
             // categories: store.getState().reducer,
-            // longTerm: store.getState().longTerm,
-            // shortTerm: store.getState().shortTerm
+            longTerm: 0,
+            shortTerm: 0
         }
 
         // allow onSignUp() to access the state of the class
@@ -47,7 +47,7 @@ export default class Register extends Component {
                         firstName: firstName,
                         lastName: lastName,
                         username: username,
-                        email: email,
+                        email: email
                     })
                 
                 // add store data

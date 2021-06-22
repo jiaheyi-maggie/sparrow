@@ -63,6 +63,22 @@ const homeStyle = StyleSheet.create({
         paddingVertical: 5,
         marginHorizontal: 20
     },
+    statusContainer: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        backgroundColor: "#fff",
+        margin: 10
+    },
+    number: {
+        // color: '#562C2C',
+        color: '#6D5A72',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 22,
+        paddingVertical: 5,
+        marginHorizontal: 20
+    },
  });
 
  export default homeStyle;
