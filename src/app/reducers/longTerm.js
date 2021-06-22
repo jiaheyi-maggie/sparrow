@@ -13,7 +13,6 @@ export default longTerm = (state = [0, 'year'], action) => {
         case 'changeLongTermPeriod':
             const periodState = [...state];
             periodState[1] = action.payload;
-            console.log(periodState);
             return periodState; 
         default:
             return state;

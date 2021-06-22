@@ -14,8 +14,6 @@ import store from './src/app/store';
 
 import * as firebase from 'firebase';
 
-
-
 // initialize navigation 
 const Stack = createStackNavigator();
 

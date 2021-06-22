@@ -7,8 +7,9 @@ const homeStyle = StyleSheet.create({
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 30,
-        marginHorizontal: 20
+        fontSize: 25,
+        marginHorizontal: 20,
+        marginTop: 5,
     },
     tab: {
         position: 'absolute',
@@ -59,13 +60,13 @@ const homeStyle = StyleSheet.create({
         color: '#2A94AF',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 22,
+        fontSize: 20,
         paddingVertical: 5,
         marginHorizontal: 20
     },
     statusContainer: {
         borderRadius: 20,
-        padding: 10,
+        padding: 7,
         elevation: 2,
         backgroundColor: "#FFF4CB",
         margin: 10,
@@ -75,7 +76,7 @@ const homeStyle = StyleSheet.create({
         color: '#562C2C',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 22,
+        fontSize: 20,
         paddingVertical: 5,
         marginHorizontal: 20
     },

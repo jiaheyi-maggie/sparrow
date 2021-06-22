@@ -78,9 +78,9 @@ export class Home extends Component {
                                     source={require('../../assets/Icons/profile-user.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 33,
-                                        height: 33,
-                                        tintColor: '#264653',
+                                        width: 27,
+                                        height: 27,
+                                        tintColor: '#7E9181',
                                         marginLeft: 15
                                     }}
                                 />
@@ -97,9 +97,9 @@ export class Home extends Component {
                                     source={require('../../assets/Icons/logout.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 28,
-                                        height: 28,
-                                        tintColor: '#264653',
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181',
                                         marginRight: 15
                                     }}
                                 />
@@ -137,9 +137,9 @@ export class Home extends Component {
                                 <Text style={{
                                     color: '#264653',
                                     fontSize: 18,
-                                    marginHorizontal: 20}}
-                                >
-                                        View Details
+                                    marginHorizontal: 20
+                                }}>
+                                    View Details
                                 </Text> 
                             </View>
                         </Pressable>
