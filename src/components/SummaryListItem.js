@@ -6,9 +6,7 @@ import styles from '../styles/onboardingStyle';
 
 const SummaryListItem = ({ item }) => {
 
-    /* Update sum according to 'value' */
-    // fetch period from store
-    const period = store.getState().reducer[item.id].period;  
+    const period = store.getState().reducer[item.id].period;
     const value = store.getState().reducer[item.id].value;
     const optional = store.getState().reducer[item.id].optional;
 

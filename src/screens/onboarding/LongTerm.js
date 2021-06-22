@@ -36,41 +36,34 @@ const LongTerm = ({ navigation }) => {
         if (v === 0) {
             return 0;
         }
-        var val = 0;
         switch (p) {
             case 'year':
-                val = Math.floor(v / 12);
-                return val;
+                return Math.floor(v / 12);
             case 'quarter':
-                if (o != 0) {
-                    val = Math.floor(v * o / 12);
+                if (o !== 0) {
+                    return Math.floor(v * o / 12);
                 } else {
-                    val = Math.floor(v / 4);
+                    return Math.floor(v / 4);
                 }
-                return val;
             case 'month':
-                if (o != 0) {
-                    val = Math.floor(v * o / 12);
+                if (o !== 0) {
+                    return Math.floor(v * o / 12);
                 } else {
-                    val = v; 
+                    return v; 
                 }
-                return val;
             case 'week':
-                if (o != 0) {
-                    val = Math.floor(v * o / 12);
+                if (o !== 0) {
+                    return Math.floor(v * o / 12);
                 } else {
-                    val = v * 4;
+                    return v * 4;
                 }
-                return val;
             case 'day':
-                if (o != 0) {
-                    val = Math.floor(v * o / 12);
+                if (o !== 0) {
+                    return Math.floor(v * o / 12);
                 } else {
-                    val = v * 30;
+                    return v * 30;
                 }
-                return val;
         }
-        return val;
     }
 
     // sum categories' calculated monthly value

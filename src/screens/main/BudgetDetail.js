@@ -116,10 +116,17 @@ export class BudgetDetail extends Component {
 
                     <FlatList 
                         data={categories}
-                        renderItem={({ item }) => (
+                        renderItem={({ item }) => {
+                            
                             // TODO: BudgetDetailItem
-                            <SummaryListItem item={item}  />
-                        )}
+                            return (
+                                <View>
+                                    <Text>{item.title}</Text> 
+                                    <Text>{item.sum}</Text>
+                                </View>
+                                
+                            );
+                        }}
                         keyExtractor={item => item.id}
                         contentContainerStyle={{
                             flexGrow: 1,
