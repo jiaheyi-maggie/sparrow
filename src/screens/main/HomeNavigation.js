@@ -87,7 +87,7 @@ const HomeTab = () => {
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 
                             <Image 
-                                source={require('../../assets/Icons/profile.png')}
+                                source={require('../../assets/Icons/settings.png')}
                                 resizeMode='contain'
                                 style={{
                                     width: 25,

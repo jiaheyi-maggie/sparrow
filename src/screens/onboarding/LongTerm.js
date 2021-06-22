@@ -114,7 +114,7 @@ const LongTerm = ({ navigation }) => {
                     <Picker term={'long'}/>
                 </View>
 
-                <View style={{height: 300}}><Text></Text></View>
+                <View style={{height: 270}}><Text></Text></View>
             </View>
 
 

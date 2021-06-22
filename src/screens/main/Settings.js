@@ -1,36 +1,97 @@
-import React from 'react';
-import { Text, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import React, { Component }  from 'react';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
 
-import firebase from 'firebase';
+import { fetchBudget } from '../../app/actions/fetchBudget';
+
+// allow connect to redux
+import { connect } from 'react-redux';
+// bind actions to components
+import { bindActionCreators } from 'redux';
+
+import { withNavigation } from 'react-navigation';
 
 import styles from '../../styles/homeStyle';
 
 
-const Settings = ({ navigation }) => {
+export class Settings extends Component {
 
-  // TODO: navigate to sign in
-  const loggingOut = () => {
-    firebase.auth().signOut().then(() => {
-      Alert.alert('User logged out');
-      navigation.navigate('signin');
+  componentDidMount() {
+    this.props.fetchBudget();
+  };
+
+  signOutUser = async () => {
+    try {
+      await firebase.auth().signOut();
+      Alert.alert('signed out');
+      this.props.navigation.navigate('signin');
+    } catch (error) {
+      console.log(error);
     }
-    ).catch ((err) => {
-      Alert.alert('There is something wrong!', err.message);
-    });
+  };
+
+  handleComponentDidMount(categories, shortTerm, longTerm) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <View style={{
+            flexDirection: 'row', 
+            justifyContent:'space-between',
+            alignItems: 'baseline'
+            }}>
+            {/* go back */}
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <Image 
+                source={require('../../assets/Icons/back.png')}
+                resizeMode='contain'
+                style={{
+                  width: 23,
+                  height: 23,
+                  tintColor: '#7E9181',
+                  marginLeft: 15,
+                  marginTop: 10
+                }}
+              />
+            </TouchableOpacity>
+
+            {/* Display name */}
+            <Text style={styles.title}>Settings</Text>
+
+            {/* Log out */}
+            <TouchableOpacity onPress={() => this.signOutUser()}>
+              <Image 
+                source={require('../../assets/Icons/logout.png')}
+                resizeMode='contain'
+                style={{
+                  width: 23,
+                  height: 23,
+                  tintColor: '#7E9181',
+                  marginRight: 15,
+                  marginTop: 10
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
   }
 
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={() => loggingOut()}
-      > 
-        <Text style={styles.buttonText}> Log Out</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-
-  );
+  render() {
+    const { categories, shortTerm, longTerm } = this.props;
+    return(
+      this.handleComponentDidMount(categories, shortTerm, longTerm)
+    );
+  }
 }
-export default Settings;
+
+// allow access to data in Home component
+const mapStateToProps = (store) => ({
+  categories: store.user.categories,
+  longTerm: store.user.longTerm,
+  shortTerm: store.user.shortTerm
+});
+
+// bind component to redux
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(withNavigation(Settings));

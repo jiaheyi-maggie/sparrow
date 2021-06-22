@@ -2,7 +2,6 @@ import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
 
 import { fetchBudget } from '../../app/actions/fetchBudget';
-import SummaryListItem from '../../components/SummaryListItem';
 
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -40,7 +39,7 @@ export class BudgetDetail extends Component {
                         justifyContent:'space-between',
                         alignItems: 'baseline'
                     }}>
-                        {/* Profile */}
+                        {/* go back */}
                         <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                             <Image 
                                 source={require('../../assets/Icons/back.png')}
@@ -50,10 +49,13 @@ export class BudgetDetail extends Component {
                                     height: 23,
                                     tintColor: '#7E9181',
                                     marginLeft: 15,
-                                    marginTop: 10
+                                    // marginTop: 10
                                 }}
                             />
                         </TouchableOpacity>
+
+                        {/* Display name */}
+                        <Text style={styles.title}>Budget Detail</Text>
 
                         {/* Log out */}
                         <TouchableOpacity onPress={() => this.signOutUser()}>
@@ -65,7 +67,7 @@ export class BudgetDetail extends Component {
                                     height: 23,
                                     tintColor: '#7E9181',
                                     marginRight: 15,
-                                    marginTop: 10
+                                    // marginTop: 10
                                 }}
                             />
                         </TouchableOpacity>
@@ -91,7 +93,7 @@ export class BudgetDetail extends Component {
                             }}>
                                 Long Term: 
                             </Text>
-                            <Text style={styles.number}>${longTerm[0]} / {longTerm[1]}</Text>
+                            <Text style={styles.number}>$ {longTerm[0]} / {longTerm[1]}</Text>
                         </View>
 
                         {/* Short Term */}
@@ -106,7 +108,7 @@ export class BudgetDetail extends Component {
                             }}>
                                 Short Term: 
                             </Text>
-                            <Text style={styles.number}>${shortTerm[0]} / {shortTerm[1]}</Text>
+                            <Text style={styles.number}>$ {shortTerm[0]} / {shortTerm[1]}</Text>
                         </View>
 
                     </View>
@@ -114,10 +116,11 @@ export class BudgetDetail extends Component {
                     {/* TODO: add pie chart for budget */}
 
 
+                    {/* dummy flatlist */}
                     <FlatList 
                         data={categories}
                         renderItem={({ item }) => {
-                            
+
                             // TODO: BudgetDetailItem
                             return (
                                 <View>
@@ -132,6 +135,7 @@ export class BudgetDetail extends Component {
                             flexGrow: 1,
                         }}
                     />  
+
                 </ScrollView>
             </SafeAreaView>
         );
