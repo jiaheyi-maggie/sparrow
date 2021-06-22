@@ -14,7 +14,7 @@ import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
 // export default class Register extends Component {
-export class Register extends Component {
+export default class Register extends Component {
 
     constructor(props) {
         super(props);
@@ -26,9 +26,9 @@ export class Register extends Component {
             email: '',
             password: '',
             // for budget info collection 
-            categories: store.reducer,
-            longTerm: store.longTerm,
-            shortTerm: store.shortTerm
+            // categories: store.getState().reducer,
+            // longTerm: store.getState().longTerm,
+            // shortTerm: store.getState().shortTerm
         }
 
         // allow onSignUp() to access the state of the class
@@ -38,12 +38,8 @@ export class Register extends Component {
     // Handles firebase authentication and Firestore 
     onSignUp() {
         const { firstName, lastName, username, email, password } = this.state;
-        const { categories, longTerm, shortTerm } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
-
-                console.log(userCredentials);
-
                 const currUserID = firebase.auth().currentUser.uid;
                 firebase.firestore().collection("users")
                     .doc(currUserID)
@@ -53,16 +49,15 @@ export class Register extends Component {
                         username: username,
                         email: email,
                     })
-
-                // TODO: set budget information for users
-                // IDK if this works or not yet
-                const budgetData = {
-                    categories: categories,
-                    longTerm: longTerm,
-                    shortTerm: shortTerm
-                };
-                addBudget(budgetData);
-
+                
+                // add store data
+                firebase.firestore().collection("budgets")
+                    .doc(currUserID)
+                    .set({
+                        // categories: store.getState().categories,
+                        longTerm: store.getState().longTerm,
+                        shortTerm: store.getState().shortTerm
+                    })
             })
             .catch((error) => {
                 Alert.alert(
@@ -286,12 +281,12 @@ export class Register extends Component {
     }
 };
 
-const mapStateToProps = (store) => ({
-    categories: store.reducer,
-    longTerm: store.longTerm,
-    shortTerm: store.shortTerm
-});
+// const mapStateToProps = (store) => ({
+//     categories: store.getState().reducer,
+//     longTerm: store.getState().longTerm,
+//     shortTerm: store.getState().shortTerm
+// });
 
-const mapDispatchProps = (dispatch) => bindActionCreators({ addBudget }, dispatch);
+// const mapDispatchProps = (dispatch) => bindActionCreators({ addBudget }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchProps)(Register);
+// export default connect(mapStateToProps, mapDispatchProps)(Register);

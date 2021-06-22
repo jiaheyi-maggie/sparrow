@@ -10,9 +10,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import styles from '../../styles/homeStyle';
+import store from '../../app/store';
 
 
 export class Home extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state ={
+            categories: [],
+            longTerm: 0,
+            shortTerm: 0
+        }
+
+        // redux store listener
+        store.subscribe(() => {
+            this.setState({
+                categories: store.getState().reducer,
+                longTerm: store.getState().longTerm,
+                shortTerm: store.getState().shortTerm
+            })
+        })
+    }
+
     componentDidMount() {
         this.props.fetchUser();
     }
@@ -24,7 +45,8 @@ export class Home extends Component {
                 <SafeAreaView style={styles.homeContainer}>
                     <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
                     {/* TODO: access longTerm from store */}
-                    <Text style={styles.subtitle}>Your current long budget is: {currentUser.lastName} </Text>
+                    <Text style={styles.subtitle}>Current {this.state.shortTerm[1]}ly budget: ${this.state.shortTerm[0]} </Text>
+                    <Text style={styles.subtitle}>Current {this.state.longTerm[1]}ly budget: ${this.state.longTerm[0]} </Text>
                 </SafeAreaView>
             );
         } else {

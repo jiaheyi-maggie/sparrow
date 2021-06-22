@@ -14,7 +14,7 @@ const BudgetOverview = ({ navigation }) => {
     const list = store.getState().reducer;
     const longTermValue = store.getState().longTerm[0];
     const shortTermValue = store.getState().shortTerm[0];
-    
+
     return (
         <SafeAreaView style={{backgroundColor: '#fff'}}>
             <ScrollView style={styles.scrollviewContainer}>
