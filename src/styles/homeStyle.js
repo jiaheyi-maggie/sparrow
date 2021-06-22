@@ -7,7 +7,7 @@ const homeStyle = StyleSheet.create({
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 40,
+        fontSize: 30,
         marginHorizontal: 20
     },
     tab: {
@@ -67,12 +67,12 @@ const homeStyle = StyleSheet.create({
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: "#fff",
-        margin: 10
+        backgroundColor: "#FFF4CB",
+        margin: 10,
+        alignItems: 'center'
     },
     number: {
-        // color: '#562C2C',
-        color: '#6D5A72',
+        color: '#562C2C',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 22,

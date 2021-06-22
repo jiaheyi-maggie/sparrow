@@ -45,18 +45,25 @@ export class Home extends Component {
 
     handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         if (currentUser) {
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            const d = new Date();
+            const m = monthNames[d.getMonth()];
+            const y = d.getFullYear();
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
                         <TouchableOpacity></TouchableOpacity>
-                        <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
+                        <Text style={styles.title}>Hi, {currentUser.firstName}</Text>
 
                         {/* budget overview card */}
                         <Pressable 
                             style={({ pressed }) => [
                                 {
                                     backgroundColor: pressed
-                                    ? 'rgb(210, 230, 255)'
+                                    ? 'aliceblue'
                                     : 'white',
                                     borderRadius: 20,
                                     padding: 10,
@@ -66,16 +73,30 @@ export class Home extends Component {
                             ]} 
                             onPress={()=>{this.props.navigation.navigate("Budget Detail")} 
                         }>
+                            {/* Short Term */}
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                                <Text style={styles.subtitle}>Current {shortTerm[1]}ly budget:</Text>
-                                <Text style={styles.number}>${shortTerm[0]}</Text>
+                                <Text style={styles.subtitle}>{m} {shortTerm[1]}ly budget:</Text>
+                                <Text style={styles.number}>$ {shortTerm[0]}</Text>
                             </View>
 
+                            {/* Long Term */}
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                                <Text style={styles.subtitle}>Current {longTerm[1]}ly budget:</Text>
-                                <Text style={styles.number}>${longTerm[0]}</Text>
+                                <Text style={styles.subtitle}>{y} {longTerm[1]}ly budget:</Text>
+                                <Text style={styles.number}>$ {longTerm[0]}</Text>
+                            </View>
+
+                            {/* View Details */}
+                            <View style={styles.statusContainer}>
+                                <Text style={{
+                                    color: '#264653',
+                                    fontSize: 18,
+                                    marginHorizontal: 20}}
+                                >
+                                        View Details
+                                </Text> 
                             </View>
                         </Pressable>
+
                     </ScrollView>
                 </SafeAreaView>
             );

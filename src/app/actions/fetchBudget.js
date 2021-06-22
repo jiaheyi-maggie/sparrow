@@ -10,7 +10,7 @@ export function fetchBudget() {
         .then((snapshot) => {
             if(snapshot.exists) {
                 const data = snapshot.data();
-                console.log(data);
+                // console.log(data);
                 dispatch(
                     {
                         type: "BUDGET_STATE_CHANGE",
