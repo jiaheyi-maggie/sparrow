@@ -18,12 +18,12 @@ const HomeNavigation = () => {
                 showLabel: false,
                 style: {
                     position: 'absolute',
-                    bottom: 10,
-                    left: 10,
-                    right: 10,
-                    elevation: 0,
+                    // bottom: 0,
+                    // left: 0,
+                    // right: 0,
+                    // elevation: 0,
                     backgroundColor: '#fff',
-                    borderRadius: 15,
+                    // borderRadius:0,
                     height: 60,
                     ...styles.shadow
                 }

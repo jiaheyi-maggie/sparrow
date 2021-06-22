@@ -14,7 +14,7 @@ export function fetchBudget() {
                 dispatch(
                     {
                         type: "BUDGET_STATE_CHANGE",
-                        // categories: data.categories,
+                        categories: data.categories,
                         longTerm: data.longTerm,
                         shortTerm: data.shortTerm
                     }

@@ -24,11 +24,7 @@ export default class Register extends Component {
             lastName: '',
             username: '',
             email: '',
-            password: '',
-            // for budget info collection 
-            // categories: store.getState().reducer,
-            longTerm: 0,
-            shortTerm: 0
+            password: ''
         }
 
         // allow onSignUp() to access the state of the class
@@ -54,7 +50,7 @@ export default class Register extends Component {
                 firebase.firestore().collection("budgets")
                     .doc(currUserID)
                     .set({
-                        // categories: store.getState().categories,
+                        categories: store.getState().reducer,
                         longTerm: store.getState().longTerm,
                         shortTerm: store.getState().shortTerm
                     })

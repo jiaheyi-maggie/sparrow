@@ -17,7 +17,7 @@ export default user = (state = initialState, action) => {
         case "BUDGET_STATE_CHANGE":
             return {
                 ...state,
-                // categories: action.categories,
+                categories: action.categories,
                 longTerm: action.longTerm,
                 shortTerm: action.shortTerm
             }

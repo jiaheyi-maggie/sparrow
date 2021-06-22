@@ -1,8 +1,9 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList } from 'react-native';
 
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
+import SummaryListItem from '../../components/SummaryListItem';
 
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -39,14 +40,18 @@ export class Home extends Component {
         this.props.fetchBudget();
     }
 
-    handleComponentDidMount(currentUser, shortTerm, longTerm) {
+
+    handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         if (currentUser) {
-            // console.log(currentUser);
+            // console.log(store.getState().reducer);
+            const categories = store.getState().reducer;
+
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
-                    <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
+                        <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
 
+                        {/* budget overview card */}
                         <View style={styles.statusContainer}>
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                                 <Text style={styles.subtitle}>Current {shortTerm[1]}ly budget:</Text>
@@ -58,6 +63,18 @@ export class Home extends Component {
                                 <Text style={styles.number}>${longTerm[0]}</Text>
                             </View>
                         </View>
+
+                        {/* dummy category list */}
+                        <FlatList 
+                            data={categories}
+                            renderItem={({ item }) => (
+                                <SummaryListItem item={item}  />
+                            )}
+                            keyExtractor={item => item.id}
+                            contentContainerStyle={{
+                                flexGrow: 1,
+                            }}
+                        />  
                     </ScrollView>
                 </SafeAreaView>
             );
@@ -71,10 +88,10 @@ export class Home extends Component {
     }
 
     render() {
-        const { currentUser, shortTerm, longTerm } = this.props;
+        const { currentUser, categories, shortTerm, longTerm } = this.props;
 
         return(
-            this.handleComponentDidMount(currentUser, shortTerm, longTerm)
+            this.handleComponentDidMount(currentUser, categories, shortTerm, longTerm)
         );
     }
 }
@@ -82,6 +99,7 @@ export class Home extends Component {
 // allow access to data in Home component
 const mapStateToProps = (store) => ({
     currentUser: store.user.currentUser,
+    categories: store.user.categories,
     longTerm: store.user.longTerm,
     shortTerm: store.user.shortTerm
 });
