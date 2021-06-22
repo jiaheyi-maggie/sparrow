@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './Home';
 
 import Notification from './Notification';
@@ -9,10 +11,12 @@ import Settings from './Settings';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
+// const Drawer = createDrawerNavigator();
 
 const HomeNavigation = () => {
     // TODO: update badget
     return (
+        // <Drawer.Navigator initialRouteName="Home">
         <Tab.Navigator
             tabBarOptions={{
                 showLabel: false,
@@ -103,6 +107,7 @@ const HomeNavigation = () => {
                 }} 
             />
         </Tab.Navigator>
+        // </Drawer.Navigator>
     );
 };
 

@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
@@ -43,8 +43,8 @@ export class Home extends Component {
 
     handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         if (currentUser) {
-            // console.log(store.getState().reducer);
-            const categories = store.getState().reducer;
+            // console.log(categories);
+            // const categories = store.getState().reducer;
 
             return (
                 <SafeAreaView style={styles.homeContainer}>
@@ -52,7 +52,7 @@ export class Home extends Component {
                         <Text style={styles.title}>Hello, {currentUser.firstName}</Text>
 
                         {/* budget overview card */}
-                        <View style={styles.statusContainer}>
+                        <TouchableOpacity style={styles.statusContainer}>
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                                 <Text style={styles.subtitle}>Current {shortTerm[1]}ly budget:</Text>
                                 <Text style={styles.number}>${shortTerm[0]}</Text>
@@ -62,7 +62,7 @@ export class Home extends Component {
                                 <Text style={styles.subtitle}>Current {longTerm[1]}ly budget:</Text>
                                 <Text style={styles.number}>${longTerm[0]}</Text>
                             </View>
-                        </View>
+                        </TouchableOpacity>
 
                         {/* dummy category list */}
                         <FlatList 
