@@ -147,17 +147,17 @@ export class Home extends Component {
                                     margin: 10
                                 }
                             ]} 
-                            onPress={()=>{this.props.navigation.navigate("Budget Detail")} 
+                            onPress={()=>{this.props.navigation.navigate("Average Budget")} 
                         }>
                             {/* Short Term */}
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                                <Text style={styles.subtitle}>{m} {shortTerm[1]}ly budget:</Text>
+                                <Text style={styles.subtitle}>{m} budget:</Text>
                                 <Text style={styles.number}>$ {shortTerm[0]}</Text>
                             </View>
 
                             {/* Long Term */}
                             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                                <Text style={styles.subtitle}>{y} {longTerm[1]}ly budget:</Text>
+                                <Text style={styles.subtitle}>{y} budget:</Text>
                                 <Text style={styles.number}>$ {longTerm[0]}</Text>
                             </View>
 

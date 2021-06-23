@@ -96,7 +96,7 @@ const OverviewPicker = ({ term }) => {
           <Image 
             source={require('../../assets/Icons/down-arrow.png')} 
             resizeMode='contain'
-            style={{marginTop: 5, width: 25, height: 25}}
+            style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
           />
         </View>
       </TouchableOpacity>

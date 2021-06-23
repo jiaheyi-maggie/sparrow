@@ -5,7 +5,7 @@ import store from '../../app/store';
 import periods from '../../data/periods';
 
 
-const Picker = ({ term }) => {
+const AveragePeriodPicker = () => {
     const [chosen, setChosen] = useState('time period');
 
     // toggle modal visibility
@@ -16,64 +16,44 @@ const Picker = ({ term }) => {
         setModalVisible(!modalVisible);
     };
 
-    // action to update long term time period
-    const changeLongTermPeriod = period => {
-      return {
-          type: 'changeLongTermPeriod',
-          payload: period
-      }
-    };
-    
-    const changeShortTermPeriod = period => {
-      return {
-        type: 'changeShortTermPeriod',
-        payload: period
-      } 
-    }
-
-    // compare strings
-    const strcmp= (a, b) => {
-      if (a.toString() < b.toString()) return -1;
-      if (a.toString() > b.toString()) return 1;
-      return 0;
+    // action to change averagePeriod
+    const changeAveragePeriod = period => {
+        return {
+            type: 'changeAveragePeriod',
+            payload: period
+        }
     };
 
     return (
         <SafeAreaView style={styles.startView}>
-          <Modal
-              animationType="fade"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {setModalVisible(!modalVisible)}}
-          >
-            {/* View for the list of time periods */}
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <FlatList 
-                  data={periods}
-                  renderItem={({ item }) => (
-                    <TouchableOpacity
-                      style={[styles.button, styles.buttonClose]}
-                      onPress={() => {
-                        setModalVisible(false); 
-                        setChosen(item.title);
-                        // update term period
-                        if (strcmp(term, 'long') == 0) {
-                          store.dispatch(changeLongTermPeriod(item.title));
-                        } 
-                        else {
-                          store.dispatch(changeShortTermPeriod(item.title));
-                        }
-                      }}
-                    >
-                        <Text style={styles.selectionTextStyle}>{item.title}</Text>
-                    </TouchableOpacity>
-                  )}
-                  keyExtractor={item => item.id}
-                />
-              </View>
-            </View>
-          </Modal>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => handleClickOpen()}
+            >
+                {/* View for the list of time periods */}
+                <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <FlatList 
+                    data={periods}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                        style={[styles.button, styles.buttonClose]}
+                        onPress={() => {
+                            setModalVisible(false); 
+                            setChosen(item.title);
+                            store.dispatch(changeAveragePeriod(item.title));
+                        }}
+                        >
+                            <Text style={styles.selectionTextStyle}>{item.title}</Text>
+                        </TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                    />
+                </View>
+                </View>
+            </Modal>
 
             {/* Time Period closed picker view */}
             <TouchableOpacity
@@ -82,7 +62,7 @@ const Picker = ({ term }) => {
                 onPress={() => handleClickOpen()}
             >
                 <View style={{flexDirection:'row', alignItems: 'center'}}>
-                    <Text style={styles.textStyle}> {chosen} </Text>
+                    <Text style={styles.textStyle}>  {chosen}  </Text>
                     <Image 
                         source={require('../../assets/Icons/down-arrow.png')} 
                         resizeMode='contain'
@@ -109,7 +89,7 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       width: 350,
       borderRadius: 20,
-      padding: 20,
+      padding: 10,
       alignItems: "center",
       shadowColor: "#000",
       shadowOffset: {
@@ -121,11 +101,10 @@ const styles = StyleSheet.create({
       elevation: 5
     },
     button: {
-      borderRadius: 10,
-      paddingHorizontal: 8,
+      borderRadius: 30,
       elevation: 2,
-      padding: 2,
-      marginVertical:10
+      padding: 3,
+      marginVertical:5
     },
     buttonOpen: {
       backgroundColor: "#D7CEB2",
@@ -141,15 +120,15 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       color: "white",
-      fontWeight: "bold",
+      fontWeight: 'bold',
       textAlign: "center",
-      fontSize: 35
+      fontSize: 20
     },
     selectionTextStyle: {
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 25
+        fontSize: 23
       },
     modalText: {
       marginBottom: 15,
@@ -158,4 +137,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default Picker;
+export default AveragePeriodPicker;

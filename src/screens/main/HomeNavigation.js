@@ -9,6 +9,7 @@ import Notification from './Notification';
 import styles from '../../styles/homeStyle';
 import Settings from './Settings';
 import BudgetDetail from './BudgetDetail';
+import Calculator from './Calculator';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -114,7 +115,8 @@ const HomeNavigation = () => {
     return (
         <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeTab} />
-            <Drawer.Screen name="Budget Detail" component={BudgetDetail} />
+            <Drawer.Screen name="Average Budget" component={BudgetDetail} />
+            <Drawer.Screen name="Calculator" component={Calculator} />
         </Drawer.Navigator>
     );
 };

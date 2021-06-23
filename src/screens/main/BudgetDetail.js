@@ -1,17 +1,13 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
-
-import BudgetDetailItem from '../../components/main/BudgetDetailItem';
-
+import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 import { fetchBudget } from '../../app/actions/fetchBudget';
-
 // allow connect to redux
 import { connect } from 'react-redux';
 // bind actions to components
 import { bindActionCreators } from 'redux';
-
 import { withNavigation } from 'react-navigation';
-
+import store from '../../app/store';
 import styles from '../../styles/homeStyle';
 
 
@@ -31,12 +27,16 @@ export class BudgetDetail extends Component {
         }
     }
 
+    calculateAverage() {
+
+    };
+
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
             return obj.sum !== 0;
         });
 
-        console.log(usefulCategories);
+        const averagePeriod = store.getState().averagePeriod;
 
         return (
             <SafeAreaView style={styles.container}>
@@ -62,7 +62,7 @@ export class BudgetDetail extends Component {
                         </TouchableOpacity>
 
                         {/* Display name */}
-                        <Text style={styles.title}>Budget Detail</Text>
+                        <Text style={styles.title}>Average Budget</Text>
 
                         {/* Menu */}
                         <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
@@ -80,6 +80,13 @@ export class BudgetDetail extends Component {
 
                     </View>
 
+                    {/* time period selection */}
+                    <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 15, paddingTop: 10}}>
+                        <Text style={styles.listText}> Select a time period: </Text>
+                        <AveragePeriodPicker />
+                    </View>
+
+
                     {/* budget overview card */}
                     <View style={{ 
                         backgroundColor:'#FAA381',
@@ -88,7 +95,9 @@ export class BudgetDetail extends Component {
                         elevation: 2,
                         margin: 10
                     }}>
-                        {/* Long Term */}
+
+
+                        {/* Recurring */}
                         <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
                             <Text style={{
                                 color: '#fff',
@@ -98,25 +107,26 @@ export class BudgetDetail extends Component {
                                 paddingVertical: 5,
                                 marginHorizontal: 20
                             }}>
-                                Long Term: 
+                                Recurring: 
+                            </Text>
+                            <Text style={styles.number}>$ {shortTerm[0]} / {shortTerm[1]}</Text>
+                        </View>
+
+                        {/* Non-recurring */}
+                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <Text style={{
+                                color: '#fff',
+                                fontWeight: 'bold',
+                                textAlign: 'left',
+                                fontSize: 20,
+                                paddingVertical: 5,
+                                marginHorizontal: 20
+                            }}>
+                                Non-Recurring:
                             </Text>
                             <Text style={styles.number}>$ {longTerm[0]} / {longTerm[1]}</Text>
                         </View>
 
-                        {/* Short Term */}
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                            <Text style={{
-                                color: '#fff',
-                                fontWeight: 'bold',
-                                textAlign: 'left',
-                                fontSize: 20,
-                                paddingVertical: 5,
-                                marginHorizontal: 20
-                            }}>
-                                Short Term: 
-                            </Text>
-                            <Text style={styles.number}>$ {shortTerm[0]} / {shortTerm[1]}</Text>
-                        </View>
 
                     </View>
 
