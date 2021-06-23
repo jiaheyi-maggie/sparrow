@@ -13,6 +13,7 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
+
     componentDidMount() {
         this.props.fetchBudget();
     };
@@ -27,16 +28,83 @@ export class BudgetDetail extends Component {
         }
     }
 
-    calculateAverage() {
+    calculateAverage(period, value, selectedPeriod) {
+        // return value;
+        if (period === selectedPeriod || selectedPeriod === null) {
+            return value;
+        }
+        
+        switch (period) {
+            case 'year':
+                switch (selectedPeriod) {
+                    case 'quarter':
+                        return value / 4;
+                    case 'month':
+                        return value / 12;
+                    case 'week':
+                        return value / 48; 
+                    case 'day':
+                        return value / 365;
+                }
+            case 'quarter':
+                switch (selectedPeriod) {
+                    case 'year':
+                        return value * 4;
+                    case 'month':
+                        return value / 4; 
+                    case 'week':
+                        return value / 12;
+                    case 'day':
+                        return value / 84;
+                }
+            case 'month':
+                switch (selectedPeriod) {
+                    case 'year':
+                        return value * 12;
+                    case 'quarter':
+                        return value * 3;
+                    case 'week':
+                        return value / 4;
+                    case 'day':
+                        return value / 30; 
+                }
+            case 'week':
+                switch (selectedPeriod) {
+                    case 'year':
+                        return value * 48;
+                    case 'quarter':
+                        return value * 12;
+                    case 'month':
+                        return value * 4;
+                    case 'day':
+                        return value / 7; 
+                }
+            case 'day': 
+                switch (selectedPeriod) {
+                    case 'year':
+                        return value * 365;
+                    case 'quarter':
+                        return value * 84;
+                    case 'month':
+                        return value * 30; 
+                    case 'week':
+                        return value * 7;
+                }
+        }
+    };
 
+    handleTimeSelectionRendering(period, value) {
+        if (this.props.averagePeriod === null){
+            return value; 
+        } else {
+           return this.calculateAverage(period, value, this.props.averagePeriod);
+        }
     };
 
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
             return obj.sum !== 0;
         });
-
-        const averagePeriod = store.getState().averagePeriod;
 
         return (
             <SafeAreaView style={styles.container}>
@@ -86,7 +154,6 @@ export class BudgetDetail extends Component {
                         <AveragePeriodPicker />
                     </View>
 
-
                     {/* budget overview card */}
                     <View style={{ 
                         backgroundColor:'#FAA381',
@@ -95,7 +162,6 @@ export class BudgetDetail extends Component {
                         elevation: 2,
                         margin: 10
                     }}>
-
 
                         {/* Recurring */}
                         <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
@@ -109,7 +175,7 @@ export class BudgetDetail extends Component {
                             }}>
                                 Recurring: 
                             </Text>
-                            <Text style={styles.number}>$ {shortTerm[0]} / {shortTerm[1]}</Text>
+                            <Text style={styles.number}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])} / {this.props.averagePeriod}</Text>
                         </View>
 
                         {/* Non-recurring */}
@@ -124,10 +190,8 @@ export class BudgetDetail extends Component {
                             }}>
                                 Non-Recurring:
                             </Text>
-                            <Text style={styles.number}>$ {longTerm[0]} / {longTerm[1]}</Text>
+                            <Text style={styles.number}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])} / {this.props.averagePeriod} </Text>
                         </View>
-
-
                     </View>
 
                     {/* TODO: add pie chart for budget */}
@@ -164,7 +228,7 @@ export class BudgetDetail extends Component {
     }
 
     render() {
-        const { categories, shortTerm, longTerm } = this.props;
+        const { categories, shortTerm, longTerm, averagePeriod } = this.props;
 
         return(
             this.handleComponentDidMount(categories, shortTerm, longTerm)
@@ -176,7 +240,8 @@ export class BudgetDetail extends Component {
 const mapStateToProps = (store) => ({
     categories: store.user.categories,
     longTerm: store.user.longTerm,
-    shortTerm: store.user.shortTerm
+    shortTerm: store.user.shortTerm,
+    averagePeriod: store.averagePeriod.averagePeriod
 });
 
 // bind component to redux
