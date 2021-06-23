@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Alert } from 'react-native';
-
+import { VictoryChart, VictoryBar, VictoryLabel, VictoryPolarAxis } from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import firebase from 'firebase';
@@ -61,6 +61,10 @@ export class Home extends Component {
             const d = new Date();
             const m = monthNames[d.getMonth()];
             const y = d.getFullYear();
+
+            const usefulCategories = categories.filter((obj) => {
+                return obj.sum !== 0;
+            });
 
             return (
                 <SafeAreaView style={styles.homeContainer}>
@@ -137,7 +141,50 @@ export class Home extends Component {
                             </View>
                         </Pressable>
 
-                        {/* TODO: Add Bar graph for actual spending */}
+                        {/* TODO: style bar graphs */}
+                        <View style={{
+                            borderRadius: 20,
+                            padding: 10,
+                            elevation: 2,
+                            margin: 10,
+                            backgroundColor: '#fff'
+                        }}>
+                            <VictoryChart
+                            domainPadding={{ x: 35 }}
+                            >
+                                <VictoryBar
+                                    data={usefulCategories}
+                                    x='title'
+                                    y='sum'
+                                    style={{
+                                        data: { fill: "#2A94AF", stroke: "black", strokeWidth: 2 },
+                                        labels: { fill: "#FFCF56", fontSize: 20, fontWeight: "bold" }
+                                    }}
+                                    barRatio={0.8}
+                                    alignment="start"
+                                    cornerRadius={5}
+                                    height={300}
+                                    labels={({ datum }) => datum.x}
+                                    labelComponent={<VictoryLabel dy={30} />}
+                                    events={[{
+                                        target: "data",
+                                        eventHandlers: {
+                                          onPress: () => {
+                                            return [
+                                              {
+                                                target: "data",
+                                                mutation: (props) => {
+                                                  const fill = props.style && props.style.fill;
+                                                  return fill === "black" ? null : { style: { fill: "black" } };
+                                                }
+                                              }
+                                            ];
+                                          }
+                                        }
+                                      }]}
+                                />
+                            </VictoryChart>
+                        </View>
 
 
                     </ScrollView>
