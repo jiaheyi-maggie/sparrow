@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 // import { PieChart } from 'react-native-charts-wrapper';
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryPie, VictoryLabel } from 'victory-native';
+import { VictoryPie, VictoryLabel, VictoryScatter } from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -110,6 +110,18 @@ export class BudgetDetail extends Component {
             return obj.sum !== 0;
         });
 
+        const sums = usefulCategories.map((obj) => obj.sum);
+        const total = sums.reduce((a, b) => a+b, 0);
+
+        const percentages = sums.map((sum) => {
+            return {
+                percent: this.roundNumbers(sum / total),
+            }
+        });
+        // console.log(percentages);
+        // console.log(sums);
+        // console.log(total);
+
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
@@ -134,7 +146,7 @@ export class BudgetDetail extends Component {
                     </TouchableOpacity>
 
                     {/* Display name */}
-                    <Text style={styles.title}>Average Budget</Text>
+                    {/* <Text style={styles.title}>Average Budget</Text> */}
 
                     {/* Menu */}
                     <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
@@ -153,8 +165,9 @@ export class BudgetDetail extends Component {
                 </View>
 
                 {/* time period selection */}
-                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 15, paddingTop: 10}}>
-                    <Text style={styles.listText}> Select a time period: </Text>
+                <Text style={styles.smallTitle}> Overview</Text>
+                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10}}>
+                    <Text style={styles.listText3}> Select a time period: </Text>
                     <AveragePeriodPicker />
                 </View>
 
@@ -199,51 +212,60 @@ export class BudgetDetail extends Component {
                 </View>
 
                 {/* Pie chart for budget */}
+                <View style={{backgroundColor: '#F8FAFB'}}>
+                <Text style={styles.smallTitle}> Categories</Text>
                 <VictoryPie
                     data={usefulCategories}
                     x="title"
                     y="sum"
+                    // x='percent'
+                    // y='percent'
                     colorScale={['#78C0E0','#5EAFD9','#448DD1','#2D51A5','#212B8F','#150578', '#0E0E52' ]}
                     cornerRadius={8}
-                    events={[{
-                        target: 'data',
-                        eventHandlers: {
-                            onclick: () => {
-                                return [
-                                    {
-                                        target: 'data',
-                                        mutation: ({style}) => {
-                                            return style.fill === '#c43a31' ? null : {style: {fill: '#c43a31'}};
-                                        }
-                                    }, 
-                                    {
-                                        target: 'labels',
-                                        mutation: ({ text }) => {
-                                            return text === 'clicked' ? null : {text: 'clicked'};
-                                        }
-                                    }, 
-
-                                ];
-                            }
-                        }
-                    }]}
                     innerRadius={70}
-                    labelRadius={({ innerRadius }) => innerRadius+60 }
+                    labelRadius={({ innerRadius }) => innerRadius+30 }
                     labelPlacement={'vertical'}
-                    style={{ labels: { fill: "#F4A261", fontSize: 20, fontWeight: "bold" } }}
+                    labelComponent={
+                        <VictoryLabel 
+                            textAnchor='start'
+                            // backgroundPadding={2}
+                            dx={-10}
+                        />
+                    }
+                    style={{ labels: { fill: "#FFCF56", fontSize: 20, fontWeight: "bold" } }}
                     padAngle={1}
-                    radius={120}
+                    radius={130}
+                    name='averageViewPie'
+                    width={400}
+                    height={320}
+                    events={[{
+                        target: "data",
+                        eventHandlers: {
+                          onPress: () => {
+                            return [
+                              {
+                                target: "data",
+                                mutation: ({ style }) => {
+                                  return style.fill === "#c43a31" ? null : { style: { fill: "#c43a31" } };
+                                }
+                              }
+                            ];
+                          }
+                        }
+                      }]}
                 />
+                </View>
 
-                
-                
-
-                {/* Add Categories Button */}
-                <View style={{alignItems: 'center'}}>
-                    {/* TODO: update firebase collection("budgets") */}
-                    <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                        <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
-                    </TouchableOpacity>
+                {/* Category details */}
+                <View style={{flexDirection:'row', alignItems:'baseline', justifyContent:'space-between', paddingTop: 5}}>
+                    <Text style={styles.smallTitle}> Details</Text>
+                    {/* Add Categories Button */}
+                    <View style={{alignItems: 'center', paddingRight: 15}}>
+                        {/* TODO: update firebase collection("budgets") */}
+                        <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
                     {/* List */}

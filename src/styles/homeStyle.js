@@ -7,7 +7,7 @@ const homeStyle = StyleSheet.create({
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 25,
+        fontSize: 23,
         marginHorizontal: 20,
         marginTop: 5,
     },
@@ -54,7 +54,7 @@ const homeStyle = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         flex: 1,
-        paddingTop: (Platform.OS === 'ios') ? 0: 40,
+        paddingTop: (Platform.OS === 'ios') ? 0: 50,
     },
     subtitle: {
         color: '#2A94AF',
@@ -98,6 +98,19 @@ const homeStyle = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color:'#E76F51'
+    },
+    listText3: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color:'#2A94AF'
+    },
+    smallTitle :{
+        color: '#264653',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 20,
+        marginHorizontal: 5,
+        marginTop: 5,
     }
  });
 
