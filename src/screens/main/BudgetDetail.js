@@ -1,8 +1,8 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 // import { PieChart } from 'react-native-charts-wrapper';
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryPie } from 'victory-native';
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryPie, VictoryLabel } from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 // allow connect to redux
 import { connect } from 'react-redux';
@@ -105,7 +105,6 @@ export class BudgetDetail extends Component {
         }
     };
 
-
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
             return obj.sum !== 0;
@@ -199,14 +198,41 @@ export class BudgetDetail extends Component {
                     </View>
                 </View>
 
-                {/* TODO: add pie chart for budget */}
-                {/* <VictoryChart>
-                    <VictoryGroup>
-                        <VictoryBar />
-                        <VictoryBar /> 
-                    </VictoryGroup>
-                </VictoryChart> */}
+                {/* Pie chart for budget */}
                 <VictoryPie
+                    data={usefulCategories}
+                    x="title"
+                    y="sum"
+                    colorScale={['#78C0E0','#5EAFD9','#448DD1','#2D51A5','#212B8F','#150578', '#0E0E52' ]}
+                    cornerRadius={8}
+                    events={[{
+                        target: 'data',
+                        eventHandlers: {
+                            onclick: () => {
+                                return [
+                                    {
+                                        target: 'data',
+                                        mutation: ({style}) => {
+                                            return style.fill === '#c43a31' ? null : {style: {fill: '#c43a31'}};
+                                        }
+                                    }, 
+                                    {
+                                        target: 'labels',
+                                        mutation: ({ text }) => {
+                                            return text === 'clicked' ? null : {text: 'clicked'};
+                                        }
+                                    }, 
+
+                                ];
+                            }
+                        }
+                    }]}
+                    innerRadius={70}
+                    labelRadius={({ innerRadius }) => innerRadius+60 }
+                    labelPlacement={'vertical'}
+                    style={{ labels: { fill: "#F4A261", fontSize: 20, fontWeight: "bold" } }}
+                    padAngle={1}
+                    radius={120}
                 />
 
                 
