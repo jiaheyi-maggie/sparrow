@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
 const onboardingStyle = StyleSheet.create({
   // onboarding page container
@@ -6,13 +7,15 @@ const onboardingStyle = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    paddingTop: (Platform.OS === 'ios') ? 0: 50,
+    paddingBottom: 10
   },
   // title for onboarding
   title: {
       color: '#264653',
       fontWeight: 'bold',
-      fontSize: 45,
+      fontSize: 40,
       textAlign: 'left',
       paddingTop: 10,
       paddingLeft: 15
@@ -24,7 +27,7 @@ const onboardingStyle = StyleSheet.create({
       textAlign: 'left',
       fontSize: 22,
       paddingVertical: 5,
-      marginHorizontal: 20
+      marginHorizontal: 10
   },
   // when onboarding title is long
   longtitle: {
@@ -32,7 +35,7 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 30,
       textAlign: 'left',
-      margin: 20
+      margin: 10
   },
   // semi long title
   semiLongTitle: {
@@ -77,7 +80,7 @@ const onboardingStyle = StyleSheet.create({
     alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'stretch',
+    alignItems: 'baseline',
     width: 400
   },
   // text to indicate optional
@@ -159,15 +162,15 @@ const onboardingStyle = StyleSheet.create({
   longtermContainer :{
     backgroundColor:'#fff', 
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 60
+    paddingTop: (Platform.OS === 'ios') ? 0: 50,
   },
   // long term page text
   longtermDescription: {
     color: '#264653',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 38,
     margin: 0
   },
   // long term center screen text

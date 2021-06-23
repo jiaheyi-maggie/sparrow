@@ -133,7 +133,7 @@ export class Home extends Component {
 
                             {/* View Details */}
                             <View style={styles.statusContainer}>
-                                <Text style={{color: '#264653',fontSize: 18,marginHorizontal: 20}}>View Details</Text> 
+                                <Text style={{color: '#706993',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
                             </View>
                         </Pressable>
 

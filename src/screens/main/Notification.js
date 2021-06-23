@@ -56,19 +56,20 @@ export class Notification extends Component {
             {/* Display name */}
             <Text style={styles.title}>Notification</Text>
 
-{/* Menu */}
-<TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                            <Image 
-                                source={require('../../assets/Icons/menu.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 23,
-                                    height: 23,
-                                    tintColor: '#7E9181',
-                                    marginRight: 15
-                                }}
-                            />
-                        </TouchableOpacity>
+            {/* Menu */}
+            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                <Image 
+                    source={require('../../assets/Icons/menu.png')}
+                    resizeMode='contain'
+                    style={{
+                        width: 23,
+                        height: 23,
+                        tintColor: '#7E9181',
+                        marginRight: 15
+                    }}
+                />
+            </TouchableOpacity>
+            
           </View>
         </ScrollView>
       </SafeAreaView>

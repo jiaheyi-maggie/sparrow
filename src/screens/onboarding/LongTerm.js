@@ -92,8 +92,10 @@ const LongTerm = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.longtermContainer}>
-            <Text style={styles.semiLongTitle}>Do you have a long-term budget?</Text>
-            <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you.</Text>
+            <View>
+                <Text style={styles.longtitle}>Do you have a budget for non-recurring spendings?</Text>
+                <Text style={styles.subtitle}>This way we can start by suggesting a budget that works for you.</Text>
+            </View>
 
             <View style={styles.longtermCenter}>
                 <Text style={styles.longtermDescription}>I plan to spend</Text>
@@ -107,31 +109,32 @@ const LongTerm = ({ navigation }) => {
                         placeholderTextColor='#FFF4CB'
                         keyboardType="numeric"
                     />
+                    
                 </View>
 
                 <View style={{flexDirection:'row', paddingLeft:40}}>
                     <Text style={styles.longtermDescription}>per </Text>
                     <Picker term={'long'}/>
+                    
                 </View>
-
-                <View style={{height: 270}}><Text></Text></View>
             </View>
 
-
-            <TouchableOpacity onPress={() => handleButtonPress()}>
-                <Text style={componentStyle.buttonText}> I don't know, review budget!</Text>
-            </TouchableOpacity>
-
-            <View style={styles.multipleButtonContainer}> 
-                {/* Back Button */}
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                    <Text style={styles.buttonText}>     Back     </Text>
+            <View>
+                <TouchableOpacity onPress={() => handleButtonPress()}>
+                    <Text style={componentStyle.buttonText}> I don't know, review budget!</Text>
                 </TouchableOpacity>
 
-                {/* Next Button */}
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => handleButtonPress()}>
-                    <Text style={styles.buttonText}> Continue </Text>
-                </TouchableOpacity>
+                <View style={styles.multipleButtonContainer}> 
+                    {/* Back Button */}
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+                        <Text style={styles.buttonText}>     Back     </Text>
+                    </TouchableOpacity>
+
+                    {/* Next Button */}
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => handleButtonPress()}>
+                        <Text style={styles.buttonText}> Continue </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     );

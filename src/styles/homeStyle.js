@@ -57,10 +57,10 @@ const homeStyle = StyleSheet.create({
         paddingTop: (Platform.OS === 'ios') ? 0: 50,
     },
     subtitle: {
-        color: '#2A94AF',
+        color: '#FAA381',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 20,
+        fontSize: 19,
         paddingVertical: 5,
         marginHorizontal: 20
     },
@@ -92,7 +92,7 @@ const homeStyle = StyleSheet.create({
     listText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color:'#264653'
+        color:'#706993'
     },
     listText2: {
         fontSize: 18,
@@ -108,7 +108,7 @@ const homeStyle = StyleSheet.create({
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 20,
+        fontSize: 23,
         marginHorizontal: 5,
         marginTop: 5,
     }

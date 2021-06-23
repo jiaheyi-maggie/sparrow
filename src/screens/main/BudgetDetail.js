@@ -105,6 +105,11 @@ export class BudgetDetail extends Component {
         }
     };
 
+    // TODO: when Add Categories is clicked
+    handleAddCategories() {
+
+    };
+
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
             return obj.sum !== 0;
@@ -145,8 +150,6 @@ export class BudgetDetail extends Component {
                         />
                     </TouchableOpacity>
 
-                    {/* Display name */}
-                    {/* <Text style={styles.title}>Average Budget</Text> */}
 
                     {/* Menu */}
                     <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
@@ -166,7 +169,7 @@ export class BudgetDetail extends Component {
 
                 {/* time period selection */}
                 <Text style={styles.smallTitle}> Overview</Text>
-                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10}}>
+                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5}}>
                     <Text style={styles.listText3}> Select a time period: </Text>
                     <AveragePeriodPicker />
                 </View>
@@ -186,7 +189,7 @@ export class BudgetDetail extends Component {
                             color: '#fff',
                             fontWeight: 'bold',
                             textAlign: 'left',
-                            fontSize: 20,
+                            fontSize: 19,
                             paddingVertical: 5,
                             marginHorizontal: 20
                         }}>
@@ -201,7 +204,7 @@ export class BudgetDetail extends Component {
                             color: '#fff',
                             fontWeight: 'bold',
                             textAlign: 'left',
-                            fontSize: 20,
+                            fontSize: 19,
                             paddingVertical: 5,
                             marginHorizontal: 20
                         }}>
@@ -212,8 +215,8 @@ export class BudgetDetail extends Component {
                 </View>
 
                 {/* Pie chart for budget */}
-                <View style={{backgroundColor: '#F8FAFB'}}>
                 <Text style={styles.smallTitle}> Categories</Text>
+                <View>
                 <VictoryPie
                     data={usefulCategories}
                     x="title"
@@ -257,16 +260,13 @@ export class BudgetDetail extends Component {
                 </View>
 
                 {/* Category details */}
-                <View style={{flexDirection:'row', alignItems:'baseline', justifyContent:'space-between', paddingTop: 5}}>
-                    <Text style={styles.smallTitle}> Details</Text>
                     {/* Add Categories Button */}
-                    <View style={{alignItems: 'center', paddingRight: 15}}>
+                    <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
                         {/* TODO: update firebase collection("budgets") */}
-                        <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                        <TouchableOpacity onPress={() => this.handleAddCategories()} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
                             <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
 
                     {/* List */}
                     <FlatList 
@@ -284,7 +284,6 @@ export class BudgetDetail extends Component {
                             flexGrow: 1,
                         }}
                     />  
-
                 </ScrollView>
             </SafeAreaView>
         );

@@ -7,7 +7,7 @@ export default longTerm = (state = [0, 'year'], action) => {
             }
             const longTermState = [...state];
             longTermState[0] = action.payload;
-            console.log(longTermState);
+            // console.log(longTermState);
             return longTermState; 
         // update long term period
         case 'changeLongTermPeriod':

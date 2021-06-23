@@ -8,7 +8,7 @@ import componentStyle from '../../styles/componentStyle';
 const Welcome = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}> Welcome </Text>
+            <Text style={styles.title}>Welcome </Text>
             <Text style={styles.subtitle}>Congrats on taking the fist step to managing your money efficiently! Let us get to know your spending habits with some basic questions :))</Text>
         
             <Image 

@@ -26,10 +26,10 @@ const BudgetCircle = ({ term, value }) => {
 
     // updates store if numbers are edited
     const onChangeNumber = (value) => {
-        if (term === 'Long') {
+        if (term === 'Non-') {
             setVal(value);
             store.dispatch(changeLongTerm(value));
-        } else if (term === 'Short') {
+        } else if (term === '') {
             setVal(value);
             store.dispatch(changeShortTerm(value));
         }
@@ -57,7 +57,7 @@ const BudgetCircle = ({ term, value }) => {
                 </View>
             </View>
             
-            <Text style={styles.reviewText} > {term} Term</Text>
+            <Text style={styles.reviewText} > {term}Recurring</Text>
         </SafeAreaView>
     );
 }

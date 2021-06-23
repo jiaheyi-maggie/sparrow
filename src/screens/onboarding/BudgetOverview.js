@@ -23,8 +23,8 @@ const BudgetOverview = ({ navigation }) => {
 
                 <View style={{flexDirection: 'row', padding: 10}}>
                     {/* LITTLE FUCKER WHY DON"T YOU WORK */}
-                    <BudgetCircle term={'Short'} value={shortTermValue} />
-                    <BudgetCircle term={'Long'} value={longTermValue} />
+                    <BudgetCircle term={''} value={shortTermValue} />
+                    <BudgetCircle term={'Non-'} value={longTermValue} />
                 </View>
 
                 <FlatList 

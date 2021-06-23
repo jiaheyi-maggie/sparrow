@@ -65,11 +65,10 @@ const componentStyle = StyleSheet.create({
     paddingTop: 15
   },
   infofield: {
-    elevation: 3,
     backgroundColor: 'aliceblue',
     borderRadius: 10,
     paddingVertical: 9,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     textAlign: 'left',
     paddingLeft: 15,
     fontSize: 18

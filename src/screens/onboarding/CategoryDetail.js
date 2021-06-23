@@ -58,7 +58,7 @@ const CategoryDetail = ({ navigation }) => {
             return (
                 <SafeAreaView style={styles.container}>
                     <Text style={styles.title}>No worries!</Text>
-                    <Text style={styles.subtitle}>Let's see if you have a long term plan.</Text>
+                    <Text style={styles.subtitle}>Let's see if you have a plan for non-recurring spendings.</Text>
                     <View style={{width: 400, height: 70}}><Text></Text></View>
                     <Image 
                         source={require('../../assets/onboarding/long-term.png')} 
@@ -68,7 +68,7 @@ const CategoryDetail = ({ navigation }) => {
                             height: 300,
                         }}
                     />
-                    <View style={{width: 400, height: 150}}><Text></Text></View>
+                    <View style={{width: 400, height: 200}}><Text></Text></View>
                     {/* Button View */}
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
                         <Text style={styles.buttonText}>Next</Text>

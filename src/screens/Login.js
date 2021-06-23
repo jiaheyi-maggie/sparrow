@@ -48,14 +48,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <SafeAreaView style={{
-                    backgroundColor: '#FFF4CB',
-                    flexDirection: 'column',
-                    flex: 1,
-                    padding: 20
-                }}>
-                    
+            <ScrollView style={{
+                backgroundColor: '#FFF4CB',
+                flexDirection: 'column',
+                flex: 1,
+                padding: 20
+            }}>
+                <SafeAreaView>
                     <View style={{ marginBottom: 15}}> 
                         <Text style={{
                             color: '#264653',
