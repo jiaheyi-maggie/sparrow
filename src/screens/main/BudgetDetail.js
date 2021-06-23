@@ -1,13 +1,14 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
+// import { PieChart } from 'react-native-charts-wrapper';
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryPie } from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 // allow connect to redux
 import { connect } from 'react-redux';
 // bind actions to components
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
-import store from '../../app/store';
 import styles from '../../styles/homeStyle';
 
 
@@ -104,6 +105,7 @@ export class BudgetDetail extends Component {
         }
     };
 
+
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
             return obj.sum !== 0;
@@ -112,100 +114,111 @@ export class BudgetDetail extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
-                    <View style={{
-                        flexDirection: 'row', 
-                        justifyContent:'space-between',
-                        alignItems: 'baseline'
-                    }}>
+                <View style={{
+                    flexDirection: 'row', 
+                    justifyContent:'space-between',
+                    alignItems: 'baseline'
+                }}>
 
-                        {/* go back */}
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                            <Image 
-                                source={require('../../assets/Icons/back.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 23,
-                                    height: 23,
-                                    tintColor: '#7E9181',
-                                    marginLeft: 10,
-                                }}
-                            />
-                        </TouchableOpacity>
+                    {/* go back */}
+                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                        <Image 
+                            source={require('../../assets/Icons/back.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 23,
+                                height: 23,
+                                tintColor: '#7E9181',
+                                marginLeft: 10,
+                            }}
+                        />
+                    </TouchableOpacity>
 
-                        {/* Display name */}
-                        <Text style={styles.title}>Average Budget</Text>
+                    {/* Display name */}
+                    <Text style={styles.title}>Average Budget</Text>
 
-                        {/* Menu */}
-                        <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                            <Image 
-                                source={require('../../assets/Icons/menu.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 23,
-                                    height: 23,
-                                    tintColor: '#7E9181',
-                                    marginRight: 15
-                                }}
-                            />
-                        </TouchableOpacity>
+                    {/* Menu */}
+                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                        <Image 
+                            source={require('../../assets/Icons/menu.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 23,
+                                height: 23,
+                                tintColor: '#7E9181',
+                                marginRight: 15
+                            }}
+                        />
+                    </TouchableOpacity>
 
+                </View>
+
+                {/* time period selection */}
+                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 15, paddingTop: 10}}>
+                    <Text style={styles.listText}> Select a time period: </Text>
+                    <AveragePeriodPicker />
+                </View>
+
+                {/* budget overview card */}
+                <View style={{ 
+                    backgroundColor:'#FAA381',
+                    borderRadius: 20,
+                    padding: 10,
+                    elevation: 2,
+                    margin: 10,
+                }}>
+
+                    {/* Recurring */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            textAlign: 'left',
+                            fontSize: 20,
+                            paddingVertical: 5,
+                            marginHorizontal: 20
+                        }}>
+                            Recurring: 
+                        </Text>
+                        <Text style={styles.number}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
                     </View>
 
-                    {/* time period selection */}
-                    <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 15, paddingTop: 10}}>
-                        <Text style={styles.listText}> Select a time period: </Text>
-                        <AveragePeriodPicker />
+                    {/* Non-recurring */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            textAlign: 'left',
+                            fontSize: 20,
+                            paddingVertical: 5,
+                            marginHorizontal: 20
+                        }}>
+                            Non-Recurring:
+                        </Text>
+                        <Text style={styles.number}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
                     </View>
+                </View>
 
-                    {/* budget overview card */}
-                    <View style={{ 
-                        backgroundColor:'#FAA381',
-                        borderRadius: 20,
-                        padding: 10,
-                        elevation: 2,
-                        margin: 10
-                    }}>
+                {/* TODO: add pie chart for budget */}
+                {/* <VictoryChart>
+                    <VictoryGroup>
+                        <VictoryBar />
+                        <VictoryBar /> 
+                    </VictoryGroup>
+                </VictoryChart> */}
+                <VictoryPie
+                />
 
-                        {/* Recurring */}
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                            <Text style={{
-                                color: '#fff',
-                                fontWeight: 'bold',
-                                textAlign: 'left',
-                                fontSize: 20,
-                                paddingVertical: 5,
-                                marginHorizontal: 20
-                            }}>
-                                Recurring: 
-                            </Text>
-                            <Text style={styles.number}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])} / {this.props.averagePeriod}</Text>
-                        </View>
+                
+                
 
-                        {/* Non-recurring */}
-                        <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
-                            <Text style={{
-                                color: '#fff',
-                                fontWeight: 'bold',
-                                textAlign: 'left',
-                                fontSize: 20,
-                                paddingVertical: 5,
-                                marginHorizontal: 20
-                            }}>
-                                Non-Recurring:
-                            </Text>
-                            <Text style={styles.number}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])} / {this.props.averagePeriod} </Text>
-                        </View>
-                    </View>
-
-                    {/* TODO: add pie chart for budget */}
-
-                    {/* Add Categories Button */}
-                    <View style={{alignItems: 'center'}}>
-                        {/* TODO: update firebase collection("budgets") */}
-                        <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
-                        </TouchableOpacity>
-                    </View>
+                {/* Add Categories Button */}
+                <View style={{alignItems: 'center'}}>
+                    {/* TODO: update firebase collection("budgets") */}
+                    <TouchableOpacity style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                        <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
+                    </TouchableOpacity>
+                </View>
 
                     {/* List */}
                     <FlatList 
@@ -214,9 +227,8 @@ export class BudgetDetail extends Component {
                             return (
                                 <View style={styles.listContainer}>
                                     <Text style={styles.listText}>{item.title}</Text> 
-                                    <Text style={styles.listText2}>$ {item.value} / {item.period} </Text>
+                                    <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
                                 </View>
-                                // <BudgetDetailItem item={item} />
                             );
                         }}
                         keyExtractor={item => item.id}

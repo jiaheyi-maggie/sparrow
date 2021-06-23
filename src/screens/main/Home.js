@@ -104,36 +104,6 @@ export class Home extends Component {
                                 />
                             </TouchableOpacity>
 
-                            {/* <View style={{flexDirection:'row', alignItems: 'baseline'}}>
-                                {/* Menu */}
-                                {/* <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                                    <Image 
-                                        source={require('../../assets/Icons/menu.png')}
-                                        resizeMode='contain'
-                                        style={{
-                                            width: 23,
-                                            height: 23,
-                                            tintColor: '#7E9181',
-                                            marginLeft: 15
-                                        }}
-                                    />
-                                </TouchableOpacity> */} 
-
-                                {/* Log out
-                                <TouchableOpacity onPress={() => this.signOutUser()}>
-                                    <Image 
-                                        source={require('../../assets/Icons/logout.png')}
-                                        resizeMode='contain'
-                                        style={{
-                                            width: 23,
-                                            height: 23,
-                                            tintColor: '#7E9181',
-                                            marginRight: 15
-                                        }}
-                                    />
-                                </TouchableOpacity> */}
-                            {/* </View> */}
-
                         </View>
 
                         {/* budget overview card */}
@@ -150,13 +120,13 @@ export class Home extends Component {
                             onPress={()=>{this.props.navigation.navigate("Average Budget")} 
                         }>
                             {/* Short Term */}
-                            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                 <Text style={styles.subtitle}>{m} budget:</Text>
                                 <Text style={styles.number}>$ {shortTerm[0]}</Text>
                             </View>
 
                             {/* Long Term */}
-                            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+                            <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                 <Text style={styles.subtitle}>{y} budget:</Text>
                                 <Text style={styles.number}>$ {longTerm[0]}</Text>
                             </View>
