@@ -28,67 +28,70 @@ export class BudgetDetail extends Component {
         }
     }
 
+    roundNumbers(num) {
+        return (Math.round(num * 100) / 100).toFixed(2);
+    };
+
     calculateAverage(period, value, selectedPeriod) {
         // return value;
         if (period === selectedPeriod || selectedPeriod === null) {
-            return value;
+            return this.roundNumbers(value);
         }
-        
         switch (period) {
             case 'year':
                 switch (selectedPeriod) {
                     case 'quarter':
-                        return value / 4;
+                        return this.roundNumbers(value / 4);
                     case 'month':
-                        return value / 12;
+                        return this.roundNumbers(value / 12);
                     case 'week':
-                        return value / 48; 
+                        return this.roundNumbers(value / 48); 
                     case 'day':
-                        return value / 365;
+                        return this.roundNumbers(value / 365);
                 }
             case 'quarter':
                 switch (selectedPeriod) {
                     case 'year':
-                        return value * 4;
+                        return this.roundNumbers(value * 4);
                     case 'month':
-                        return value / 4; 
+                        return this.roundNumbers(value / 4); 
                     case 'week':
-                        return value / 12;
+                        return this.roundNumbers(value / 12);
                     case 'day':
-                        return value / 84;
+                        return this.roundNumbers(value / 84);
                 }
             case 'month':
                 switch (selectedPeriod) {
                     case 'year':
-                        return value * 12;
+                        return this.roundNumbers(value * 12);
                     case 'quarter':
-                        return value * 3;
+                        return this.roundNumbers(value * 3);
                     case 'week':
-                        return value / 4;
+                        return this.roundNumbers(value / 4);
                     case 'day':
-                        return value / 30; 
+                        return this.roundNumbers(value / 30); 
                 }
             case 'week':
                 switch (selectedPeriod) {
                     case 'year':
-                        return value * 48;
+                        return this.roundNumbers(value * 48);
                     case 'quarter':
-                        return value * 12;
+                        return this.roundNumbers(value * 12);
                     case 'month':
-                        return value * 4;
+                        return this.roundNumbers(value * 4);
                     case 'day':
-                        return value / 7; 
+                        return this.roundNumbers(value / 7); 
                 }
             case 'day': 
                 switch (selectedPeriod) {
                     case 'year':
-                        return value * 365;
+                        return this.roundNumbers(value * 365);
                     case 'quarter':
-                        return value * 84;
+                        return this.roundNumbers(value * 84);
                     case 'month':
-                        return value * 30; 
+                        return this.roundNumbers(value * 30); 
                     case 'week':
-                        return value * 7;
+                        return this.roundNumbers(value * 7);
                 }
         }
     };
