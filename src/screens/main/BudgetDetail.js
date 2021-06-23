@@ -228,7 +228,7 @@ export class BudgetDetail extends Component {
     }
 
     render() {
-        const { categories, shortTerm, longTerm, averagePeriod } = this.props;
+        const { categories, shortTerm, longTerm } = this.props;
 
         return(
             this.handleComponentDidMount(categories, shortTerm, longTerm)

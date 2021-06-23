@@ -6,7 +6,7 @@ import periods from '../../data/periods';
 
 
 const AveragePeriodPicker = () => {
-    const [chosen, setChosen] = useState('time period');
+    const [chosen, setChosen] = useState(store.getState().averagePeriod.averagePeriod);
 
     // toggle modal visibility
     const [modalVisible, setModalVisible] = useState(false);
