@@ -153,6 +153,7 @@ const homeStyle = StyleSheet.create({
     },
     textInputContainer: {
        margin: 10,
+       backgroundColor: 'white'
     },
     textInputValue: {
         backgroundColor: '#FFF4CB',
@@ -172,6 +173,13 @@ const homeStyle = StyleSheet.create({
         backgroundColor: 'aliceblue',
         padding: 10,
         paddingLeft: 15
+    },
+    textInputContainerValue2: {
+        borderRadius: 15,
+        elevation: 2,
+        backgroundColor: '#FFF4CB',
+        padding: 10,
+        height: 200
     },
     addTextGuide: {
         fontSize: 20,

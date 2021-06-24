@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList, Keyboard } from 'react-native';
 // import { fetchBudget } from '../../app/actions/fetchBudget';
 import { addBudget } from '../../app/actions/addBudget';
 import { connect } from 'react-redux';
@@ -23,7 +23,9 @@ export class AddCategoriesDetail extends Component {
             notes:'',
             id: this.props.categories.length,
             sum: 0,
-            modalVisible: false
+            modalVisible: false,
+            keyboardOffset: 0,
+            pageOffset: 0
         }
 
         this.onTitleChange = this.onTitleChange.bind(this);
@@ -31,7 +33,8 @@ export class AddCategoriesDetail extends Component {
         this.onOptionalChange = this.onOptionalChange.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleAddCategories = this.handleAddCategories.bind(this);
-        // this.onNoteChange = this.onNoteChange(this);
+        this._keyboardDidHide = this._keyboardDidHide.bind(this);
+        this._keyboardDidShow = this._keyboardDidShow.bind(this);
 
     }
 
@@ -48,8 +51,40 @@ export class AddCategoriesDetail extends Component {
                 sum: this.state.sum
             }
         });
+
+        // keyboard listeners
+        this.keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            this._keyboardDidShow,
+        );
+
+        this.keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            this._keyboardDidHide,
+        );
+
     };
 
+    /* For Keyboard events */
+    componentWillUnmount() {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    _keyboardDidShow(event) {
+        this.setState({
+            keyboardOffset: event.endCoordinates.height - 130,
+        })
+    }
+
+    _keyboardDidHide() {
+        this.setState({
+            keyboardOffset: 0,
+        })
+    }
+
+
+    /* Change in content handlers */
     handleAddCategories() {
         addBudget(this.props.newCategory);
         this.props.navigation.goBack();
@@ -86,7 +121,6 @@ export class AddCategoriesDetail extends Component {
     };
 
     onOptionalChange(option) {
-        // TODO: alert when option is not realistic
         switch (this.state.period) {
             case "year":
                 if (option > 1) {
@@ -123,13 +157,6 @@ export class AddCategoriesDetail extends Component {
         );
     };
 
-
-    // onNoteChange(note) {
-    //     this.setState({
-    //         note: note
-    //     })
-    // }
-
     // For time period drop downs
     handleClickOpen = () => {
         this.setState({modalVisible: !this.state.modalVisible});
@@ -138,8 +165,9 @@ export class AddCategoriesDetail extends Component {
 
     handleComponentDidMount() {
         return (
+            // <ScrollView>
             <Modal animationType="slide"> 
-                <SafeAreaView style={styles.modalContainer}>
+                <SafeAreaView style={[styles.modalContainer, {bottom: this.state.pageOffset}]}>
                     <View style={{
                         flexDirection: 'row', 
                         alignItems: 'baseline',
@@ -263,8 +291,36 @@ export class AddCategoriesDetail extends Component {
                         </View>
                     </View>
 
-                    {/* TODO: Note */}
+                    {/* Note */}
+                    <View style={styles.textInputContainer}>
+                        <Text style={styles.listText}>Note to Self</Text>
+                        <View style={styles.textInputContainerValue2}>
+                            <TextInput
+                                value={this.state.notes}
+                                
+                                onChangeText={(text) => this.setState({notes: text, pageOffset: this.state.keyboardOffset})}
+                                style={{
+                                    backgroundColor: '#fff',
+                                    borderRadius: 15,
+                                    paddingVertical: 10,
+                                    fontSize: 18,
+                                    color: '#E76F51',
+                                    elevation: 2,
+                                    textAlign: 'left',
+                                    height: 180,
+                                    paddingLeft: 10,
+                                    // bottom: this.state.keyboardOffset
+                                }}
+                                placeholder='Not essential for me this month...'
+                                onSubmitEditing={() => {
+                                    this.setState({pageOffset: 0});
+                                    Keyboard.dismiss;
+                                }}
+                            />
+                        </View>
+                    </View>
 
+                    <View style={{height: 120}}></View>
                     {/* Cancel Button */}
                     <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.cancelButtonContainer}>
@@ -274,6 +330,7 @@ export class AddCategoriesDetail extends Component {
 
                 </SafeAreaView>
             </Modal>
+            // </ScrollView>
         );
     }
 
