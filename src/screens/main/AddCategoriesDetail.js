@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList, Keyboard } from 'react-native';
-// import { fetchBudget } from '../../app/actions/fetchBudget';
+import { Text, SafeAreaView, View, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList, Keyboard } from 'react-native';
 import { addBudget } from '../../app/actions/addBudget';
+import { updateRecurring } from '../../app/actions/updateRecurring';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
@@ -33,6 +33,7 @@ export class AddCategoriesDetail extends Component {
         this.onOptionalChange = this.onOptionalChange.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleAddCategories = this.handleAddCategories.bind(this);
+        this.calculateRecurring = this.calculateRecurring.bind(this);
         this.calculateSum = this.calculateSum.bind(this);
         this._keyboardDidHide = this._keyboardDidHide.bind(this);
         this._keyboardDidShow = this._keyboardDidShow.bind(this);
@@ -107,6 +108,13 @@ export class AddCategoriesDetail extends Component {
         }
     };
 
+    // add new category into recurring bill
+    calculateRecurring() {
+        const newRecurring = this.props.shortTerm[0] + this.calculateSum(this.state.period, this.state.value, this.state.optional);
+        console.log([newRecurring, this.props.shortTerm[1]]);
+        return ([newRecurring, this.props.shortTerm[1]]);
+    };
+
 
     /* Change in content handlers */
     handleAddCategories() {
@@ -122,7 +130,10 @@ export class AddCategoriesDetail extends Component {
             }
         });
 
+        this.calculateRecurring();
+
         console.log(store.getState().user.newCategory);
+        updateRecurring(this.calculateRecurring());
         addBudget(store.getState().user.newCategory);
         this.props.navigation.goBack();
     };
@@ -131,34 +142,12 @@ export class AddCategoriesDetail extends Component {
         this.setState({
             title: text
         });
-
-        // store.dispatch(
-        //     {
-        //         type: 'updateNewCategory',
-        //         newCategory: {
-        //             ...this.props.newCategory,
-        //             title: this.state.title
-        //         }
-        //     }
-        // );
-        // console.log(store.getState().user.newCategory);
     };
 
     onValueChange(value) {
         this.setState({
             value: parseFloat(value)
         });
-
-        // store.dispatch(
-        //     {
-        //         type: 'updateNewCategory',
-        //         newCategory: {
-        //             ...this.props.newCategory,
-        //             value: this.state.value
-        //         }
-        //     }
-        // );
-        // console.log(store.getState().user.newCategory);
     };
 
     onOptionalChange(option) {
@@ -187,16 +176,6 @@ export class AddCategoriesDetail extends Component {
         this.setState({
             optional: parseFloat(option)
         })
-        // store.dispatch(
-        //     {
-        //         type: 'updateNewCategory',
-        //         newCategory: {
-        //             ...this.props.newCategory,
-        //             optional: this.state.optional
-        //         }
-        //     }
-        // );
-        // console.log(store.getState().user.newCategory);
     };
 
     // For time period drop downs
@@ -207,7 +186,6 @@ export class AddCategoriesDetail extends Component {
 
     handleComponentDidMount() {
         return (
-            // <ScrollView>
             <Modal animationType="slide"> 
                 <SafeAreaView style={[styles.modalContainer, {bottom: this.state.pageOffset}]}>
                     <View style={{
@@ -375,7 +353,6 @@ export class AddCategoriesDetail extends Component {
 
                 </SafeAreaView>
             </Modal>
-            // </ScrollView>
         );
     }
 
@@ -389,8 +366,9 @@ export class AddCategoriesDetail extends Component {
 const mapStateToProps = (store) => ({
   categories: store.user.categories,
   newCategory: store.user.newCategory,
+  shortTerm: store.user.shortTerm
 });
 
-const mapDispatchProps = (dispatch) => bindActionCreators({ addBudget }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ addBudget, updateRecurring }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(AddCategoriesDetail));

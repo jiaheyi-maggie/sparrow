@@ -41,6 +41,11 @@ export default user = (state = initialState, action) => {
                 ...state,
                 newCategory: action.newCategory
             }
+        case "updateRecurring":
+            return {
+                ...state,
+                shortTerm: action.recurring
+            }
         default:
             return state; 
     }
