@@ -1,16 +1,12 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
-// import { PieChart } from 'react-native-charts-wrapper';
-import { VictoryPie, VictoryLabel, VictoryScatter } from 'victory-native';
+import { VictoryPie, VictoryLabel} from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import { addBudget } from '../../app/actions/addBudget';
-// allow connect to redux
 import { connect } from 'react-redux';
-// bind actions to components
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
-import Swipeout from 'react-native-swipeout';
 import styles from '../../styles/homeStyle';
 
 
@@ -23,6 +19,7 @@ export class BudgetDetail extends Component {
             usefulCategories: [],
             shortTerm: [],
             longTerm: [],
+            averagePeriod: 'year'
         }
     }
 
@@ -33,19 +30,9 @@ export class BudgetDetail extends Component {
         })});
         this.setState({shortTerm: this.props.shortTerm});
         this.setState({longTerm: this.props.longTerm});
+        this.setState({averagePeriod: this.props.averagePeriod});
     };
 
-    calculateShortTerm() {
-
-    }
-
-    componentDidUpdate(prevCategories) {
-        if (this.props.categories != prevCategories.categories) {
-            this.props.fetchBudget(); 
-            // TODO: change long term, shortTerm
-
-        }
-    };
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
@@ -112,6 +99,12 @@ export class BudgetDetail extends Component {
                     case 'week':
                         return this.roundNumbers(value * 7);
                 }
+        }
+    };
+
+    componentDidUpdate(prevCategories) {
+        if (this.props.categories != prevCategories.categories) {
+            this.props.fetchBudget(); 
         }
     };
 
@@ -260,9 +253,6 @@ export class BudgetDetail extends Component {
                 {/* Category details */}
                     {/* Add Categories Button */}
                     <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-
-                        {/* TODO: update firebase collection("budgets") */}
-                        {/* <TouchableOpacity onPress={() => this.handleAddCategories()} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}> */}
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
                             <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
                         </TouchableOpacity>
@@ -273,17 +263,13 @@ export class BudgetDetail extends Component {
                         data={this.state.usefulCategories}
                         renderItem={({ item }) => {
                             return (
-                                <Swipeout 
-                                // TODO: onPress: delete categories
-                                    right={[{text: "Delete", backgroundColor: 'red'}]}
-                                    backgroundColor='transparent'
-                                    autoClose='true'
-                                >
+                                // TODO: click on 
+                                <TouchableOpacity>
                                     <View style={styles.listContainer}>
                                         <Text style={styles.listText}>{item.title}</Text> 
                                         <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
                                     </View>
-                                </Swipeout>
+                                </TouchableOpacity>
                             );
                         }}
                         keyExtractor={item => item.id}

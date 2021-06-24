@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
-import { Text, View } from "react-native";
-import { TextInput } from 'react-native-gesture-handler';
+import { Text, View, TextInput } from "react-native";
+// import { TextInput } from 'react-native-gesture-handler';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 

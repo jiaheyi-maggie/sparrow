@@ -8,17 +8,10 @@ import periods from '../../data/periods';
 
 const OverviewPicker = ({ term }) => {
 
-  // compare strings
-  const strcmp= (a, b) => {
-    if (a.toString() < b.toString()) return -1;
-    if (a.toString() > b.toString()) return 1;
-    return 0;
-  };
-
   const determineDefaultState = () => {
-    if (strcmp(term, 'Long') === 0) {
+    if (term === "Long") {
       return store.getState().longTerm[1];
-    } else if (strcmp(term, 'Short') === 0) {
+    } else if (term ==="Short") {
       return store.getState().shortTerm[1];
     }
   }; 
@@ -68,10 +61,10 @@ const OverviewPicker = ({ term }) => {
                     setModalVisible(false); 
                     setChosen(item.title);
                     // update term period
-                    if (strcmp(term, 'Long') === 0) {
+                    if (term === 'Long') {
                       store.dispatch(changeLongTermPeriod(item.title));
                     } 
-                    else if (strcmp(term, 'Short') === 0) {
+                    else if (term === 'Short') {
                       store.dispatch(changeShortTermPeriod(item.title));
                     }
                   }}
