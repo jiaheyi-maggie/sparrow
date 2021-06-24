@@ -111,7 +111,6 @@ export class AddCategoriesDetail extends Component {
     // add new category into recurring bill
     calculateRecurring() {
         const newRecurring = this.props.shortTerm[0] + this.calculateSum(this.state.period, this.state.value, this.state.optional);
-        console.log([newRecurring, this.props.shortTerm[1]]);
         return ([newRecurring, this.props.shortTerm[1]]);
     };
 
@@ -131,8 +130,6 @@ export class AddCategoriesDetail extends Component {
         });
 
         this.calculateRecurring();
-
-        console.log(store.getState().user.newCategory);
         updateRecurring(this.calculateRecurring());
         addBudget(store.getState().user.newCategory);
         this.props.navigation.goBack();
