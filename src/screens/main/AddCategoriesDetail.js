@@ -114,46 +114,50 @@ export class AddCategoriesDetail extends Component {
             type: "updateNewCategory",
             newCategory: {
                 ...this.props.newCategory,
+                optional: this.state.optional,
+                title: this.state.title,
+                value: this.state.value,
                 sum: this.calculateSum(this.state.period, this.state.value, this.state.optional)
 
             }
-        })
+        });
 
         console.log(store.getState().user.newCategory);
-        // addBudget(this.props.newCategory);
+        addBudget(store.getState().user.newCategory);
         this.props.navigation.goBack();
     };
 
     onTitleChange(text) {
         this.setState({
             title: text
-        })
+        });
 
-        store.dispatch(
-            {
-                type: 'updateNewCategory',
-                newCategory: {
-                    ...store.getState().user.newCategory,
-                    title: this.state.title
-                }
-            }
-        );
+        // store.dispatch(
+        //     {
+        //         type: 'updateNewCategory',
+        //         newCategory: {
+        //             ...this.props.newCategory,
+        //             title: this.state.title
+        //         }
+        //     }
+        // );
         // console.log(store.getState().user.newCategory);
     };
 
     onValueChange(value) {
         this.setState({
             value: value
-        })
-        store.dispatch(
-            {
-                type: 'updateNewCategory',
-                newCategory: {
-                    ...this.props.newCategory,
-                    value: this.state.value
-                }
-            }
-        );
+        });
+
+        // store.dispatch(
+        //     {
+        //         type: 'updateNewCategory',
+        //         newCategory: {
+        //             ...this.props.newCategory,
+        //             value: this.state.value
+        //         }
+        //     }
+        // );
         // console.log(store.getState().user.newCategory);
     };
 
@@ -183,16 +187,16 @@ export class AddCategoriesDetail extends Component {
         this.setState({
             optional: option
         })
-        store.dispatch(
-            {
-                type: 'updateNewCategory',
-                newCategory: {
-                    ...this.props.newCategory,
-                    optional: this.state.optional
-                }
-            }
-        );
-        console.log(store.getState().user.newCategory);
+        // store.dispatch(
+        //     {
+        //         type: 'updateNewCategory',
+        //         newCategory: {
+        //             ...this.props.newCategory,
+        //             optional: this.state.optional
+        //         }
+        //     }
+        // );
+        // console.log(store.getState().user.newCategory);
     };
 
     // For time period drop downs

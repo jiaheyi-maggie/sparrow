@@ -1,5 +1,5 @@
 const initialState = {
-    averagePeriod: null,
+    averagePeriod: 'year',
 }
 
 export default averagePeriod = (state = initialState, action) => {

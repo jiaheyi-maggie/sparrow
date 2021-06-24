@@ -16,9 +16,14 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
-
     componentDidMount() {
         this.props.fetchBudget();
+    };
+
+    componentDidUpdate(prevCategories) {
+        if (this.props.categories != prevCategories.categories) {
+            this.props.fetchBudget(); 
+        }
     };
 
     signOutUser = async () => {
