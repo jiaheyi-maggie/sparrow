@@ -34,7 +34,7 @@ export default reducer = (state = categoriesWithValue, action) => {
             // console.log(optionalState[optionalIndex]);
             return optionalState;
 
-        // for handling period selection (ModalPicker)
+        // for handling period selection for onboarding(ModalPicker)
         case 'updatePeriod' :
             const periodIndex = state.findIndex(
                 (category) => category.id === action.payload.item.id

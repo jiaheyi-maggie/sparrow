@@ -107,20 +107,19 @@ export class BudgetDetail extends Component {
     };
 
     // TODO: when Add Categories is clicked: lead to another page
-    handleAddCategories() {
-        const length = this.props.categories.length;
-        console.log(length);
-        // dummy data to test out
-        addBudget({
-            checked: true,
-            id: `${length}`,
-            optional: 0,
-            period: 'year',
-            sum: 2000,
-            title: "Alcohol",
-            value: 50
-        })
-    };
+    // handleAddCategories() {
+    //     const length = this.props.categories.length;
+    //     // dummy data to test out
+    //     addBudget({
+    //         checked: true,
+    //         id: `${length}`,
+    //         optional: 0,
+    //         period: 'year',
+    //         sum: 2000,
+    //         title: "Alcohol",
+    //         value: 50
+    //     })
+    // };
 
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
@@ -274,8 +273,10 @@ export class BudgetDetail extends Component {
                 {/* Category details */}
                     {/* Add Categories Button */}
                     <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
+
                         {/* TODO: update firebase collection("budgets") */}
-                        <TouchableOpacity onPress={() => this.handleAddCategories()} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                        {/* <TouchableOpacity onPress={() => this.handleAddCategories()} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}> */}
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
                             <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
                         </TouchableOpacity>
                     </View>
@@ -319,6 +320,6 @@ const mapStateToProps = (store) => ({
 });
 
 // bind component to redux
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget, addBudget  }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget, addBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(BudgetDetail));

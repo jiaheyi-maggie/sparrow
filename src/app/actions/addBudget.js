@@ -1,7 +1,7 @@
 //  action creator to add budget
 import firebase from "firebase";
+import store from "../store";
 
-// TODO: fix bug => invalid data type
 export function addBudget(data) {
     return (
         firebase.firestore()
@@ -11,13 +11,12 @@ export function addBudget(data) {
             categories: firebase.firestore.FieldValue.arrayUnion(data)
         })
         .then(() => {
-            // update redux store
-            // dispatch (
-            //     {
-            //     type: "ADD_BUDGET",
-            //     categories: data
-            //     }
-            // )
+            store.dispatch (
+                {
+                type: "ADD_BUDGET",
+                categories: data
+                }
+            )
             console.log('successful');
             console.log(data);
         })

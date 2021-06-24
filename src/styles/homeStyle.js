@@ -111,6 +111,26 @@ const homeStyle = StyleSheet.create({
         fontSize: 23,
         marginHorizontal: 5,
         marginTop: 5,
+    },
+    modalContainer: {
+        backgroundColor: '#fff',
+        flex: 1,
+        paddingTop: 10
+    },
+    addButtonContainer: {
+        backgroundColor: "#F4A261",
+        borderRadius: 20,
+        paddingLeft: 15,
+        paddingVertical: 5,
+        marginRight: 10,
+        elevation: 2
+    },
+    addText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: "#264653",
+        marginRight: 10,
+        paddingRight: 8
     }
  });
 

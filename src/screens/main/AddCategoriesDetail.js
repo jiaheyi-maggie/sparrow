@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, Modal } from 'react-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
+import { addBudget } from '../../app/actions/addBudget';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
@@ -8,54 +9,51 @@ import styles from '../../styles/homeStyle';
 
 export class AddCategoriesDetail extends Component {
 
-  componentDidMount() {
-    this.props.fetchBudget();
-  };
+    componentDidMount() {
+        this.props.fetchBudget();
+    };
 
   handleComponentDidMount(categories, shortTerm, longTerm) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={{
-            flexDirection: 'row', 
-            justifyContent:'space-between',
-            alignItems: 'baseline'
-            }}>
-            {/* go back */}
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-              <Image 
-                source={require('../../assets/Icons/back.png')}
-                resizeMode='contain'
-                style={{
-                  width: 23,
-                  height: 23,
-                  tintColor: '#7E9181',
-                  marginLeft: 15,
-                  marginTop: 10
-                }}
-              />
-            </TouchableOpacity>
+    <Modal
+    animationType="slide"
+    // transparent={true}
+    > 
+        {/* <SafeAreaView style={styles.container}> */}
+        <SafeAreaView style={styles.modalContainer}>
+            <ScrollView>
+                <View style={{
+                    flexDirection: 'row', 
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between'
+                    }}>
 
-            {/* Display name */}
-            <Text style={styles.title}>Add Categories</Text>
+                    {/* Display name */}
+                    <Text style={styles.title}>New Category</Text>
+                    {/* add button */}
+                    <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.addButtonContainer}>
+                        <View style={{flexDirection: 'row'}}>
+                        
+                        <Image 
+                            source={require('../../assets/Icons/add.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 23,
+                                height: 23,
+                                tintColor: '#264653',
+                                marginRight: 15
+                            }}
+                        />
+                        <Text style={styles.addText}>Add</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
 
-            {/* Menu */}
-            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                <Image 
-                    source={require('../../assets/Icons/menu.png')}
-                    resizeMode='contain'
-                    style={{
-                        width: 23,
-                        height: 23,
-                        tintColor: '#7E9181',
-                        marginRight: 15
-                    }}
-                />
-            </TouchableOpacity>
-            
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+
+                {/* Main Content */}
+            </ScrollView>
+        </SafeAreaView>
+    </Modal>
     );
   }
 
@@ -75,6 +73,6 @@ const mapStateToProps = (store) => ({
 });
 
 // bind component to redux
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget, addBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(AddCategoriesDetail));
