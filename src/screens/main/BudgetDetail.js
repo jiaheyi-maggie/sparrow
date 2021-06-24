@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 // bind actions to components
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
+import Swipeout from 'react-native-swipeout';
 import styles from '../../styles/homeStyle';
 
 
@@ -106,20 +107,6 @@ export class BudgetDetail extends Component {
         }
     };
 
-    // TODO: when Add Categories is clicked: lead to another page
-    // handleAddCategories() {
-    //     const length = this.props.categories.length;
-    //     // dummy data to test out
-    //     addBudget({
-    //         checked: true,
-    //         id: `${length}`,
-    //         optional: 0,
-    //         period: 'year',
-    //         sum: 2000,
-    //         title: "Alcohol",
-    //         value: 50
-    //     })
-    // };
 
     handleComponentDidMount(categories, shortTerm, longTerm) {
         const usefulCategories = categories.filter((obj) => {
@@ -286,10 +273,17 @@ export class BudgetDetail extends Component {
                         data={usefulCategories}
                         renderItem={({ item }) => {
                             return (
-                                <View style={styles.listContainer}>
-                                    <Text style={styles.listText}>{item.title}</Text> 
-                                    <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
-                                </View>
+                                <Swipeout 
+                                // TODO: onPress: delete categories
+                                    right={[{text: "Delete", backgroundColor: 'red'}]}
+                                    backgroundColor='transparent'
+                                    autoClose='true'
+                                >
+                                    <View style={styles.listContainer}>
+                                        <Text style={styles.listText}>{item.title}</Text> 
+                                        <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
+                                    </View>
+                                </Swipeout>
                             );
                         }}
                         keyExtractor={item => item.id}
