@@ -115,7 +115,6 @@ const LongTerm = ({ navigation }) => {
                 <View style={{flexDirection:'row', paddingLeft:40}}>
                     <Text style={styles.longtermDescription}>per </Text>
                     <Picker term={'long'}/>
-                    
                 </View>
             </View>
 

@@ -4,6 +4,7 @@ import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 // import { PieChart } from 'react-native-charts-wrapper';
 import { VictoryPie, VictoryLabel, VictoryScatter } from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
+import { addBudget } from '../../app/actions/addBudget';
 // allow connect to redux
 import { connect } from 'react-redux';
 // bind actions to components
@@ -105,9 +106,20 @@ export class BudgetDetail extends Component {
         }
     };
 
-    // TODO: when Add Categories is clicked
+    // TODO: when Add Categories is clicked: lead to another page
     handleAddCategories() {
-
+        const length = this.props.categories.length;
+        console.log(length);
+        // dummy data to test out
+        addBudget({
+            checked: true,
+            id: `${length}`,
+            optional: 0,
+            period: 'year',
+            sum: 2000,
+            title: "Alcohol",
+            value: 50
+        })
     };
 
     handleComponentDidMount(categories, shortTerm, longTerm) {
@@ -307,6 +319,6 @@ const mapStateToProps = (store) => ({
 });
 
 // bind component to redux
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget, addBudget  }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(BudgetDetail));

@@ -21,6 +21,14 @@ export default user = (state = initialState, action) => {
                 longTerm: action.longTerm,
                 shortTerm: action.shortTerm
             }
+        case "ADD_BUDGET":
+            const currCategories = new Array(categories);
+            currCategories.push(action.categories);
+            console.log(currCategories);
+            return {
+                ...state,
+                categories: currCategories
+            }
         default:
             return state; 
     }

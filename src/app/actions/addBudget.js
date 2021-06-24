@@ -6,11 +6,18 @@ export function addBudget(data) {
     return (
         firebase.firestore()
         .collection("budgets")
-        // reference the doc through the unique uid
         .doc(firebase.auth().currentUser.uid)
-        .set(data)
-        .then((ref) => {
-            console.log("budget added to database", ref.uid)
+        .update({
+            categories: firebase.firestore.FieldValue.arrayUnion(data)
+        })
+        .then(() => {
+            // update redux store
+            dispatch ({
+                type: "ADD_BUDGET",
+                categories: data
+            })
+            console.log('successful');
+            console.log(data);
         })
         .catch((error) => {
             console.log(error);
