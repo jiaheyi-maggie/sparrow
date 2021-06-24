@@ -11,6 +11,14 @@ const homeStyle = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 5,
     },
+    title2: {
+        color: '#264653',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 23,
+        marginTop: 5,
+        marginHorizontal: 10
+    },
     tab: {
         position: 'absolute',
         bottom: 10,
@@ -92,7 +100,8 @@ const homeStyle = StyleSheet.create({
     listText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color:'#706993'
+        color:'#706993',
+        marginBottom: 5
     },
     listText2: {
         fontSize: 18,
@@ -139,7 +148,6 @@ const homeStyle = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#E76F51',
-        marginTop: 5,
         elevation: 2,
         textAlign: 'center'
     },
@@ -159,10 +167,11 @@ const homeStyle = StyleSheet.create({
         width: 100
     },
     textInputContainerValue: {
-        borderRadius: 10,
+        borderRadius: 15,
         elevation: 2,
         backgroundColor: 'aliceblue',
-        padding: 5
+        padding: 10,
+        paddingLeft: 15
     },
     addTextGuide: {
         fontSize: 20,
@@ -185,7 +194,7 @@ const homeStyle = StyleSheet.create({
         alignItems: 'center',
     },
     modalView: {
-        backgroundColor: "white",
+        backgroundColor: "#F8FAFB",
         width: 350,
         borderRadius: 20,
         padding: 20,

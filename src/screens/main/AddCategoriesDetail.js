@@ -147,7 +147,7 @@ export class AddCategoriesDetail extends Component {
                         }}>
 
                         {/* Display name */}
-                        <Text style={styles.title}>New Category</Text>
+                        <Text style={styles.title2}>New Category</Text>
                         {/* add button */}
                         <TouchableOpacity onPress={() => this.handleAddCategories()} style={styles.addButtonContainer}>
                             <View style={{flexDirection: 'row'}}>
@@ -167,16 +167,19 @@ export class AddCategoriesDetail extends Component {
                     </View>
 
                     {/* Main Content */}
-                    {/* text fields */}
+
+                    {/* Title */}
                     <View style={styles.textInputContainer}>
                         <Text style={styles.listText}>Category Name</Text>
                         <TextInput
                             value={this.state.title}
                             onChangeText={(text) => this.onTitleChange(text)}
                             style={styles.textInput}
+                            placeholder='Shopping...'
                         />
                     </View>
 
+                    {/* Value + Period */}
                     <View style={styles.textInputContainer}>
                         <Text style={styles.listText}>Value + Period</Text>
                         <View style={styles.textInputContainerValue}>
@@ -187,11 +190,12 @@ export class AddCategoriesDetail extends Component {
                                     onChangeText={(value) => this.onValueChange(value)}
                                     style={styles.textInputValue}
                                     keyboardType='numeric'
+                                    placeholder='289...'
                                 />
                             </View>
 
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Text style={styles.addText}>per</Text>
+                                <Text style={styles.addTextGuide}>per </Text>
 
                                 {/* Period Dropdown */}
                                 <SafeAreaView style={styles.startView}>
@@ -204,27 +208,28 @@ export class AddCategoriesDetail extends Component {
                                         {/* View for the list of time periods */}
                                         <View style={styles.centeredView}>
                                             <View style={styles.modalView}>
-                                            <FlatList 
-                                                data={periods}
-                                                renderItem={({ item }) => (
-                                                    <TouchableOpacity
-                                                        style={[styles.button, styles.buttonClose]}
-                                                        onPress={() => {
-                                                            this.setState({modalVisible: false}); 
-                                                            this.setState({period: item.title});
-                                                            store.dispatch(
-                                                                {
-                                                                    type: "updateNewCategory",
-                                                                    newCategory: this.state.period
-                                                                }
-                                                            );
-                                                        }}
-                                                    >
-                                                        <Text style={styles.textStyle}>{item.title}</Text>
-                                                    </TouchableOpacity>
-                                                )}
-                                                keyExtractor={item => item.id}
-                                            />
+                                                <Text style={styles.listText2}>Select a time period</Text>
+                                                <FlatList 
+                                                    data={periods}
+                                                    renderItem={({ item }) => (
+                                                        <TouchableOpacity
+                                                            style={[styles.button, styles.buttonClose]}
+                                                            onPress={() => {
+                                                                this.setState({modalVisible: false}); 
+                                                                this.setState({period: item.title});
+                                                                store.dispatch(
+                                                                    {
+                                                                        type: "updateNewCategory",
+                                                                        newCategory: this.state.period
+                                                                    }
+                                                                );
+                                                            }}
+                                                        >
+                                                            <Text style={styles.textStyle}>{item.title}</Text>
+                                                        </TouchableOpacity>
+                                                    )}
+                                                    keyExtractor={item => item.id}
+                                                />
                                             </View>
                                         </View>
                                     </Modal>
@@ -242,6 +247,7 @@ export class AddCategoriesDetail extends Component {
                                 </SafeAreaView>
                             </View>
 
+                            {/* Optional */}
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                 <Text style={styles.addTextGuide}>for </Text>
                                 <TextInput
@@ -249,6 +255,7 @@ export class AddCategoriesDetail extends Component {
                                     onChangeText={(option) => this.onOptionalChange(option)}
                                     style={styles.textInputValue}
                                     keyboardType='numeric'
+                                    placeholder='3...'
                                 />
                                 <Text style={styles.addTextGuide2}> {this.state.period}s</Text>
                                 <Text style={styles.addTextGuide}> per year.</Text>
