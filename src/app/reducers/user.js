@@ -2,7 +2,8 @@ const initialState = {
     currentUser: null,
     categories: [],
     longTerm: [],
-    shortTerm: []
+    shortTerm: [],
+    newCategory: null
 }
 
 // use thunk to call firebase API
@@ -29,6 +30,22 @@ export default user = (state = initialState, action) => {
                 ...state,
                 categories: currCategories
             }
+        case "REMOVE_BUDGET":
+            const newArr = new Array(categories);
+            newArr.splice(action.index, 1);
+            return {
+                ...state,
+                categories: newArr
+            }
+        case "updateNewCategory":
+            return {
+                ...state,
+                newCategory: action.newCategory
+            }
+        case "updateNewCategoryPeriod":
+            const newCat = {...state};
+            newCat.newCategory.period = action.payload;
+            return newCat;
         default:
             return state; 
     }

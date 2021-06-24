@@ -131,6 +131,43 @@ const homeStyle = StyleSheet.create({
         color: "#264653",
         marginRight: 10,
         paddingRight: 8
+    },
+    textInput: {
+        backgroundColor: '#FFF4CB',
+        borderRadius: 15,
+        paddingVertical: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#E76F51',
+        marginTop: 5,
+        elevation: 2,
+        textAlign: 'center'
+    },
+    textInputContainer: {
+       margin: 10,
+    },
+    textInputValue: {
+        backgroundColor: '#FFF4CB',
+        borderRadius: 15,
+        paddingVertical: 3,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#E76F51',
+        marginTop: 5,
+        elevation: 2,
+        textAlign: 'center',
+        width: 100
+    },
+    textInputContainerValue: {
+        borderRadius: 10,
+        elevation: 2,
+        backgroundColor: 'aliceblue',
+        padding: 5
+    },
+    addTextGuide: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color:'#264653'
     }
  });
 
