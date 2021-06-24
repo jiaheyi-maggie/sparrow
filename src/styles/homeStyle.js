@@ -168,6 +168,61 @@ const homeStyle = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color:'#264653'
+    },
+    startView: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalView: {
+        backgroundColor: "white",
+        width: 350,
+        borderRadius: 20,
+        padding: 20,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        paddingHorizontal: 8,
+        elevation: 2,
+        padding: 2,
+        marginVertical:10,
+        width: 150
+    },
+    buttonOpen: {
+        backgroundColor: "#D7CEB2",
+    },
+    buttonClose: {
+        backgroundColor: "#7E9181",
+        width: 280,
+        height: 50,
+        paddingTop: 8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        textAlignVertical: 'center'
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 20
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
     }
  });
 

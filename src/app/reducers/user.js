@@ -42,10 +42,6 @@ export default user = (state = initialState, action) => {
                 ...state,
                 newCategory: action.newCategory
             }
-        case "updateNewCategoryPeriod":
-            const newCat = {...state};
-            newCat.newCategory.period = action.payload;
-            return newCat;
         default:
             return state; 
     }
