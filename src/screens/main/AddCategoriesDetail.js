@@ -21,7 +21,7 @@ export class AddCategoriesDetail extends Component {
             period: 'time period',
             optional: 0,
             notes:'',
-            id: this.props.categories.length,
+            id: `${this.props.categories.length}`,
             sum: 0,
             modalVisible: false,
             keyboardOffset: 0,
@@ -108,7 +108,7 @@ export class AddCategoriesDetail extends Component {
     };
 
 
-    /* TODO: Change in content handlers */
+    /* Change in content handlers */
     handleAddCategories() {
         store.dispatch({
             type: "updateNewCategory",
@@ -146,7 +146,7 @@ export class AddCategoriesDetail extends Component {
 
     onValueChange(value) {
         this.setState({
-            value: value
+            value: parseFloat(value)
         });
 
         // store.dispatch(
@@ -185,7 +185,7 @@ export class AddCategoriesDetail extends Component {
                 }
         }
         this.setState({
-            optional: option
+            optional: parseFloat(option)
         })
         // store.dispatch(
         //     {

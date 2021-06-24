@@ -16,25 +16,36 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            usefulCategories: [],
+            shortTerm: [],
+            longTerm: [],
+        }
+    }
+
     componentDidMount() {
         this.props.fetchBudget();
+        this.setState({usefulCategories: this.props.categories.filter((obj) => {
+            return obj.sum !== 0;
+        })});
+        this.setState({shortTerm: this.props.shortTerm});
+        this.setState({longTerm: this.props.longTerm});
     };
+
+    calculateShortTerm() {
+
+    }
 
     componentDidUpdate(prevCategories) {
         if (this.props.categories != prevCategories.categories) {
             this.props.fetchBudget(); 
+            // TODO: change long term, shortTerm
+
         }
     };
-
-    signOutUser = async () => {
-        try {
-            await firebase.auth().signOut();
-            Alert.alert('signed out');
-            this.props.navigation.navigate('signin');
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
@@ -113,23 +124,7 @@ export class BudgetDetail extends Component {
     };
 
 
-    handleComponentDidMount(categories, shortTerm, longTerm) {
-        const usefulCategories = categories.filter((obj) => {
-            return obj.sum !== 0;
-        });
-
-        const sums = usefulCategories.map((obj) => obj.sum);
-        const total = sums.reduce((a, b) => a+b, 0);
-
-        const percentages = sums.map((sum) => {
-            return {
-                percent: this.roundNumbers(sum / total),
-            }
-        });
-        // console.log(percentages);
-        // console.log(sums);
-        // console.log(total);
-
+    handleComponentDidMount(shortTerm, longTerm) {
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
@@ -221,7 +216,7 @@ export class BudgetDetail extends Component {
                 <Text style={styles.smallTitle}> Categories</Text>
                 <View>
                 <VictoryPie
-                    data={usefulCategories}
+                    data={this.state.usefulCategories}
                     x="title"
                     y="sum"
                     // x='percent'
@@ -275,7 +270,7 @@ export class BudgetDetail extends Component {
 
                     {/* List */}
                     <FlatList 
-                        data={usefulCategories}
+                        data={this.state.usefulCategories}
                         renderItem={({ item }) => {
                             return (
                                 <Swipeout 
@@ -302,10 +297,10 @@ export class BudgetDetail extends Component {
     }
 
     render() {
-        const { categories, shortTerm, longTerm } = this.props;
+        const { shortTerm, longTerm } = this.props;
 
         return(
-            this.handleComponentDidMount(categories, shortTerm, longTerm)
+            this.handleComponentDidMount(shortTerm, longTerm)
         );
     }
 }
