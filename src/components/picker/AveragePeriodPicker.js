@@ -61,12 +61,12 @@ const AveragePeriodPicker = () => {
           // actions when time period button is clicked
           onPress={() => handleClickOpen()}
       >
-          <View style={{flexDirection:'row', alignItems: 'center'}}>
+          <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <Text style={styles.textStyle}>  {chosen}  </Text>
               <Image 
                   source={require('../../assets/Icons/down-arrow.png')} 
                   resizeMode='contain'
-                  style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
+                  style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff', marginRight: 5}}
               />
           </View>
       </TouchableOpacity>
@@ -104,10 +104,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     elevation: 2,
     padding: 3,
-    marginVertical:2
+    marginVertical:2,
   },
   buttonOpen: {
     backgroundColor: "#D7CEB2",
+    width: 130
   },
   buttonClose: {
     backgroundColor: "#7E9181",

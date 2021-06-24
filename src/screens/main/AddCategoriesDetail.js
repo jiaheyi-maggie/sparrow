@@ -30,7 +30,7 @@ export class AddCategoriesDetail extends Component {
         this.onValueChange = this.onValueChange.bind(this);
         this.onOptionalChange = this.onOptionalChange.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
-        // this.updateNewCategoryPeriod = this.updateNewCategoryPeriod.bind(this);
+        this.handleAddCategories = this.handleAddCategories.bind(this);
         // this.onNoteChange = this.onNoteChange(this);
 
     }
@@ -39,29 +39,19 @@ export class AddCategoriesDetail extends Component {
         store.dispatch({
             type: "updateNewCategory",
             newCategory: {
-                    checked: true,
-                    id: this.state.id,
-                    title: this.state.title,
-                    value: this.state.value,
-                    optional: this.state.optional,
-                    period: this.state.period,
-                    sum: this.state.sum
+                checked: true,
+                id: this.state.id,
+                title: this.state.title,
+                value: this.state.value,
+                optional: this.state.optional,
+                period: this.state.period,
+                sum: this.state.sum
             }
         });
     };
 
     handleAddCategories() {
-        const length = this.props.categories.length;
-        // dummy data to test out
-        addBudget({
-            checked: true,
-            id: `${length}`,
-            optional: 0,
-            period: 'year',
-            sum: 2000,
-            title: "Alcohol",
-            value: 50
-        })
+        addBudget(this.props.newCategory);
         this.props.navigation.goBack();
     };
 
@@ -97,7 +87,7 @@ export class AddCategoriesDetail extends Component {
 
     onOptionalChange(option) {
         // TODO: alert when option is not realistic
-        switch (this.props.newCategory.period) {
+        switch (this.state.period) {
             case "year":
                 if (option > 1) {
                     Alert.alert("That goal seems a little too ambitious...")
@@ -141,7 +131,6 @@ export class AddCategoriesDetail extends Component {
     // }
 
     // For time period drop downs
-        // when time period button is clicked
     handleClickOpen = () => {
         this.setState({modalVisible: !this.state.modalVisible});
     };
@@ -160,7 +149,7 @@ export class AddCategoriesDetail extends Component {
                         {/* Display name */}
                         <Text style={styles.title}>New Category</Text>
                         {/* add button */}
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.addButtonContainer}>
+                        <TouchableOpacity onPress={() => this.handleAddCategories()} style={styles.addButtonContainer}>
                             <View style={{flexDirection: 'row'}}>
                             <Image 
                                 source={require('../../assets/Icons/add.png')}
@@ -242,7 +231,7 @@ export class AddCategoriesDetail extends Component {
 
                                     <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() => this.handleClickOpen()}>
                                         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                                            <Text style={styles.textStyle}> {this.state.period} </Text>
+                                            <Text style={styles.textStyle2}> {this.state.period} </Text>
                                             <Image 
                                             source={require('../../assets/Icons/down-arrow.png')} 
                                             resizeMode='contain'
@@ -261,11 +250,21 @@ export class AddCategoriesDetail extends Component {
                                     style={styles.textInputValue}
                                     keyboardType='numeric'
                                 />
-                                <Text style={styles.addTextGuide}> {this.state.period}s </Text>
+                                <Text style={styles.addTextGuide2}> {this.state.period}s</Text>
                                 <Text style={styles.addTextGuide}> per year.</Text>
                             </View>
                         </View>
                     </View>
+
+                    {/* TODO: Note */}
+
+                    {/* Cancel Button */}
+                    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.cancelButtonContainer}>
+                            <Text style={styles.cancelText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+
                 </SafeAreaView>
             </Modal>
         );

@@ -169,6 +169,11 @@ const homeStyle = StyleSheet.create({
         fontWeight: 'bold',
         color:'#264653'
     },
+    addTextGuide2: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color:'#2A94AF'
+    },
     startView: {
         flex: 1,
         justifyContent: 'flex-start',
@@ -218,11 +223,29 @@ const homeStyle = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
+        fontSize: 25
+    },
+    textStyle2: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
         fontSize: 20
     },
     modalText: {
         marginBottom: 15,
         textAlign: "center"
+    },
+    cancelButtonContainer: {
+        backgroundColor: "#E76F51",
+        borderRadius: 20,
+        padding: 10,
+        width: 150,
+        alignItems: 'center'
+    },
+    cancelText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
     }
  });
 
