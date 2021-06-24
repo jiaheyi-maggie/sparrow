@@ -12,10 +12,12 @@ export function addBudget(data) {
         })
         .then(() => {
             // update redux store
-            dispatch ({
-                type: "ADD_BUDGET",
-                categories: data
-            })
+            // dispatch (
+            //     {
+            //     type: "ADD_BUDGET",
+            //     categories: data
+            //     }
+            // )
             console.log('successful');
             console.log(data);
         })
