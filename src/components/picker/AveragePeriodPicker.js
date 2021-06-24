@@ -6,7 +6,8 @@ import periods from '../../data/periods';
 
 
 const AveragePeriodPicker = () => {
-  const [chosen, setChosen] = useState(store.getState().averagePeriod.averagePeriod);
+  // const [chosen, setChosen] = useState(store.getState().averagePeriod.averagePeriod);
+  const [chosen, setChosen] = useState('year');
 
   // toggle modal visibility
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,48 +28,43 @@ const AveragePeriodPicker = () => {
   return (
     <SafeAreaView style={styles.startView}>
       <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => handleClickOpen()}
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => handleClickOpen()}
       >
-          {/* View for the list of time periods */}
-          <View style={styles.centeredView}>
+        {/* View for the list of time periods */}
+        <View style={styles.centeredView}>
           <View style={styles.modalView}>
-              <FlatList 
-              data={periods}
-              renderItem={({ item }) => (
-                  <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                      setModalVisible(false); 
-                      setChosen(item.title);
-                      store.dispatch(changeAveragePeriod(item.title));
-                  }}
-                  >
-                      <Text style={styles.selectionTextStyle}>{item.title}</Text>
-                  </TouchableOpacity>
-              )}
-              keyExtractor={item => item.id}
-              />
+            <FlatList 
+            data={periods}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                setModalVisible(false); 
+                setChosen(item.title);
+                store.dispatch(changeAveragePeriod(item.title));
+              }}>
+                <Text style={styles.selectionTextStyle}>{item.title}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={item => item.id}
+            />
           </View>
-          </View>
+        </View>
       </Modal>
 
       {/* Time Period closed picker view */}
-      <TouchableOpacity
-          style={[styles.button, styles.buttonOpen]}
-          // actions when time period button is clicked
-          onPress={() => handleClickOpen()}
-      >
-          <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
-              <Text style={styles.textStyle}>  {chosen}  </Text>
-              <Image 
-                  source={require('../../assets/Icons/down-arrow.png')} 
-                  resizeMode='contain'
-                  style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff', marginRight: 5}}
-              />
-          </View>
+      <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() => handleClickOpen()}>
+        <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Text style={styles.textStyle}>  {chosen}  </Text>
+          <Image 
+            source={require('../../assets/Icons/down-arrow.png')} 
+            resizeMode='contain'
+            style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff', marginRight: 5}}
+          />
+        </View>
       </TouchableOpacity>
     </SafeAreaView>
   );

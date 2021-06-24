@@ -1,54 +1,27 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Alert } from 'react-native';
-import { VictoryChart, VictoryBar, VictoryLabel, VictoryPolarAxis } from 'victory-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
+import { VictoryChart, VictoryBar, VictoryLabel} from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
-import firebase from 'firebase';
-
 // allow connect to redux
 import { connect } from 'react-redux';
 // bind actions to components
 import { bindActionCreators } from 'redux';
-
 import { withNavigation } from 'react-navigation';
-
 import styles from '../../styles/homeStyle';
 
 
 
 export class Home extends Component {
 
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state ={
-    //         categories: [],
-    //         longTerm: 0,
-    //         shortTerm: 0
-    //     }
-
-        // redux store listener
-        // store.subscribe(() => {
-        //     this.setState({
-        //         categories: store.getState().reducer,
-        //         longTerm: store.getState().longTerm,
-        //         shortTerm: store.getState().shortTerm
-        //     })
-        // })
-    // }
-
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchBudget();
     }
 
-    signOutUser = async () => {
-        try {
-            await firebase.auth().signOut();
-            Alert.alert('signed out');
-            this.props.navigation.navigate('signin');
-        } catch (error) {
-            console.log(error);
+    componentDidUpdate(prev) {
+        if (this.props.shortTerm != prev.shortTerm) {
+            this.props.fetchBudget(); 
         }
     }
 
@@ -185,7 +158,6 @@ export class Home extends Component {
                                 />
                             </VictoryChart>
                         </View>
-
 
                     </ScrollView>
                 </SafeAreaView>

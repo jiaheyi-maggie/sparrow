@@ -12,34 +12,21 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            usefulCategories: [],
-            shortTerm: [],
-            longTerm: [],
-            averagePeriod: 'year'
-        }
-    }
-
     componentDidMount() {
         this.props.fetchBudget();
-        this.setState({usefulCategories: this.props.categories.filter((obj) => {
-            return obj.sum !== 0;
-        })});
-        this.setState({shortTerm: this.props.shortTerm});
-        this.setState({longTerm: this.props.longTerm});
-        this.setState({averagePeriod: this.props.averagePeriod});
     };
 
+    // componentDidUpdate(prevCategories) {
+    //     if (this.props.categories != prevCategories.categories) {
+    //         this.props.fetchBudget(); 
+    //     }
+    // };
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
     };
 
     calculateAverage(period, value, selectedPeriod) {
-        // return value;
         if (period === selectedPeriod || selectedPeriod === null) {
             return this.roundNumbers(value);
         }
@@ -102,12 +89,6 @@ export class BudgetDetail extends Component {
         }
     };
 
-    componentDidUpdate(prevCategories) {
-        if (this.props.categories != prevCategories.categories) {
-            this.props.fetchBudget(); 
-        }
-    };
-
     handleTimeSelectionRendering(period, value) {
         if (this.props.averagePeriod === null){
             return value; 
@@ -118,6 +99,10 @@ export class BudgetDetail extends Component {
 
 
     handleComponentDidMount(shortTerm, longTerm) {
+        var usefulCategories =  this.props.categories.filter((obj) => {
+            return obj.sum !== 0;
+        });
+
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
@@ -209,7 +194,7 @@ export class BudgetDetail extends Component {
                 <Text style={styles.smallTitle}> Categories</Text>
                 <View>
                 <VictoryPie
-                    data={this.state.usefulCategories}
+                    data={usefulCategories}
                     x="title"
                     y="sum"
                     // x='percent'
@@ -260,7 +245,7 @@ export class BudgetDetail extends Component {
 
                     {/* List */}
                     <FlatList 
-                        data={this.state.usefulCategories}
+                        data={usefulCategories}
                         renderItem={({ item }) => {
                             return (
                                 // TODO: click on 
