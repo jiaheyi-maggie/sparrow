@@ -33,6 +33,7 @@ export class AddCategoriesDetail extends Component {
         this.onOptionalChange = this.onOptionalChange.bind(this);
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleAddCategories = this.handleAddCategories.bind(this);
+        this.calculateSum = this.calculateSum.bind(this);
         this._keyboardDidHide = this._keyboardDidHide.bind(this);
         this._keyboardDidShow = this._keyboardDidShow.bind(this);
 
@@ -50,6 +51,7 @@ export class AddCategoriesDetail extends Component {
                 period: this.state.period,
                 sum: this.state.sum
             }
+            
         });
 
         // keyboard listeners
@@ -83,10 +85,42 @@ export class AddCategoriesDetail extends Component {
         })
     }
 
+    // calculate annual sum based on selection
+    calculateSum(p, v, o) {
+        if (v === 0) {
+            return 0;
+        }
+        if (o !== 0) {
+            return v * o;
+        }
+        switch (p) {
+            case 'year':
+                return v;
+            case 'quarter':
+                return v * 4;
+            case 'month':
+                return v * 12;
+            case 'week':
+                return v * 48;
+            case 'day':
+                return v * 365;
+        }
+    };
 
-    /* Change in content handlers */
+
+    /* TODO: Change in content handlers */
     handleAddCategories() {
-        addBudget(this.props.newCategory);
+        store.dispatch({
+            type: "updateNewCategory",
+            newCategory: {
+                ...this.props.newCategory,
+                sum: this.calculateSum(this.state.period, this.state.value, this.state.optional)
+
+            }
+        })
+
+        console.log(store.getState().user.newCategory);
+        // addBudget(this.props.newCategory);
         this.props.navigation.goBack();
     };
 
@@ -94,15 +128,17 @@ export class AddCategoriesDetail extends Component {
         this.setState({
             title: text
         })
+
         store.dispatch(
             {
                 type: 'updateNewCategory',
                 newCategory: {
-                    ...this.props.newCategory,
+                    ...store.getState().user.newCategory,
                     title: this.state.title
                 }
             }
         );
+        // console.log(store.getState().user.newCategory);
     };
 
     onValueChange(value) {
@@ -118,6 +154,7 @@ export class AddCategoriesDetail extends Component {
                 }
             }
         );
+        // console.log(store.getState().user.newCategory);
     };
 
     onOptionalChange(option) {
@@ -151,10 +188,11 @@ export class AddCategoriesDetail extends Component {
                 type: 'updateNewCategory',
                 newCategory: {
                     ...this.props.newCategory,
-                    title: this.state.optional
+                    optional: this.state.optional
                 }
             }
         );
+        console.log(store.getState().user.newCategory);
     };
 
     // For time period drop downs
@@ -248,7 +286,10 @@ export class AddCategoriesDetail extends Component {
                                                                 store.dispatch(
                                                                     {
                                                                         type: "updateNewCategory",
-                                                                        newCategory: this.state.period
+                                                                        newCategory: {
+                                                                            ...this.props.newCategory,
+                                                                            period: item.title
+                                                                        }
                                                                     }
                                                                 );
                                                             }}
