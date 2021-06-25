@@ -83,7 +83,9 @@ export class Home extends Component {
 
                         {/* budget overview card */}
                         <View> 
-                            <Text style={styles.smallTitle2}>Overview</Text>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.smallTitle2}>Overview</Text>
+                            </View>
                             <Pressable 
                                 style={({ pressed }) => [
                                     {
@@ -116,6 +118,9 @@ export class Home extends Component {
                         </View>
 
                         {/* TODO: style bar graphs */}
+                        <View style={styles.titleContainer}>
+                                <Text style={styles.smallTitle2}>Budget Categories</Text>
+                            </View>
                         <View style={{
                             borderRadius: 20,
                             padding: 10,

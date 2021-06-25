@@ -121,14 +121,7 @@ const homeStyle = StyleSheet.create({
         marginHorizontal: 5,
         marginTop: 5,
     },
-    smallTitle2 : {
-        color: '#264653',
-        fontWeight: 'bold',
-        textAlign: 'left',
-        fontSize: 20,
-        marginHorizontal: 10,
-        marginTop: 5,
-    },
+
     modalContainer: {
         backgroundColor: '#fff',
         flex: 1,
@@ -271,7 +264,23 @@ const homeStyle = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 20
-    }
+    },
+    titleContainer: {
+        width: 200,
+        borderRadius: 15,
+        backgroundColor: '#CEC288',
+        elevation: 2,
+        marginHorizontal: 10,
+        marginVertical: 5,
+        alignItems: 'center',
+        padding: 2
+    },
+    smallTitle2 : {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 20,
+    },
  });
 
  export default homeStyle;

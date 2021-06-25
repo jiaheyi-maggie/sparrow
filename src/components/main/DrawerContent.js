@@ -141,18 +141,6 @@ export class DrawerContent extends Component {
                         /> 
                     </Drawer.Section>
 
-                    {/* Preferences Section */}
-                    {/* <Drawer.Section title="Preferences">
-                        <TouchableRipple onPress={() => {this.toggleTheme()}}>
-                            <View style={styles.preference}>
-                                <Text> Dark Theme</Text>
-                                <View pointerEvents='none'>
-                                    <Switch value={this.state.isDarkTheme}/>
-                                </View>
-                            </View>
-                        </TouchableRipple>
-                    </Drawer.Section> */}
-
                     {/* Support Section */}
                     <Drawer.Section title="Support">
                         {/*  Home */}
@@ -194,6 +182,7 @@ export class DrawerContent extends Component {
                             />
                         );
                     }}
+                    onPress={() => firebase.auth().signOut()}
                 />
             </Drawer.Section>
         </View>
