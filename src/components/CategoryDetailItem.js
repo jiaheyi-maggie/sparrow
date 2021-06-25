@@ -7,8 +7,8 @@ import periods from '../data/periods';
 const CategoryDetailItem = ({ item }) => {
 
     const [period, setPeriod] = useState(store.getState().reducer[item.id].period);
-    const [value, setValue] = useState(null);
-    const [optional, setOptional] = useState(null);
+    const [value, setValue] = useState(store.getState().reducer[item.id].value);
+    const [optional, setOptional] = useState(store.getState().reducer[item.id].optional);
     const [modalVisible, setModalVisible] = useState(false);
 
     // action to update redux

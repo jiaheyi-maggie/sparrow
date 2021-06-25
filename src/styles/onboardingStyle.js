@@ -63,6 +63,19 @@ const onboardingStyle = StyleSheet.create({
       alignSelf: "center",
       textTransform: "uppercase"
   },
+  cuteButtonContainer: {
+    elevation: 2,
+    backgroundColor: "#FAA381",
+    borderRadius: 15,
+    padding: 10,
+    marginTop: 10
+  },
+  cuteButtonText : {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: "#fff",
+      alignSelf: "center",
+  },  
   // onboarding image
   imageContainer: {
     width: 380,
@@ -121,19 +134,28 @@ const onboardingStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 20,
+    padding: 10,
     marginVertical: 5,
-    marginHorizontal:16,
     borderRadius: 20
   },
   // list item text for BudgetOverview
   listSummaryTitle: {
-    color: '#264653',
     fontWeight: 'bold',
     textDecorationLine: 'underline',
     textAlign: 'left',
-    fontSize: 23,
+    fontSize: 20,
     color: "#E76F51"
+  },
+  listSummaryPeriod :{
+    textAlign: 'left',
+    fontSize: 20,
+    color: "#E76F51"
+  },
+  listSummaryTextInput :{
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    color: '#E76F51',
+    textDecorationLine: 'underline'
   },
   // blue card title
   itemTitle: {

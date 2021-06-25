@@ -63,30 +63,19 @@ const SummaryListItem = ({ item }) => {
         <View style={styles.listSummaryItem}>
             <View style={styles.genericRowAlign}>
                 <Text style={styles.listSummaryTitle}>{item.title}</Text>
-                <Text style={{
-                        color: '#264653',
-                        fontWeight: 'bold',
-                        textAlign: 'left',
-                        fontSize: 23,
-                        color: "#E76F51"
-                }}> ({item.period})</Text>
+                <Text style={styles.listSummaryPeriod}> ({item.period})</Text>
             </View>
-            <View style={{flexDirection: 'row'}}>
-                <Text style={styles.listSummaryTitle}>$</Text>
-                <TextInput
+            <View style={{flexDirection: 'row', alignItems:'center'}}>
+                <Text style={styles.listSummaryTitle}>${val}</Text>
+                {/* <TextInput
                     onChangeText={(value) => onChangeNumber(value)}
                     value={val}
                     placeholder='?'
                     keyboardType="phone-pad"
                     selectionColor='#C2A878'
                     textAlign= 'center'
-                    style={{
-                        fontSize: 23, 
-                        fontWeight: 'bold', 
-                        color: '#E76F51',
-                        textDecorationLine: 'underline'
-                    }}
-                />
+                    style={styles.listSummaryTextInput}
+                /> */}
             </View>
         </View>
     );
