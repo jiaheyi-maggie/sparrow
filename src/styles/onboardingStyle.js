@@ -12,6 +12,13 @@ const onboardingStyle = StyleSheet.create({
     justifyContent: 'space-between', 
     paddingBottom:Platform.OS === 'ios'? 0: 10 
   },
+  icon:{
+    width: 20,
+    height: 30,
+    marginTop: 10,
+    marginRight: 5,
+    tintColor: "#7E9181"
+  },
   // title for onboarding
   title: {
       color: '#264653',

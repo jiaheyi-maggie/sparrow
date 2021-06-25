@@ -70,22 +70,16 @@ export default class Register extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <SafeAreaView style={{
-                    backgroundColor: '#FFF4CB',
-                    flexDirection: 'column',
-                    flex: 1,
-                    padding: 20
-                }}>
-                    <View style={{marginTop: 40, marginBottom: 15}}> 
-                        <Text style={{
-                            color: '#264653',
-                            fontWeight: 'bold',
-                            fontSize: 50,
-                            textAlign: 'left',
-                            marginTop: 20
-                        }}>Sign Up </Text>
-                    </View>
+            <ScrollView style={{
+                backgroundColor: '#FFF4CB',
+                flexDirection: 'column',
+                flex: 1,
+                padding: 10,
+                paddingTop: Platform.OS === 'ios'? 0: 40, 
+                paddingBottom:Platform.OS === 'ios'? 0: 10
+            }}>
+                <SafeAreaView>
+                    <Text style={styles.title}>Sign Up</Text>
 
                     <View style={{
                         flexDirection: 'column', 
@@ -101,13 +95,7 @@ export default class Register extends Component {
                             <Image 
                                 source={require('../assets/Icons/first-name.png')} 
                                 resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
+                                style={styles.icon}
                             />
                             <Text style={componentStyle.infofieldtitle}>First Name</Text>
                         </View>
@@ -133,13 +121,7 @@ export default class Register extends Component {
                             <Image 
                                 source={require('../assets/Icons/last-name.png')} 
                                 resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
+                                style={styles.icon}
                             />
                             <Text style={componentStyle.infofieldtitle}>Last Name</Text>
                         </View>
@@ -167,13 +149,7 @@ export default class Register extends Component {
                             <Image 
                                 source={require('../assets/Icons/at.png')} 
                                 resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
+                                style={styles.icon}
                             />
                             <Text style={componentStyle.infofieldtitle}>Username</Text>
                         </View>
@@ -200,13 +176,7 @@ export default class Register extends Component {
                             <Image 
                                 source={require('../assets/Icons/email.png')} 
                                 resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
+                                style={styles.icon}
                             />
                             <Text style={componentStyle.infofieldtitle}>Email</Text>
                         </View>
@@ -233,13 +203,7 @@ export default class Register extends Component {
                             <Image 
                                 source={require('../assets/Icons/password.png')} 
                                 resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
+                                style={styles.icon}
                             />
                             <Text style={componentStyle.infofieldtitle}>Password</Text>
                         </View>
@@ -256,21 +220,17 @@ export default class Register extends Component {
                         />
                     </View>
 
-                    <View style={{width: 390, height: 80}}><Text></Text></View>
+                    <View style={{height: 150}}></View>
 
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => this.onSignUp()}
-                    >
-                        <Text style={styles.buttonText}> Register </Text>
-                    </TouchableOpacity>
+                    <View style={{paddingVertical: 10}}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={() => this.onSignUp()}>
+                            <Text style={styles.buttonText}> Register </Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('signin')}
-                    >
-                        <Text style={componentStyle.buttonText}> I already have an account </Text>
-                    </TouchableOpacity>
-                    
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('signin')}>
+                            <Text style={componentStyle.buttonText}> I already have an account </Text>
+                        </TouchableOpacity>
+                    </View>
                 </SafeAreaView>
             </ScrollView>
         )

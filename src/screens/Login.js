@@ -145,7 +145,7 @@ export default class Login extends Component {
 
                     </View>
 
-                    <View style={{width: 400, height: 65}}><Text></Text></View>
+                    <View style={{width: 400, height: 120}}><Text></Text></View>
 
                     <TouchableOpacity
                         style={styles.buttonContainer}

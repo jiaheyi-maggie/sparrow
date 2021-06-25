@@ -49,11 +49,11 @@ const SummaryListItem = ({ item }) => {
         }
     }
 
-    const onChangeNumber = value => {
-        setVal(value);
-        store.dispatch(updateValue(value));
+    // const onChangeNumber = value => {
+    //     setVal(value);
+    //     store.dispatch(updateValue(value));
 
-    }
+    // }
 
     const [val, setVal] = useState(value);
     const sum = calculateSumBasedOnPeriod(period, val, optional);
