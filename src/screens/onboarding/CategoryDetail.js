@@ -18,22 +18,20 @@ const CategoryDetail = ({ navigation }) => {
     // render selected items
     const renderList = () => {
         return (
-            <SafeAreaView style={styles.safeareaWithScroll}>
-                <ScrollView style={styles.scrollviewContainer}>
-                    <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
-                    <Text style={styles.subtitle}>This is the first step to making a budget estimation :)</Text>
+            <SafeAreaView style={styles.container}>
+                <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
+                <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
 
-                    <FlatList 
-                        data={checkedCategories}
-                        renderItem={({ item }) => (
-                            <CategoryDetailItem item={item}  />
-                        )}
-                        keyExtractor={item => item.id}
-                        contentContainerStyle={{
-                            flexGrow: 1,
-                        }}
-                    />
-                </ScrollView>
+                <FlatList 
+                    data={checkedCategories}
+                    renderItem={({ item }) => (
+                        <CategoryDetailItem item={item}  />
+                    )}
+                    keyExtractor={item => item.id}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                    }}
+                />
 
                 {/* Button View  */}
                 <View style={styles.multipleButtonContainer}> 

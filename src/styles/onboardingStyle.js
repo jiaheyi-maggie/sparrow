@@ -4,36 +4,37 @@ import { Platform } from 'react-native';
 const onboardingStyle = StyleSheet.create({
   // onboarding page container
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    justifyContent: 'space-between',
-    paddingTop: (Platform.OS === 'ios') ? 0: 50,
-    paddingBottom: 10
+    flex: 1, 
+    flexDirection: 'column', 
+    backgroundColor: 'white', 
+    padding: 10, 
+    paddingTop: Platform.OS === 'ios'? 0: 40, 
+    justifyContent: 'space-between', 
+    paddingBottom:Platform.OS === 'ios'? 0: 10 
   },
   // title for onboarding
   title: {
       color: '#264653',
       fontWeight: 'bold',
-      fontSize: 40,
+      fontSize: 35,
       textAlign: 'left',
       paddingTop: 10,
-      paddingLeft: 15
+      marginLeft: 10
   },
   // subtitle for onboarding
   subtitle: {
       color: '#E76F51',
-      fontWeight: 'bold',
+      // fontWeight: 'bold',
       textAlign: 'left',
-      fontSize: 22,
-      paddingVertical: 5,
-      marginHorizontal: 10
+      fontSize: 20,
+      marginHorizontal: 10,
+      marginBottom: 5
   },
   // when onboarding title is long
   longtitle: {
       color: '#264653',
       fontWeight: 'bold',
-      fontSize: 30,
+      fontSize: 28,
       textAlign: 'left',
       margin: 10
   },
@@ -48,12 +49,11 @@ const onboardingStyle = StyleSheet.create({
   },
   // onboarding buttons
   buttonContainer: {
-      elevation: 8,
+      elevation: 2,
       backgroundColor: "#264653",
-      borderRadius: 10,
-      paddingVertical: 15,
-      paddingHorizontal: 9,
-      margin: 10
+      borderRadius: 15,
+      padding: 10,
+      marginTop: 10
   },
   // button text inside button
   buttonText : {
@@ -79,17 +79,17 @@ const onboardingStyle = StyleSheet.create({
   multipleButtonContainer: {
     alignContent: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'baseline',
-    width: 400
   },
   // text to indicate optional
   optionalText: {
-    color: '#264653',
+    color: '#2A94AF',
     textAlign: 'left',
-    fontSize: 20,
+    fontSize: 18,
     paddingVertical: 5,
-    marginHorizontal: 20
+    marginHorizontal: 10,
+    fontWeight: 'bold'
   },
   // blue category card
   categoryCard :{
@@ -114,15 +114,6 @@ const onboardingStyle = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 5,
     textAlign: 'center'
-  },
-  // scroll view
-  scrollviewContainer: {
-    marginTop: 30,
-  },
-  // safe area with scroll view
-  safeareaWithScroll : {
-    backgroundColor: '#fff',
-    flex: 1
   },
   // budget summary list container
   listSummaryItem: {

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { Platform } from 'react-native';
 
 const componentStyle = StyleSheet.create({
   input: {
@@ -12,12 +13,12 @@ const componentStyle = StyleSheet.create({
     alignContent: 'center'
   },
   container: {
-    alignItems: 'stretch',
-    padding: 20,
-    margin: 10,
-    backgroundColor: '#FFF4CB',
-    flexDirection: 'column',
-    flex: 1
+    flex: 1, 
+    flexDirection: 'column', 
+    backgroundColor: 'white', 
+    padding: 10, 
+    paddingTop: Platform.OS === 'ios'? 0: 40, 
+    justifyContent: 'space-between'
   },
   buttonContainer: {
     elevation: 10,
@@ -81,18 +82,15 @@ const componentStyle = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: "#FAA381",
+    color: "#2A94AF",
     alignSelf: "center",
     textTransform: "uppercase"
   },
   clickContainer: {
-    height: 60, 
     backgroundColor: '#FFF4CB', 
     borderRadius: 20, 
     margin: 10,
-    paddingBottom: 15,
-    paddingHorizontal: 10,
-    flexDirection: 'column-reverse'
+    padding: 10,
   },
   listTextAlign: {
       flexDirection: 'row',
@@ -103,7 +101,7 @@ const componentStyle = StyleSheet.create({
       color: '#264653',
       fontWeight: 'bold',
       textAlign: 'left',
-      fontSize: 23,
+      fontSize: 22,
       marginLeft: 50
   },
   budgetCircle : {

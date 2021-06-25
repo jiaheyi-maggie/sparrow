@@ -9,31 +9,32 @@ import categories from '../../data/categories-bool';
 const SelectCategory = ({ navigation }) => {
 
     return (
-        <SafeAreaView style={styles.safeareaWithScroll}>
-            <ScrollView style={styles.scrollviewContainer}>
-                <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
-                <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! Scroll down to select categories. You can customize these later too!</Text>
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.longtitle}>Mark all categories where you have a good sense of how much you spend.</Text>
+            {/* <Image 
+                source={require('../../assets/onboarding/mark-categories.png')} 
+                resizeMode='contain'
+                style={styles.smallImage}
+            /> */}
+            <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! You can customize these later too!</Text>
 
-                <Image 
-                    source={require('../../assets/onboarding/mark-categories.png')} 
-                    resizeMode='contain'
-                    style={styles.smallImage}
-                />
 
-                <Text style={styles.optionalText}>(Optional)</Text>
 
-                {/* CATEGORY LIST HERE */}
-                <FlatList 
-                    data={categories}
-                    renderItem={({ item }) => (
-                        <CategoryItem item={item}  />
-                    )}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                    }}
-                />                
-            </ScrollView>
+            <View style={{backgroundColor: 'aliceblue', borderRadius: 20, marginVertical: 10}}>
+                <Text style={styles.optionalText}>Select Categories:</Text>
+            </View>
+            
+            {/* CATEGORY LIST HERE */}
+            <FlatList 
+                data={categories}
+                renderItem={({ item }) => (
+                    <CategoryItem item={item}  />
+                )}
+                keyExtractor={item => item.id}
+                contentContainerStyle={{
+                    flexGrow: 1,
+                }}
+            />           
             
             {/* Button View */}
             <View style={styles.multipleButtonContainer}> 
