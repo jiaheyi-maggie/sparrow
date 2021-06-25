@@ -1,6 +1,6 @@
 /* Render Selected Categories List */
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View, Image, FlatList } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View, Image, FlatList, ScrollView } from 'react-native';
 import CategoryDetailItem from '../../components/CategoryDetailItem';
 import styles from '../../styles/onboardingStyle';
 import store from '../../app/store';
@@ -16,20 +16,21 @@ const CategoryDetail = ({ navigation }) => {
     const renderList = () => {
         return (
             <SafeAreaView style={styles.container}>
-                <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
-                <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
+                <ScrollView>
+                    <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
+                    <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
 
-                <FlatList 
-                    data={checkedCategories}
-                    renderItem={({ item }) => (
-                        <CategoryDetailItem item={item}  />
-                    )}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                    }}
-                />
-
+                    <FlatList 
+                        data={checkedCategories}
+                        renderItem={({ item }) => (
+                            <CategoryDetailItem item={item}  />
+                        )}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                        }}
+                    />
+                </ScrollView>
                 {/* Button View  */}
                 <View style={styles.multipleButtonContainer}> 
                     {/* Back Button */}
@@ -42,6 +43,7 @@ const CategoryDetail = ({ navigation }) => {
                         <Text style={styles.buttonText}>     Next     </Text>
                     </TouchableOpacity>
                 </View>
+                
             </SafeAreaView>
         );
     }
