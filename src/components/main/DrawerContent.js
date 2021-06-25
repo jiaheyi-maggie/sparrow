@@ -15,10 +15,14 @@ export class DrawerContent extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            avatar: null
+            email: '',
+            username: '',
+            avatar: null,
+            isDarkTheme: false
         }
  
         this.getUserName = this.getUserName.bind(this);
+        this.toggleTheme = this.toggleTheme.bind(this);
     }
 
     getUserName() {
@@ -27,11 +31,15 @@ export class DrawerContent extends Component {
         .then((doc) => {
             if (doc.exists) {
                 var user = doc.data();
-                this.setState({firstName: user.firstName, lastName: user.lastName})
+                this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username})
             }
         })
 
     };
+
+    toggleTheme() {
+        this.setState({isDarkTheme: !this.state.isDarkTheme})
+    }
 
 
     render(){
@@ -41,17 +49,131 @@ export class DrawerContent extends Component {
         <View style={{flex: 1}}> 
             <DrawerContentScrollView>
                 <View style={styles.drawerContent}>
+                    {/* Profile Picture and Name */}
                     <View style={styles.userInfoSection}>
-                        <View>
+                        <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
                             <Avatar.Image
                                 source={require('../../assets/Icons/profile.png')}
                                 size={50}
                             />
-                            <View>
-                                <Title> {this.state.firstName} {this.state.lastName} </Title>
+                            <View style={{marginLeft: 15, flexDirection: 'column'}}>
+                                <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
+                                <Caption style={styles.caption}> @{this.state.username}</Caption>
                             </View>
                         </View>
                     </View>
+
+                    {/* Navigation Section */}
+                    <Drawer.Section style={styles.drawerSection} title="Navigation">
+                        {/*  Home */}
+                        <DrawerItem
+                            label="Dashboard"
+                            icon={() => {
+                                return (
+                                    <Image 
+                                    source={require('../../assets/Icons/home.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181',
+                                    }}
+                                    />
+                                );
+                            }}
+                            onPress={() => this.props.navigation.navigate("Home")}
+                        />  
+                        {/* Average Budget */}
+                        <DrawerItem
+                            label="Average Budget"
+                            icon={() => {
+                                return (
+                                    <Image 
+                                    source={require('../../assets/Icons/average-budget.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181'
+                                    }}
+                                    />
+                                );
+                            }}
+                            onPress={() => this.props.navigation.navigate("Average Budget")}
+                        /> 
+
+                        {/* Calculator */}
+                        <DrawerItem
+                            label="Calculator"
+                            icon={() => {
+                                return (
+                                    <Image 
+                                    source={require('../../assets/Icons/calculator.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181',
+                                    }}
+                                    />
+                                );
+                            }}
+                            onPress={() => this.props.navigation.navigate("Calculator")}
+                        /> 
+
+                        {/* Settings */}
+                        <DrawerItem
+                            label="Settings"
+                            icon={() => {
+                                return (
+                                    <Image 
+                                    source={require('../../assets/Icons/settings.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181',
+                                    }}
+                                    />
+                                );
+                            }}
+                            onPress={() => this.props.navigation.navigate("Settings")}
+                        /> 
+                    </Drawer.Section>
+
+                    {/* Preferences Section */}
+                    {/* <Drawer.Section title="Preferences">
+                        <TouchableRipple onPress={() => {this.toggleTheme()}}>
+                            <View style={styles.preference}>
+                                <Text> Dark Theme</Text>
+                                <View pointerEvents='none'>
+                                    <Switch value={this.state.isDarkTheme}/>
+                                </View>
+                            </View>
+                        </TouchableRipple>
+                    </Drawer.Section> */}
+
+                    {/* Support Section */}
+                    <Drawer.Section title="Support">
+                        {/*  Home */}
+                        <DrawerItem
+                            label="Contact Us"
+                            icon={() => {
+                                return (
+                                    <Image 
+                                    source={require('../../assets/Icons/contact.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#7E9181',
+                                    }}
+                                    />
+                                );
+                            }}
+                            // TODO: onPress => pop modal to email support team
+                        />  
+                    </Drawer.Section>
                 </View>
             </DrawerContentScrollView>
 
@@ -90,12 +212,10 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        marginTop: 3,
         fontWeight: 'bold'
     },
     caption: {
         fontSize: 14,
-        fontWeight: 'bold'
     },
     row: {
         marginTop: 20,
