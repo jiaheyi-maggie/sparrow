@@ -20,15 +20,6 @@ export class Settings extends Component {
     this.props.fetchBudget();
   };
 
-  signOutUser = async () => {
-    try {
-      await firebase.auth().signOut();
-      this.props.navigation.navigate('signin');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   handleComponentDidMount(categories, shortTerm, longTerm) {
     return (
       <SafeAreaView style={styles.container}>
@@ -71,8 +62,8 @@ export class Settings extends Component {
               />
             </TouchableOpacity>
 
-            {/* log out */}
-            <TouchableOpacity onPress={() => this.signOutUser()}>
+            {/* TODO: log out */}
+            <TouchableOpacity>
               <Image 
                 source={require('../../assets/Icons/logout.png')}
                 resizeMode='contain'

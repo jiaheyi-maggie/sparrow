@@ -317,7 +317,9 @@ export class AddCategoriesDetail extends Component {
                         <View style={styles.textInputContainerValue2}>
                             <TextInput
                                 value={this.state.notes}
-                                
+                                maxLength={32}
+                                // onPressIn={() => this.setState({pageOffset: this.state.keyboardOffset})}
+                                onFocus={() => this.setState({pageOffset: this.state.keyboardOffset})}
                                 onChangeText={(text) => this.setState({notes: text, pageOffset: this.state.keyboardOffset})}
                                 style={{
                                     backgroundColor: '#fff',
@@ -329,13 +331,18 @@ export class AddCategoriesDetail extends Component {
                                     textAlign: 'left',
                                     height: 180,
                                     paddingLeft: 10,
-                                    // bottom: this.state.keyboardOffset
+                                    flex: 1
                                 }}
                                 placeholder='Not essential for me this month...'
+                                onEndEditing={() => {
+                                    this.setState({pageOffset: 0});
+                                    Keyboard.dismiss;
+                                }}
                                 onSubmitEditing={() => {
                                     this.setState({pageOffset: 0});
                                     Keyboard.dismiss;
                                 }}
+                                returnKeyLabel='done'
                             />
                         </View>
                     </View>

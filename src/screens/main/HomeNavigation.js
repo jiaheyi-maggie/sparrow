@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { DrawerContent } from '../../components/main/DrawerContent';
 import Home from './Home';
 
 import Notification from './Notification';
@@ -116,17 +117,17 @@ const AddCategoryModal = createStackNavigator();
 
 const Details = () => {
     return (
-    <AddCategoryModal.Navigator mode='modal' >
-        <AddCategoryModal.Screen name="Average Budget" component={BudgetDetail} options={{ headerShown: false }}/>
-        <AddCategoryModal.Screen name="Add Categories" component={AddCategoriesDetail} options={{ headerShown: false }}/>
-    </AddCategoryModal.Navigator>
+        <AddCategoryModal.Navigator mode='modal' >
+            <AddCategoryModal.Screen name="Average Budget" component={BudgetDetail} options={{ headerShown: false }}/>
+            <AddCategoryModal.Screen name="Add Categories" component={AddCategoriesDetail} options={{ headerShown: false }}/>
+        </AddCategoryModal.Navigator>
     );
 }
 
 const HomeNavigation = () => {
     // TODO: update budget
     return (
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContent {...props} />}>
             <Drawer.Screen name="Home" component={HomeTab} />
             <Drawer.Screen name="Average Budget" component={Details} />
             <Drawer.Screen name="Calculator" component={Calculator} />

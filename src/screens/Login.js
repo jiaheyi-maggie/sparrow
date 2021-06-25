@@ -140,6 +140,7 @@ export default class Login extends Component {
                             placeholder='Password'
                             onChangeText={(password) => this.setState({ password })}
                             style={componentStyle.infofield}
+                            secureTextEntry={true}
                         />
 
                     </View>
