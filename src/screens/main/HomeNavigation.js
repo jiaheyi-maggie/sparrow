@@ -25,12 +25,7 @@ const HomeTab = () => {
                 showLabel: false,
                 style: {
                     position: 'absolute',
-                    // bottom: 0,
-                    // left: 0,
-                    // right: 0,
-                    // elevation: 0,
                     backgroundColor: '#fff',
-                    // borderRadius:0,
                     height: 60,
                     ...styles.shadow
                 }
@@ -48,11 +43,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 25,
                                     height: 25,
-                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#e32f45' : '#748c94',
+                                    color: focused ? '#E76F51' : '#748c94',
                                     fontSize: 15
                                 }}>
                                     Home
@@ -72,11 +67,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 25,
                                     height: 25,
-                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
-                                    color: focused ?  '#e32f45' : '#748c94',
+                                    color: focused ?  '#E76F51' : '#748c94',
                                     fontSize: 15
                                 }}>
                                     Notification
@@ -96,11 +91,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 25,
                                     height: 25,
-                                    tintColor: focused ? '#e32f45' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#e32f45' : '#748c94',
+                                    color: focused ? '#E76F51' : '#748c94',
                                     fontSize: 15
                                 }}>
                                     Settings

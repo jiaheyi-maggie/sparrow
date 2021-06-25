@@ -45,9 +45,8 @@ export class Home extends Component {
                         <View style={{
                             flexDirection: 'row', 
                             justifyContent:'space-between',
-                            alignItems: 'baseline'
+                            alignItems: 'baseline',
                         }}>
-                            
                             
                             {/* Profile */}
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Settings")}>
@@ -64,8 +63,7 @@ export class Home extends Component {
                             </TouchableOpacity>
 
                             {/* Display name */}
-                            <Text style={styles.title}>Hi, {currentUser.firstName}</Text>
-                                                            
+                            <Text style={styles.title}>Hi, {currentUser.firstName}</Text>             
                                                             
                             {/* Menu */}
                             <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
@@ -84,35 +82,38 @@ export class Home extends Component {
                         </View>
 
                         {/* budget overview card */}
-                        <Pressable 
-                            style={({ pressed }) => [
-                                {
-                                    backgroundColor: pressed ? 'aliceblue' : 'white',
-                                    borderRadius: 20,
-                                    padding: 10,
-                                    elevation: 2,
-                                    margin: 10
-                                }
-                            ]} 
-                            onPress={()=>{this.props.navigation.navigate("Average Budget")} 
-                        }>
-                            {/* Short Term */}
-                            <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                <Text style={styles.subtitle}>{m} budget:</Text>
-                                <Text style={styles.number}>$ {shortTerm[0]}</Text>
-                            </View>
+                        <View> 
+                            <Text style={styles.smallTitle2}>Overview</Text>
+                            <Pressable 
+                                style={({ pressed }) => [
+                                    {
+                                        backgroundColor: pressed ? 'aliceblue' : 'white',
+                                        borderRadius: 20,
+                                        padding: 10,
+                                        elevation: 2,
+                                        margin: 10
+                                    }
+                                ]} 
+                                onPress={()=>{this.props.navigation.navigate("Average Budget")} 
+                            }>
+                                {/* Short Term */}
+                                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                    <Text style={styles.subtitle}>{m} budget:</Text>
+                                    <Text style={styles.number}>$ {shortTerm[0]}</Text>
+                                </View>
 
-                            {/* Long Term */}
-                            <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                <Text style={styles.subtitle}>{y} budget:</Text>
-                                <Text style={styles.number}>$ {longTerm[0]}</Text>
-                            </View>
+                                {/* Long Term */}
+                                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                    <Text style={styles.subtitle}>{y} budget:</Text>
+                                    <Text style={styles.number}>$ {longTerm[0]}</Text>
+                                </View>
 
-                            {/* View Details */}
-                            <View style={styles.statusContainer}>
-                                <Text style={{color: '#706993',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
-                            </View>
-                        </Pressable>
+                                {/* View Details */}
+                                <View style={styles.statusContainer}>
+                                    <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                </View>
+                            </Pressable>
+                        </View>
 
                         {/* TODO: style bar graphs */}
                         <View style={{

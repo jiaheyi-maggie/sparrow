@@ -30,7 +30,7 @@ const homeStyle = StyleSheet.create({
         height: 80,
     },
     homeContainer: {
-        backgroundColor: '#C2EABD', 
+        backgroundColor: '#DFF2D8', 
         flex:1,
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
     },
@@ -65,7 +65,7 @@ const homeStyle = StyleSheet.create({
         paddingTop: (Platform.OS === 'ios') ? 0: 50,
     },
     subtitle: {
-        color: '#FAA381',
+        color: '#2A94AF',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 19,
@@ -119,6 +119,14 @@ const homeStyle = StyleSheet.create({
         textAlign: 'left',
         fontSize: 23,
         marginHorizontal: 5,
+        marginTop: 5,
+    },
+    smallTitle2 : {
+        color: '#264653',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 20,
+        marginHorizontal: 10,
         marginTop: 5,
     },
     modalContainer: {

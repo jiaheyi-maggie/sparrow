@@ -27,7 +27,7 @@ const SummaryListItem = ({ item }) => {
             case 'month':
                 return v * 12;
             case 'week':
-                return v * 48;
+                return v * 52;
             case 'day':
                 return v * 365;
         }
