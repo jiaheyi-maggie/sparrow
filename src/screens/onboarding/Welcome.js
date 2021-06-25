@@ -1,7 +1,6 @@
 /* Onboarding Welcome */
 import React from 'react';
 import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
-import { Platform } from 'react-native';
 
 import styles from "../../styles/onboardingStyle";
 import componentStyle from '../../styles/componentStyle';
@@ -9,14 +8,14 @@ import componentStyle from '../../styles/componentStyle';
 const Welcome = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Welcome!</Text>
+            <Text style={styles.title}>Welcome</Text>
             <Image 
                 source={require('../../assets/onboarding/welcome.png')} 
                 resizeMode='contain'
                 style={styles.imageContainer}
             />
 
-            <Text style={styles.subtitle}>Congrats on taking the first step to managing your money efficiently! {"\n"}{"\n"}Let us get to know your spending habits with some basic questions :))</Text>
+            <Text style={styles.subtitle}>Congrats on taking the first step to managing your money efficiently! {"\n"}{"\n"}Let us get to know your spending habits with some basic questions.</Text>
 
             {/* Button View  */}
             <View>

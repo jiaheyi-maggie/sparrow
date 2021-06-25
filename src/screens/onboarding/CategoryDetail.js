@@ -1,11 +1,8 @@
 /* Render Selected Categories List */
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View, Image, TextInput, ScrollView, FlatList } from 'react-native';
-
+import { SafeAreaView, Text, TouchableOpacity, View, Image, FlatList } from 'react-native';
 import CategoryDetailItem from '../../components/CategoryDetailItem';
-
 import styles from '../../styles/onboardingStyle';
-
 import store from '../../app/store';
 
  
@@ -67,10 +64,16 @@ const CategoryDetail = ({ navigation }) => {
                         }}
                     />
                     <View style={{width: 400, height: 200}}><Text></Text></View>
+
                     {/* Button View */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
-                        <Text style={styles.buttonText}>Next</Text>
+                    <View style={styles.multipleButtonContainer}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
+                        <Text style={styles.buttonText}>     Back     </Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
+                        <Text style={styles.buttonText}>     Next     </Text>
+                    </TouchableOpacity>
+                    </View>
                 </SafeAreaView>
             );
         } else {

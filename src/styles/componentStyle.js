@@ -3,8 +3,9 @@ import { Platform } from 'react-native';
 
 const componentStyle = StyleSheet.create({
   input: {
-    fontSize: 37,
+    fontSize: 35,
     fontWeight: 'bold',
+    color: '#F4A261',
     textAlign: 'center',
     height: 40,
     marginTop:10,

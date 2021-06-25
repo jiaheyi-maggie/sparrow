@@ -93,11 +93,10 @@ const onboardingStyle = StyleSheet.create({
   },
   // blue category card
   categoryCard :{
-    alignContent: 'center',
     backgroundColor: 'aliceblue',
     alignItems: 'flex-start',
     borderRadius: 15,
-    padding: 20,
+    padding: 10,
     margin: 10,
     flex: 1
   },
@@ -109,11 +108,12 @@ const onboardingStyle = StyleSheet.create({
   },
   // text with $
   textInputContainer: {
-    borderBottomWidth: 3,
-    borderBottomColor: '#264653',
+    backgroundColor:'#FFF4CB',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     flexDirection: 'row',
-    marginHorizontal: 5,
-    textAlign: 'center'
+    width: 100
   },
   // budget summary list container
   listSummaryItem: {
@@ -139,30 +139,14 @@ const onboardingStyle = StyleSheet.create({
   itemTitle: {
     color: '#FAA381',
     fontWeight: 'bold',
-    fontSize: 30,
-    margin: 0
+    fontSize: 24,
   },
   // view containing text input
   itemDescription: {
     color: '#264653',
     fontWeight: 'bold',
-    fontSize: 30,
-    margin: 0
-  },
-  // long term column container
-  longtermContainer :{
-    backgroundColor:'#fff', 
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: (Platform.OS === 'ios') ? 0: 50,
-  },
-  // long term page text
-  longtermDescription: {
-    color: '#264653',
-    fontWeight: 'bold',
-    fontSize: 38,
-    margin: 0
+    fontSize: 24,
+    marginRight: 2
   },
   // long term center screen text
   longtermCenter: {
