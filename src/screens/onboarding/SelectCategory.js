@@ -9,7 +9,6 @@ import categories from '../../data/categories-bool';
 const SelectCategory = ({ navigation }) => {
 
     return (
-        <ScrollView>
         <SafeAreaView style={styles.container}>
             <Text style={styles.longtitle}>Mark all categories you want to set a budget on.</Text>
             {/* <Image 
@@ -49,7 +48,6 @@ const SelectCategory = ({ navigation }) => {
             </View>
 
         </SafeAreaView>
-        </ScrollView>
     );
 };
 
