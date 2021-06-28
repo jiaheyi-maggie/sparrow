@@ -1,16 +1,27 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, SectionList } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../../styles/homeStyle';
 
+const sections = [
+    {
+      title: "Account",
+      data: ["Edit Profile", "Bank Accounts", "Payment Accounts", "Notification Settings"]
+    },
+    {
+      title: "Security",
+      data: ["Biometrics", "Change Password"]
+    },
+];
+
 export class Setting extends Component {
 
-    componentDidMount() {
+    // componentDidMount() {
 
-    };
+    // };
 
     handleComponentDidMount() {
         return (
@@ -33,9 +44,8 @@ export class Setting extends Component {
                                 width: 23,
                                 height: 23,
                                 tintColor: '#7E9181',
-                                marginLeft: 15,
-                                marginTop: 10
-                                }}
+                                marginLeft: 15
+                            }}
                             />
                         </TouchableOpacity>
 
@@ -52,12 +62,21 @@ export class Setting extends Component {
                                 height: 23,
                                 tintColor: '#7E9181',
                                 marginRight: 15
-                                }}
+                            }}
                             />
                         </TouchableOpacity>
                     </View>
 
                     {/* main setting content */}
+                    <View>
+                        <Text style={styles.listText}> Account</Text>
+                        <TouchableOpacity
+                            onPress={()=> this.props.navigation.navigate("EditProfile")}>
+                            <Text>Edit Profile</Text> 
+                        </TouchableOpacity>
+                    </View>
+                    
+
 
                 </ScrollView>
             </SafeAreaView>

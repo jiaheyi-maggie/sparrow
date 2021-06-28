@@ -9,10 +9,12 @@ import Home from './Home';
 
 import Notification from './Notification';
 import styles from '../../styles/homeStyle';
-import Setting from './Settings/Setting';
+// import Settings from './Setting/Setting';
 import BudgetDetail from './BudgetDetail';
 import AddCategoriesDetail from './AddCategoriesDetail';
 import Calculator from './Calculator';
+import Setting from './Setting/Setting';
+import EditProfile from './Setting/EditProfile';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -123,7 +125,8 @@ const SettingsStack = createStackNavigator();
 const Settings = () => {
     return (
         <SettingsStack.Navigator>
-            <SettingsStack.Screen name="Main Settings" component={Setting} />
+            <SettingsStack.Screen name="MainSettings" component={Setting} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
         </SettingsStack.Navigator>
     );
 }
