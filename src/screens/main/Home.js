@@ -82,40 +82,149 @@ export class Home extends Component {
 
                         </View>
 
-                        {/* budget overview card */}
+                        {/* overview section */}
                         <View> 
                             <View style={styles.titleContainer}>
                                 <Text style={styles.smallTitle2}>Overview</Text>
                             </View>
-                            <Pressable 
-                                style={({ pressed }) => [
-                                    {
-                                        backgroundColor: pressed ? 'aliceblue' : 'white',
-                                        borderRadius: 20,
-                                        padding: 10,
-                                        elevation: 2,
-                                        margin: 10
-                                    }
-                                ]} 
-                                onPress={()=>{this.props.navigation.navigate("Average Budget")} 
-                            }>
-                                {/* Short Term */}
-                                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                    <Text style={styles.subtitle}>{m} budget:</Text>
-                                    <Text style={styles.number}>$ {shortTerm[0]}</Text>
+
+                            <ScrollView horizontal={true} >
+
+                                {/* remaining card */}
+                                <Pressable 
+                                    style={({ pressed }) => [
+                                        {
+                                            backgroundColor: pressed ? 'aliceblue' : 'white',
+                                            borderRadius: 20,
+                                            padding: 5,
+                                            elevation: 2,
+                                            margin:10
+                                        }
+                                    ]} 
+                                    onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
+                                >
+                                    <Text style={styles.subtitle2}>Remaining</Text>
+                                    {/* Short Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
+                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        </View>
+                                       
+                                       {/* TODO: Subtract numbers */}
+                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ {shortTerm[0]}</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* Long Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
+                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        </View>
+                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ {longTerm[0]}</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* View Details */}
+                                    <View style={styles.statusContainer}>
+                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                    </View>
+                                </Pressable>
+
+                                <View style={{marginTop: 75}}>
+                                    <Text style={styles.operation}> = </Text>
                                 </View>
 
-                                {/* Long Term */}
-                                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                    <Text style={styles.subtitle}>{y} budget:</Text>
-                                    <Text style={styles.number}>$ {longTerm[0]}</Text>
+                                {/* budget card */}
+                                <Pressable 
+                                    style={({ pressed }) => [
+                                        {
+                                            backgroundColor: pressed ? 'aliceblue' : 'white',
+                                            borderRadius: 20,
+                                            padding: 5,
+                                            elevation: 2,
+                                            margin:10
+                                        }
+                                    ]} 
+                                    onPress={()=>{this.props.navigation.navigate("Average Budget")}}
+                                >
+                                    <Text style={styles.subtitle2}>Budget</Text>
+                                    {/* Short Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
+                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        </View>
+                                       
+                                        <View style={{backgroundColor: '#F8FFE5', borderRadius: 20, marginRight: 5}}>
+                                            <Text style={styles.number}>$ {shortTerm[0]}</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* Long Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
+                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        </View>
+                                        <View style={{backgroundColor: '#F8FFE5', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                            <Text style={styles.number}>$ {longTerm[0]}</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* View Details */}
+                                    <View style={styles.statusContainer}>
+                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                    </View>
+                                </Pressable>
+
+                                <View style={{marginTop: 75}}>
+                                    <Text style={styles.operation}> — </Text>
                                 </View>
 
-                                {/* View Details */}
-                                <View style={styles.statusContainer}>
-                                    <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
-                                </View>
-                            </Pressable>
+                                {/* spending card */}
+                                {/* TODO: GET USER SPENDING */}
+                                <Pressable 
+                                    style={({ pressed }) => [
+                                        {
+                                            backgroundColor: pressed ? 'aliceblue' : 'white',
+                                            borderRadius: 20,
+                                            padding: 5,
+                                            elevation: 2,
+                                            margin:10
+                                        }
+                                    ]} 
+                                    onPress={()=>{this.props.navigation.navigate("Spending Detail")}}
+                                >
+                                    <Text style={styles.subtitle2}>Spending</Text>
+                                    {/* Short Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
+                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        </View>
+                                       
+                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ 0</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* Long Term */}
+                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
+                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        </View>
+                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ 0</Text>
+                                        </View>
+                                    </View>
+
+                                    {/* View Details */}
+                                    <View style={styles.statusContainer}>
+                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                    </View>
+                                </Pressable>
+
+                            </ScrollView>
+
                         </View>
 
                         {/* TODO: style bar graphs */}
@@ -172,7 +281,7 @@ export class Home extends Component {
         } else {
             return (
                 <SafeAreaView style={styles.homeContainer}>
-                    <Text style={styles.subtitle}> User does not exist </Text>
+                    {/* <Text style={styles.subtitle}> User does not exist </Text> */}
                 </SafeAreaView>
             );
         }

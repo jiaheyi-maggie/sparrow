@@ -19,6 +19,12 @@ const homeStyle = StyleSheet.create({
         marginTop: 5,
         marginHorizontal: 10
     },
+    operation: {
+        color: '#264653',
+        fontWeight: 'bold',
+        fontSize: 23,
+        // marginHorizontal: 20,
+    },
     tab: {
         position: 'absolute',
         bottom: 10,
@@ -70,7 +76,14 @@ const homeStyle = StyleSheet.create({
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
     },
     subtitle: {
-        color: '#2A94AF',
+        color:'#562C2C',
+        textAlign: 'left',
+        fontSize: 17,
+        paddingVertical: 5,
+        marginHorizontal: 10
+    },
+    subtitle2: {
+        color: '#E76F51',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 19,
@@ -86,10 +99,18 @@ const homeStyle = StyleSheet.create({
         alignItems: 'center'
     },
     number: {
-        color: '#562C2C',
+        color: '#2A94AF',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 20,
+        fontSize: 17,
+        paddingVertical: 5,
+        marginHorizontal: 20
+    },
+    number2: {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 17,
         paddingVertical: 5,
         marginHorizontal: 20
     },
@@ -283,7 +304,7 @@ const homeStyle = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 20,
+        fontSize: 18,
     },
  });
 

@@ -15,6 +15,8 @@ import AddCategoriesDetail from './AddCategoriesDetail';
 import Calculator from './Calculator';
 import Setting from './Setting/Setting';
 import EditProfile from './Setting/EditProfile';
+import RemainingDetail from './RemainingDetail';
+import SpendingDetail from './SpendingDetail';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -111,6 +113,7 @@ const HomeTab = () => {
     );
 }
 
+// budget details
 const AddCategoryModal = createStackNavigator();
 const Details = () => {
     return (
@@ -120,6 +123,7 @@ const Details = () => {
         </AddCategoryModal.Navigator>
     );
 }
+
 
 const SettingsStack = createStackNavigator();
 const Settings = () => {
@@ -138,6 +142,8 @@ const HomeNavigation = () => {
             <Drawer.Screen name="Settings" component={Settings} />
             <Drawer.Screen name="Average Budget" component={Details} />
             <Drawer.Screen name="Calculator" component={Calculator} />
+            <Drawer.Screen name="Remaining Detail" component={RemainingDetail} />
+            <Drawer.Screen name="Spending Detail" component={SpendingDetail} />
         </Drawer.Navigator>
     );
 };
