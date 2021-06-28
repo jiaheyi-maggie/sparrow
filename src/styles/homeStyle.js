@@ -83,7 +83,8 @@ const homeStyle = StyleSheet.create({
         marginHorizontal: 10
     },
     subtitle2: {
-        color: '#E76F51',
+        // color: '#E76F51',
+        color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 19,

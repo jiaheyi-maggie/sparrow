@@ -104,13 +104,15 @@ export class BudgetDetail extends Component {
         });
 
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.container2}>
                 <ScrollView>
+                
+                {/* Header */}
                 <View style={{
                     flexDirection: 'row', 
                     justifyContent:'space-between',
                     alignItems: 'baseline'
-                }}>
+                    }}>
 
                     {/* go back */}
                     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
@@ -126,6 +128,9 @@ export class BudgetDetail extends Component {
                         />
                     </TouchableOpacity>
 
+                    {/* Display name */}
+                    <Text style={styles.title}>Overview</Text> 
+
 
                     {/* Menu */}
                     <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
@@ -140,12 +145,11 @@ export class BudgetDetail extends Component {
                             }}
                         />
                     </TouchableOpacity>
-
                 </View>
 
                 {/* time period selection */}
-                <Text style={styles.smallTitle}> Overview</Text>
-                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5}}>
+                {/* <Text style={styles.smallTitle}> Overview</Text> */}
+                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5, marginTop: 5}}>
                     <Text style={styles.listText3}> Select a time period: </Text>
                     <AveragePeriodPicker />
                 </View>
@@ -171,7 +175,7 @@ export class BudgetDetail extends Component {
                         }}>
                             Recurring: 
                         </Text>
-                        <Text style={styles.number}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
                     </View>
 
                     {/* Non-recurring */}
@@ -186,7 +190,7 @@ export class BudgetDetail extends Component {
                         }}>
                             Non-Recurring:
                         </Text>
-                        <Text style={styles.number}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
                     </View>
                 </View>
 

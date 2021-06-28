@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import styles from '../../styles/homeStyle';
 import { withNavigation } from 'react-navigation';
+import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 import { connect } from 'react-redux';
 
 export class SpendingDetail extends Component {
@@ -49,6 +50,54 @@ export class SpendingDetail extends Component {
                 </View>
 
                 {/* Main Content */}
+
+                {/* time period selection */}
+                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5, marginTop: 5}}>
+                    <Text style={styles.listText3}> Select a time period: </Text>
+                    <AveragePeriodPicker />
+                </View>
+
+                {/* Spending overview card */}
+                <View style={{ 
+                    backgroundColor:'#FAA381',
+                    borderRadius: 20,
+                    padding: 10,
+                    elevation: 2,
+                    margin: 10,
+                    }}>
+
+                    {/* Recurring */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            textAlign: 'left',
+                            fontSize: 19,
+                            paddingVertical: 5,
+                            marginHorizontal: 20
+                        }}>
+                            Period Total: 
+                        </Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 0</Text>
+                    </View>
+
+                    {/* Non-recurring */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            textAlign: 'left',
+                            fontSize: 19,
+                            paddingVertical: 5,
+                            marginHorizontal: 20
+                        }}>
+                            Non-Recurring Total:
+                        </Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 0</Text>
+                    </View>
+                </View>
+
+
             </SafeAreaView>
         );
     }
@@ -60,4 +109,4 @@ export class SpendingDetail extends Component {
     }
 };
 
-export default connect(withNavigation(SpendingDetail));
+export default (withNavigation(SpendingDetail));
