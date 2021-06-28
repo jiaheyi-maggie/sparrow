@@ -12,15 +12,27 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
-    componentDidMount() {
-        this.props.fetchBudget();
-    };
+    // componentDidMount() {
+    //     this.props.fetchBudget();
+    // };
 
     // componentDidUpdate(prevCategories) {
     //     if (this.props.categories != prevCategories.categories) {
     //         this.props.fetchBudget(); 
     //     }
     // };
+
+    // BEWARE: something udpates might affect UI re-rendering
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.categories !== this.props.categories || 
+            nextProps.shortTerm !== this.props.shortTerm || 
+            nextProps.averagePeriod !== this.props.averagePeriod){ 
+                return true;
+            }
+        else {
+            return false;
+        }
+    }
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
@@ -154,14 +166,14 @@ export class BudgetDetail extends Component {
                     <AveragePeriodPicker />
                 </View>
 
-                {/* budget overview card */}
+                {/* Budget overview card */}
                 <View style={{ 
                     backgroundColor:'#FAA381',
                     borderRadius: 20,
                     padding: 10,
                     elevation: 2,
                     margin: 10,
-                }}>
+                    }}>
 
                     {/* Recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>

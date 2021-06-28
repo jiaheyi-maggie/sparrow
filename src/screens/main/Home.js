@@ -14,13 +14,26 @@ import styles from '../../styles/homeStyle';
 
 export class Home extends Component {
 
+    // BEWARE: check this
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.categories !== this.props.categories || 
+            nextProps.currentUser !== this.props.currentUser || 
+            nextProps.shortTerm !== this.props.shortTerm ||
+            nextProps.longTerm !== this.props.longTerm){ 
+                return true;
+            }
+        else {
+            return false;
+        }
+    }
+
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchBudget();
     }
 
     componentDidUpdate(prev) {
-        if (this.props.shortTerm != prev.shortTerm) {
+        if (this.props.shortTerm != prev.shortTerm || this.props.longTerm != prev.longTerm) {
             this.props.fetchBudget(); 
         }
     }

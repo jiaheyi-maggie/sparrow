@@ -7,7 +7,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerContent } from '../../components/main/DrawerContent';
 import Home from './Home';
 
-import Notification from './Notification';
 import styles from '../../styles/homeStyle';
 // import Settings from './Setting/Setting';
 import BudgetDetail from './BudgetDetail';
@@ -20,6 +19,7 @@ import SpendingDetail from './SpendingDetail';
 import BankAccounts from './Setting/BankAccounts';
 import NotificationSettings from './Setting/NotificationSettings';
 import PaymentAccounts from './Setting/PaymentAccounts';
+import Notifications from './Notifications';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -65,7 +65,7 @@ const HomeTab = () => {
                 }} 
             />
 
-            <Tab.Screen name='Notification' component={Notification} 
+            <Tab.Screen name='Notification' component={Notifications} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 

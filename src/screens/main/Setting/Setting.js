@@ -63,6 +63,14 @@ export class Setting extends Component {
                                 tintColor: '#7E9181',
                                 marginRight: 15
                             }}
+                            onPress={()=> {
+                                firebase.auth().signOut()
+                                .then(() => {
+                                    this.props.navigation.navigate('onboarding');
+                                }).catch((error) => {
+                                    console.log(error);
+                                })
+                            }}
                             />
                         </TouchableOpacity>
                     </View>
