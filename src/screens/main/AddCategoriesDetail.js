@@ -102,7 +102,7 @@ export class AddCategoriesDetail extends Component {
             case 'month':
                 return v * 12;
             case 'week':
-                return v * 48;
+                return v * 52;
             case 'day':
                 return v * 365;
         }
@@ -162,7 +162,7 @@ export class AddCategoriesDetail extends Component {
                     Alert.alert("That goal seems a little too ambitious...")
                 }
             case "week":
-                if (option > 48) {
+                if (option > 52) {
                     Alert.alert("That goal seems a little too ambitious...")
                 }
             case "day":
@@ -248,7 +248,7 @@ export class AddCategoriesDetail extends Component {
                                         animationType="fade"
                                         transparent={true}
                                         visible={this.state.modalVisible}
-                                        onRequestClose={() => {this.setState({modalVisible: !this.state.modalVisible})}}
+                                        onRequestClose={() => this.setState({modalVisible: !this.state.modalVisible})}
                                     >
                                         {/* View for the list of time periods */}
                                         <View style={styles.centeredView}>

@@ -38,7 +38,7 @@ export class BudgetDetail extends Component {
                     case 'month':
                         return this.roundNumbers(value / 12);
                     case 'week':
-                        return this.roundNumbers(value / 48); 
+                        return this.roundNumbers(value / 52); 
                     case 'day':
                         return this.roundNumbers(value / 365);
                 }
@@ -67,7 +67,7 @@ export class BudgetDetail extends Component {
             case 'week':
                 switch (selectedPeriod) {
                     case 'year':
-                        return this.roundNumbers(value * 48);
+                        return this.roundNumbers(value * 52);
                     case 'quarter':
                         return this.roundNumbers(value * 12);
                     case 'month':

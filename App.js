@@ -50,8 +50,10 @@ export class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       loaded: false,
+      loggedIn: false
     }
   }
 
@@ -62,7 +64,7 @@ export class App extends Component {
         this.setState({
           loggedIn: false,
           loaded: true,
-        })
+        });
       } else {
         this.setState({
           loggedIn: true,
@@ -74,7 +76,7 @@ export class App extends Component {
 
   // TODO: setup app font
   render() { 
-    const {loggedIn, loaded } = this.state;
+    const { loggedIn, loaded } = this.state;
     if (!loaded) {
       return (
         <SafeAreaView>
@@ -89,6 +91,7 @@ export class App extends Component {
         </SafeAreaView>
       );
     }
+    // if user is not logged in
     if(!loggedIn) {
       return (
         <Provider store={store}>

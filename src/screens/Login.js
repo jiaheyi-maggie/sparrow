@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
+import { withNavigation } from 'react-navigation';
 
 export default class Login extends Component {
 
@@ -29,7 +30,7 @@ export default class Login extends Component {
         })
 
         // allow onSignUp() to access the state of the class
-        this.onSignUp = this.onSignIn.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
     }
 
     // implement firebase logic here
@@ -39,6 +40,7 @@ export default class Login extends Component {
             .then((result) => {
                 console.log(result);
                 // TODO: navigate to home (login successful)
+                // store.dispatch({type: "userSignedOut"})
             })
             .catch((error) => {
                 console.log(error);
@@ -164,4 +166,5 @@ export default class Login extends Component {
             </ScrollView>
         )
     }
-}
+};
+

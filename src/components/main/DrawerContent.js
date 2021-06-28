@@ -18,11 +18,11 @@ export class DrawerContent extends Component {
             email: '',
             username: '',
             avatar: null,
-            isDarkTheme: false
+            isSignedOut: false
         }
  
         this.getUserName = this.getUserName.bind(this);
-        this.toggleTheme = this.toggleTheme.bind(this);
+        this.handleSignOut = this.handleSignOut.bind(this);
     }
 
     getUserName() {
@@ -37,156 +37,184 @@ export class DrawerContent extends Component {
 
     };
 
-    toggleTheme() {
-        this.setState({isDarkTheme: !this.state.isDarkTheme})
-    }
+    handleSignOut() {
+        this.setState({isSignedOut: true});
+        firebase.auth().signOut();
+            // .then(() => {
+            //     this.props.navigation.navigate("signin");
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
 
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                this.props.navigation.navigate('signin');
+                console.log('log out successful');
+            } 
+        })
+    };
+
+    // componentWillUnmount() {
+    //     if (this.state.isSignedOut === true) {
+    //         firebase.auth().signOut()
+    //         .then(() => {
+    //             this.props.navigation.navigate("signin");
+    //         }).catch((error) => {
+    //             console.log(error);
+    //         })
+    //     }
+    // };
 
     render(){
-        this.getUserName();
-
-        return (
-        <View style={{flex: 1}}> 
-            <DrawerContentScrollView>
-                <View style={styles.drawerContent}>
-                    {/* Profile Picture and Name */}
-                    <View style={styles.userInfoSection}>
-                        <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-                            <Avatar.Image
-                                source={require('../../assets/Icons/profile.png')}
-                                size={50}
-                            />
-                            <View style={{marginLeft: 15, flexDirection: 'column'}}>
-                                <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
-                                <Caption style={styles.caption}> @{this.state.username}</Caption>
+        // if (this.state.isSignedOut === false) {
+            this.getUserName();
+        
+            return (
+            <View style={{flex: 1}}> 
+                <DrawerContentScrollView>
+                    <View style={styles.drawerContent}>
+                        {/* Profile Picture and Name */}
+                        <View style={styles.userInfoSection}>
+                            <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
+                                <Avatar.Image
+                                    source={require('../../assets/Icons/profile.png')}
+                                    size={50}
+                                />
+                                <View style={{marginLeft: 15, flexDirection: 'column'}}>
+                                    <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
+                                    <Caption style={styles.caption}> @{this.state.username}</Caption>
+                                </View>
                             </View>
                         </View>
+
+                        {/* Navigation Section */}
+                        <Drawer.Section style={styles.drawerSection} title="Navigation">
+                            {/*  Home */}
+                            <DrawerItem
+                                label="Dashboard"
+                                icon={() => {
+                                    return (
+                                        <Image 
+                                        source={require('../../assets/Icons/home.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                        }}
+                                        />
+                                    );
+                                }}
+                                onPress={() => this.props.navigation.navigate("Home")}
+                            />  
+                            {/* Average Budget */}
+                            <DrawerItem
+                                label="Average Budget"
+                                icon={() => {
+                                    return (
+                                        <Image 
+                                        source={require('../../assets/Icons/average-budget.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181'
+                                        }}
+                                        />
+                                    );
+                                }}
+                                onPress={() => this.props.navigation.navigate("Average Budget")}
+                            /> 
+
+                            {/* Calculator */}
+                            <DrawerItem
+                                label="Calculator"
+                                icon={() => {
+                                    return (
+                                        <Image 
+                                        source={require('../../assets/Icons/calculator.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                        }}
+                                        />
+                                    );
+                                }}
+                                onPress={() => this.props.navigation.navigate("Calculator")}
+                            /> 
+
+                            {/* Settings */}
+                            <DrawerItem
+                                label="Settings"
+                                icon={() => {
+                                    return (
+                                        <Image 
+                                        source={require('../../assets/Icons/settings.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                        }}
+                                        />
+                                    );
+                                }}
+                                onPress={() => this.props.navigation.navigate("Settings")}
+                            /> 
+                        </Drawer.Section>
+
+                        {/* Support Section */}
+                        <Drawer.Section title="Support">
+                            {/*  Home */}
+                            <DrawerItem
+                                label="Contact Us"
+                                icon={() => {
+                                    return (
+                                        <Image 
+                                        source={require('../../assets/Icons/contact.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 23,
+                                            height: 23,
+                                            tintColor: '#7E9181',
+                                        }}
+                                        />
+                                    );
+                                }}
+                                // TODO: onPress => pop modal to email support team
+                            />  
+                        </Drawer.Section>
                     </View>
+                </DrawerContentScrollView>
 
-                    {/* Navigation Section */}
-                    <Drawer.Section style={styles.drawerSection} title="Navigation">
-                        {/*  Home */}
-                        <DrawerItem
-                            label="Dashboard"
-                            icon={() => {
-                                return (
-                                    <Image 
-                                    source={require('../../assets/Icons/home.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181',
-                                    }}
-                                    />
-                                );
-                            }}
-                            onPress={() => this.props.navigation.navigate("Home")}
-                        />  
-                        {/* Average Budget */}
-                        <DrawerItem
-                            label="Average Budget"
-                            icon={() => {
-                                return (
-                                    <Image 
-                                    source={require('../../assets/Icons/average-budget.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181'
-                                    }}
-                                    />
-                                );
-                            }}
-                            onPress={() => this.props.navigation.navigate("Average Budget")}
-                        /> 
-
-                        {/* Calculator */}
-                        <DrawerItem
-                            label="Calculator"
-                            icon={() => {
-                                return (
-                                    <Image 
-                                    source={require('../../assets/Icons/calculator.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181',
-                                    }}
-                                    />
-                                );
-                            }}
-                            onPress={() => this.props.navigation.navigate("Calculator")}
-                        /> 
-
-                        {/* Settings */}
-                        <DrawerItem
-                            label="Settings"
-                            icon={() => {
-                                return (
-                                    <Image 
-                                    source={require('../../assets/Icons/settings.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181',
-                                    }}
-                                    />
-                                );
-                            }}
-                            onPress={() => this.props.navigation.navigate("Settings")}
-                        /> 
-                    </Drawer.Section>
-
-                    {/* Support Section */}
-                    <Drawer.Section title="Support">
-                        {/*  Home */}
-                        <DrawerItem
-                            label="Contact Us"
-                            icon={() => {
-                                return (
-                                    <Image 
-                                    source={require('../../assets/Icons/contact.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181',
-                                    }}
-                                    />
-                                );
-                            }}
-                            // TODO: onPress => pop modal to email support team
-                        />  
-                    </Drawer.Section>
-                </View>
-            </DrawerContentScrollView>
-
-            <Drawer.Section style={styles.bottomDrawerSection}>
-                <DrawerItem
-                    label="Sign out"
-                    icon={() => {
-                        return (
-                            <Image 
-                            source={require('../../assets/Icons/logout.png')}
-                            resizeMode='contain'
-                            style={{
-                              width: 23,
-                              height: 23,
-                              tintColor: '#7E9181',
-                              marginRight: 15
-                            }}
-                            />
-                        );
-                    }}
-                    onPress={() => firebase.auth().signOut()}
-                />
-            </Drawer.Section>
-        </View>
-        );
+                <Drawer.Section style={styles.bottomDrawerSection}>
+                    <DrawerItem
+                        label="Sign out"
+                        icon={() => {
+                            return (
+                                <Image 
+                                source={require('../../assets/Icons/logout.png')}
+                                resizeMode='contain'
+                                style={{
+                                width: 23,
+                                height: 23,
+                                tintColor: '#7E9181',
+                                marginRight: 15
+                                }}
+                                />
+                            );
+                        }}
+                        // TODO: handle signout
+                        onPress={() => this.handleSignOut()}
+                    />
+                </Drawer.Section>
+            </View>
+            );
+        // } else {
+        //     return this.props.navigation.navigate('onboarding');
+        // }
     }
 };
 
