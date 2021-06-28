@@ -49,6 +49,7 @@ export class Home extends Component {
                         }}>
                             
                             {/* Profile */}
+                            {/* TODO: profile modal */}
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Settings")}>
                                 <Image 
                                     source={require('../../assets/Icons/profile-user.png')}

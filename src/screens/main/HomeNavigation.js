@@ -9,7 +9,7 @@ import Home from './Home';
 
 import Notification from './Notification';
 import styles from '../../styles/homeStyle';
-import Settings from './Settings';
+import Setting from './Settings/Setting';
 import BudgetDetail from './BudgetDetail';
 import AddCategoriesDetail from './AddCategoriesDetail';
 import Calculator from './Calculator';
@@ -17,6 +17,7 @@ import Calculator from './Calculator';
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+
 
 const HomeTab = () => {
     return (
@@ -81,7 +82,7 @@ const HomeTab = () => {
                 }} 
             />
                 
-            <Tab.Screen name='Settings' component={Settings} 
+            {/* <Tab.Screen name='Settings' component={Settings} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 
@@ -103,13 +104,12 @@ const HomeTab = () => {
                         </View>
                     ),
                 }} 
-            />
+            /> */}
         </Tab.Navigator>
     );
 }
 
 const AddCategoryModal = createStackNavigator();
-
 const Details = () => {
     return (
         <AddCategoryModal.Navigator mode='modal' >
@@ -119,11 +119,20 @@ const Details = () => {
     );
 }
 
+const SettingsStack = createStackNavigator();
+const Settings = () => {
+    return (
+        <SettingsStack.Navigator>
+            <SettingsStack.Screen name="Main Settings" component={Setting} />
+        </SettingsStack.Navigator>
+    );
+}
+
 const HomeNavigation = () => {
-    // TODO: update budget
     return (
         <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContent {...props} />}>
             <Drawer.Screen name="Home" component={HomeTab} />
+            <Drawer.Screen name="Settings" component={Settings} />
             <Drawer.Screen name="Average Budget" component={Details} />
             <Drawer.Screen name="Calculator" component={Calculator} />
         </Drawer.Navigator>

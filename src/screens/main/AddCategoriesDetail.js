@@ -15,7 +15,7 @@ export class AddCategoriesDetail extends Component {
         super(props);
 
         this.state={
-            modalVisible: true,
+            // modalVisible: true,
             title: '',
             value: 0,
             period: 'time period',
