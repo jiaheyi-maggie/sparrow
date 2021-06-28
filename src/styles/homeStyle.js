@@ -64,6 +64,11 @@ const homeStyle = StyleSheet.create({
         flex: 1,
         paddingTop: (Platform.OS === 'ios') ? 0: 50,
     },
+    container2:{
+        backgroundColor: '#fff',
+        flex: 1,
+        paddingTop: (Platform.OS === 'ios') ? 0: 40,
+    },
     subtitle: {
         color: '#2A94AF',
         fontWeight: 'bold',
@@ -121,7 +126,6 @@ const homeStyle = StyleSheet.create({
         marginHorizontal: 5,
         marginTop: 5,
     },
-
     modalContainer: {
         backgroundColor: '#fff',
         flex: 1,

@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, SectionList } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,7 +25,7 @@ export class Setting extends Component {
 
     handleComponentDidMount() {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.container2}>
                 <ScrollView>
 
                     {/* header */}
@@ -33,7 +33,7 @@ export class Setting extends Component {
                         flexDirection: 'row', 
                         justifyContent:'space-between',
                         alignItems: 'baseline'
-                        }}>
+                    }}>
                         
                         {/* go back */}
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
@@ -68,11 +68,11 @@ export class Setting extends Component {
                     </View>
 
                     {/* main setting content */}
-                    <View>
+                    <View style={{margin: 10}}>
                         <Text style={styles.listText}> Account</Text>
                         <TouchableOpacity
                             onPress={()=> this.props.navigation.navigate("EditProfile")}>
-                            <Text>Edit Profile</Text> 
+                            <Text style={{fontSize: 16}}>Edit Profile</Text> 
                         </TouchableOpacity>
                     </View>
                     
