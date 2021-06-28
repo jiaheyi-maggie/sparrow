@@ -68,33 +68,63 @@ export class Setting extends Component {
                     </View>
 
                     {/* main setting content */}
+                    {/* Account Section */}
                     <View style={{margin: 10}}>
                         <Text style={styles.listText}>Account</Text>
-                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                        <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("EditProfile")}>
                                 <Text style={{fontSize: 16}}>Edit Profile</Text> 
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                        <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("BankAccounts")}>
                                 <Text style={{fontSize: 16}}>Bank Accounts</Text> 
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                        <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("PaymentAccounts")}>
                                 <Text style={{fontSize: 16}}>Payment Accounts</Text> 
                             </TouchableOpacity>
                         </View>
 
-                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                        <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("NotificationSettings")}>
                                 <Text style={{fontSize: 16}}>Notification Settings</Text> 
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    {/* Security Section */}
+                    <View style={{margin: 10}}>
+                        <Text style={styles.listText}>Security</Text>
+                        <View style={styles.settingList}>
+                            <TouchableOpacity>
+                                {/* onPress={()=> this.props.navigation.navigate("EditProfile")} */}
+                                <Text style={{fontSize: 16}}>Biometrics</Text> 
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.settingList}>
+                            <TouchableOpacity>
+                                {/* onPress={()=> this.props.navigation.navigate("BankAccounts")}> */}
+                                <Text style={{fontSize: 16}}>Change User Information</Text> 
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    
+                    {/* Policy Section */}
+                    <View style={{margin: 10}}>
+                        <Text style={styles.listText}>Policy</Text>
+                        <View style={styles.settingList}>
+                            <TouchableOpacity>
+                                {/* onPress={()=> this.props.navigation.navigate("EditProfile")} */}
+                                <Text style={{fontSize: 16}}>Data Protection Agreement</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>

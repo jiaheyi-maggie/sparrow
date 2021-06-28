@@ -308,6 +308,12 @@ const homeStyle = StyleSheet.create({
         textAlign: 'left',
         fontSize: 18,
     },
+    settingList: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#D7CEB2', 
+        marginBottom: 10, 
+        padding: 5
+    }
  });
 
  export default homeStyle;
