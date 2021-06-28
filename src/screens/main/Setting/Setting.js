@@ -69,11 +69,34 @@ export class Setting extends Component {
 
                     {/* main setting content */}
                     <View style={{margin: 10}}>
-                        <Text style={styles.listText}> Account</Text>
-                        <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate("EditProfile")}>
-                            <Text style={{fontSize: 16}}>Edit Profile</Text> 
-                        </TouchableOpacity>
+                        <Text style={styles.listText}>Account</Text>
+                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                            <TouchableOpacity
+                                onPress={()=> this.props.navigation.navigate("EditProfile")}>
+                                <Text style={{fontSize: 16}}>Edit Profile</Text> 
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                            <TouchableOpacity
+                                onPress={()=> this.props.navigation.navigate("BankAccounts")}>
+                                <Text style={{fontSize: 16}}>Bank Accounts</Text> 
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                            <TouchableOpacity
+                                onPress={()=> this.props.navigation.navigate("PaymentAccounts")}>
+                                <Text style={{fontSize: 16}}>Payment Accounts</Text> 
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{borderBottomWidth: 1,borderBottomColor: '#264653', margin: 10, padding: 5}}>
+                            <TouchableOpacity
+                                onPress={()=> this.props.navigation.navigate("NotificationSettings")}>
+                                <Text style={{fontSize: 16}}>Notification Settings</Text> 
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     
 

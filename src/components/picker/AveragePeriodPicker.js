@@ -28,7 +28,7 @@ const AveragePeriodPicker = () => {
   return (
     <SafeAreaView style={styles.startView}>
       <Modal
-        animationType="fade"
+        animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => handleClickOpen()}

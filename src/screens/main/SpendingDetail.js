@@ -50,13 +50,7 @@ export class SpendingDetail extends Component {
                 </View>
 
                 {/* Main Content */}
-
-                {/* time period selection */}
-                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5, marginTop: 5}}>
-                    <Text style={styles.listText3}> Select a time period: </Text>
-                    <AveragePeriodPicker />
-                </View>
-
+                
                 {/* Spending overview card */}
                 <View style={{ 
                     backgroundColor:'#FAA381',
@@ -66,7 +60,7 @@ export class SpendingDetail extends Component {
                     margin: 10,
                     }}>
 
-                    {/* Recurring */}
+                    {/* Total */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                         <Text style={{
                             color: '#fff',
@@ -76,7 +70,7 @@ export class SpendingDetail extends Component {
                             paddingVertical: 5,
                             marginHorizontal: 20
                         }}>
-                            Period Total: 
+                            Recurring Total: 
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 0</Text>
                     </View>

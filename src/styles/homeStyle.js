@@ -89,7 +89,8 @@ const homeStyle = StyleSheet.create({
         textAlign: 'left',
         fontSize: 19,
         paddingVertical: 5,
-        marginHorizontal: 20
+        marginHorizontal: 10,
+        textDecorationLine:'underline'
     },
     statusContainer: {
         borderRadius: 20,
@@ -294,7 +295,7 @@ const homeStyle = StyleSheet.create({
     titleContainer: {
         width: 200,
         borderRadius: 15,
-        backgroundColor: '#CEC288',
+        backgroundColor: '#2A94AF',
         elevation: 2,
         marginHorizontal: 10,
         marginVertical: 5,

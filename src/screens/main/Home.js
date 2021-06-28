@@ -98,7 +98,7 @@ export class Home extends Component {
                                             borderRadius: 20,
                                             padding: 5,
                                             elevation: 2,
-                                            margin:10
+                                            margin:5
                                         }
                                     ]} 
                                     onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
@@ -144,7 +144,7 @@ export class Home extends Component {
                                             borderRadius: 20,
                                             padding: 5,
                                             elevation: 2,
-                                            margin:10
+                                            margin:5
                                         }
                                     ]} 
                                     onPress={()=>{this.props.navigation.navigate("Average Budget")}}
@@ -190,7 +190,7 @@ export class Home extends Component {
                                             borderRadius: 20,
                                             padding: 5,
                                             elevation: 2,
-                                            margin:10
+                                            margin:5
                                         }
                                     ]} 
                                     onPress={()=>{this.props.navigation.navigate("Spending Detail")}}

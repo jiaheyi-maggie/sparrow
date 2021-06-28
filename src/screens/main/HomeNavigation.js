@@ -17,6 +17,9 @@ import Setting from './Setting/Setting';
 import EditProfile from './Setting/EditProfile';
 import RemainingDetail from './RemainingDetail';
 import SpendingDetail from './SpendingDetail';
+import BankAccounts from './Setting/BankAccounts';
+import NotificationSettings from './Setting/NotificationSettings';
+import PaymentAccounts from './Setting/PaymentAccounts';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -131,6 +134,9 @@ const Settings = () => {
         <SettingsStack.Navigator>
             <SettingsStack.Screen name="MainSettings" component={Setting} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="BankAccounts" component={BankAccounts} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="PaymentAccounts" component={PaymentAccounts} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }}/>
         </SettingsStack.Navigator>
     );
 }

@@ -7,7 +7,7 @@ import { withNavigation } from 'react-navigation';
 import styles from '../../../styles/homeStyle';
 
 
-export class EditProfile extends Component {
+export class BankAccounts extends Component {
 
     handleComponentDidMount() {
         return (
@@ -15,16 +15,16 @@ export class EditProfile extends Component {
                 <ScrollView>
 
                     {/* header */}
-                    <View style={{alignItems:'center'}}>
+                    <View style={{alignItems: 'center'}}>
                         {/* Display name */}
-                        <Text style={styles.title}>Edit Profile</Text>   
+                        <Text style={styles.title}>Bank Accounts</Text>   
                     </View>
 
                     {/* main setting content */}
                     <View style={{margin: 10}}>
                         <TouchableOpacity
                             onPress={()=> this.props.navigation.navigate("Home")}>
-                            <Text style={{fontSize: 16}}>Save</Text> 
+                            <Text style={{fontSize: 16}}>Done</Text> 
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={()=> this.props.navigation.goBack()}>
@@ -50,4 +50,4 @@ const mapStateToProps = (store) => ({
     currentUser: store.user.currentUser,
 });
 
-export default connect(mapStateToProps,null)(withNavigation(EditProfile));
+export default connect(mapStateToProps,null)(withNavigation(BankAccounts));
