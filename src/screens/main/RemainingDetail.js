@@ -9,7 +9,7 @@ export class RemainingDetail extends Component {
 
     handleComponentDidMount() {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.container2}>
                 {/* Header */}
                 <View style={{
                     flexDirection: 'row', 
