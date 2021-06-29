@@ -243,7 +243,7 @@ export class BudgetDetail extends Component {
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                         {/* Delete Categories Button */}
                         <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#E76F51', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
                                 <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
                             </TouchableOpacity>
                         </View>

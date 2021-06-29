@@ -21,6 +21,7 @@ import NotificationSettings from './Setting/NotificationSettings';
 import PaymentAccounts from './Setting/PaymentAccounts';
 import Notifications from './Notifications';
 import Accounts from './BankAccounts';
+import DeleteCategories from './DeleteCategories';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -126,6 +127,7 @@ const Details = () => {
         <AddCategoryModal.Navigator mode='modal' >
             <AddCategoryModal.Screen name="Average Budget" component={BudgetDetail} options={{ headerShown: false }}/>
             <AddCategoryModal.Screen name="Add Categories" component={AddCategoriesDetail} options={{ headerShown: false }}/>
+            <AddCategoryModal.Screen name="Delete Categories" component={DeleteCategories} options={{ headerShown: false }}/>
         </AddCategoryModal.Navigator>
     );
 }

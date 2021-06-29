@@ -26,17 +26,17 @@ const CategoryItem = ({ item }) => {
     }
 
     return (
-            <TouchableOpacity style={styles.clickContainer} onPress={() => pressHandler()}>
-                <View style={styles.listTextAlign}>
-                    <Checkbox 
-                        disabled={false}
-                        value={checked}
-                        onValueChange={() => pressHandler()}
-                    />
+        <TouchableOpacity style={styles.clickContainer} onPress={() => pressHandler()}>
+            <View style={styles.listTextAlign}>
+                <Checkbox 
+                    disabled={false}
+                    value={checked}
+                    onValueChange={() => pressHandler()}
+                />
 
-                    <Text style={styles.clickTitle}>{item.title}</Text>
-                </View>
-            </TouchableOpacity>
+                <Text style={styles.clickTitle}>{item.title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 

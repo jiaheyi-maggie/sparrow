@@ -31,13 +31,20 @@ export default user = (state = initialState, action) => {
                 categories: currCategories
             }
         case "REMOVE_BUDGET":
-            const newArr = new Array(categories);
-            newArr.splice(action.index, 1);
-            return {
-                ...state,
-                categories: newArr
-            }
-        case 'UPDATE_USER':
+            const index = state.categories.findIndex(
+                (category) => category.id === action.payload.id
+            );
+            const newCategories = [...state.categories];
+            newCategories[index].checked = !action.payload.checked;
+            console.log(newCategories);
+            return {...state, categories: newCategories};
+            // const newArr = [...state.categories];
+            // newArr.splice(action.index, 1);
+            // return {
+            //     ...state,
+            //     categories: newArr
+            // }
+        // case 'UPDATE_USER':
 
         case "updateNewCategory":
             return {
