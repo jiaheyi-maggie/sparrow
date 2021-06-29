@@ -12,9 +12,9 @@ import styles from '../../styles/homeStyle';
 
 export class BudgetDetail extends Component {
 
-    // componentDidMount() {
-    //     this.props.fetchBudget();
-    // };
+    componentDidMount() {
+        this.props.fetchBudget();
+    };
 
     // componentDidUpdate(prevProps) {
     //     if (this.props.categories !== prevProps.categories) {
@@ -116,15 +116,15 @@ export class BudgetDetail extends Component {
                     }}>
 
                     {/* go back */}
-                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                    <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.goBack()}>
                         <Image 
                             source={require('../../assets/Icons/back.png')}
                             resizeMode='contain'
                             style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
-                                marginLeft: 5,
+                                // marginLeft: 5,
                             }}
                         />
                     </TouchableOpacity>
@@ -134,15 +134,15 @@ export class BudgetDetail extends Component {
 
 
                     {/* Menu */}
-                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                    <TouchableOpacity  style={styles.menuButton} onPress={() => this.props.navigation.openDrawer()}>
                         <Image 
                             source={require('../../assets/Icons/menu.png')}
                             resizeMode='contain'
                             style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
-                                marginRight: 10
+                                // marginRight: 10
                             }}
                         />
                     </TouchableOpacity>
@@ -239,12 +239,21 @@ export class BudgetDetail extends Component {
                 />
                 </View>
 
-                {/* Category details */}
-                    {/* Add Categories Button */}
-                    <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
-                        </TouchableOpacity>
+                    {/* Category details */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        {/* Delete Categories Button */}
+                        <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#E76F51', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
+                                <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
+                            </TouchableOpacity>
+                        </View>
+                        {/* Add Categories Button */}
+                        <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                                <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
+                            </TouchableOpacity>
+                        </View>
+                        
                     </View>
 
                     {/* List */}
@@ -252,13 +261,13 @@ export class BudgetDetail extends Component {
                         data={usefulCategories}
                         renderItem={({ item }) => {
                             return (
-                                // TODO: click on 
-                                <TouchableOpacity>
+                                // // TODO: click on 
+                                // <TouchableOpacity>
                                     <View style={styles.listContainer}>
                                         <Text style={styles.listText}>{item.title}</Text> 
                                         <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
                                     </View>
-                                </TouchableOpacity>
+                                // </TouchableOpacity>
                             );
                         }}
                         keyExtractor={item => item.id}

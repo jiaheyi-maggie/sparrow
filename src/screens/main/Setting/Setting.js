@@ -1,27 +1,12 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../../styles/homeStyle';
 
-const sections = [
-    {
-      title: "Account",
-      data: ["Edit Profile", "Bank Accounts", "Payment Accounts", "Notification Settings"]
-    },
-    {
-      title: "Security",
-      data: ["Biometrics", "Change Password"]
-    },
-];
 
 export class Setting extends Component {
-
-    // componentDidMount() {
-
-    // };
 
     handleComponentDidMount() {
         return (
@@ -36,15 +21,14 @@ export class Setting extends Component {
                     }}>
                         
                         {/* go back */}
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                        <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
                             <Image 
                             source={require('../../../assets/Icons/back.png')}
                             resizeMode='contain'
                             style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
-                                marginLeft: 15
                             }}
                             />
                         </TouchableOpacity>
@@ -53,16 +37,7 @@ export class Setting extends Component {
                         <Text style={styles.title}>Settings</Text>   
 
                         {/* TODO: log out */}
-                        <TouchableOpacity>
-                            <Image 
-                            source={require('../../../assets/Icons/logout.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 23,
-                                height: 23,
-                                tintColor: '#7E9181',
-                                marginRight: 15
-                            }}
+                        <TouchableOpacity style={styles.menuButton} 
                             onPress={()=> {
                                 firebase.auth().signOut()
                                 .then(() => {
@@ -70,7 +45,16 @@ export class Setting extends Component {
                                 }).catch((error) => {
                                     console.log(error);
                                 })
+                            }}>
+                            <Image 
+                            source={require('../../../assets/Icons/logout.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: '#7E9181',
                             }}
+                            
                             />
                         </TouchableOpacity>
                     </View>

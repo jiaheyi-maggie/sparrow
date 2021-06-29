@@ -10,14 +10,12 @@ import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
 
-// THIS IS NOT SUPPOSE TO RE-RENDER EVERY SECOND
-
 export class Home extends PureComponent {
 
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchBudget();
-    }
+    };
 
     // componentDidUpdate(prev) {
     //     if (this.props.shortTerm !== prev.shortTerm || this.props.longTerm !== prev.longTerm) {
@@ -60,7 +58,7 @@ export class Home extends PureComponent {
                                         width: 27,
                                         height: 27,
                                         tintColor: '#7E9181',
-                                        marginLeft: 15
+                                        marginLeft: 5
                                     }}
                                 />
                             </TouchableOpacity>
@@ -69,15 +67,14 @@ export class Home extends PureComponent {
                             <Text style={styles.title}>Hi, {currentUser.firstName}</Text>             
                                                             
                             {/* Menu */}
-                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                            <TouchableOpacity style={styles.menuButton} onPress={() => this.props.navigation.openDrawer()}>
                                 <Image 
                                     source={require('../../assets/Icons/menu.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#7E9181',
-                                        marginRight: 15
+                                        width: 20,
+                                        height: 20,
+                                        tintColor: '#7E9181'
                                     }}
                                 />
                             </TouchableOpacity>

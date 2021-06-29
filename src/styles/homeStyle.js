@@ -8,7 +8,7 @@ const homeStyle = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 23,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
         marginTop: 5,
     },
     title2: {
@@ -312,6 +312,18 @@ const homeStyle = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#D7CEB2', 
         marginBottom: 10, 
+        padding: 5
+    },
+    backButton:{
+        backgroundColor: '#dedede',
+        marginLeft: 5,
+        borderRadius: 20,
+        padding: 5
+    },
+    menuButton:{
+        backgroundColor: '#dedede',
+        marginRight: 5,
+        borderRadius: 20,
         padding: 5
     }
  });

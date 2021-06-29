@@ -18,15 +18,14 @@ export class SpendingDetail extends Component {
                     }}>
 
                     {/* go back */}
-                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                    <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.goBack()}>
                         <Image 
                             source={require('../../assets/Icons/back.png')}
                             resizeMode='contain'
                             style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
-                                marginLeft: 10,
                             }}
                         />
                     </TouchableOpacity>
@@ -35,15 +34,14 @@ export class SpendingDetail extends Component {
                     <Text style={styles.title}>Spending</Text> 
 
                     {/* Menu */}
-                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                    <TouchableOpacity style={styles.menuButton} onPress={() => this.props.navigation.openDrawer()}>
                         <Image 
                             source={require('../../assets/Icons/menu.png')}
                             resizeMode='contain'
                             style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
-                                marginRight: 15
                             }}
                         />
                     </TouchableOpacity>
