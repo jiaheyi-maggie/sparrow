@@ -24,7 +24,7 @@ export default user = (state = initialState, action) => {
                 shortTerm: action.shortTerm
             }
         case "ADD_BUDGET":
-            const currCategories = new Array(categories);
+            const currCategories = [...state.categories];
             currCategories.push(action.categories);
             return {
                 ...state,
@@ -37,6 +37,8 @@ export default user = (state = initialState, action) => {
                 ...state,
                 categories: newArr
             }
+        case 'UPDATE_USER':
+
         case "updateNewCategory":
             return {
                 ...state,

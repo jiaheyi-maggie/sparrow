@@ -16,11 +16,11 @@ export class BudgetDetail extends Component {
     //     this.props.fetchBudget();
     // };
 
-    componentDidUpdate(prevProps) {
-        if (this.props.categories !== prevProps.categories) {
-            this.props.fetchBudget(); 
-        }
-    };
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.categories !== prevProps.categories) {
+    //         this.props.fetchBudget(); 
+    //     }
+    // };
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
@@ -124,7 +124,7 @@ export class BudgetDetail extends Component {
                                 width: 23,
                                 height: 23,
                                 tintColor: '#7E9181',
-                                marginLeft: 10,
+                                marginLeft: 5,
                             }}
                         />
                     </TouchableOpacity>
@@ -142,14 +142,13 @@ export class BudgetDetail extends Component {
                                 width: 23,
                                 height: 23,
                                 tintColor: '#7E9181',
-                                marginRight: 15
+                                marginRight: 10
                             }}
                         />
                     </TouchableOpacity>
                 </View>
 
                 {/* time period selection */}
-                {/* <Text style={styles.smallTitle}> Overview</Text> */}
                 <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5, marginTop: 5}}>
                     <Text style={styles.listText3}> Select a time period: </Text>
                     <AveragePeriodPicker />
