@@ -1,15 +1,8 @@
 // a class component for Register (replace SignUp later)
 import React, { Component } from 'react';
 import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, Alert, ScrollView } from 'react-native';
-
 import store from '../app/store';
-import { addBudget } from '../app/actions/addBudget';
-
 import firebase from 'firebase';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 
@@ -43,7 +36,8 @@ export default class Register extends Component {
                         firstName: firstName,
                         lastName: lastName,
                         username: username,
-                        email: email
+                        email: email,
+                        photoURL: ''
                     })
                 
                 // add store data

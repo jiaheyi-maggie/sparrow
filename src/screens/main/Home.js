@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, PureComponent }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
 import { VictoryChart, VictoryBar, VictoryLabel} from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
@@ -10,35 +10,48 @@ import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
 
-
+// THIS IS NOT SUPPOSE TO RE-RENDER EVERY SECOND
 
 export class Home extends Component {
 
-    // BEWARE: check this
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.categories !== this.props.categories || 
-            nextProps.currentUser !== this.props.currentUser || 
-            nextProps.shortTerm !== this.props.shortTerm ||
-            nextProps.longTerm !== this.props.longTerm){ 
-                return true;
-            }
-        else {
-            return false;
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            rendered: false,
+            currentCategories: this.props.categories,
+            currentShortTerm: this.props.shortTerm,
+            currentLongTerm: this.props.longTerm
         }
     }
 
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchBudget();
+        this.setState({rendered: true})
     }
 
-    componentDidUpdate(prev) {
-        if (this.props.shortTerm != prev.shortTerm || this.props.longTerm != prev.longTerm) {
-            this.props.fetchBudget(); 
+    // componentDidUpdate(prev) {
+    //     if (this.props.shortTerm != prev.shortTerm || this.props.longTerm != prev.longTerm) {
+    //         this.setState({rendered: false});
+    //         this.props.fetchBudget(); 
+    //         this.setState({rendered: true});
+    //     }
+    // }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.rendered) {
+            if (this.props.categories!== this.state.currentCategories || this.props.shortTerm != this.state.shortTerm) {
+                return true; 
+            }
+            return false;
         }
+        return true;
     }
 
     handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
+        console.log('hi');
+        // console.log(this.state.currentShortTerm);
         if (currentUser) {
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
@@ -287,7 +300,6 @@ export class Home extends Component {
                                 />
                             </VictoryChart>
                         </View>
-
                     </ScrollView>
                 </SafeAreaView>
             );

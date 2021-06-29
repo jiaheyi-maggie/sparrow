@@ -3,7 +3,8 @@ const initialState = {
     categories: [],
     longTerm: [],
     shortTerm: [],
-    newCategory: null
+    newCategory: null,
+    // isSignedOut: true
 }
 
 // use thunk to call firebase API
@@ -46,6 +47,11 @@ export default user = (state = initialState, action) => {
                 ...state,
                 shortTerm: action.recurring
             }
+        // case "userSignedOut":
+        //     return {
+        //         ...state,
+        //         isSignedOut: false
+        //     }
         default:
             return state; 
     }

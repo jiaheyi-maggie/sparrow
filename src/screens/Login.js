@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 export default class Login extends Component {
 

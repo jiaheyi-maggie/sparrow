@@ -1,5 +1,4 @@
 /* Reducer for onboarding: contains categories*/
-
 import categoriesWithValue from "../../data/categories-bool";
 
 // WATCH OUT FOR INDEXING
