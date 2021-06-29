@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
-import { VictoryPie, VictoryLabel} from 'victory-native';
+import { VictoryPie, VictoryLabel } from 'victory-native';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import { addBudget } from '../../app/actions/addBudget';
 import { connect } from 'react-redux';
@@ -16,23 +16,11 @@ export class BudgetDetail extends Component {
     //     this.props.fetchBudget();
     // };
 
-    // componentDidUpdate(prevCategories) {
-    //     if (this.props.categories != prevCategories.categories) {
-    //         this.props.fetchBudget(); 
-    //     }
-    // };
-
-    // BEWARE: something udpates might affect UI re-rendering
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.categories !== this.props.categories || 
-            nextProps.shortTerm !== this.props.shortTerm || 
-            nextProps.averagePeriod !== this.props.averagePeriod){ 
-                return true;
-            }
-        else {
-            return false;
+    componentDidUpdate(prevProps) {
+        if (this.props.categories !== prevProps.categories) {
+            this.props.fetchBudget(); 
         }
-    }
+    };
 
     roundNumbers(num) {
         return (Math.round(num * 100) / 100).toFixed(2);
@@ -115,6 +103,7 @@ export class BudgetDetail extends Component {
             return obj.sum !== 0;
         });
 
+        console.log("hmm");
         return (
             <SafeAreaView style={styles.container2}>
                 <ScrollView>
