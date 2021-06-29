@@ -20,7 +20,9 @@ export class BankAccounts extends Component {
                         <Text style={styles.title}>Bank Accounts</Text>   
                     </View>
 
-                    {/* main setting content */}
+                    {/* main content */}
+
+                    {/* Buttons */}
                     <View style={{margin: 10}}>
                         <TouchableOpacity
                             onPress={()=> this.props.navigation.navigate("Home")}>
@@ -32,8 +34,6 @@ export class BankAccounts extends Component {
                         </TouchableOpacity>
                     </View>
                     
-
-
                 </ScrollView>
             </SafeAreaView>
         );
