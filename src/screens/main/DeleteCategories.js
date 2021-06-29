@@ -15,7 +15,6 @@ export class DeleteCategories extends Component {
 
         this.state ={
             pageOffset:0,
-            usefulCategories: this.props.categories.filter((obj) => {return obj.checked === true}),
             categoriesCopy: this.props.categories,
             shortTerm: this.props.shortTerm,
         }
@@ -49,24 +48,30 @@ export class DeleteCategories extends Component {
 
     // remove categories by matching their checked fields with state array
     updateCategories = () => {
+        
+        const updatedCategories = this.state.categoriesCopy.filter((obj) => {
+            return obj.checked === true;
+        });
+
+        console.log(updatedCategories);
+
+        var finalCategories = [...updatedCategories];
 
         var sum = 0;
-        for (var i = 0; i < this.state.categoriesCopy.length; i++) {
-            if (this.state.categoriesCopy[i].checked === true) {
-                sum += this.state.categoriesCopy[i].sum;
-            }
+        for (var i = 0; i < updatedCategories.length; i++) {
+            sum += this.state.categoriesCopy[i].sum;
+            finalCategories[i].id = `${i}`;
         }
+
+        console.log(finalCategories);
 
         const recurring = this.calculateRecurring(this.state.shortTerm[1], sum);
 
         var shortTermCopy = [...this.state.shortTerm];
         shortTermCopy[0] = recurring;
-        const updatedCategories = this.state.categoriesCopy.filter((obj) => {
-            return obj.checked === true;
-        });
 
         // dispatch to store
-        removeBudget(updatedCategories);
+        removeBudget(finalCategories);
         updateRecurring(shortTermCopy);
 
     };
@@ -98,7 +103,7 @@ export class DeleteCategories extends Component {
 
                     {/* Main Content */}
                     <FlatList 
-                        data={this.state.usefulCategories}
+                        data={this.state.categoriesCopy}
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity style={styles.listContainer} 
@@ -109,15 +114,15 @@ export class DeleteCategories extends Component {
                                         console.log(this.state.categoriesCopy);
                                     }}>
                                     <Text style={styles.listText}>{item.title}</Text>
-                                    <Checkbox 
+                                    {/* <Checkbox 
                                         disabled={false}
-                                        value={!this.state.categoriesCopy[item.id].checked}
+                                        value={!this.state.categoriesCopy[item.id]}
                                         onValueChange={() => {
                                             var copy = [...this.state.categoriesCopy];
                                             copy[item.id].checked = !copy[item.id].checked;
                                             this.setState({categoriesCopy: copy});
                                         }}
-                                    />
+                                    /> */}
                                 </TouchableOpacity>
                             );
                         }}
