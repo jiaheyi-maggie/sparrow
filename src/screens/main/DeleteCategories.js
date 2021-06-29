@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList, Keyboard } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, Modal, FlatList } from 'react-native';
 import { removeBudget } from '../../app/actions/removeBudget';
 import { updateRecurring } from '../../app/actions/updateRecurring';
 import { connect } from 'react-redux';

@@ -261,13 +261,10 @@ export class BudgetDetail extends Component {
                         data={usefulCategories}
                         renderItem={({ item }) => {
                             return (
-                                // // TODO: click on 
-                                // <TouchableOpacity>
-                                    <View style={styles.listContainer}>
-                                        <Text style={styles.listText}>{item.title}</Text> 
-                                        <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
-                                    </View>
-                                // </TouchableOpacity>
+                                <View style={styles.listContainer}>
+                                    <Text style={styles.listText}>{item.title}</Text> 
+                                    <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
+                                </View>
                             );
                         }}
                         keyExtractor={item => item.id}

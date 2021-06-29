@@ -27,6 +27,12 @@ export default class Register extends Component {
     // Handles firebase authentication and Firestore 
     onSignUp() {
         const { firstName, lastName, username, email, password } = this.state;
+        const filteredCategories = store.getState().reducer.filter((obj) => {return obj.checked == true});
+        var finalCategories = filteredCategories;
+        for (var i = 0; i < filteredCategories.length; i++) {
+            finalCategories[i].id = `${i}`;
+        };
+
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
                 const currUserID = firebase.auth().currentUser.uid;
@@ -44,7 +50,8 @@ export default class Register extends Component {
                 firebase.firestore().collection("budgets")
                     .doc(currUserID)
                     .set({
-                        categories: store.getState().reducer,
+                        // categories: store.getState().reducer,
+                        categories: finalCategories,
                         longTerm: store.getState().longTerm,
                         shortTerm: store.getState().shortTerm
                     })
@@ -211,6 +218,7 @@ export default class Register extends Component {
                             placeholder='1234567890'
                             onChangeText={(password) => this.setState({ password })}
                             style={componentStyle.infofield}
+                            secureTextEntry={true}
                         />
                     </View>
 

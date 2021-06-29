@@ -35,13 +35,6 @@ export default user = (state = initialState, action) => {
                 ...state,
                 categories: action.categories,
             }
-            // const index = state.categories.findIndex(
-            //     (category) => category.id === action.payload.id
-            // );
-            // const newCategories = [...state.categories];
-            // newCategories[index].checked = !action.payload.checked;
-            // console.log(newCategories);
-            // return {...state, categories: newCategories};
         // case 'UPDATE_USER':
 
         case "updateNewCategory":
@@ -54,11 +47,6 @@ export default user = (state = initialState, action) => {
                 ...state,
                 shortTerm: action.recurring
             }
-        // case "userSignedOut":
-        //     return {
-        //         ...state,
-        //         isSignedOut: false
-        //     }
         default:
             return state; 
     }
