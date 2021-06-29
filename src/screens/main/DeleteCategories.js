@@ -92,7 +92,6 @@ export class DeleteCategories extends Component {
                         {/* add button */}
                         <TouchableOpacity style={styles.addButtonContainer}
                             onPress={() => {
-                                // TODO: update categories
                                 this.updateCategories();
                                 this.props.navigation.goBack();
                             }} 
@@ -111,18 +110,17 @@ export class DeleteCategories extends Component {
                                         var copy = [...this.state.categoriesCopy];
                                         copy[item.id].checked = !copy[item.id].checked;
                                         this.setState({categoriesCopy: copy});
-                                        console.log(this.state.categoriesCopy);
                                     }}>
                                     <Text style={styles.listText}>{item.title}</Text>
-                                    {/* <Checkbox 
+                                    <Checkbox 
                                         disabled={false}
-                                        value={!this.state.categoriesCopy[item.id]}
+                                        value={!this.state.categoriesCopy[item.id].checked}
                                         onValueChange={() => {
                                             var copy = [...this.state.categoriesCopy];
                                             copy[item.id].checked = !copy[item.id].checked;
                                             this.setState({categoriesCopy: copy});
                                         }}
-                                    /> */}
+                                    />
                                 </TouchableOpacity>
                             );
                         }}
