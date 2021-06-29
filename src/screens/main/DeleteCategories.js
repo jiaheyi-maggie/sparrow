@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 import Checkbox from '@react-native-community/checkbox';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
-import periods from '../../data/periods';
 import styles from '../../styles/homeStyle';
-import store from '../../app/store';
-import ListItem from '../../components/main/ListItem';
 
 export class DeleteCategories extends Component {
 
@@ -19,51 +16,59 @@ export class DeleteCategories extends Component {
         this.state ={
             pageOffset:0,
             usefulCategories: this.props.categories.filter((obj) => {return obj.checked === true}),
-            checkedStateArr: [],
+            categoriesCopy: this.props.categories,
+            shortTerm: this.props.shortTerm,
         }
 
         this.handleClickOpen = this.handleClickOpen.bind(this);
-    }
-
-
-    componentDidMount() {
-        const arr = new Array(this.state.usefulCategories.length).fill(true);
-        this.setState({checkedStateArr: arr});
-
-        // keyboard listeners
-        this.keyboardDidShowListener = Keyboard.addListener(
-            'keyboardDidShow',
-            this._keyboardDidShow,
-        );
-
-        this.keyboardDidHideListener = Keyboard.addListener(
-            'keyboardDidHide',
-            this._keyboardDidHide,
-        );
-
-    };
-
-    /* For Keyboard events */
-    componentWillUnmount() {
-        this.keyboardDidShowListener.remove();
-        this.keyboardDidHideListener.remove();
-    }
-
-    _keyboardDidShow(event) {
-        this.setState({
-            keyboardOffset: event.endCoordinates.height - 130,
-        })
-    }
-
-    _keyboardDidHide() {
-        this.setState({
-            keyboardOffset: 0,
-        })
+        this.updateCategories = this.updateCategories.bind(this);
+        this.calculateRecurring = this.calculateRecurring.bind(this);
     }
 
     // for modal
     handleClickOpen = () => {
         this.setState({modalVisible: !this.state.modalVisible});
+    };
+
+    // calculate new recurring budget based on short term period after deleting
+    // v: yearly sum
+    calculateRecurring = (p, v) => {
+        switch (p) {
+            case 'year':
+                return v;
+            case 'quarter':
+                return Math.floor(v/4);
+            case 'month':
+                return Math.floor(v/12);
+            case 'week':
+                return Math.floor(v/52);
+            case 'day':
+                return Math.floor(v/365);
+        }
+    };
+
+    // remove categories by matching their checked fields with state array
+    updateCategories = () => {
+
+        var sum = 0;
+        for (var i = 0; i < this.state.categoriesCopy.length; i++) {
+            if (this.state.categoriesCopy[i].checked === true) {
+                sum += this.state.categoriesCopy[i].sum;
+            }
+        }
+
+        const recurring = this.calculateRecurring(this.state.shortTerm[1], sum);
+
+        var shortTermCopy = [...this.state.shortTerm];
+        shortTermCopy[0] = recurring;
+        const updatedCategories = this.state.categoriesCopy.filter((obj) => {
+            return obj.checked === true;
+        });
+
+        // dispatch to store
+        removeBudget(updatedCategories);
+        updateRecurring(shortTermCopy);
+
     };
 
 
@@ -82,7 +87,8 @@ export class DeleteCategories extends Component {
                         {/* add button */}
                         <TouchableOpacity style={styles.addButtonContainer}
                             onPress={() => {
-
+                                // TODO: update categories
+                                this.updateCategories();
                                 this.props.navigation.goBack();
                             }} 
                         >
@@ -97,19 +103,19 @@ export class DeleteCategories extends Component {
                             return (
                                 <TouchableOpacity style={styles.listContainer} 
                                     onPress={() => {
-                                        var copy = [...this.state.checkedStateArr];
-                                        copy[item.id] = !copy[item.id];
-                                        this.setState({checkedStateArr: copy});
-                                        // console.log(this.state.checkedStateArr);
+                                        var copy = [...this.state.categoriesCopy];
+                                        copy[item.id].checked = !copy[item.id].checked;
+                                        this.setState({categoriesCopy: copy});
+                                        console.log(this.state.categoriesCopy);
                                     }}>
                                     <Text style={styles.listText}>{item.title}</Text>
                                     <Checkbox 
                                         disabled={false}
-                                        value={!this.state.checkedStateArr[item.id]}
+                                        value={!this.state.categoriesCopy[item.id].checked}
                                         onValueChange={() => {
-                                            var copy = [...this.state.checkedStateArr];
-                                            copy[item.id] = !copy[item.id];
-                                            this.setState({checkedStateArr: copy});
+                                            var copy = [...this.state.categoriesCopy];
+                                            copy[item.id].checked = !copy[item.id].checked;
+                                            this.setState({categoriesCopy: copy});
                                         }}
                                     />
                                 </TouchableOpacity>

@@ -8,16 +8,13 @@ export function removeBudget(data) {
         .collection("budgets")
         .doc(firebase.auth().currentUser.uid)
         .update({
-            categories: firebase.firestore.FieldValue.arrayRemove(data)
+            categories: data,
         })
         .then(() => {
-            const index =  data.id;
-            store.dispatch (
-                {
+            store.dispatch ({
                 type: "REMOVE_BUDGET",
-                categories: {data, index}
-                }
-            )
+                categories: data,
+            })
         })
         .catch((error) => {
             console.log(error);

@@ -152,7 +152,7 @@ const homeStyle = StyleSheet.create({
     modalContainer: {
         backgroundColor: '#fff',
         flex: 1,
-        paddingTop: 10
+        paddingTop: 10,
     },
     addButtonContainer: {
         backgroundColor: "#F4A261",
