@@ -65,6 +65,7 @@ export class DrawerContent extends Component {
 
     render(){
             this.getUserName();
+            // this.setState({photoURL: store.getState().currentUser.photoURL});
             
             return (
             <View style={{flex: 1}}> 
