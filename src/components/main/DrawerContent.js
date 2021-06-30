@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import firebase from 'firebase';
-import { Avatar, Title, Caption, Paragraph, Drawer, Text, TouchableRipple, Switch } from 'react-native-paper';
+import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -27,48 +27,23 @@ export class DrawerContent extends Component {
 
     getUserName() {
         const userID = firebase.auth().currentUser.uid;
-        firebase.firestore().collection("users").doc(userID).get()
-        .then((doc) => {
-            if (doc.exists) {
-                var user = doc.data();
-                this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username})
-            }
-        })
-
+                firebase.firestore().collection("users").doc(userID).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        var user = doc.data();
+                        this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username})
+                    }
+                })
     };
 
     handleSignOut() {
         this.setState({isSignedOut: true});
         firebase.auth().signOut();
-            // .then(() => {
-            //     this.props.navigation.navigate("signin");
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if (!user) {
-                this.props.navigation.navigate('signin');
-                console.log('log out successful');
-            } 
-        })
     };
 
-    // componentWillUnmount() {
-    //     if (this.state.isSignedOut === true) {
-    //         firebase.auth().signOut()
-    //         .then(() => {
-    //             this.props.navigation.navigate("signin");
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         })
-    //     }
-    // };
-
     render(){
-        // if (this.state.isSignedOut === false) {
             this.getUserName();
-        
+            
             return (
             <View style={{flex: 1}}> 
                 <DrawerContentScrollView>

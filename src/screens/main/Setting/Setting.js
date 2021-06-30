@@ -8,6 +8,16 @@ import styles from '../../../styles/homeStyle';
 
 export class Setting extends Component {
 
+    handleSignout = () => {
+        firebase.auth().signOut();
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                // this.navigaton.navigate('SignIn Stack');
+                console.log("signed out");
+            }
+        })
+    };
+
     handleComponentDidMount() {
         return (
             <SafeAreaView style={styles.container2}>
@@ -38,14 +48,7 @@ export class Setting extends Component {
 
                         {/* TODO: log out */}
                         <TouchableOpacity style={styles.menuButton} 
-                            onPress={()=> {
-                                firebase.auth().signOut()
-                                .then(() => {
-                                    this.props.navigation.navigate('onboarding');
-                                }).catch((error) => {
-                                    console.log(error);
-                                })
-                            }}>
+                            onPress={()=> this.handleSignout()}>
                             <Image 
                             source={require('../../../assets/Icons/logout.png')}
                             resizeMode='contain'

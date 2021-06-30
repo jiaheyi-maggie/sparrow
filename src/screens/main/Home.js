@@ -50,7 +50,7 @@ export class Home extends PureComponent {
                             
                             {/* Profile */}
                             {/* TODO: profile modal */}
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Settings")}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Profile")}>
                                 <Image 
                                     source={require('../../assets/Icons/profile-user.png')}
                                     resizeMode='contain'

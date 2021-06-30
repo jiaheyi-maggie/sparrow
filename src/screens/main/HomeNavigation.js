@@ -22,6 +22,9 @@ import PaymentAccounts from './Setting/PaymentAccounts';
 import Notifications from './Notifications';
 import Accounts from './BankAccounts';
 import DeleteCategories from './DeleteCategories';
+import ProfileModal from './ProfileModal';
+import Login from '../Login';
+import Register from '../Register';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -120,6 +123,16 @@ const HomeTab = () => {
     );
 }
 
+const SignInStack = createStackNavigator();
+const Stack = () => {
+    return (
+        <SignInStack.Navigator>
+            <SignInStack.Screen name="signin" component={Login} options={{ headerShown: false }}/>
+            <SignInStack.Screen name="register" component={Register} options={{ headerShown: false }}/>
+        </SignInStack.Navigator>
+    );
+}
+
 // budget details
 const AddCategoryModal = createStackNavigator();
 const Details = () => {
@@ -155,6 +168,8 @@ const HomeNavigation = () => {
             <Drawer.Screen name="Calculator" component={Calculator} />
             <Drawer.Screen name="Remaining Detail" component={RemainingDetail} />
             <Drawer.Screen name="Spending Detail" component={SpendingDetail} />
+            {/* <Drawer.Screen name="SignIn Stack" component={Stack} /> */}
+            <Drawer.Screen name="Profile" component={ProfileModal} />
         </Drawer.Navigator>
     );
 };
