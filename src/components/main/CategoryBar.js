@@ -1,6 +1,5 @@
 import React from 'react';
-import { VictoryLabel, VictoryChart, VictoryZoomContainer, VictoryBar, VictoryTheme, Bar } from 'victory-native';
-import { Alert } from 'react-native';
+import { VictoryLabel, VictoryChart, VictoryZoomContainer, VictoryBar, VictoryTheme  } from 'victory-native';
 
 // TODO: click and show number
 const CategoryBar = ({ data }) =>  {
