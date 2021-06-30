@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import styles from '../../styles/homeStyle';
@@ -8,6 +8,36 @@ const ProfileModal = ({ navigation }) => {
     const currentUser = store.getState().user.currentUser;
     const shortTerm = store.getState().user.shortTerm;
     const longTerm = store.getState().user.longTerm;
+
+    // Image picker setup
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+    };
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -30,14 +60,17 @@ const ProfileModal = ({ navigation }) => {
             {/* Main Profile */}
             <View style={{alignItems: 'center'}}>
                 {/* profile picture */}
-                <TouchableOpacity onPress={()=> this.handleImagePress()}>
-                    <Image
-                        source={require('../../assets/Icons/profile.png')}
-                        style={{
-                            width: 80,
-                            height: 80
-                        }}
-                    />
+                <TouchableOpacity onPress={() => pickImage()}>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15}]}>(Choose Profile Picture)</Text>
+                        {image && <Image
+                            source={{uri: image}}
+                            style={{
+                                width: 80,
+                                height: 80
+                            }}
+                        />}
+                    </View>
                 </TouchableOpacity>
                 
                 {/* Display name */}
