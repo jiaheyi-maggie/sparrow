@@ -1,6 +1,6 @@
 import React, { Component, PureComponent }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
-import { VictoryChart, VictoryBar, VictoryLabel, VictoryZoomContainer, VictoryLine, VictoryVoronoiContainer, VictoryGroup, VictoryTooltip, VictoryScatter } from 'victory-native';
+import { VictoryChart, VictoryBar, VictoryLabel, VictoryZoomContainer, VictoryTheme, VictoryLine, VictoryVoronoiContainer, VictoryGroup, VictoryTooltip, VictoryScatter, VictoryAxis } from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import CategoryBar from '../../components/main/CategoryBar';
@@ -58,24 +58,25 @@ export class Home extends PureComponent {
                                     style={{
                                         width: 27,
                                         height: 27,
-                                        tintColor: '#7E9181',
-                                        marginLeft: 5
+                                        tintColor: '#e1e1e1',
+                                        marginLeft: 8
                                     }}
                                 />
                             </TouchableOpacity>
 
                             {/* Display name */}
-                            <Text style={styles.title}>Hi, {currentUser.firstName}</Text>             
+                            <Text style={styles.title3}>Hi, {currentUser.firstName}</Text>             
                                                             
                             {/* Menu */}
-                            <TouchableOpacity style={styles.menuButton} onPress={() => this.props.navigation.openDrawer()}>
+                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                                 <Image 
                                     source={require('../../assets/Icons/menu.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 20,
-                                        height: 20,
-                                        tintColor: '#7E9181'
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#e1e1e1',
+                                        marginRight: 8
                                     }}
                                 />
                             </TouchableOpacity>
@@ -84,9 +85,22 @@ export class Home extends PureComponent {
 
                         {/* overview section */}
                         <View> 
-                            <View style={styles.titleContainer}>
-                                <Text style={styles.smallTitle2}>Overview</Text>
+                            <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                                <View style={styles.titleContainer}>
+                                    <Text style={styles.smallTitle2}>Overview</Text>  
+                                </View>
+                                <Image 
+                                    source={require('../../assets/Icons/transfer.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#e1e1e1',
+                                        marginRight: 8
+                                    }}
+                                />
                             </View>
+                            
 
                             <ScrollView horizontal={true} >
 
@@ -111,7 +125,7 @@ export class Home extends PureComponent {
                                         </View>
                                        
                                        {/* TODO: Subtract numbers */}
-                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, marginRight: 5}}>
+                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, marginRight: 5}}>
                                             <Text style={styles.number2}>$ {shortTerm[0]}</Text>
                                         </View>
                                     </View>
@@ -121,7 +135,7 @@ export class Home extends PureComponent {
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, margin: 2, marginRight: 5}}>
                                             <Text style={styles.number2}>$ {longTerm[0]}</Text>
                                         </View>
                                     </View>
@@ -202,7 +216,7 @@ export class Home extends PureComponent {
                                             <Text style={styles.subtitle}>{m}:</Text>
                                         </View>
                                        
-                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, marginRight: 5}}>
+                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, marginRight: 5}}>
                                             <Text style={styles.number2}>$ 0</Text>
                                         </View>
                                     </View>
@@ -212,7 +226,7 @@ export class Home extends PureComponent {
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#7DDE92', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, margin: 2, marginRight: 5}}>
                                             <Text style={styles.number2}>$ 0</Text>
                                         </View>
                                     </View>
@@ -228,51 +242,43 @@ export class Home extends PureComponent {
                         </View>
 
                         {/* TODO: style bar graphs */}
-                        <View style={styles.titleContainer}>
-                                <Text style={styles.smallTitle2}>Budget Categories</Text>
-                            </View>
-                        <View style={{
-                            backgroundColor: '#fff'
-                        }}>
-                            <VictoryChart
+                        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+                                <View style={styles.titleContainer}>
+                                    <Text style={styles.smallTitle2}>Budget Categories</Text>  
+                                </View>
+                                <Image 
+                                    source={require('../../assets/Icons/zoom-in.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 23,
+                                        height: 23,
+                                        tintColor: '#e1e1e1',
+                                        marginRight: 8,
+                                    }}
+                                />
+                        </View>
+
+                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5}}>
+
+                            <VictoryChart height={400} width={430}
                                 domainPadding={{x: 5}}
                                 alignment="start"
                                 containerComponent={
-                                    <VictoryZoomContainer zoomDomain={{ y: [0, 10000]}}/>
+                                    <VictoryZoomContainer zoomDomain={{ x: [1, 6], y: [0, 12000]}}/>
                                 }
+                                theme={VictoryTheme.material}
                             >
-                                <VictoryBar
+                                <VictoryBar colorScale={'green'}
                                     data={usefulCategories}
                                     categories={{x: usefulCategories.map(obj => obj.title)}}
                                     x='title'
                                     y='sum'
-                                    style={{
-                                        data: { fill: "#FAA381", stroke: "black", strokeWidth: 1 },
-                                    }}
+                                    labelComponent={<VictoryLabel angle={90} verticalAnchor="middle" textAnchor="end"/>}
                                     barRatio={0.9}
                                     alignment="start"
                                     cornerRadius={5}
-                                    labels={({ datum }) => datum.x}
-                                    events={[{
-                                        target: "data",
-                                        eventHandlers: {
-                                          onPress: () => {
-                                            return [
-                                              {
-                                                target: "data",
-                                                mutation: (props) => {
-                                                  const fill = props.style && props.style.fill;
-                                                  return fill === "black" ? null : { style: { fill: "black" } };
-                                                }
-                                              }
-                                            ];
-                                          }
-                                        }
-                                      }]}
                                 />
                             </VictoryChart>
-                            {/* <CategoryBar data={usefulCategories}/> */}
-
 
                         
                         </View>

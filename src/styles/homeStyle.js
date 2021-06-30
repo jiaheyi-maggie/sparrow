@@ -19,6 +19,14 @@ const homeStyle = StyleSheet.create({
         marginTop: 5,
         marginHorizontal: 10
     },
+    title3: {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 23,
+        marginHorizontal: 10,
+        marginTop: 5,
+    },
     operation: {
         color: '#264653',
         fontWeight: 'bold',
@@ -36,7 +44,7 @@ const homeStyle = StyleSheet.create({
         height: 80,
     },
     homeContainer: {
-        backgroundColor: '#e2f1e1', 
+        backgroundColor: '#2A94AF', 
         flex:1,
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
     },
@@ -295,7 +303,7 @@ const homeStyle = StyleSheet.create({
     titleContainer: {
         width: 200,
         borderRadius: 15,
-        backgroundColor: '#2A94AF',
+        backgroundColor: '#E0FBFC',
         elevation: 2,
         marginHorizontal: 10,
         marginVertical: 5,
@@ -303,7 +311,7 @@ const homeStyle = StyleSheet.create({
         padding: 2
     },
     smallTitle2 : {
-        color: '#fff',
+        color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 18,
