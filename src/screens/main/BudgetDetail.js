@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
-import { VictoryPie, VictoryLabel } from 'victory-native';
+import PieChart from '../../components/main/PieChart';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import { addBudget } from '../../app/actions/addBudget';
 import { connect } from 'react-redux';
@@ -123,7 +123,7 @@ export class BudgetDetail extends Component {
                             style={{
                                 width: 20,
                                 height: 20,
-                                tintColor: '#7E9181',
+                                tintColor: '#fff',
                                 // marginLeft: 5,
                             }}
                         />
@@ -141,7 +141,7 @@ export class BudgetDetail extends Component {
                             style={{
                                 width: 20,
                                 height: 20,
-                                tintColor: '#7E9181',
+                                tintColor: '#fff',
                                 // marginRight: 10
                             }}
                         />
@@ -176,82 +176,42 @@ export class BudgetDetail extends Component {
 
                 {/* Pie chart for budget */}
                 <Text style={styles.smallTitle}> Categories</Text>
-                <View>
-                <VictoryPie
-                    data={usefulCategories}
-                    x="title"
-                    y="sum"
-                    // x='percent'
-                    // y='percent'
-                    colorScale={['#78C0E0','#5EAFD9','#448DD1','#2D51A5','#212B8F','#150578', '#0E0E52' ]}
-                    cornerRadius={8}
-                    innerRadius={70}
-                    labelRadius={({ innerRadius }) => innerRadius+30 }
-                    labelPlacement={'vertical'}
-                    labelComponent={
-                        <VictoryLabel 
-                            textAnchor='start'
-                            // backgroundPadding={2}
-                            dx={-10}
-                        />
-                    }
-                    style={{ labels: { fill: "#FFCF56", fontSize: 20, fontWeight: "bold" } }}
-                    padAngle={1}
-                    radius={130}
-                    name='averageViewPie'
-                    width={400}
-                    height={320}
-                    events={[{
-                        target: "data",
-                        eventHandlers: {
-                          onPress: () => {
-                            return [
-                              {
-                                target: "data",
-                                mutation: ({ style }) => {
-                                  return style.fill === "#c43a31" ? null : { style: { fill: "#c43a31" } };
-                                }
-                              }
-                            ];
-                          }
-                        }
-                      }]}
-                />
+                <PieChart data={usefulCategories}/>
+
+                {/* Category details */}
+                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                    {/* Delete Categories Button */}
+                    <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
+                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {/* Add Categories Button */}
+                    <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                 </View>
 
-                    {/* Category details */}
-                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        {/* Delete Categories Button */}
-                        <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
-                                <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
-                            </TouchableOpacity>
-                        </View>
-                        {/* Add Categories Button */}
-                        <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                                <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
-                            </TouchableOpacity>
-                        </View>
-                        
-                    </View>
+                {/* List */}
+                <FlatList 
+                    data={usefulCategories}
+                    renderItem={({ item }) => {
+                        return (
+                            <View style={styles.listContainer}>
+                                <Text style={styles.listText}>{item.title}</Text> 
+                                <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
+                            </View>
+                        );
+                    }}
+                    keyExtractor={item => item.id}
+                    contentContainerStyle={{
+                        flexGrow: 1,
+                    }}
+                />  
 
-                    {/* List */}
-                    <FlatList 
-                        data={usefulCategories}
-                        renderItem={({ item }) => {
-                            return (
-                                <View style={styles.listContainer}>
-                                    <Text style={styles.listText}>{item.title}</Text> 
-                                    <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
-                                </View>
-                            );
-                        }}
-                        keyExtractor={item => item.id}
-                        contentContainerStyle={{
-                            flexGrow: 1,
-                        }}
-                    />  
                 </ScrollView>
             </SafeAreaView>
         );

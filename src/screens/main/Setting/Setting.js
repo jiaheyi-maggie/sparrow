@@ -28,7 +28,7 @@ export class Setting extends Component {
                         flexDirection: 'row', 
                         justifyContent:'space-between',
                         alignItems: 'baseline'
-                    }}>
+                        }}>
                         
                         {/* go back */}
                         <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
@@ -38,7 +38,7 @@ export class Setting extends Component {
                             style={{
                                 width: 20,
                                 height: 20,
-                                tintColor: '#7E9181',
+                                tintColor: '#fff',
                             }}
                             />
                         </TouchableOpacity>
@@ -55,7 +55,7 @@ export class Setting extends Component {
                             style={{
                                 width: 20,
                                 height: 20,
-                                tintColor: '#7E9181',
+                                tintColor: '#fff',
                             }}
                             
                             />

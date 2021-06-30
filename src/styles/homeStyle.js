@@ -323,13 +323,13 @@ const homeStyle = StyleSheet.create({
         padding: 5
     },
     backButton:{
-        backgroundColor: '#dedede',
+        backgroundColor: '#2A94AF',
         marginLeft: 5,
         borderRadius: 10,
         padding: 5
     },
     menuButton:{
-        backgroundColor: '#dedede',
+        backgroundColor: '#2A94AF',
         marginRight: 5,
         borderRadius: 10,
         padding: 5

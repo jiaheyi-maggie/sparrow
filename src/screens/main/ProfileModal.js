@@ -28,7 +28,7 @@ export class ProfileModal extends Component {
                             style={{
                                 width: 20,
                                 height: 20,
-                                tintColor: '#7E9181',
+                                tintColor: '#fff',
                             }}
                             />
                         </TouchableOpacity>
@@ -38,13 +38,16 @@ export class ProfileModal extends Component {
 
                     <View style={{alignItems: 'center'}}>
                         {/* profile picture */}
-                        <Image
-                            source={require('../../assets/Icons/profile.png')}
-                            style={{
-                                width: 80,
-                                height: 80
-                            }}
-                        />
+                        <TouchableOpacity>
+                            <Image
+                                source={require('../../assets/Icons/profile.png')}
+                                style={{
+                                    width: 80,
+                                    height: 80
+                                }}
+                            />
+                        </TouchableOpacity>
+                        
                         {/* Display name */}
                         <Text style={[styles.title2, {color: '#2A94AF'}]}>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</Text>
                         <Text style={styles.subtitle}>@{this.props.currentUser.username}</Text>

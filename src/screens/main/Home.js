@@ -1,6 +1,5 @@
 import React, { Component, PureComponent }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
-import { VictoryChart, VictoryBar, VictoryLabel, VictoryZoomContainer, VictoryTheme, VictoryLine, VictoryVoronoiContainer, VictoryGroup, VictoryTooltip, VictoryScatter, VictoryAxis } from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import CategoryBar from '../../components/main/CategoryBar';
@@ -96,7 +95,7 @@ export class Home extends PureComponent {
                                         width: 23,
                                         height: 23,
                                         tintColor: '#e1e1e1',
-                                        marginRight: 8
+                                        marginRight: 8,
                                     }}
                                 />
                             </View>
@@ -241,7 +240,6 @@ export class Home extends PureComponent {
 
                         </View>
 
-                        {/* TODO: style bar graphs */}
                         {/* Budget Categories */}
                         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                                 <View style={styles.titleContainer}>
@@ -259,6 +257,7 @@ export class Home extends PureComponent {
                                 />
                         </View>
 
+                        {/* Bar graph */}
                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5, paddingLeft: 5}}>
                             <CategoryBar data={usefulCategories}/>
                         </View>
