@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { updateUser } from '../../app/actions/updateUser';
 import styles from '../../styles/homeStyle';
 import store from '../../app/store';
 
@@ -10,32 +11,79 @@ const ProfileModal = ({ navigation }) => {
     const longTerm = store.getState().user.longTerm;
 
     // Image picker setup
-    const [image, setImage] = useState(null);
+    // TODO: change default to currentUser.photoURL
+    const [image, setImage] = useState(currentUser.photoURL);
 
     useEffect(() => {
         (async () => {
-          if (Platform.OS !== 'web') {
-            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            if (status !== 'granted') {
-              alert('Sorry, we need camera roll permissions to make this work!');
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    ert('Sorry, we need camera roll permissions to make this work!');
+                }
             }
-          }
         })();
     }, []);
 
+
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
         });
     
         console.log(result);
     
         if (!result.cancelled) {
-          setImage(result.uri);
+            setImage(result.uri);
+
+            // update redux
+            store.dispatch({
+                type: "USER_STATE_CHANGE",
+                currentUser: {...currentUser, photoURL: result.uri}
+            })
+
+            
+
+            console.log(store.getState().user.currentUser);
         }
+    };
+
+    const handleImageRendering = (image) => {
+        if (image === "") {
+            return (
+                <Image
+                    source={require('../../assets/Icons/profile.png')}
+                    style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 50,
+                        borderWidth: 3,
+                        borderColor: '#264653'
+                    }}
+                />);
+        } else {
+            return (
+                <Image
+                    source={{uri: image}}
+                    style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 50,
+                        borderWidth: 3,
+                        borderColor: '#264653'
+                    }}
+                />);
+
+        }
+    };
+
+    // TODO: send to firebase
+    const handleUnmount = () => {
+        updateUser({...currentUser, photoURL: store.getState().user.currentUser.photoURL}, "profile");
+        navigation.navigate('Home');
     };
 
 
@@ -44,7 +92,7 @@ const ProfileModal = ({ navigation }) => {
             {/* header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
                 {/* go back */}
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.backButton} onPress={() => handleUnmount()}>
                     <Image 
                     source={require('../../assets/Icons/back.png')}
                     resizeMode='contain'
@@ -63,13 +111,17 @@ const ProfileModal = ({ navigation }) => {
                 <TouchableOpacity onPress={() => pickImage()}>
                     <View style={{alignItems: 'center'}}>
                         <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15}]}>(Choose Profile Picture)</Text>
-                        {image && <Image
+                        {/* <Image
                             source={{uri: image}}
                             style={{
                                 width: 80,
-                                height: 80
+                                height: 80,
+                                borderRadius: 50,
+                                borderWidth: 3,
+                                borderColor: '#264653'
                             }}
-                        />}
+                        /> */}
+                        {handleImageRendering(image)}
                     </View>
                 </TouchableOpacity>
                 

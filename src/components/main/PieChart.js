@@ -11,7 +11,6 @@ const PieChart = ({ data }) => {
 
     return (
         <View>
-            <TouchableOpacity >
             <VictoryPie
                 events={[{
                     target: "data",
@@ -56,7 +55,6 @@ const PieChart = ({ data }) => {
                 width={400}
                 height={320}
             />
-            </TouchableOpacity>
         </View>
     );
 }

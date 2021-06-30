@@ -5,6 +5,7 @@ import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import store from '../../app/store';
 
 
 export class DrawerContent extends Component {
@@ -18,11 +19,14 @@ export class DrawerContent extends Component {
             email: '',
             username: '',
             avatar: null,
-            isSignedOut: false
+            isSignedOut: false,
+            // BEWARE: this might cause problems when first login
+            photoURL: null
         }
  
         this.getUserName = this.getUserName.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleImageRendering = this.handleImageRendering.bind(this);
     }
 
     getUserName() {
@@ -41,6 +45,24 @@ export class DrawerContent extends Component {
         firebase.auth().signOut();
     };
 
+    handleImageRendering = (image) => {
+        if (image === "") {
+            return (
+                <Avatar.Image
+                    source={require('../../assets/Icons/profile.png')}
+                    size={50}
+                />
+            );
+        } else {
+            return (
+                <Avatar.Image
+                    source={{uri: image}}
+                    size={50}
+                />
+            );
+        }
+    };
+
     render(){
             this.getUserName();
             
@@ -51,10 +73,12 @@ export class DrawerContent extends Component {
                         {/* Profile Picture and Name */}
                         <View style={styles.userInfoSection}>
                             <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-                                <Avatar.Image
+                                {/* <Avatar.Image
                                     source={require('../../assets/Icons/profile.png')}
+                                    // source={{uri: store.getState().user.currentUser.photoURL}}
                                     size={50}
-                                />
+                                /> */}
+                                {this.handleImageRendering(this.state.photoURL)}
                                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                                     <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
                                     <Caption style={styles.caption}> @{this.state.username}</Caption>
@@ -193,7 +217,11 @@ export class DrawerContent extends Component {
     }
 };
 
-export default connect(null, null)(withNavigation(DrawerContent));
+const mapStateToProps = (store) => ({
+    currentUser: store.user.currentUser,
+});
+
+export default connect(mapStateToProps, null)(withNavigation(DrawerContent));
 
 const styles = StyleSheet.create({
     drawerContent: {
