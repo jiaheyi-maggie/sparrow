@@ -155,24 +155,11 @@ export class BudgetDetail extends Component {
                 </View>
 
                 {/* Budget overview card */}
-                <View style={{ 
-                    backgroundColor:'#FAA381',
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                    margin: 10,
-                    }}>
+                <View style={styles.cardContainer}>
 
                     {/* Recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Recurring: 
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
@@ -180,14 +167,7 @@ export class BudgetDetail extends Component {
 
                     {/* Non-recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Non-Recurring:
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>

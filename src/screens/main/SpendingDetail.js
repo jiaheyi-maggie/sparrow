@@ -50,24 +50,11 @@ export class SpendingDetail extends Component {
                 {/* Main Content */}
                 
                 {/* Spending overview card */}
-                <View style={{ 
-                    backgroundColor:'#FAA381',
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                    margin: 10,
-                    }}>
+                <View style={styles.cardContainer}>
 
                     {/* Total */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Recurring Total: 
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 0</Text>
@@ -75,14 +62,7 @@ export class SpendingDetail extends Component {
 
                     {/* Non-recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Non-Recurring Total:
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 0</Text>

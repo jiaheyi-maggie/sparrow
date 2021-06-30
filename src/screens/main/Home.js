@@ -155,8 +155,8 @@ export class Home extends PureComponent {
                                             <Text style={styles.subtitle}>{m}:</Text>
                                         </View>
                                        
-                                        <View style={{backgroundColor: '#F8FFE5', borderRadius: 20, marginRight: 5}}>
-                                            <Text style={styles.number}>$ {shortTerm[0]}</Text>
+                                        <View style={{backgroundColor: '#D7CEB2', borderRadius: 20, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ {shortTerm[0]}</Text>
                                         </View>
                                     </View>
 
@@ -165,8 +165,8 @@ export class Home extends PureComponent {
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#F8FFE5', borderRadius: 20, margin: 2, marginRight: 5}}>
-                                            <Text style={styles.number}>$ {longTerm[0]}</Text>
+                                        <View style={{backgroundColor: '#D7CEB2', borderRadius: 20, margin: 2, marginRight: 5}}>
+                                            <Text style={styles.number2}>$ {longTerm[0]}</Text>
                                         </View>
                                     </View>
 

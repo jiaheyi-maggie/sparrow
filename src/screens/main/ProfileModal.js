@@ -1,30 +1,12 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, TouchableOpacity, Image, Modal, TextInput, Alert, FlatList, Keyboard } from 'react-native';
-import { addBudget } from '../../app/actions/addBudget';
-import { updateRecurring } from '../../app/actions/updateRecurring';
+import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
-import periods from '../../data/periods';
 import styles from '../../styles/homeStyle';
 import store from '../../app/store';
 
 export class ProfileModal extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state ={
-            modalVisible: true
-        }
-
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick = () => {
-        this.setState({modalVisible: !this.state.modalVisible});
-        this.props.navigation.goBack();
-    }
 
     handleComponentDidMount() {
         return (
@@ -64,24 +46,44 @@ export class ProfileModal extends Component {
                             }}
                         />
                         {/* Display name */}
-                        <Text style={styles.title2}>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</Text>
+                        <Text style={[styles.title2, {color: '#2A94AF'}]}>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</Text>
                         <Text style={styles.subtitle}>@{this.props.currentUser.username}</Text>
-
                     </View>
 
-                    <Text></Text>
+                        <View style={{alignItems: 'flex-start'}}>
+                            <Text style={styles.subtitle2}>Budget Overview</Text>
+                            <View style={[styles.cardContainer, {paddingLeft: 0}]}>
+                                <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
+                                    <Text style={styles.cardText}>Monthly:</Text>
+                                    <Text style={ {color: '#264653', fontSize: 19}}>${this.props.shortTerm[0]}</Text>
+                                </View>
+                                <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
+                                    <Text style={styles.cardText}>Yearly:</Text>
+                                    <Text style={ {color: '#264653', fontSize: 19}}>${this.props.longTerm[0]}</Text>
+                                </View>
+                                
+                            </View>
+                        </View>
 
-                    <Text>{this.props.shortTerm}</Text>
+                        <View style={{alignItems: 'flex-end'}}>
+                            <Text style={styles.subtitle2}>Spending</Text>
+                            <View style={[styles.cardContainer, {paddingLeft: 0}]}>
+                                <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
+                                    <Text style={styles.cardText}>Monthly:</Text>
+                                    <Text style={ {color: '#264653', fontSize: 19}}>$0</Text>
+                                </View>
+                                <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
+                                    <Text style={styles.cardText}>Yearly:</Text>
+                                    <Text style={ {color: '#264653', fontSize: 19}}>$0</Text>
+                                </View>
+                                
+                            </View>
+                        </View>
 
 
+                    
 
-
-                    {/* Done Button */}
-                    <View style={{alignItems: 'center', justifyContent: 'center', marginBottom: 10}}>
-                        <TouchableOpacity onPress={() => this.handleClick()} style={styles.cancelButtonContainer}>
-                            <Text style={styles.cancelText}>Done</Text>
-                        </TouchableOpacity>
-                    </View>
+                    
 
                 </SafeAreaView>
         );

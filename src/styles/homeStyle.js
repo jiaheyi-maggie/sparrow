@@ -317,15 +317,30 @@ const homeStyle = StyleSheet.create({
     backButton:{
         backgroundColor: '#dedede',
         marginLeft: 5,
-        borderRadius: 20,
+        borderRadius: 10,
         padding: 5
     },
     menuButton:{
         backgroundColor: '#dedede',
         marginRight: 5,
-        borderRadius: 20,
+        borderRadius: 10,
         padding: 5
+    },
+    cardText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        fontSize: 19,
+        paddingVertical: 5,
+        marginHorizontal: 20
+    },
+    cardContainer: {
+        backgroundColor:'#FAA381',
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        margin: 10,
     }
- });
+});
 
  export default homeStyle;

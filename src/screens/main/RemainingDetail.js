@@ -56,24 +56,11 @@ export class RemainingDetail extends Component {
                 </View>
 
                 {/* Remaining overview card */}
-                <View style={{ 
-                    backgroundColor:'#FAA381',
-                    borderRadius: 20,
-                    padding: 10,
-                    elevation: 2,
-                    margin: 10,
-                    }}>
+                <View style={styles.cardContainer}>
 
                     {/* Recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Recurring: 
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 4107</Text>
@@ -81,14 +68,7 @@ export class RemainingDetail extends Component {
 
                     {/* Non-recurring */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 19,
-                            paddingVertical: 5,
-                            marginHorizontal: 20
-                        }}>
+                        <Text style={styles.cardText}>
                             Non-Recurring:
                         </Text>
                         <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ 6969</Text>
