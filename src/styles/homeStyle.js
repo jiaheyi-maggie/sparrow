@@ -36,7 +36,7 @@ const homeStyle = StyleSheet.create({
         height: 80,
     },
     homeContainer: {
-        backgroundColor: '#DFF2D8', 
+        backgroundColor: '#e2f1e1', 
         flex:1,
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
     },

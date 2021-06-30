@@ -1,8 +1,9 @@
 import React, { Component, PureComponent }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
-import { VictoryChart, VictoryBar, VictoryLabel} from 'victory-native';
+import { VictoryChart, VictoryBar, VictoryLabel, VictoryZoomContainer, VictoryLine, VictoryVoronoiContainer, VictoryGroup, VictoryTooltip, VictoryScatter } from 'victory-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
+import CategoryBar from '../../components/main/CategoryBar';
 // allow connect to redux
 import { connect } from 'react-redux';
 // bind actions to components
@@ -231,29 +232,27 @@ export class Home extends PureComponent {
                                 <Text style={styles.smallTitle2}>Budget Categories</Text>
                             </View>
                         <View style={{
-                            borderRadius: 20,
-                            padding: 10,
-                            elevation: 2,
-                            margin: 10,
                             backgroundColor: '#fff'
                         }}>
                             <VictoryChart
-                            domainPadding={{ x: 35 }}
+                                domainPadding={{x: 5}}
+                                alignment="start"
+                                containerComponent={
+                                    <VictoryZoomContainer zoomDomain={{ y: [0, 10000]}}/>
+                                }
                             >
                                 <VictoryBar
                                     data={usefulCategories}
+                                    categories={{x: usefulCategories.map(obj => obj.title)}}
                                     x='title'
                                     y='sum'
                                     style={{
-                                        data: { fill: "#2A94AF", stroke: "black", strokeWidth: 2 },
-                                        labels: { fill: "#FFCF56", fontSize: 20, fontWeight: "bold" }
+                                        data: { fill: "#FAA381", stroke: "black", strokeWidth: 1 },
                                     }}
-                                    barRatio={0.8}
+                                    barRatio={0.9}
                                     alignment="start"
                                     cornerRadius={5}
-                                    height={300}
                                     labels={({ datum }) => datum.x}
-                                    labelComponent={<VictoryLabel dy={30} />}
                                     events={[{
                                         target: "data",
                                         eventHandlers: {
@@ -272,7 +271,12 @@ export class Home extends PureComponent {
                                       }]}
                                 />
                             </VictoryChart>
+                            {/* <CategoryBar data={usefulCategories}/> */}
+
+
+                        
                         </View>
+                        
                     </ScrollView>
                 </SafeAreaView>
             );
