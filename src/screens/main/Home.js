@@ -242,6 +242,7 @@ export class Home extends PureComponent {
                         </View>
 
                         {/* TODO: style bar graphs */}
+                        {/* Budget Categories */}
                         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.smallTitle2}>Budget Categories</Text>  
@@ -250,37 +251,16 @@ export class Home extends PureComponent {
                                     source={require('../../assets/Icons/zoom-in.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 23,
-                                        height: 23,
+                                        width: 25,
+                                        height: 25,
                                         tintColor: '#e1e1e1',
                                         marginRight: 8,
                                     }}
                                 />
                         </View>
 
-                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5}}>
-
-                            <VictoryChart height={400} width={430}
-                                domainPadding={{x: 5}}
-                                alignment="start"
-                                containerComponent={
-                                    <VictoryZoomContainer zoomDomain={{ x: [1, 6], y: [0, 12000]}}/>
-                                }
-                                theme={VictoryTheme.material}
-                            >
-                                <VictoryBar colorScale={'green'}
-                                    data={usefulCategories}
-                                    categories={{x: usefulCategories.map(obj => obj.title)}}
-                                    x='title'
-                                    y='sum'
-                                    labelComponent={<VictoryLabel angle={90} verticalAnchor="middle" textAnchor="end"/>}
-                                    barRatio={0.9}
-                                    alignment="start"
-                                    cornerRadius={5}
-                                />
-                            </VictoryChart>
-
-                        
+                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5, paddingLeft: 5}}>
+                            <CategoryBar data={usefulCategories}/>
                         </View>
                         
                     </ScrollView>

@@ -1,52 +1,47 @@
-import React, { Component, PureComponent }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
-import { VictoryChart, VictoryBar, VictoryLabel, VictoryZoomContainer, VictoryLine, VictoryVoronoiContainer, VictoryGroup, VictoryTooltip, VictoryScatter } from 'victory-native';
-import store from '../../app/store';
+import React from 'react';
+import { VictoryLabel, VictoryChart, VictoryZoomContainer, VictoryBar, VictoryTheme } from 'victory-native';
 
-const CategoryBar = ({ data }) => {
-
+const CategoryBar = ({ data }) =>  {
     return (
-        <VictoryChart
-        domainPadding={{x: 5}}
-        alignment="start"
-        containerComponent={
-            <VictoryZoomContainer zoomDomain={{ y: [0, 10000]}}/>
-        }
-        >
-        <VictoryBar
-            data={data}
-            categories={{x: data.array.forEach(element => {
-                return element.title
-            })}}
-            x='title'
-            y='sum'
-            style={{
-                data: { fill: "#FAA381", stroke: "black", strokeWidth: 1 },
-            }}
-            barRatio={0.9}
+        <VictoryChart height={350} width={420}
+            domainPadding={{x: 5}}
             alignment="start"
-            cornerRadius={5}
-            labels={({ datum }) => datum.x}
-            events={[{
-                target: "data",
-                eventHandlers: {
-                    onPress: () => {
-                    return [
-                        {
-                        target: "data",
-                        mutation: (props) => {
-                            const fill = props.style && props.style.fill;
-                            return fill === "black" ? null : { style: { fill: "black" } };
-                        }
-                        }
-                    ];
-                    }
-                }
-                }]}
+            containerComponent={
+                <VictoryZoomContainer 
+                    zoomDomain={{ x: [0.5, 5.5], y: [0, 12000]}}
+                />
+            }
+            theme={VictoryTheme.material}
+            >
+
+            <VictoryLabel 
+                text={"Yearly Budget by Categories"}
+                x={190}
+                y={18}
+                textAnchor="middle"
+                style={{ fill: '#7E9181', fontSize: 16 }}
+            />
+
+            <VictoryLabel 
+                text={"(zoom in/out to view more)"}
+                x={190}
+                y={38}
+                textAnchor="middle"
+                style={{ fill: '#E76F51', fontSize: 14 }}
+            />
+
+            <VictoryBar
+                data={data}
+                categories={{x: data.map(obj => obj.title)}}
+                x='title'
+                y='sum'
+                barRatio={1.2}
+                alignment="middle"
+                cornerRadius={5}
             />
         </VictoryChart>
     );
-    
-};
+}
 
+  
 export default CategoryBar;

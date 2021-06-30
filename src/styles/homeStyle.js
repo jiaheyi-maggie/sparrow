@@ -28,7 +28,7 @@ const homeStyle = StyleSheet.create({
         marginTop: 5,
     },
     operation: {
-        color: '#264653',
+        color: '#fff',
         fontWeight: 'bold',
         fontSize: 23,
         // marginHorizontal: 20,
