@@ -1,15 +1,17 @@
 /* Onboarding Select Categories Page */
 import React from 'react';
-import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity, Platform } from 'react-native';
+import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity, Platform, KeyboardAvoidingView } from 'react-native';
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
 import categories from '../../data/categories-bool';
 
 const SelectCategory = ({ navigation }) => {
+    
 
     return (
         <SafeAreaView style={styles.container}>
+            {/* <ScrollView> */}
             {/* header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -61,18 +63,7 @@ const SelectCategory = ({ navigation }) => {
                     flexGrow: 1,
                 }}
             />           
-            
-            {/* Button View */}
-            {/* <View style={styles.multipleButtonContainer}> 
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                    <Text style={styles.buttonText}>     Back     </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('categories')}>
-                    <Text style={styles.buttonText}>   Continue   </Text>
-                </TouchableOpacity>
-            </View> */}
-
+            {/* </ScrollView> */}
         </SafeAreaView>
     );
 };

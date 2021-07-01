@@ -70,6 +70,7 @@ const CategoryDetail = ({ navigation }) => {
             );
         } else {
             return (
+                <KeyboardAvoidingView style={styles.containeriOS} behavior='height'>
                 <SafeAreaView style={styles.containeriOS}>
                     {/* header */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
@@ -104,7 +105,6 @@ const CategoryDetail = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <KeyboardAvoidingView behavior='position'>
                         <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
                         <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
 
@@ -118,8 +118,8 @@ const CategoryDetail = ({ navigation }) => {
                                 flexGrow: 1,
                             }}
                         />
-                    </KeyboardAvoidingView>
                 </SafeAreaView>
+                </KeyboardAvoidingView>
             );
         }
     }
