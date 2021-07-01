@@ -29,17 +29,21 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 35,
       textAlign: 'left',
-      paddingTop: 10,
       marginLeft: 10
   },
   // subtitle for onboarding
   subtitle: {
       color: '#E76F51',
-      // fontWeight: 'bold',
       textAlign: 'left',
       fontSize: 20,
       marginHorizontal: 10,
-      marginVertical: Platform.OS === 'ios'? 10 : 5
+      marginVertical: 5
+  },
+  subtitle2: {
+    color: '#E76F51',
+    textAlign: 'left',
+    fontSize: 18,
+    marginVertical: 5
   },
   // when onboarding title is long
   longtitle: {
@@ -80,12 +84,10 @@ const onboardingStyle = StyleSheet.create({
     elevation: 2,
     backgroundColor: "#FAA381",
     borderRadius: 15,
-    padding: 10,
-    marginTop: 10
+    padding: 8,
   },
   cuteButtonText : {
-      fontSize: 18,
-      fontWeight: 'bold',
+      fontSize: 16,
       color: "#fff",
       alignSelf: "center",
   },  
@@ -150,7 +152,8 @@ const onboardingStyle = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
     marginVertical: 5,
-    borderRadius: 20
+    borderRadius: 20,
+    margin: Platform.OS === 'ios'? 10 : 0
   },
   // list item text for BudgetOverview
   listSummaryTitle: {
