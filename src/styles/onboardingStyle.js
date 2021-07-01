@@ -12,6 +12,13 @@ const onboardingStyle = StyleSheet.create({
     justifyContent: 'space-between', 
     paddingBottom:Platform.OS === 'ios'? 0: 10 
   },
+  loginTitle: {
+    color: '#264653',
+    fontWeight: 'bold',
+    fontSize: 35,
+    textAlign: 'left',
+    marginTop: 20
+  },
   containeriOS: {
     backgroundColor: 'white',
     flex: 1

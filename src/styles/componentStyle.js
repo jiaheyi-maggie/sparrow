@@ -59,12 +59,19 @@ const componentStyle = StyleSheet.create({
     fontSize: 20,
   },
   infofieldtitle: {
-    color: '#7E9181',
+    color: '#fff',
     fontSize: 19,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textAlign: 'left',
     padding: 5,
     paddingTop: 15
+  },
+  infoIcon: {
+    width: 20,
+    height: 30,
+    marginTop: 10,
+    marginRight: 5,
+    tintColor: "#fff"
   },
   infofield: {
     backgroundColor: 'aliceblue',

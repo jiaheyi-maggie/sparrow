@@ -1,6 +1,6 @@
 // a class component for Login (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform } from 'react-native';
+import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
@@ -49,122 +49,174 @@ export default class Login extends Component {
     }
 
     render() {
-        return (
-            <ScrollView style={{
-                backgroundColor: '#FFF4CB',
-                flexDirection: 'column',
-                flex: 1,
-                padding: 20
-            }}>
-                <SafeAreaView>
-                    <View style={{ marginBottom: 15}}> 
-                        <Text style={{
-                            color: '#264653',
-                            fontWeight: 'bold',
-                            fontSize: 50,
-                            textAlign: 'left',
-                            marginTop: 20
-                        }}>Sign In </Text>
-                        <Text style={{      
-                            color: '#E76F51',
-                            fontWeight: 'bold',
-                            textAlign: 'left',
-                            fontSize: 22,
-                            paddingVertical: 5
-                            }}>Welcome back! </Text>
-                    </View>
-                    
-                    {/* logo */}
-                    <Image 
-                        source={require('../assets/icon-transparent.png')} 
-                        resizeMode='contain'
-                        style={
-                            {
-                                alignSelf: 'center',
-                                width: 250,
-                                height: 250
-                            }
-                        }
-                    />
+        switch (Platform.OS) {
+            case 'ios':
+                return (
+                    <KeyboardAvoidingView style={[styles.container, {justifyContent: 'flex-start'}]} behavior='height'> 
+                        <ScrollView>
+                            <View style={{alignItems: 'center', flexDirection: 'column'}}>
+                                {/* logo */}
+                                <Image 
+                                    source={require('../assets/icon-transparent.png')} 
+                                    resizeMode='contain'
+                                    style={
+                                        {
+                                            alignSelf: 'center',
+                                            width: 150,
+                                            height: 150,
+                                            marginTop: 60,
+                                            marginBottom: 20
+                                        }
+                                    }
+                                />
+                                <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
+                            </View>
 
-                    <View style={{
-                        flexDirection: 'column', 
-                        marginBottom: 20
-                        }}>
-                        
-                        {/* TODO: when tap, fit the textfield where users can see it */}
-                        {/* Email */}
-                        <View style={{
-                            flexDirection: 'row', 
-                            justifyContent: 'flex-start',
-                            alignItems: 'center'
-                        }}> 
-                            <Image 
-                                source={require('../assets/Icons/email.png')} 
-                                resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
-                            />
-                            <Text style={componentStyle.infofieldtitle}>Email</Text>
-                        </View>
-                        <TextInput
-                            placeholder='Email'
-                            onChangeText={(email) => this.setState({ email })}
-                            style={componentStyle.infofield}
-                        />
+                            {/* Title */}
+                            <View style={{ marginBottom: 15}}> 
+                                <Text style={styles.title}>Sign In </Text>
+                                <Text style={styles.subtitle}>Welcome back! </Text>
+                            </View>
 
+                            <View style={{backgroundColor: "#2a94af", borderRadius: 20, padding: 10}}>
+                                
+                                <View style={{flexDirection: 'column', marginBottom: 20}}>
 
-                        {/* Password */}
-                        <View style={{
-                            flexDirection: 'row', 
-                            justifyContent: 'flex-start',
-                            alignItems: 'center'
-                        }}> 
-                            <Image 
-                                source={require('../assets/Icons/password.png')} 
-                                resizeMode='contain'
-                                style={{
-                                    width: 20,
-                                    height: 30,
-                                    marginTop: 10,
-                                    marginRight: 5,
-                                    tintColor: "#7E9181"
-                                }}
-                            />
-                            <Text style={componentStyle.infofieldtitle}>Password</Text>
-                        </View>  
-                        <TextInput
-                            placeholder='Password'
-                            onChangeText={(password) => this.setState({ password })}
-                            style={componentStyle.infofield}
-                            secureTextEntry={true}
-                        />
+                                    {/* Email */}
+                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start',alignItems: 'center'}}> 
+                                        <Image 
+                                            source={require('../assets/Icons/email.png')} 
+                                            resizeMode='contain'
+                                            style={componentStyle.infoIcon}
+                                        />
+                                        <Text style={componentStyle.infofieldtitle}>Email</Text>
+                                    </View>
 
-                    </View>
+                                    <TextInput
+                                        placeholder='Email'
+                                        onChangeText={(email) => this.setState({ email })}
+                                        style={componentStyle.infofield}
+                                    />
+            
+                                    {/* Password */}
+                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start',alignItems: 'center'}}> 
+                                        <Image 
+                                            source={require('../assets/Icons/password.png')} 
+                                            resizeMode='contain'
+                                            style={componentStyle.infoIcon}
+                                        />
+                                        <Text style={componentStyle.infofieldtitle}>Password</Text>
+                                    </View>  
+                                    <TextInput
+                                        placeholder='Password'
+                                        onChangeText={(password) => this.setState({ password })}
+                                        style={componentStyle.infofield}
+                                        secureTextEntry={true}
+                                    />
+            
+                                </View>
+            
+                                {/* <View style={{width: 400, height: 120}}><Text></Text></View> */}
+            
+                                <TouchableOpacity style={styles.buttonContainer} onPress={() => this.onSignIn()}>
+                                    <Text style={styles.buttonText}> Log In </Text>
+                                </TouchableOpacity>
+            
+                                <TouchableOpacity style={{margin: 10}} onPress={() => this.props.navigation.navigate('register')}>
+                                    <Text style={[componentStyle.buttonText,{color: '#fff'}]}> Create an account </Text>
+                                </TouchableOpacity>
 
-                    <View style={{width: 400, height: 120}}><Text></Text></View>
+                                <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
 
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => this.onSignIn()}
-                    >
-                        <Text style={styles.buttonText}> Log In </Text>
-                    </TouchableOpacity>
+                            </View>
+                        </ScrollView>
+                    </KeyboardAvoidingView>
+                );
+            case "android":
+                return (
+                    <SafeAreaView style={styles.container}>
+                        <ScrollView>
+                            <View style={{alignItems: 'center', flexDirection: 'column'}}>
+                                {/* logo */}
+                                <Image 
+                                    source={require('../assets/icon-transparent.png')} 
+                                    resizeMode='contain'
+                                    style={
+                                        {
+                                            alignSelf: 'center',
+                                            width: 150,
+                                            height: 150,
+                                            marginTop: 40,
+                                            marginBottom: 20
+                                        }
+                                    }
+                                />
+                                <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
+                            </View>
 
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('register')}
-                    >
-                        <Text style={componentStyle.buttonText}> Create an account </Text>
-                    </TouchableOpacity>
-                    
-                </SafeAreaView>
-            </ScrollView>
-        )
+                            {/* Title */}
+                            <View style={{ marginBottom: 15}}> 
+                                <Text style={styles.title}>Sign In </Text>
+                                <Text style={styles.subtitle}>Welcome back! </Text>
+                            </View>
+
+                            <View style={{backgroundColor: "#2a94af", borderRadius: 20, padding: 10}}>
+                                
+                                <View style={{flexDirection: 'column', marginBottom: 20}}>
+
+                                    {/* Email */}
+                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start',alignItems: 'center'}}> 
+                                        <Image 
+                                            source={require('../assets/Icons/email.png')} 
+                                            resizeMode='contain'
+                                            style={componentStyle.infoIcon}
+                                        />
+                                        <Text style={componentStyle.infofieldtitle}>Email</Text>
+                                    </View>
+
+                                    <TextInput
+                                        placeholder='Email'
+                                        onChangeText={(email) => this.setState({ email })}
+                                        style={componentStyle.infofield}
+                                    />
+            
+                                    {/* Password */}
+                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start',alignItems: 'center'}}> 
+                                        <Image 
+                                            source={require('../assets/Icons/password.png')} 
+                                            resizeMode='contain'
+                                            style={componentStyle.infoIcon}
+                                        />
+                                        <Text style={componentStyle.infofieldtitle}>Password</Text>
+                                    </View>  
+                                    <TextInput
+                                        placeholder='Password'
+                                        onChangeText={(password) => this.setState({ password })}
+                                        style={componentStyle.infofield}
+                                        secureTextEntry={true}
+                                    />
+            
+                                </View>
+            
+                                {/* <View style={{width: 400, height: 120}}><Text></Text></View> */}
+            
+                                <TouchableOpacity style={styles.buttonContainer} onPress={() => this.onSignIn()}>
+                                    <Text style={styles.buttonText}> Log In </Text>
+                                </TouchableOpacity>
+            
+                                <TouchableOpacity style={{margin: 10}} onPress={() => this.props.navigation.navigate('register')}>
+                                    <Text style={[componentStyle.buttonText,{color: '#fff'}]}> Create an account </Text>
+                                </TouchableOpacity>
+
+                                <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
+
+                            </View>
+                        </ScrollView>
+                    </SafeAreaView>
+                );
+
+        }
+
     }
 };
 
