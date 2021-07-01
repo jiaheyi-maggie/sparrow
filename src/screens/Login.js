@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
+import { GoogleAuthProvider, getAuth, signInWithRedirect } from 'firebase/auth';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
@@ -32,6 +33,7 @@ export default class Login extends Component {
 
         // allow onSignUp() to access the state of the class
         this.onSignIn = this.onSignIn.bind(this);
+        this.onGoogleSignIn = this.onGoogleSignIn.bind(this);
     }
 
     // implement firebase logic here
@@ -46,6 +48,11 @@ export default class Login extends Component {
             .catch((err) => {
                 this.setState({error: "Email or password incorrect. Try again."});
             })
+    }
+
+    onGoogleSignIn() {
+        const auth = getAuth();
+        signInWithRedirect(auth, provider);
     }
 
     render() {
@@ -130,6 +137,13 @@ export default class Login extends Component {
                                 </TouchableOpacity>
 
                                 <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
+
+                                {/* TODO: Google OAuth */}
+                                {/* <View>
+                                    <TouchableOpacity style={{margin: 10}} onPress={() => this.props.navigation.navigate('register')}>
+                                        <Text style={[componentStyle.buttonText,{color: '#fff'}]}> Sign in with Google </Text>
+                                    </TouchableOpacity>
+                                </View> */}
 
                             </View>
                         </ScrollView>

@@ -115,7 +115,7 @@ export default class ForgotCred extends Component {
                             {/* Header */}
                             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                                    <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.goBack()}>
                                         <Image 
                                             source={require('../assets/Icons/back.png')}
                                             resizeMode='contain'
