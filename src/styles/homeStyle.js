@@ -23,7 +23,7 @@ const homeStyle = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 23,
+        fontSize: 20,
         marginHorizontal: 10,
         marginTop: 5,
     },
@@ -90,12 +90,17 @@ const homeStyle = StyleSheet.create({
         paddingVertical: 5,
         marginHorizontal: 10
     },
+    viewDetailText:{
+        color: '#F4A261',
+        fontSize: 15,
+        marginHorizontal: 20, 
+        fontWeight: 'bold'
+    },
     subtitle2: {
-        // color: '#E76F51',
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 19,
+        fontSize: 17,
         paddingVertical: 5,
         marginHorizontal: 10,
         textDecorationLine:'underline'
@@ -241,7 +246,7 @@ const homeStyle = StyleSheet.create({
         backgroundColor: "#F8FAFB",
         width: 350,
         borderRadius: 20,
-        padding: 20,
+        padding: 10,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -266,8 +271,8 @@ const homeStyle = StyleSheet.create({
     buttonClose: {
         backgroundColor: "#7E9181",
         width: 280,
-        height: 50,
-        paddingTop: 8,
+        height: 40,
+        padding: 8,
         flexDirection: 'row',
         justifyContent: 'center',
         textAlignVertical: 'center'
@@ -276,7 +281,7 @@ const homeStyle = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 25
+        fontSize: 20
     },
     textStyle2: {
         color: "white",
@@ -314,7 +319,7 @@ const homeStyle = StyleSheet.create({
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
-        fontSize: 18,
+        fontSize: 17,
     },
     settingList: {
         borderBottomWidth: 1,

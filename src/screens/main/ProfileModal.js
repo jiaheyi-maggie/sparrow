@@ -34,7 +34,7 @@ const ProfileModal = ({ navigation }) => {
             quality: 1,
         });
     
-        console.log(result);
+        // console.log(result);
     
         if (!result.cancelled) {
             setImage(result.uri);
@@ -45,7 +45,7 @@ const ProfileModal = ({ navigation }) => {
                 currentUser: {...currentUser, photoURL: result.uri}
             })
 
-            
+            updateUser(result.uri, "profile");
 
             console.log(store.getState().user.currentUser);
         }
@@ -81,10 +81,10 @@ const ProfileModal = ({ navigation }) => {
     };
 
     // TODO: send to firebase
-    const handleUnmount = () => {
-        updateUser({...currentUser, photoURL: store.getState().user.currentUser.photoURL}, "profile");
-        navigation.navigate('Home');
-    };
+    // const handleUnmount = () => {
+    //     updateUser(store.getState().user.currentUser.photoURL, "profile");
+    //     navigation.navigate('Home');
+    // };
 
 
     return (
@@ -92,7 +92,7 @@ const ProfileModal = ({ navigation }) => {
             {/* header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
                 {/* go back */}
-                <TouchableOpacity style={styles.backButton} onPress={() => handleUnmount()}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
                     <Image 
                     source={require('../../assets/Icons/back.png')}
                     resizeMode='contain'
@@ -110,7 +110,7 @@ const ProfileModal = ({ navigation }) => {
                 {/* profile picture */}
                 <TouchableOpacity onPress={() => pickImage()}>
                     <View style={{alignItems: 'center'}}>
-                        <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15}]}>(Choose Profile Picture)</Text>
+                        <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15, marginBottom: 5}]}>(Choose Profile Picture)</Text>
                         {/* <Image
                             source={{uri: image}}
                             style={{

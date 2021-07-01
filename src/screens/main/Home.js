@@ -1,5 +1,5 @@
 import React, { Component, PureComponent }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Platform } from 'react-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
 import CategoryBar from '../../components/main/CategoryBar';
@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
+import store from '../../app/store';
 
 export class Home extends PureComponent {
 
@@ -22,6 +23,7 @@ export class Home extends PureComponent {
     //         this.props.fetchBudget(); 
     //     }
     // }
+    
 
     handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         console.log('hi');
@@ -37,24 +39,18 @@ export class Home extends PureComponent {
 
             const usefulCategories = categories.filter((obj) => {
                 return obj.sum !== 0;
-            });
+            })
+
 
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
-                        <View style={{
-                            flexDirection: 'row', 
-                            justifyContent:'space-between',
-                            alignItems: 'baseline',
-                        }}>
-                            
+                        <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?5:0}}>
                             {/* Profile */}
                             {/* TODO: profile modal */}
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("Profile")}>
-                                <Image 
-                                    // source={{uri: currentUser.photoURL}}
+                                <Image
                                     source={require('../../assets/Icons/profile.png')}
-                                    resizeMode='contain'
                                     style={{
                                         width: 27,
                                         height: 27,
@@ -142,7 +138,7 @@ export class Home extends PureComponent {
 
                                     {/* View Details */}
                                     <View style={styles.statusContainer}>
-                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                        <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
                                 </Pressable>
 
@@ -187,7 +183,7 @@ export class Home extends PureComponent {
 
                                     {/* View Details */}
                                     <View style={styles.statusContainer}>
-                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                        <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
                                 </Pressable>
 
@@ -233,7 +229,7 @@ export class Home extends PureComponent {
 
                                     {/* View Details */}
                                     <View style={styles.statusContainer}>
-                                        <Text style={{color: '#F4A261',fontSize: 17,marginHorizontal: 20, fontWeight: 'bold'}}>View Details</Text> 
+                                        <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
                                 </Pressable>
 

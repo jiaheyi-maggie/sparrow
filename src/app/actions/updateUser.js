@@ -21,18 +21,20 @@ export function updateUser(data, updateCriteria) {
             case "password":
                 user.updatePassword(data)
                 .then(() => {
-                    dispatch({
-                        type: "USER_STATE_CHANGE",
-                        currentUser: data
-                    })
+                    console.log('password updated')
                 }).catch((error) => {
                     console.log(error);
                 })
 
             case "profile": 
-                user.updateProfile(data)
+                firebase.firestore()
+                .collection('users')
+                .doc(user.uid)
+                .update({
+                    photoURL: data
+                })
                 .then(() => {
-                    console.log('updated');
+                    console.log('profile picture updated');
                 }).catch((error) => {
                     console.log(error);
                 })

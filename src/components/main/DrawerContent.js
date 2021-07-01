@@ -74,12 +74,11 @@ export class DrawerContent extends Component {
                         {/* Profile Picture and Name */}
                         <View style={styles.userInfoSection}>
                             <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-                                {/* <Avatar.Image
+                                <Avatar.Image
                                     source={require('../../assets/Icons/profile.png')}
-                                    // source={{uri: store.getState().user.currentUser.photoURL}}
                                     size={50}
-                                /> */}
-                                {this.handleImageRendering(this.state.photoURL)}
+                                />
+                                {/* {this.handleImageRendering(store.getState().user.currentUser.photoURL)} */}
                                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                                     <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
                                     <Caption style={styles.caption}> @{this.state.username}</Caption>

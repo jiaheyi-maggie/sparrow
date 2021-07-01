@@ -141,15 +141,13 @@ export default class Login extends Component {
                                 <Image 
                                     source={require('../assets/icon-transparent.png')} 
                                     resizeMode='contain'
-                                    style={
-                                        {
-                                            alignSelf: 'center',
-                                            width: 150,
-                                            height: 150,
-                                            marginTop: 40,
-                                            marginBottom: 20
-                                        }
-                                    }
+                                    style={{
+                                        alignSelf: 'center',
+                                        width: 150,
+                                        height: 150,
+                                        marginTop: 40,
+                                        marginBottom: 20
+                                        }}
                                 />
                                 <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
                             </View>
@@ -178,6 +176,7 @@ export default class Login extends Component {
                                         placeholder='Email'
                                         onChangeText={(email) => this.setState({ email })}
                                         style={componentStyle.infofield}
+                                        keyboardType='email-address'
                                     />
             
                                     {/* Password */}

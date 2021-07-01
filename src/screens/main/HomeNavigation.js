@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -39,7 +39,8 @@ const HomeTab = () => {
                 style: {
                     position: 'absolute',
                     backgroundColor: '#fff',
-                    height: 60,
+                    height:Platform.OS === 'ios'?70: 60,
+                    paddingTop: Platform.OS ==='ios'?20:0,
                     ...styles.shadow
                 }
               }}
