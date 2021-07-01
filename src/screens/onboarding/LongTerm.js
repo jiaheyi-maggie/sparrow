@@ -87,14 +87,64 @@ const LongTerm = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {justifyContent: 'flex-start'}]}>
+            {/* header */}
+            <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                        <Image 
+                            source={require('../../assets/Icons/back.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 18,
+                                height: 18,
+                                tintColor: '#fff',
+                            }}
+                        />
+                    </TouchableOpacity>
+                    <Text style={styles.forwardButtonText}> Back </Text>
+                </View>
+
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={styles.forwardButtonText}> Skip </Text>
+                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('budgetOverview')}>
+                        <Image 
+                            source={require('../../assets/Icons/skip.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 18,
+                                height: 18,
+                                tintColor: '#fff',
+                            }}
+                        />
+                    </TouchableOpacity>
+                </View>
+
+
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={styles.forwardButtonText}> Next </Text>
+                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('budgetOverview')}>
+                        <Image 
+                            source={require('../../assets/Icons/right-arrow.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 18,
+                                height: 18,
+                                tintColor: '#fff',
+                            }}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+            {/* Main */}
             <View>
                 <Text style={styles.longtitle}>Do you have a budget for non-recurring spendings?</Text>
                 <Text style={styles.subtitle}>This could be non-periodical vacation, gift expenses and so on.</Text>
             </View>
 
             <View style={styles.longtermCenter}>
-                <Text style={styles.title}>I plan to spend</Text>
+                <Text style={styles.longtitle}>I plan to spend</Text>
                 <View style={styles.genericRowAlign}>
                     <Text style={styles.title}>$ </Text>
                     <TextInput
@@ -103,13 +153,11 @@ const LongTerm = ({ navigation }) => {
                         value={input}
                         placeholder="5000"
                         placeholderTextColor='#FFF4CB'
-                        keyboardType="numeric"
                     />
                 </View>
 
                 <View style={{flexDirection:'row', paddingLeft:40, alignItems: 'baseline'}}>
-                    <Text style={styles.title}>per </Text>
-                    {/* <Picker term={'long'}/> */}
+                    <Text style={styles.longtitle}>per </Text>
 
                     {/* Time Period Picker */}
                     <SafeAreaView style={style.startView}>
@@ -137,38 +185,20 @@ const LongTerm = ({ navigation }) => {
 
                             {/* Time Period closed picker view */}
                             <TouchableOpacity style={[style.button, style.buttonOpen]} onPress={() => handleClickOpen()}>
-                            <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <Text style={style.textStyle}> {period} </Text>
-                                <Image 
-                                source={require('../../assets/Icons/down-arrow.png')} 
-                                resizeMode='contain'
-                                style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
-                                />
-                            </View>
+                                <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                                    <Text style={style.textStyle}> {period} </Text>
+                                    <Image 
+                                    source={require('../../assets/Icons/down-arrow.png')} 
+                                    resizeMode='contain'
+                                    style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
+                                    />
+                                </View>
                             </TouchableOpacity>
                         </SafeAreaView>
 
                 </View>
             </View>
 
-            {/* Buttons */}
-            <View>
-                <TouchableOpacity onPress={() => navigation.navigate('budgetOverview')}>
-                    <Text style={componentStyle.buttonText}> I don't know, review budget!</Text>
-                </TouchableOpacity>
-
-                <View style={styles.multipleButtonContainer}> 
-                    {/* Back Button */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                        <Text style={styles.buttonText}>     Back     </Text>
-                    </TouchableOpacity>
-
-                    {/* Next Button */}
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('budgetOverview')}>
-                        <Text style={styles.buttonText}> Continue </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
         </SafeAreaView>
     );
 };
@@ -203,12 +233,12 @@ const style = StyleSheet.create({
       borderRadius: 20,
       paddingHorizontal: 10,
       elevation: 2,
-    //   padding: 5,
+      padding: 2,
       marginVertical:5
     },
     buttonOpen: {
       backgroundColor: "#D7CEB2",
-      width: 250,
+      width: 200,
     },
     buttonClose: {
         backgroundColor: "#7E9181",
@@ -222,7 +252,7 @@ const style = StyleSheet.create({
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 35
+      fontSize: 25
     },
     textStyle2: {
       color: "#264653",

@@ -81,7 +81,7 @@ const componentStyle = StyleSheet.create({
     alignContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     color: "#2A94AF",
     alignSelf: "center",

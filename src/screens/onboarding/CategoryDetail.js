@@ -19,43 +19,52 @@ const CategoryDetail = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
                     {/* header */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                            <Image 
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
-                            }}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('categories')}>
-                            <Image 
-                            source={require('../../assets/Icons/right-arrow.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
-                            }}
-                            />
-                        </TouchableOpacity>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                                <Image 
+                                    source={require('../../assets/Icons/back.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            <Text style={styles.forwardButtonText}> Back </Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.forwardButtonText}> Next </Text>
+                            <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('longTerm')}>
+                                <Image 
+                                    source={require('../../assets/Icons/right-arrow.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     
-                    <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
-                    <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
+                    <ScrollView>
+                        <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
+                        <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
 
-                    <FlatList 
-                        data={checkedCategories}
-                        renderItem={({ item }) => (
-                            <CategoryDetailItem item={item}  />
-                        )}
-                        keyExtractor={item => item.id}
-                        contentContainerStyle={{
-                            flexGrow: 1,
-                        }}
-                    />
+                        <FlatList 
+                            data={checkedCategories}
+                            renderItem={({ item }) => (
+                                <CategoryDetailItem item={item} />
+                            )}
+                            keyExtractor={item => item.id}
+                            contentContainerStyle={{
+                                flexGrow: 1,
+                            }}
+                        />
+                    </ScrollView>
                    
                 </SafeAreaView>
             );
@@ -63,31 +72,38 @@ const CategoryDetail = ({ navigation }) => {
             return (
                 <SafeAreaView style={styles.containeriOS}>
                     {/* header */}
-                <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Image 
-                        source={require('../../assets/Icons/back.png')}
-                        resizeMode='contain'
-                        style={{
-                            width: 20,
-                            height: 20,
-                            tintColor: '#fff',
-                        }}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('categories')}>
-                        <Image 
-                        source={require('../../assets/Icons/right-arrow.png')}
-                        resizeMode='contain'
-                        style={{
-                            width: 20,
-                            height: 20,
-                            tintColor: '#fff',
-                        }}
-                        />
-                    </TouchableOpacity>
-                </View>
-                    {/* <ScrollView> */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                                <Image 
+                                    source={require('../../assets/Icons/back.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            <Text style={styles.forwardButtonText}> Back </Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.forwardButtonText}> Next </Text>
+                            <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('longTerm')}>
+                                <Image 
+                                    source={require('../../assets/Icons/right-arrow.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
                     <KeyboardAvoidingView behavior='position'>
                         <Text style={styles.longtitle}>How much do you plan to spend on each of those categories?</Text>
                         <Text style={styles.subtitle}>This is the first step to making a budget estimation.</Text>
@@ -102,19 +118,6 @@ const CategoryDetail = ({ navigation }) => {
                                 flexGrow: 1,
                             }}
                         />
-                        
-                    
-                    {/* </ScrollView> */}
-                    {/* Button View  */}
-                    {/* <View style={styles.multipleButtonContainer}> 
-                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                            <Text style={styles.buttonText}>     Back     </Text>
-                        </TouchableOpacity>
-        
-                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
-                            <Text style={styles.buttonText}>     Next     </Text>
-                        </TouchableOpacity>
-                    </View> */}
                     </KeyboardAvoidingView>
                 </SafeAreaView>
             );
@@ -126,7 +129,39 @@ const CategoryDetail = ({ navigation }) => {
     const handleRendering = () => {
         if (checkedCategories.length === 0) {
             return (
-                <SafeAreaView style={styles.container}>
+                <SafeAreaView style={[styles.container, {justifyContent: 'flex-start'}]}>
+                    {/* header */}
+                    <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                                <Image 
+                                    source={require('../../assets/Icons/back.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            <Text style={styles.forwardButtonText}> Back </Text>
+                        </View>
+
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.forwardButtonText}> Next </Text>
+                            <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('longTerm')}>
+                                <Image 
+                                    source={require('../../assets/Icons/right-arrow.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 18,
+                                        height: 18,
+                                        tintColor: '#fff',
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                     <Text style={styles.title}>No worries!</Text>
                     <Text style={styles.subtitle}>Let's see if you have a plan for non-recurring spendings.</Text>
                     <View style={{width: 400, height: 70}}><Text></Text></View>
@@ -138,17 +173,6 @@ const CategoryDetail = ({ navigation }) => {
                             height: 300,
                         }}
                     />
-                    <View style={{width: 400, height: 200}}><Text></Text></View>
-
-                    {/* Button View */}
-                    <View style={styles.multipleButtonContainer}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
-                        <Text style={styles.buttonText}>     Back     </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('longTerm')}>
-                        <Text style={styles.buttonText}>     Next     </Text>
-                    </TouchableOpacity>
-                    </View>
                 </SafeAreaView>
             );
         } else {
