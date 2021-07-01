@@ -34,8 +34,8 @@ const onboardingStyle = StyleSheet.create({
       // fontWeight: 'bold',
       textAlign: 'left',
       fontSize: 20,
-      marginHorizontal: 10,
-      marginBottom: 5
+      marginHorizontal: Platform.OS === 'ios'? 20 : 10,
+      marginBottom: 5,
   },
   // when onboarding title is long
   longtitle: {
@@ -43,7 +43,7 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 28,
       textAlign: 'left',
-      margin: 10
+      marginHorizontal: 20
   },
   // semi long title
   semiLongTitle: {
@@ -60,7 +60,8 @@ const onboardingStyle = StyleSheet.create({
       backgroundColor: "#264653",
       borderRadius: 15,
       padding: 10,
-      marginTop: 10
+      marginTop: 10,
+      margin:  10
   },
   // button text inside button
   buttonText : {

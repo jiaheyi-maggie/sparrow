@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity, Text, View } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import store from '../app/store';
-
 import styles from '../styles/componentStyle';
 import { useSelector } from 'react-redux';
 
