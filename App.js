@@ -7,6 +7,7 @@ import Register from './src/screens/Register';
 import Login from './src/screens/Login';
 import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
 import HomeNavigation from './src/screens/main/HomeNavigation';
+import ForgotCred from './src/screens/ForgotCred';
 import theme from './src/assets/theme';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
@@ -89,6 +90,7 @@ export class App extends Component {
               <Stack.Screen name='onboarding' component={OnboardingNavigation}/>
               <Stack.Screen name='register' component={Register} />
               <Stack.Screen name='signin' component={Login} />
+              <Stack.Screen name='forgot' component={ForgotCred}/>
               <Stack.Screen name='home' component={HomeNavigation}/>
             </Stack.Navigator>
           </NavigationContainer>

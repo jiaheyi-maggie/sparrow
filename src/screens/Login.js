@@ -1,6 +1,6 @@
 // a class component for Login (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Alert, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
@@ -116,8 +116,10 @@ export default class Login extends Component {
                                     />
             
                                 </View>
-            
-                                {/* <View style={{width: 400, height: 120}}><Text></Text></View> */}
+
+                                <TouchableOpacity style={{alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('forgot')}>
+                                    <Text style={{color: '#FFF4CB'}}>Forgot Password</Text>
+                                </TouchableOpacity>
             
                                 <TouchableOpacity style={styles.buttonContainer} onPress={() => this.onSignIn()}>
                                     <Text style={styles.buttonText}> Log In </Text>
@@ -199,7 +201,9 @@ export default class Login extends Component {
             
                                 </View>
             
-                                {/* <View style={{width: 400, height: 120}}><Text></Text></View> */}
+                                <TouchableOpacity style={{alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('forgot')}>
+                                    <Text style={{color: '#FFF4CB'}}>Forgot Password</Text>
+                                </TouchableOpacity>
             
                                 <TouchableOpacity style={styles.buttonContainer} onPress={() => this.onSignIn()}>
                                     <Text style={styles.buttonText}> Log In </Text>
