@@ -8,9 +8,13 @@ const onboardingStyle = StyleSheet.create({
     flexDirection: 'column', 
     backgroundColor: 'white', 
     padding: 10, 
-    paddingTop: Platform.OS === 'ios'? 0: 40, 
+    paddingTop: Platform.OS === 'ios'? 0: 50, 
     justifyContent: 'space-between', 
     paddingBottom:Platform.OS === 'ios'? 0: 10 
+  },
+  containeriOS: {
+    backgroundColor: 'white',
+    flex: 1
   },
   icon:{
     width: 20,
@@ -61,7 +65,8 @@ const onboardingStyle = StyleSheet.create({
       borderRadius: 15,
       padding: 10,
       marginTop: 10,
-      margin:  10
+      marginVertical:  Platform.OS === 'ios'? 0 : 10,
+      marginHorizontal: 10
   },
   // button text inside button
   buttonText : {
@@ -117,15 +122,16 @@ const onboardingStyle = StyleSheet.create({
     backgroundColor: 'aliceblue',
     alignItems: 'flex-start',
     borderRadius: 15,
-    padding: 10,
-    margin: 10,
-    flex: 1
+    padding: Platform.OS ==='ios' ? 20 : 10,
+    margin: 10
   },
   // for aligning generic texts + other components
   genericRowAlign: {
     flexDirection: 'row', 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: Platform.OS ==='ios' ? 2 : 0,
+    marginLeft: Platform.OS === 'ios' ? 10 : 0,
   },
   // text with $
   textInputContainer: {
@@ -170,13 +176,14 @@ const onboardingStyle = StyleSheet.create({
     color: '#FAA381',
     fontWeight: 'bold',
     fontSize: 24,
+    marginTop: Platform.OS === 'ios' ? 10 : 0,
   },
   // view containing text input
   itemDescription: {
     color: '#264653',
     fontWeight: 'bold',
     fontSize: 24,
-    marginRight: 2
+    marginRight: 2,
   },
   // long term center screen text
   longtermCenter: {
@@ -185,6 +192,18 @@ const onboardingStyle = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column'
   },
+  forwardButton: {
+    backgroundColor: '#2A94AF',
+    marginRight: 5,
+    borderRadius: 10,
+    padding: 5
+  },
+  backButton: {
+    backgroundColor: '#2A94AF',
+    marginLeft: 5,
+    borderRadius: 10,
+    padding: 5
+  }
 });
 
 export default onboardingStyle;

@@ -10,6 +10,32 @@ const SelectCategory = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            {/* header */}
+            <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <Image 
+                    source={require('../../assets/Icons/back.png')}
+                    resizeMode='contain'
+                    style={{
+                        width: 20,
+                        height: 20,
+                        tintColor: '#fff',
+                    }}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('categories')}>
+                    <Image 
+                    source={require('../../assets/Icons/right-arrow.png')}
+                    resizeMode='contain'
+                    style={{
+                        width: 20,
+                        height: 20,
+                        tintColor: '#fff',
+                    }}
+                    />
+                </TouchableOpacity>
+            </View>
+
             <Text style={styles.longtitle}>Mark all categories you want to set a budget on.</Text>
             {/* <Image 
                 source={require('../../assets/onboarding/mark-categories.png')} 
@@ -35,17 +61,15 @@ const SelectCategory = ({ navigation }) => {
             />           
             
             {/* Button View */}
-            <View style={styles.multipleButtonContainer}> 
-                {/* Back Button */}
+            {/* <View style={styles.multipleButtonContainer}> 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.goBack()}>
                     <Text style={styles.buttonText}>     Back     </Text>
                 </TouchableOpacity>
 
-                {/* Continue Button */}
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('categories')}>
                     <Text style={styles.buttonText}>   Continue   </Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
         </SafeAreaView>
     );

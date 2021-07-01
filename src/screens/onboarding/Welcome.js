@@ -1,12 +1,12 @@
 /* Onboarding Welcome */
 import React from 'react';
 import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
-
 import styles from "../../styles/onboardingStyle";
 import componentStyle from '../../styles/componentStyle';
 
 const Welcome = ({ navigation }) => {
     return (
+        
         <SafeAreaView style={styles.container}>
             <View>
                 <Text style={styles.title}>Welcome</Text>

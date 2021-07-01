@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, View, TextInput, Alert, StyleSheet, Modal, FlatList, TouchableOpacity, Image } from 'react-native';
+import { SafeAreaView, Text, View, TextInput, Alert, StyleSheet, Modal, Keyboard, FlatList, TouchableOpacity, Image, Platform } from 'react-native';
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 import periods from '../data/periods';
@@ -120,7 +120,7 @@ const CategoryDetailItem = ({ item }) => {
                             onChangeText={(value) => handleTextInput(value)}
                             placeholder=" 200 "
                             placeholderTextColor='#D7CEB2'
-                            keyboardType="phone-pad"
+                            // keyboardType="phone-pad"
                         />
                     </View>
                     <Text style={styles.itemDescription}> per </Text>
@@ -165,7 +165,7 @@ const CategoryDetailItem = ({ item }) => {
 
                 </View>
 
-                <View style={styles.genericRowAlign}>
+                <View style={[styles.genericRowAlign, {marginBottom: Platform.OS === 'ios' ? 10: 0}]}>
                     <Text style={styles.itemDescription}>for </Text>
                     <View style={[styles.textInputContainer, {width: 63}]}>
                         <TextInput
@@ -174,7 +174,8 @@ const CategoryDetailItem = ({ item }) => {
                             onChangeText={(value) => handleOptionalInput(value)}
                             placeholder=" 12 "
                             placeholderTextColor='#D7CEB2'
-                            keyboardType="phone-pad"
+                            // keyboardType="numeric"
+                            onSubmitEditing={Keyboard.dismiss}
                         />
                     </View>
                     <Text style={styles.itemDescription}> {period.concat('s')}</Text>
