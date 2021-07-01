@@ -1,6 +1,6 @@
 /* Onboarding Select Categories Page */
 import React from 'react';
-import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, Image, ScrollView, FlatList, TouchableOpacity, Platform } from 'react-native';
 import styles from "../../styles/onboardingStyle";
 
 import CategoryItem from '../../components/CategoryItem';
@@ -18,7 +18,7 @@ const SelectCategory = ({ navigation }) => {
             /> */}
             <Text style={styles.subtitle}>This does not have to be perfect, just an estimate! You can customize these later too!</Text>
 
-            <View style={{backgroundColor: 'aliceblue', borderRadius: 20, marginVertical: 10}}>
+            <View style={{backgroundColor: 'aliceblue', borderRadius: 20, marginVertical: 10, marginHorizontal: Platform.OS === "ios" ? 10 : 0}}>
                 <Text style={styles.optionalText}>Select Categories:</Text>
             </View>
             

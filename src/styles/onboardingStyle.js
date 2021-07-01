@@ -26,7 +26,7 @@ const onboardingStyle = StyleSheet.create({
       fontSize: 35,
       textAlign: 'left',
       paddingTop: 10,
-      marginLeft: 10
+      marginLeft: Platform.OS === 'ios'? 15: 10
   },
   // subtitle for onboarding
   subtitle: {
@@ -35,7 +35,7 @@ const onboardingStyle = StyleSheet.create({
       textAlign: 'left',
       fontSize: 20,
       marginHorizontal: Platform.OS === 'ios'? 20 : 10,
-      marginBottom: 5,
+      marginVertical: Platform.OS === 'ios'? 10 : 5
   },
   // when onboarding title is long
   longtitle: {
@@ -43,7 +43,7 @@ const onboardingStyle = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 28,
       textAlign: 'left',
-      marginHorizontal: 20
+      marginHorizontal: Platform.OS === 'ios'? 20 : 10,
   },
   // semi long title
   semiLongTitle: {

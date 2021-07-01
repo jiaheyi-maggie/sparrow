@@ -1,5 +1,5 @@
-import React from 'react';
-import { TouchableOpacity, Text, View } from "react-native";
+import React, { useState } from 'react';
+import { TouchableOpacity, Text, View, Platform } from "react-native";
 import Checkbox from '@react-native-community/checkbox';
 import store from '../app/store';
 import styles from '../styles/componentStyle';
@@ -10,6 +10,8 @@ const CategoryItem = ({ item }) => {
     /* Redux data flow */
     // get most updated state for re-rendering
     const checked = useSelector((state) => state.reducer[item.id].checked);
+    const colors = ['#FFF4CB', "#FAA381"];
+    const [buttonColor, setButtonColor] = useState(colors[0]);
 
     // action for reducer
     const pressButton = item => {
@@ -24,18 +26,47 @@ const CategoryItem = ({ item }) => {
         store.dispatch(pressButton(item));
     }
 
-    return (
-        <TouchableOpacity style={styles.clickContainer} onPress={() => pressHandler()}>
-            <View style={styles.listTextAlign}>
-                <Checkbox 
-                    disabled={false}
-                    value={checked}
-                    onValueChange={() => pressHandler()}
-                />
+    const toggleButtonColors = () => {
+        if (buttonColor === colors[0]) {
+            setButtonColor(colors[1]);
+        } else {
+            setButtonColor(colors[0]);
+        }
+    }
 
-                <Text style={styles.clickTitle}>{item.title}</Text>
-            </View>
-        </TouchableOpacity>
+    const pressHandleriOS = () => {
+        toggleButtonColors();
+        store.dispatch(pressButton(item));
+    }
+
+    const handlePlatformRendering = () => {
+        if (Platform.OS === 'ios') {
+            return (
+                <TouchableOpacity style={[styles.clickContainer, {backgroundColor: buttonColor}]} onPress={() => pressHandleriOS()}>
+                    {/* <View style={[styles.listTextAlign, {justifyContent:'center'}]}> */}
+                        <Text style={styles.clickTitle}>{item.title}</Text>
+                    {/* </View> */}
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity style={styles.clickContainer} onPress={() => pressHandler()}>
+                    <View style={styles.listTextAlign}>
+                        <Checkbox 
+                            disabled={false}
+                            value={checked}
+                            onValueChange={() => pressHandler()}
+                        />
+
+                        <Text style={styles.clickTitle}>{item.title}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        }
+    };
+
+    return (
+        handlePlatformRendering()
     );
 };
 
