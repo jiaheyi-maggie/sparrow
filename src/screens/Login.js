@@ -1,6 +1,6 @@
 // a class component for Login (replace SignUp later)
 import React, { Component } from 'react';
-import { View, Button, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Alert, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
@@ -17,7 +17,8 @@ export default class Login extends Component {
             password: '',
             categories: [],
             longTerm: 0,
-            shortTerm:0
+            shortTerm:0,
+            error: ''
         }
 
         // redux store listener
@@ -42,10 +43,9 @@ export default class Login extends Component {
                 // TODO: navigate to home (login successful)
                 // store.dispatch({type: "userSignedOut"})
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.setState({error: "Email or password incorrect. Try again."});
             })
-
     }
 
     render() {
@@ -70,6 +70,7 @@ export default class Login extends Component {
                                     }
                                 />
                                 <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
+                                <Text style={[styles.subtitle, {fontSize: 13}]}>{this.state.error}</Text>
                             </View>
 
                             {/* Title */}
@@ -150,6 +151,7 @@ export default class Login extends Component {
                                         }}
                                 />
                                 <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
+                                <Text style={[styles.subtitle, {fontSize: 13}]}>{this.state.error}</Text>
                             </View>
 
                             {/* Title */}
