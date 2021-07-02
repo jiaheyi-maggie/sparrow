@@ -25,6 +25,7 @@ import DeleteCategories from './DeleteCategories';
 import ProfileModal from './ProfileModal';
 import Login from '../Login';
 import Register from '../Register';
+import ChangePassword from './Setting/ChangePassword';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -156,6 +157,7 @@ const Settings = () => {
             <SettingsStack.Screen name="BankAccounts" component={BankAccounts} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="PaymentAccounts" component={PaymentAccounts} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="ChangePassword" component={ChangePassword} options={{ headerShown: false }}/>
         </SettingsStack.Navigator>
     );
 }

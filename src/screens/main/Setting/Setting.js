@@ -106,9 +106,8 @@ export class Setting extends Component {
                         </View>
 
                         <View style={styles.settingList}>
-                            <TouchableOpacity>
-                                {/* onPress={()=> this.props.navigation.navigate("BankAccounts")}> */}
-                                <Text style={{fontSize: 16}}>Change User Information</Text> 
+                            <TouchableOpacity onPress={()=> this.props.navigation.navigate("ChangePassword")}>
+                                <Text style={{fontSize: 16}}>Change Password</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>
