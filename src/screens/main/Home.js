@@ -1,4 +1,4 @@
-import React, { Component, PureComponent }  from 'react';
+import React, { Component, PureComponent, useState, useEffect, useRef }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Platform } from 'react-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
@@ -9,9 +9,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
+import { useSelector, useDispatch } from 'react-redux';
 import store from '../../app/store';
 
+
+
+// class component
+
 export class Home extends PureComponent {
+
 
     componentDidMount() {
         this.props.fetchUser();
@@ -22,6 +28,9 @@ export class Home extends PureComponent {
     //     if (this.props.shortTerm !== prev.shortTerm || this.props.longTerm !== prev.longTerm) {
     //         this.props.fetchBudget(); 
     //     }
+    // }
+    // componentWillUnmount(){
+    //     this.setState({mounted : false})
     // }
     
 
@@ -265,7 +274,6 @@ export class Home extends PureComponent {
         } else {
             return (
                 <SafeAreaView style={styles.homeContainer}>
-                    {/* <Text style={styles.subtitle}> User does not exist </Text> */}
                 </SafeAreaView>
             );
         }
@@ -288,7 +296,7 @@ const mapStateToProps = (store) => ({
     shortTerm: store.user.shortTerm
 });
 
-// bind component to redux
+// // bind component to redux
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(Home));
