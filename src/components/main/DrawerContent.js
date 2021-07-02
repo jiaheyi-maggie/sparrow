@@ -36,7 +36,7 @@ export class DrawerContent extends Component {
                     if (doc.exists) {
                         var user = doc.data();
                         // does not include photoURL
-                        this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username})
+                        this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, photoURL: user.photoURL})
                     }
                 })
     };
@@ -44,6 +44,7 @@ export class DrawerContent extends Component {
     handleSignOut() {
         this.setState({isSignedOut: true});
         firebase.auth().signOut();
+        this.props.navigation.navigate("Login");
     };
 
     handleImageRendering = (image) => {
@@ -74,7 +75,7 @@ export class DrawerContent extends Component {
                         {/* Profile Picture and Name */}
                         <View style={styles.userInfoSection}>
                             <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-                                {this.handleImageRendering(store.getState().user.currentUser.photoURL)}
+                                {this.handleImageRendering(this.state.photoURL)}
                                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                                     <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
                                     <Caption style={styles.caption}> @{this.state.username}</Caption>

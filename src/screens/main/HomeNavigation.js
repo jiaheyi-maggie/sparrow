@@ -26,6 +26,7 @@ import ProfileModal from './ProfileModal';
 import Login from '../Login';
 import Register from '../Register';
 import ChangePassword from './Setting/ChangePassword';
+import ForgotCred from '../ForgotCred';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -158,6 +159,7 @@ const Settings = () => {
             <SettingsStack.Screen name="PaymentAccounts" component={PaymentAccounts} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="ChangePassword" component={ChangePassword} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="ForgotPassword" component={ForgotCred} options={{ headerShown: false }}/>
         </SettingsStack.Navigator>
     );
 }
@@ -172,6 +174,7 @@ const HomeNavigation = () => {
             <Drawer.Screen name="Remaining Detail" component={RemainingDetail} />
             <Drawer.Screen name="Spending Detail" component={SpendingDetail} />
             {/* <Drawer.Screen name="SignIn Stack" component={Stack} /> */}
+            <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Profile" component={ProfileModal} />
         </Drawer.Navigator>
     );
