@@ -21,11 +21,7 @@ export class Setting extends Component {
                 <ScrollView>
 
                     {/* header */}
-                    <View style={{
-                        flexDirection: 'row', 
-                        justifyContent:'space-between',
-                        alignItems: 'baseline'
-                        }}>
+                    <View style={{flexDirection: 'row', alignItems:'center'}}>
                         
                         {/* go back */}
                         <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
@@ -42,21 +38,6 @@ export class Setting extends Component {
 
                         {/* Display name */}
                         <Text style={styles.title}>Settings</Text>   
-
-                        {/* TODO: log out */}
-                        <TouchableOpacity style={styles.menuButton} 
-                            onPress={()=> this.handleSignout()}>
-                            <Image 
-                            source={require('../../../assets/Icons/logout.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
-                            }}
-                            
-                            />
-                        </TouchableOpacity>
                     </View>
 
                     {/* main setting content */}

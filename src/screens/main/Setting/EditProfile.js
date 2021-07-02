@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, TextInput } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, TextInput, Platform } from 'react-native';
 import firebase from 'firebase';
 import {  useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
@@ -120,7 +120,7 @@ const EditProfile = ({ navigation }) => {
                 </View>
                 </TouchableOpacity>
 
-                <View style={{margin: 5}}>
+                <View style={{margin: Platform.OS === 'ios'?10:5}}>
                     <Text style={styles.settingsText}>First Name:</Text>
                     <TextInput
                         value={firstName}
@@ -130,7 +130,7 @@ const EditProfile = ({ navigation }) => {
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 
-                <View style={{margin: 5}}>
+                <View style={{margin: Platform.OS === 'ios'?10:5}}>
                     <Text style={styles.settingsText}>Last Name:</Text>
                     <TextInput
                         value={lastName}
@@ -140,7 +140,7 @@ const EditProfile = ({ navigation }) => {
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 
-                <View style={{margin: 5}}>
+                <View style={{margin: Platform.OS === 'ios'?10:5}}>
                     <Text style={styles.settingsText}>Username:</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={styles.settingsInput}>@ </Text>
@@ -154,7 +154,7 @@ const EditProfile = ({ navigation }) => {
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 
-                <View style={{margin: 5}}>
+                <View style={{margin: Platform.OS === 'ios'?10:5}}>
                     <Text style={styles.settingsText}>E-mail:</Text>
                     {/* <TextInput
                         value={email}

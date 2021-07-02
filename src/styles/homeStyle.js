@@ -187,10 +187,12 @@ const homeStyle = StyleSheet.create({
         fontSize: 17,
         fontStyle:'italic',
         fontWeight:'bold',
-        color: '#2A94AF'
+        color: '#2A94AF',
+        
     },
     settingsInput: {
         fontSize: 17,
+        marginVertical: Platform.OS === 'ios' ? 5 : 0
     },
     addText: {
         fontSize: 18,
@@ -361,8 +363,7 @@ const homeStyle = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 19,
-        paddingVertical: 5,
-        marginHorizontal: 20
+        marginHorizontal: Platform.OS === 'ios'? 10: 20
     },
     cardContainer: {
         backgroundColor:'#FAA381',
