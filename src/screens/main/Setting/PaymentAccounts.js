@@ -1,15 +1,9 @@
-import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
-import firebase from 'firebase';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withNavigation } from 'react-navigation';
+import React from 'react';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../../../styles/homeStyle';
 
-
-export class PaymentAccounts extends Component {
-
-    handleComponentDidMount() {
+const PaymentAccounts = ({ navigation }) => {
+    const handleComponentDidMount = () => {
         return (
             <SafeAreaView style={styles.container2}>
                 <ScrollView>
@@ -23,31 +17,26 @@ export class PaymentAccounts extends Component {
                     {/* main content */}
 
                     {/* Buttons */}
-                    <View style={{margin: 10}}>
-                        <TouchableOpacity
-                            onPress={()=> this.props.navigation.navigate("Home")}>
-                            <Text style={{fontSize: 16}}>Done</Text> 
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={()=> this.props.navigation.goBack()}>
-                            <Text style={{fontSize: 16}}>Cancel</Text> 
-                        </TouchableOpacity>
-                    </View>
+                    <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignContent:'center'}}>
+                    <TouchableOpacity style={styles.settingsButton}
+                        onPress={()=> navigation.goBack()}>
+                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Done</Text> 
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.settingsButton}
+                        onPress={()=> navigation.goBack()}>
+                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Cancel</Text> 
+                    </TouchableOpacity>
+                </View>
                     
                 </ScrollView>
             </SafeAreaView>
         );
     }
 
-    render() {
-        return(
-            this.handleComponentDidMount()
-        );
-    }
-}
+    return (
+        handleComponentDidMount()
+    );
 
-const mapStateToProps = (store) => ({
-    currentUser: store.user.currentUser,
-});
+};
 
-export default connect(mapStateToProps,null)(withNavigation(PaymentAccounts));
+export default PaymentAccounts;

@@ -21,7 +21,7 @@ export class DrawerContent extends Component {
             avatar: null,
             isSignedOut: false,
             // BEWARE: this might cause problems when first login
-            photoURL: null
+            photoURL: ''
         }
  
         this.getUserName = this.getUserName.bind(this);
@@ -35,6 +35,7 @@ export class DrawerContent extends Component {
                 .then((doc) => {
                     if (doc.exists) {
                         var user = doc.data();
+                        // does not include photoURL
                         this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username})
                     }
                 })
@@ -50,14 +51,14 @@ export class DrawerContent extends Component {
             return (
                 <Avatar.Image
                     source={require('../../assets/Icons/profile.png')}
-                    size={50}
+                    size={60}
                 />
             );
         } else {
             return (
                 <Avatar.Image
                     source={{uri: image}}
-                    size={50}
+                    size={60}
                 />
             );
         }
@@ -65,7 +66,6 @@ export class DrawerContent extends Component {
 
     render(){
             this.getUserName();
-            // this.setState({photoURL: store.getState().currentUser.photoURL});
             
             return (
             <View style={{flex: 1}}> 
@@ -74,11 +74,7 @@ export class DrawerContent extends Component {
                         {/* Profile Picture and Name */}
                         <View style={styles.userInfoSection}>
                             <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-                                <Avatar.Image
-                                    source={require('../../assets/Icons/profile.png')}
-                                    size={50}
-                                />
-                                {/* {this.handleImageRendering(store.getState().user.currentUser.photoURL)} */}
+                                {this.handleImageRendering(store.getState().user.currentUser.photoURL)}
                                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
                                     <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
                                     <Caption style={styles.caption}> @{this.state.username}</Caption>
