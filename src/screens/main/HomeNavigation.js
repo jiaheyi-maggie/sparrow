@@ -28,6 +28,7 @@ import Register from '../Register';
 import ChangePassword from './Setting/ChangePassword';
 import ForgotCred from '../ForgotCred';
 import ChangeEmail from './Setting/ChangeEmail';
+import SignedOut from './SignedOut';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -176,6 +177,7 @@ const HomeNavigation = () => {
             <Drawer.Screen name="Spending Detail" component={SpendingDetail} />
             {/* <Drawer.Screen name="SignIn Stack" component={Stack} /> */}
             <Drawer.Screen name="Login" component={Login} />
+            <Drawer.Screen name="SignedOut" component={SignedOut} />
             <Drawer.Screen name="Profile" component={ProfileModal} />
         </Drawer.Navigator>
     );

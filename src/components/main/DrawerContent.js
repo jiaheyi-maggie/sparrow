@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, SafeAreaView, Text } from 'react-native';
 import firebase from 'firebase';
 import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
@@ -27,24 +27,30 @@ export class DrawerContent extends Component {
         this.getUserName = this.getUserName.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
         this.handleImageRendering = this.handleImageRendering.bind(this);
+        this.handleRendering = this.handleRendering.bind(this);
     }
 
     getUserName() {
-        const userID = firebase.auth().currentUser.uid;
-                firebase.firestore().collection("users").doc(userID).get()
-                .then((doc) => {
-                    if (doc.exists) {
-                        var user = doc.data();
-                        // does not include photoURL
-                        this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, photoURL: user.photoURL})
-                    }
-                })
+        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+        .then((doc) => {
+            if (doc.exists) {
+                var user = doc.data();
+                this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, photoURL: user.photoURL})
+            }
+        }).catch((error) => {
+            this.props.navigation.navigate("SignedOut");
+            console.log(error);
+        })
     };
 
     handleSignOut() {
         this.setState({isSignedOut: true});
-        firebase.auth().signOut();
-        this.props.navigation.navigate("Login");
+        firebase.auth().signOut()
+        .then(() => {
+            this.props.navigation.navigate("SignedOut");
+        }).catch((error) => {
+            console.log(error.message);
+        })
     };
 
     handleImageRendering = (image) => {
@@ -65,7 +71,14 @@ export class DrawerContent extends Component {
         }
     };
 
-    render(){
+    handleRendering = () => {
+        if (this.state.isSignedOut) {
+            return (
+                <SafeAreaView style={{flex: 1}}>
+                    <Text style={styles.title}> You are signed out</Text>
+                </SafeAreaView>
+            );
+        } else {
             this.getUserName();
             
             return (
@@ -208,9 +221,12 @@ export class DrawerContent extends Component {
                 </Drawer.Section>
             </View>
             );
-        // } else {
-        //     return this.props.navigation.navigate('onboarding');
-        // }
+        }
+
+    }
+
+    render() {
+        return this.handleRendering();
     }
 };
 

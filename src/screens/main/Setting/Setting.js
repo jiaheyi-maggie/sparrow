@@ -9,7 +9,10 @@ import styles from '../../../styles/homeStyle';
 export class Setting extends Component {
 
     handleSignout = () => {
-        firebase.auth().signOut();
+        firebase.auth().signOut()
+        .then(() => {
+            this.props.navigation.navigate('Login');
+        })
     };
 
     handleComponentDidMount() {
