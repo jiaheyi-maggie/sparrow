@@ -1,9 +1,10 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, TouchableOpacity, Modal, FlatList } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, Modal, FlatList, Platform } from 'react-native';
 import { removeBudget } from '../../app/actions/removeBudget';
 import { updateRecurring } from '../../app/actions/updateRecurring';
 import { connect } from 'react-redux';
 import Checkbox from '@react-native-community/checkbox';
+import CheckboxiOS from 'react-native-paper';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
@@ -104,25 +105,68 @@ export class DeleteCategories extends Component {
                     <FlatList 
                         data={this.state.categoriesCopy}
                         renderItem={({ item }) => {
-                            return (
-                                <TouchableOpacity style={styles.listContainer} 
-                                    onPress={() => {
-                                        var copy = [...this.state.categoriesCopy];
-                                        copy[item.id].checked = !copy[item.id].checked;
-                                        this.setState({categoriesCopy: copy});
-                                    }}>
-                                    <Text style={styles.listText}>{item.title}</Text>
-                                    <Checkbox 
-                                        disabled={false}
-                                        value={!this.state.categoriesCopy[item.id].checked}
-                                        onValueChange={() => {
-                                            var copy = [...this.state.categoriesCopy];
-                                            copy[item.id].checked = !copy[item.id].checked;
-                                            this.setState({categoriesCopy: copy});
-                                        }}
-                                    />
-                                </TouchableOpacity>
-                            );
+                            switch (Platform.OS) {
+                                case "ios" :
+                                    return (
+                                        <TouchableOpacity style={styles.listContainer} 
+                                            onPress={() => {
+                                                var copy = [...this.state.categoriesCopy];
+                                                copy[item.id].checked = !copy[item.id].checked;
+                                                this.setState({categoriesCopy: copy});
+                                            }}>
+                                            <Text style={styles.listText}>{item.title}</Text>
+                                            {/* <Checkbox 
+                                                disabled={false}
+                                                value={!this.state.categoriesCopy[item.id].checked}
+                                                onValueChange={() => {
+                                                    var copy = [...this.state.categoriesCopy];
+                                                    copy[item.id].checked = !copy[item.id].checked;
+                                                    this.setState({categoriesCopy: copy});
+                                                }}
+                                            /> */}
+                                        </TouchableOpacity>
+                                    );
+
+                                case "andriod" :
+                                    return (
+                                        <TouchableOpacity style={styles.listContainer} 
+                                            onPress={() => {
+                                                var copy = [...this.state.categoriesCopy];
+                                                copy[item.id].checked = !copy[item.id].checked;
+                                                this.setState({categoriesCopy: copy});
+                                            }}>
+                                            <Text style={styles.listText}>{item.title}</Text>
+                                            <Checkbox 
+                                                disabled={false}
+                                                value={!this.state.categoriesCopy[item.id].checked}
+                                                onValueChange={() => {
+                                                    var copy = [...this.state.categoriesCopy];
+                                                    copy[item.id].checked = !copy[item.id].checked;
+                                                    this.setState({categoriesCopy: copy});
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    );
+                            }
+                            // return (
+                            //     <TouchableOpacity style={styles.listContainer} 
+                            //         onPress={() => {
+                            //             var copy = [...this.state.categoriesCopy];
+                            //             copy[item.id].checked = !copy[item.id].checked;
+                            //             this.setState({categoriesCopy: copy});
+                            //         }}>
+                            //         <Text style={styles.listText}>{item.title}</Text>
+                            //         <Checkbox 
+                            //             disabled={false}
+                            //             value={!this.state.categoriesCopy[item.id].checked}
+                            //             onValueChange={() => {
+                            //                 var copy = [...this.state.categoriesCopy];
+                            //                 copy[item.id].checked = !copy[item.id].checked;
+                            //                 this.setState({categoriesCopy: copy});
+                            //             }}
+                            //         />
+                            //     </TouchableOpacity>
+                            // );
                         }}
                         keyExtractor={item => item.id}
                         contentContainerStyle={{
