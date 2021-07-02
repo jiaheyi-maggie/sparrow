@@ -27,6 +27,7 @@ import Login from '../Login';
 import Register from '../Register';
 import ChangePassword from './Setting/ChangePassword';
 import ForgotCred from '../ForgotCred';
+import ChangeEmail from './Setting/ChangeEmail';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -148,7 +149,6 @@ const Details = () => {
     );
 }
 
-
 const SettingsStack = createStackNavigator();
 const Settings = () => {
     return (
@@ -159,6 +159,7 @@ const Settings = () => {
             <SettingsStack.Screen name="PaymentAccounts" component={PaymentAccounts} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="ChangePassword" component={ChangePassword} options={{ headerShown: false }}/>
+            <SettingsStack.Screen name="ChangeEmail" component={ChangeEmail} options={{ headerShown: false }}/>
             <SettingsStack.Screen name="ForgotPassword" component={ForgotCred} options={{ headerShown: false }}/>
         </SettingsStack.Navigator>
     );

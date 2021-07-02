@@ -15,7 +15,7 @@ const EditProfile = ({ navigation }) => {
     const [lastName, setLastname] = useState(currentUser.lastName);
     const [username, setUsername] = useState(currentUser.username);
     const [photoURL, setPhotoURL] = useState(currentUser.photoURL);
-    const [email, setEmail]  = useState(currentUser.email);
+    const email = currentUser.email;
 
     useEffect(() => {
         (async () => {
@@ -156,11 +156,12 @@ const EditProfile = ({ navigation }) => {
 
                 <View style={{margin: 5}}>
                     <Text style={styles.settingsText}>E-mail:</Text>
-                    <TextInput
+                    {/* <TextInput
                         value={email}
                         onChangeText={(email) => setEmail(email)}
                         style={styles.settingsInput}
-                    />
+                    /> */}
+                    <Text style={[styles.settingsInput, {color: 'gray', marginBottom: 5}]}>{email}</Text>
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 

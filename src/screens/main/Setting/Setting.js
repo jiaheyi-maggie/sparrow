@@ -10,12 +10,6 @@ export class Setting extends Component {
 
     handleSignout = () => {
         firebase.auth().signOut();
-        firebase.auth().onAuthStateChanged((user) => {
-            if (!user) {
-                // this.navigaton.navigate('SignIn Stack');
-                console.log("signed out");
-            }
-        })
     };
 
     handleComponentDidMount() {
@@ -108,6 +102,12 @@ export class Setting extends Component {
                         <View style={styles.settingList}>
                             <TouchableOpacity onPress={()=> this.props.navigation.navigate("ChangePassword")}>
                                 <Text style={{fontSize: 16}}>Change Password</Text> 
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.settingList}>
+                            <TouchableOpacity onPress={()=> this.props.navigation.navigate("ChangeEmail")}>
+                                <Text style={{fontSize: 16}}>Change E-mail</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>
