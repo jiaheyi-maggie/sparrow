@@ -82,6 +82,7 @@ const homeStyle = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         paddingTop: (Platform.OS === 'ios') ? 0: 40,
+        padding: (Platform.OS === 'ios') ? 20: 10,
     },
     subtitle: {
         color:'#562C2C',
@@ -174,6 +175,22 @@ const homeStyle = StyleSheet.create({
         paddingVertical: 5,
         marginRight: 10,
         elevation: 2
+    },
+    settingsButton: {
+        backgroundColor: "#F4A261",
+        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        elevation: 2
+    },
+    settingsText: {
+        fontSize: 17,
+        fontStyle:'italic',
+        fontWeight:'bold',
+        color: '#2A94AF'
+    },
+    settingsInput: {
+        fontSize: 17,
     },
     addText: {
         fontSize: 18,
