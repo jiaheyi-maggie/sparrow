@@ -81,7 +81,7 @@ const homeStyle = StyleSheet.create({
     container2:{
         backgroundColor: '#fff',
         flex: 1,
-        paddingTop: (Platform.OS === 'ios') ? 0: 40,
+        paddingTop: (Platform.OS === 'ios') ? 0: 50,
         padding: (Platform.OS === 'ios') ? 20: 10,
     },
     subtitle: {

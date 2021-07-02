@@ -145,9 +145,9 @@ const EditProfile = ({ navigation }) => {
                     <View style={{flexDirection: 'row'}}>
                         <Text style={styles.settingsInput}>@ </Text>
                         <TextInput
-                        value={username}
-                        onChangeText={(username) => setUsername(username)}
-                        style={styles.settingsInput}
+                            value={username}
+                            onChangeText={(username) => setUsername(username)}
+                            style={styles.settingsInput}
                         />
                     </View>
                     

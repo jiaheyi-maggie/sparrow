@@ -25,8 +25,6 @@ if (firebase.apps.length === 0) {
   firebase.firestore().settings({ experimentalForceLongPolling: true });
 } 
 
-
-
 const App = () => {
   const [loaded, setLoaded] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
