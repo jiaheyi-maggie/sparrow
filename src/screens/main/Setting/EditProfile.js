@@ -29,6 +29,10 @@ const EditProfile = ({ navigation }) => {
     
         if (!result.cancelled) {
             setPhotoURL(result.uri);
+            store.dispatch({
+                type: "USER_STATE_CHANGE",
+                currentUser: {...currentUser, photoURL: result.uri}
+            })
             console.log(store.getState().user.currentUser);
         }
     };
@@ -43,7 +47,7 @@ const EditProfile = ({ navigation }) => {
                         height: 80,
                         borderRadius: 50,
                         borderWidth: 3,
-                        borderColor: '#D7CEB2'
+                        borderColor: '#7E9181'
                     }}
                 />);
         } else {
@@ -55,7 +59,7 @@ const EditProfile = ({ navigation }) => {
                         height: 80,
                         borderRadius: 50,
                         borderWidth: 3,
-                        borderColor: '#D7CEB2'
+                        borderColor: '#7E9181'
                     }}
                 />);
 
@@ -65,72 +69,67 @@ const EditProfile = ({ navigation }) => {
     const handleComponentDidMount = () => {
         return (
             <SafeAreaView style={styles.container2}>
-                <ScrollView>
 
-                    {/* header */}
-                    <View style={{alignItems:'center'}}>
-                        <Text style={styles.title}>Edit Profile</Text>   
-                        <Text style={styles.subtitle, {color: '#E76F51', marginBottom: 5}}>Tap on fields to edit</Text>
-                    </View>
+                {/* header */}
+                <View style={{alignItems:'center'}}>
+                    <Text style={styles.title}>Edit Profile</Text>   
+                    <Text style={styles.subtitle, {color: '#E76F51', marginBottom: 5}}>Tap on fields to edit</Text>
+                </View>
 
-                    {/* main setting content */}
+                {/* main setting content */}
 
-                    <TouchableOpacity onPress={() => pickImage()}>
-                    <View style={{alignItems: 'center'}}>
-                        {handleImageRendering(photoURL)}
-                        <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15, marginBottom: 5, color: '#D7CEB2'}]}>(Change Profile Picture)</Text>
-                    </View>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => pickImage()}>
+                <View style={{alignItems: 'center'}}>
+                    {handleImageRendering(photoURL)}
+                    <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15, marginBottom: 5, color: '#7E9181'}]}>(Change Profile Picture)</Text>
+                </View>
+                </TouchableOpacity>
 
-                    <View style={{margin: 5}}>
-                        <Text style={styles.settingsText}>First Name:</Text>
+                <View style={{margin: 5}}>
+                    <Text style={styles.settingsText}>First Name:</Text>
+                    <TextInput
+                        value={firstName}
+                        onChangeText={(firstname) => setFirstname({ firstname })}
+                        style={styles.settingsInput}
+                    />
+                    <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
+                </View>
+
+                <View style={{margin: 5}}>
+                    <Text style={styles.settingsText}>Last Name:</Text>
+                    <TextInput
+                        value={lastName}
+                        onChangeText={(lastname) => setLastname({ lastname })}
+                        style={styles.settingsInput}
+                    />
+                    <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
+                </View>
+
+                <View style={{margin: 5}}>
+                    <Text style={styles.settingsText}>Username:</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Text style={styles.settingsInput}>@ </Text>
                         <TextInput
-                            value={firstName}
-                            onChangeText={(firstname) => setFirstname({ firstname })}
-                            style={styles.settingsInput}
+                        value={username}
+                        onChangeText={(username) => setUsername({ username })}
+                        style={styles.settingsInput}
                         />
-                        <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
-                    </View>
-
-                    <View style={{margin: 5}}>
-                        <Text style={styles.settingsText}>Last Name:</Text>
-                        <TextInput
-                            value={lastName}
-                            onChangeText={(lastname) => setLastname({ lastname })}
-                            style={styles.settingsInput}
-                        />
-                        <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
-                    </View>
-
-                    <View style={{margin: 5}}>
-                        <Text style={styles.settingsText}>Username:</Text>
-                        <View style={{flexDirection: 'row'}}>
-                            <Text style={styles.settingsInput}>@</Text>
-                            <TextInput
-                            value={username}
-                            onChangeText={(username) => setUsername({ username })}
-                            style={styles.settingsInput}
-                            />
-                        </View>
-                        
-                        <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
-                    </View>
-
-
-                    <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignContent:'center'}}>
-                        <TouchableOpacity style={styles.settingsButton}
-                            onPress={()=> navigation.navigate("Home")}>
-                            <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Save</Text> 
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.settingsButton}
-                            onPress={()=> navigation.goBack()}>
-                            <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Cancel</Text> 
-                        </TouchableOpacity>
                     </View>
                     
+                    <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
+                </View>
 
 
-                </ScrollView>
+                <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignContent:'center'}}>
+                    <TouchableOpacity style={styles.settingsButton}
+                        onPress={()=> navigation.goBack()}>
+                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Save</Text> 
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.settingsButton}
+                        onPress={()=> navigation.goBack()}>
+                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Cancel</Text> 
+                    </TouchableOpacity>
+                </View>
             </SafeAreaView>
         );
     };
@@ -142,48 +141,3 @@ const EditProfile = ({ navigation }) => {
 };
 
 export default EditProfile;
-
-// export class EditProfile extends Component {
-
-//     handleComponentDidMount() {
-//         return (
-//             <SafeAreaView style={styles.container2}>
-//                 <ScrollView>
-
-//                     {/* header */}
-//                     <View style={{alignItems:'center'}}>
-//                         {/* Display name */}
-//                         <Text style={styles.title}>Edit Profile</Text>   
-//                     </View>
-
-//                     {/* main setting content */}
-//                     <View style={{margin: 10}}>
-//                         <TouchableOpacity
-//                             onPress={()=> this.props.navigation.navigate("Home")}>
-//                             <Text style={{fontSize: 16}}>Save</Text> 
-//                         </TouchableOpacity>
-//                         <TouchableOpacity
-//                             onPress={()=> this.props.navigation.goBack()}>
-//                             <Text style={{fontSize: 16}}>Cancel</Text> 
-//                         </TouchableOpacity>
-//                     </View>
-                    
-
-
-//                 </ScrollView>
-//             </SafeAreaView>
-//         );
-//     }
-
-//     render() {
-//         return(
-//             this.handleComponentDidMount()
-//         );
-//     }
-// }
-
-// const mapStateToProps = (store) => ({
-//     currentUser: store.user.currentUser,
-// });
-
-// export default connect(mapStateToProps,null)(withNavigation(EditProfile));
