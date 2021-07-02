@@ -17,6 +17,7 @@ const EditProfile = ({ navigation }) => {
     const [lastName, setLastname] = useState(currentUser.lastName);
     const [username, setUsername] = useState(currentUser.username);
     const [photoURL, setPhotoURL] = useState(currentUser.photoURL);
+    const [email, setEmail]  = useState(currentUser.email);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -66,6 +67,15 @@ const EditProfile = ({ navigation }) => {
         }
     };
 
+    const onSave = () => {
+        store.dispatch({
+            type: "USER_STATE_CHANGE",
+            currentUser: {firstName: firstName, lastName: lastName, username: username, photoURL: photoURL, email: email}
+        });
+        console.log(store.getState().user.currentUser);
+        navigation.goBack();
+    };
+
     const handleComponentDidMount = () => {
         return (
             <SafeAreaView style={styles.container2}>
@@ -89,7 +99,7 @@ const EditProfile = ({ navigation }) => {
                     <Text style={styles.settingsText}>First Name:</Text>
                     <TextInput
                         value={firstName}
-                        onChangeText={(firstname) => setFirstname({ firstname })}
+                        onChangeText={(firstname) => setFirstname(firstname)}
                         style={styles.settingsInput}
                     />
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
@@ -99,7 +109,7 @@ const EditProfile = ({ navigation }) => {
                     <Text style={styles.settingsText}>Last Name:</Text>
                     <TextInput
                         value={lastName}
-                        onChangeText={(lastname) => setLastname({ lastname })}
+                        onChangeText={(lastname) => setLastname(lastname)}
                         style={styles.settingsInput}
                     />
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
@@ -111,7 +121,7 @@ const EditProfile = ({ navigation }) => {
                         <Text style={styles.settingsInput}>@ </Text>
                         <TextInput
                         value={username}
-                        onChangeText={(username) => setUsername({ username })}
+                        onChangeText={(username) => setUsername(username)}
                         style={styles.settingsInput}
                         />
                     </View>
@@ -119,10 +129,20 @@ const EditProfile = ({ navigation }) => {
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 
+                <View style={{margin: 5}}>
+                    <Text style={styles.settingsText}>E-mail:</Text>
+                    <TextInput
+                        value={email}
+                        onChangeText={(email) => setEmail(email)}
+                        style={styles.settingsInput}
+                    />
+                    <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
+                </View>
+
 
                 <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignContent:'center'}}>
                     <TouchableOpacity style={styles.settingsButton}
-                        onPress={()=> navigation.goBack()}>
+                        onPress={()=> onSave()}>
                         <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Save</Text> 
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.settingsButton}
