@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, SafeAreaView } from 'react-native';
-import { AppLoading } from 'expo';
 import { NavigationContainer, useNavigationState } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Register from './src/screens/Register';
@@ -13,22 +12,12 @@ import theme from './src/assets/theme';
 import { Provider } from 'react-redux';
 import * as Font from "expo-font";
 import store from './src/app/store';
-// import keys from './src/config/firebase/keys';
+import firebaseConfig from './src/config/firebase/keys';
 
 import * as firebase from 'firebase';
 
 // initialize navigation 
 const Stack = createStackNavigator();
-
-export const firebaseConfig = {
-  apiKey: "AIzaSyCrBCsPWhsS8qWieNwva_TYHr4tY7A9OmE",
-  authDomain: "sparrow-648ac.firebaseapp.com",
-  projectId: "sparrow-648ac",
-  storageBucket: "sparrow-648ac.appspot.com",
-  messagingSenderId: "212971842173",
-  appId: "1:212971842173:web:7473957ae4962b64061f14",
-  measurementId: "G-SS6BGBLGZV"
-};
 
 // ensure that firebase was not initialized on startup
 if (firebase.apps.length === 0) {
