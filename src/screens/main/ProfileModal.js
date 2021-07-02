@@ -10,47 +10,6 @@ const ProfileModal = ({ navigation }) => {
     const shortTerm = store.getState().user.shortTerm;
     const longTerm = store.getState().user.longTerm;
 
-    // Image picker setup
-    // TODO: change default to currentUser.photoURL
-    const [image, setImage] = useState(currentUser.photoURL);
-
-    useEffect(() => {
-        (async () => {
-            if (Platform.OS !== 'web') {
-                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                if (status !== 'granted') {
-                    ert('Sorry, we need camera roll permissions to make this work!');
-                }
-            }
-        })();
-    }, []);
-
-
-    const pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        });
-    
-        // console.log(result);
-    
-        if (!result.cancelled) {
-            setImage(result.uri);
-
-            // update redux
-            store.dispatch({
-                type: "USER_STATE_CHANGE",
-                currentUser: {...currentUser, photoURL: result.uri}
-            })
-
-            updateUser(result.uri, "profile");
-
-            console.log(store.getState().user.currentUser);
-        }
-    };
-
     const handleImageRendering = (image) => {
         if (image === "") {
             return (
@@ -80,13 +39,6 @@ const ProfileModal = ({ navigation }) => {
         }
     };
 
-    // TODO: send to firebase
-    // const handleUnmount = () => {
-    //     updateUser(store.getState().user.currentUser.photoURL, "profile");
-    //     navigation.navigate('Home');
-    // };
-
-
     return (
         <SafeAreaView style={styles.container}>
             {/* header */}
@@ -108,22 +60,9 @@ const ProfileModal = ({ navigation }) => {
             {/* Main Profile */}
             <View style={{alignItems: 'center'}}>
                 {/* profile picture */}
-                <TouchableOpacity onPress={() => pickImage()}>
-                    <View style={{alignItems: 'center'}}>
-                        <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15, marginBottom: 5}]}>(Choose Profile Picture)</Text>
-                        {/* <Image
-                            source={{uri: image}}
-                            style={{
-                                width: 80,
-                                height: 80,
-                                borderRadius: 50,
-                                borderWidth: 3,
-                                borderColor: '#264653'
-                            }}
-                        /> */}
-                        {handleImageRendering(image)}
-                    </View>
-                </TouchableOpacity>
+                <View style={{alignItems: 'center'}}>
+                    {handleImageRendering(currentUser.photoURL)}
+                </View>
                 
                 {/* Display name */}
                 <Text style={[styles.title2, {color: '#2A94AF'}]}>{currentUser.firstName} {currentUser.lastName}</Text>

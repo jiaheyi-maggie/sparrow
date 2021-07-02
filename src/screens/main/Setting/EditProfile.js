@@ -1,10 +1,8 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, TextInput } from 'react-native';
 import firebase from 'firebase';
-import { connect, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
-import { bindActionCreators } from 'redux';
-import { withNavigation } from 'react-navigation';
 import styles from '../../../styles/homeStyle';
 import store from '../../../app/store';
 
@@ -18,6 +16,17 @@ const EditProfile = ({ navigation }) => {
     const [username, setUsername] = useState(currentUser.username);
     const [photoURL, setPhotoURL] = useState(currentUser.photoURL);
     const [email, setEmail]  = useState(currentUser.email);
+
+    useEffect(() => {
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    ert('Sorry, we need camera roll permissions to make this work!');
+                }
+            }
+        })();
+    }, []);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -72,7 +81,23 @@ const EditProfile = ({ navigation }) => {
             type: "USER_STATE_CHANGE",
             currentUser: {firstName: firstName, lastName: lastName, username: username, photoURL: photoURL, email: email}
         });
-        console.log(store.getState().user.currentUser);
+
+        // update firebase
+        firebase.firestore().collection('users')
+        .doc(firebase.auth().currentUser.uid)
+        .update({
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            photoURL: photoURL
+        })
+        .then(() => {
+            console.log('user profile update successful');
+        })
+        .catch((error) => {
+            console.log(error);
+        })
         navigation.goBack();
     };
 
