@@ -19,6 +19,10 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
             },[])
     )
 
+    let totalHoldings = myHoldings.reduce((a, b) => a + (b.total || 0), 0).toFixed(2);
+    let changeInValue = myHoldings.reduce((a, b) => a + (b.holding_value_change_7d|| 0), 0);
+    let percentageChange = changeInValue / (totalHoldings - changeInValue) * 100;
+
     const renderWalletInfoSection = () => {
         return (
             <View>
@@ -27,8 +31,8 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 <BalanceInfo 
                     title="Current Balance"
                     currency="USD"
-                    displayAmount={45000}
-                    changePct={2.30}
+                    displayAmount={totalHoldings}
+                    changePct={percentageChange}
                 />
             </View>
         )
