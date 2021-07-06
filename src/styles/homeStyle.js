@@ -29,6 +29,7 @@ const homeStyle = StyleSheet.create({
         fontSize: 20,
         marginHorizontal: 10,
         marginTop: 5,
+        ...FONTS.h2
     },
     operation: {
         color: '#fff',

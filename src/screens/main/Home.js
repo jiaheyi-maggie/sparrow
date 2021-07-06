@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
+import { COLORS, FONTS } from '../../constants/theme';
 
 
 const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, longTerm, shortTerm }) => {
@@ -53,7 +54,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                 />
                             </TouchableOpacity>
 
-                            <Text style={styles.title3}>Hi, {currentUser.firstName}</Text>             
+                            <Text style={{color: '#fff', ...FONTS.h2}}>Hi, {currentUser.firstName}</Text>             
                                                             
                             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <Image 

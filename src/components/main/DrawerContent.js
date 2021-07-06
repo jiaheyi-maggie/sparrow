@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { View, Image, StyleSheet, SafeAreaView, Text } from 'react-native';
 import firebase from 'firebase';
 import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { withNavigation } from 'react-navigation';
+import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
 import store from '../../app/store';
 
@@ -21,7 +22,8 @@ export class DrawerContent extends Component {
             avatar: null,
             isSignedOut: false,
             // BEWARE: this might cause problems when first login
-            photoURL: ''
+            photoURL: '',
+            isMounted: false,
         }
  
         this.getUserName = this.getUserName.bind(this);
@@ -30,7 +32,7 @@ export class DrawerContent extends Component {
         this.handleRendering = this.handleRendering.bind(this);
     }
 
-    getUserName() {
+    getUserName= async () => {
         firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
         .then((doc) => {
             if (doc.exists) {
@@ -42,6 +44,13 @@ export class DrawerContent extends Component {
             console.log(error);
         })
     };
+
+    componentDidMount() {
+        if (!this.state.isMounted) {
+            this.setState({isMounted: true})
+            this.getUserName();
+        }
+    }
 
     handleSignOut() {
         this.setState({isSignedOut: true});
@@ -79,26 +88,23 @@ export class DrawerContent extends Component {
                 </SafeAreaView>
             );
         } else {
-            this.getUserName();
-            
             return (
             <View style={{flex: 1}}> 
                 <DrawerContentScrollView>
                     <View style={styles.drawerContent}>
-                        {/* Profile Picture and Name */}
+
                         <View style={styles.userInfoSection}>
                             <View style={{flexDirection:'row', marginTop: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
                                 {this.handleImageRendering(this.state.photoURL)}
                                 <View style={{marginLeft: 15, flexDirection: 'column'}}>
-                                    <Title style={styles.title}> {this.state.firstName} {this.state.lastName} </Title>
-                                    <Caption style={styles.caption}> @{this.state.username}</Caption>
+                                    <Title style={{color: COLORS.primary, ...FONTS.h3}}> {this.state.firstName} {this.state.lastName} </Title>
+                                    <Caption style={{color: COLORS.lightGray4, ...FONTS.h4}}> @{this.state.username}</Caption>
                                 </View>
                             </View>
                         </View>
 
-                        {/* Navigation Section */}
+
                         <Drawer.Section style={styles.drawerSection} title="Navigation">
-                            {/*  Home */}
                             <DrawerItem
                                 label="Dashboard"
                                 icon={() => {
@@ -116,7 +122,7 @@ export class DrawerContent extends Component {
                                 }}
                                 onPress={() => this.props.navigation.navigate("Home")}
                             />  
-                            {/* Average Budget */}
+
                             <DrawerItem
                                 label="Average Budget"
                                 icon={() => {
@@ -135,7 +141,7 @@ export class DrawerContent extends Component {
                                 onPress={() => this.props.navigation.navigate("Average Budget")}
                             /> 
 
-                            {/* Calculator */}
+
                             <DrawerItem
                                 label="Calculator"
                                 icon={() => {
@@ -154,7 +160,7 @@ export class DrawerContent extends Component {
                                 onPress={() => this.props.navigation.navigate("Calculator")}
                             /> 
 
-                            {/* Settings */}
+
                             <DrawerItem
                                 label="Settings"
                                 icon={() => {
@@ -174,9 +180,8 @@ export class DrawerContent extends Component {
                             /> 
                         </Drawer.Section>
 
-                        {/* Support Section */}
+
                         <Drawer.Section title="Support">
-                            {/*  Home */}
                             <DrawerItem
                                 label="Contact Us"
                                 icon={() => {
@@ -192,7 +197,6 @@ export class DrawerContent extends Component {
                                         />
                                     );
                                 }}
-                                // TODO: onPress => pop modal to email support team
                             />  
                         </Drawer.Section>
                     </View>
@@ -215,7 +219,6 @@ export class DrawerContent extends Component {
                                 />
                             );
                         }}
-                        // TODO: handle signout
                         onPress={() => this.handleSignOut()}
                     />
                 </Drawer.Section>
@@ -235,6 +238,7 @@ const mapStateToProps = (store) => ({
 });
 
 export default connect(mapStateToProps, null)(withNavigation(DrawerContent));
+
 
 const styles = StyleSheet.create({
     drawerContent: {

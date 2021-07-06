@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Image, Text, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerContent } from '../../components/main/DrawerContent';
@@ -32,7 +31,7 @@ import Crypto from './Crypto';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+const DrawerNav = createDrawerNavigator();
 
 
 const HomeTab = () => {
@@ -188,17 +187,17 @@ const Settings = () => {
 
 const HomeNavigation = () => {
     return (
-        <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContent {...props} />}>
-            <Drawer.Screen name="Home" component={HomeTab} />
-            <Drawer.Screen name="Settings" component={Settings} />
-            <Drawer.Screen name="Average Budget" component={Details} />
-            <Drawer.Screen name="Calculator" component={Calculator} />
-            <Drawer.Screen name="Remaining Detail" component={RemainingDetail} />
-            <Drawer.Screen name="Spending Detail" component={SpendingDetail} />
-            <Drawer.Screen name="Login" component={Login} />
-            <Drawer.Screen name="SignedOut" component={SignedOut} />
-            <Drawer.Screen name="Profile" component={ProfileModal} />
-        </Drawer.Navigator>
+        <DrawerNav.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContent {...props}/>}>
+            <DrawerNav.Screen name="Home" component={HomeTab} />
+            <DrawerNav.Screen name="Settings" component={Settings} />
+            <DrawerNav.Screen name="Average Budget" component={Details} />
+            <DrawerNav.Screen name="Calculator" component={Calculator} />
+            <DrawerNav.Screen name="Remaining Detail" component={RemainingDetail} />
+            <DrawerNav.Screen name="Spending Detail" component={SpendingDetail} />
+            <DrawerNav.Screen name="Login" component={Login} />
+            <DrawerNav.Screen name="SignedOut" component={SignedOut} />
+            <DrawerNav.Screen name="Profile" component={ProfileModal} />
+        </DrawerNav.Navigator>
     );
 };
 

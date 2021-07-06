@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { COLORS, FONTS } from '../../constants/theme';
 import styles from '../../styles/homeStyle';
 
 const Notifications = ({ navigation }) => {
@@ -11,7 +12,7 @@ const Notifications = ({ navigation }) => {
             <ScrollView>
             
                 {/* Display name */}
-                <Text style={styles.title}>Notifications</Text>
+                <Text style={{color: COLORS.primary, ...FONTS.h2}}>Notifications</Text>
             </ScrollView>
           </SafeAreaView>
         );

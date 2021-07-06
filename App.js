@@ -48,7 +48,8 @@ const App = () => {
         setLoggedIn(true);
       }
     })
-  }, [loaded, loggedIn]);
+  // }, [loaded, loggedIn]);
+    }, []);
 
   const handleAppLoading = () => {
     if (!loaded) {
