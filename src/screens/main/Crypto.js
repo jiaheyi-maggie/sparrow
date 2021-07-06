@@ -14,6 +14,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
         useCallback(
             () => {
                 getHoldings(data.holdings)
+                getCoinMarket()
             },[])
     )
 

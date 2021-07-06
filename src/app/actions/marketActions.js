@@ -43,8 +43,8 @@ export function getHoldings(holdings=[], currency="usd", orderBy="market_cap_des
                 Accept: "application/json"
             }
         }).then((response) => {
-            console.log("get holdings")
-            console.log(response)
+            // console.log("get holdings")
+            // console.log(response)
             if (response.status == 200) {
                 // success call
                 // customize my holdings structure
@@ -113,6 +113,8 @@ export function getCoinMarket(currency='usd', orderBy='market_cap_desc', perPage
                 Accept: 'application/json'
             }
         }).then((response) => {
+            console.log("get market")
+            console.log(response)
             if (response.status == 200) {
                 dispatch(getCoinMarketSuccess(response.data))
             } else (

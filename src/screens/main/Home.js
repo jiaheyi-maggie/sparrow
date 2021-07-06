@@ -1,4 +1,4 @@
-import React, { Component, PureComponent, useState, useEffect, useRef }  from 'react';
+import React, { Component, PureComponent, useState, useEffect, useCallback }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Platform } from 'react-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
@@ -9,34 +9,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
+import { useFocusEffect } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../../app/store';
 
 
+const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, longTerm, shortTerm }) => {
 
-// class component
+    useEffect(() => {
+        fetchBudget();
+        fetchUser();
+    }, [])
 
-export class Home extends PureComponent {
+    const handleComponentDidMount = () =>  {
 
-
-    componentDidMount() {
-        this.props.fetchUser();
-        this.props.fetchBudget();
-    };
-
-    // componentDidUpdate(prev) {
-    //     if (this.props.shortTerm !== prev.shortTerm || this.props.longTerm !== prev.longTerm) {
-    //         this.props.fetchBudget(); 
-    //     }
-    // }
-    // componentWillUnmount(){
-    //     this.setState({mounted : false})
-    // }
-    
-
-    handleComponentDidMount(currentUser, categories, shortTerm, longTerm) {
         console.log('hi');
-        // console.log(this.state.currentShortTerm);
+        // console.log(currentUser);
+
         if (currentUser) {
             const monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
@@ -55,9 +44,8 @@ export class Home extends PureComponent {
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
                         <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?5:0}}>
-                            {/* Profile */}
-                            {/* TODO: profile modal */}
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Profile")}>
+
+                            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                                 <Image
                                     source={require('../../assets/Icons/profile.png')}
                                     style={{
@@ -69,11 +57,9 @@ export class Home extends PureComponent {
                                 />
                             </TouchableOpacity>
 
-                            {/* Display name */}
                             <Text style={styles.title3}>Hi, {currentUser.firstName}</Text>             
                                                             
-                            {/* Menu */}
-                            <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <Image 
                                     source={require('../../assets/Icons/menu.png')}
                                     resizeMode='contain'
@@ -88,7 +74,6 @@ export class Home extends PureComponent {
 
                         </View>
 
-                        {/* overview section */}
                         <View> 
                             <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                                 <View style={styles.titleContainer}>
@@ -109,7 +94,6 @@ export class Home extends PureComponent {
 
                             <ScrollView horizontal={true} >
 
-                                {/* remaining card */}
                                 <Pressable 
                                     style={({ pressed }) => [
                                         {
@@ -123,19 +107,19 @@ export class Home extends PureComponent {
                                     onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
                                 >
                                     <Text style={styles.subtitle2}>Remaining</Text>
-                                    {/* Short Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20}}>
                                             <Text style={styles.subtitle}>{m}:</Text>
                                         </View>
                                        
-                                       {/* TODO: Subtract numbers */}
+
                                         <View style={{backgroundColor: '#99A672', borderRadius: 20, marginRight: 5}}>
                                             <Text style={styles.number2}>$ {shortTerm[0]}</Text>
                                         </View>
                                     </View>
 
-                                    {/* Long Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
@@ -145,7 +129,7 @@ export class Home extends PureComponent {
                                         </View>
                                     </View>
 
-                                    {/* View Details */}
+
                                     <View style={styles.statusContainer}>
                                         <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
@@ -155,7 +139,7 @@ export class Home extends PureComponent {
                                     <Text style={styles.operation}> = </Text>
                                 </View>
 
-                                {/* budget card */}
+
                                 <Pressable 
                                     style={({ pressed }) => [
                                         {
@@ -166,10 +150,10 @@ export class Home extends PureComponent {
                                             margin:5
                                         }
                                     ]} 
-                                    onPress={()=>{this.props.navigation.navigate("Average Budget")}}
+                                    onPress={()=>{navigation.navigate("Average Budget")}}
                                 >
                                     <Text style={styles.subtitle2}>Budget</Text>
-                                    {/* Short Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20}}>
                                             <Text style={styles.subtitle}>{m}:</Text>
@@ -180,7 +164,7 @@ export class Home extends PureComponent {
                                         </View>
                                     </View>
 
-                                    {/* Long Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
@@ -190,7 +174,7 @@ export class Home extends PureComponent {
                                         </View>
                                     </View>
 
-                                    {/* View Details */}
+
                                     <View style={styles.statusContainer}>
                                         <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
@@ -200,8 +184,7 @@ export class Home extends PureComponent {
                                     <Text style={styles.operation}> — </Text>
                                 </View>
 
-                                {/* spending card */}
-                                {/* TODO: GET USER SPENDING */}
+
                                 <Pressable 
                                     style={({ pressed }) => [
                                         {
@@ -212,10 +195,10 @@ export class Home extends PureComponent {
                                             margin:5
                                         }
                                     ]} 
-                                    onPress={()=>{this.props.navigation.navigate("Spending Detail")}}
+                                    onPress={()=>{navigation.navigate("Spending Detail")}}
                                 >
                                     <Text style={styles.subtitle2}>Spending</Text>
-                                    {/* Short Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20}}>
                                             <Text style={styles.subtitle}>{m}:</Text>
@@ -226,7 +209,7 @@ export class Home extends PureComponent {
                                         </View>
                                     </View>
 
-                                    {/* Long Term */}
+
                                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
                                             <Text style={styles.subtitle}>{y}:</Text>
@@ -236,7 +219,7 @@ export class Home extends PureComponent {
                                         </View>
                                     </View>
 
-                                    {/* View Details */}
+
                                     <View style={styles.statusContainer}>
                                         <Text style={styles.viewDetailText}>View Details</Text> 
                                     </View>
@@ -246,7 +229,7 @@ export class Home extends PureComponent {
 
                         </View>
 
-                        {/* Budget Categories */}
+
                         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.smallTitle2}>Budget Categories</Text>  
@@ -263,7 +246,7 @@ export class Home extends PureComponent {
                                 />
                         </View>
 
-                        {/* Bar graph */}
+
                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5, paddingLeft: 5}}>
                             <CategoryBar data={usefulCategories}/>
                         </View>
@@ -273,20 +256,16 @@ export class Home extends PureComponent {
             );
         } else {
             return (
-                <SafeAreaView style={styles.homeContainer}>
-                </SafeAreaView>
+                <SafeAreaView style={styles.homeContainer}></SafeAreaView>
             );
         }
-    }
+    };
 
-    render() {
-        const { currentUser, categories, shortTerm, longTerm } = this.props;
+    return (
+        handleComponentDidMount()
+    );
+};
 
-        return(
-            this.handleComponentDidMount(currentUser, categories, shortTerm, longTerm)
-        );
-    }
-}
 
 // allow access to data in Home component
 const mapStateToProps = (store) => ({
