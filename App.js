@@ -8,7 +8,7 @@ import Login from './src/screens/Login';
 import OnboardingNavigation from './src/screens/onboarding/OnboardingNavigation';
 import HomeNavigation from './src/screens/main/HomeNavigation';
 import ForgotCred from './src/screens/ForgotCred';
-import theme from './src/assets/theme';
+import theme from './src/constants/theme';
 import { Provider } from 'react-redux';
 import * as Font from "expo-font";
 import store from './src/app/store';

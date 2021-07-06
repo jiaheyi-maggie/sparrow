@@ -1,9 +1,8 @@
 import React, { Component }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
 
-const Notifications = ({ navigation }) => {
+const Crypto = ({ navigation }) => {
 
     const handleComponentDidMount = () => {
         return (
@@ -11,7 +10,7 @@ const Notifications = ({ navigation }) => {
             <ScrollView>
             
                 {/* Display name */}
-                <Text style={styles.title}>Notifications</Text>
+                <Text style={styles.title}>My Crypto Wallet</Text>
             </ScrollView>
           </SafeAreaView>
         );
@@ -22,5 +21,4 @@ const Notifications = ({ navigation }) => {
     )
 };
 
-export default Notifications; 
-
+export default Crypto; 

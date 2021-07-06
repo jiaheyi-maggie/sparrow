@@ -81,7 +81,7 @@ const homeStyle = StyleSheet.create({
     container2:{
         backgroundColor: '#fff',
         flex: 1,
-        paddingTop: (Platform.OS === 'ios') ? 0: 50,
+        paddingTop: (Platform.OS === 'ios') ? 0: 40,
         padding: (Platform.OS === 'ios') ? 20: 10,
     },
     subtitle: {
@@ -363,7 +363,7 @@ const homeStyle = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 19,
-        marginHorizontal: Platform.OS === 'ios'? 10: 20
+        marginHorizontal: Platform.OS === 'ios'? 10: 15
     },
     cardContainer: {
         backgroundColor:'#FAA381',
