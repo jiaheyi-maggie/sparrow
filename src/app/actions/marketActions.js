@@ -8,14 +8,13 @@ export const GET_COIN_MARKET_BEGIN = 'GET_COIN_MARKET_BEGIN';
 export const GET_COIN_MARKET_SUCCESS = 'GET_COIN_MARKET_SUCCESS';
 export const GET_COIN_MARKET_FAILURE = 'GET_COIN_MARKET_FAILURE';
 
-// user information
-
+/* user information */
 // actions
 export const getHoldingsBegin = () => ({
     type: GET_HOLDINGS_BEGIN,
 })
 
-export  const getHoldingsSuccess = (myHoldings) => ({
+export const getHoldingsSuccess = (myHoldings) => ({
     type: GET_HOLDINGS_SUCCESS,
     payload: {myHoldings}
 })
@@ -36,6 +35,7 @@ export function getHoldings(holdings=[], currency="usd", orderBy="market_cap_des
 
         let apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&sparkline=${sparkline}&price_change_percentage=${priceChangePerc}&ids=${ids}`
 
+        // request remote image in server
         return axios({
             url: apiUrl,
             method:'GET',
@@ -43,8 +43,11 @@ export function getHoldings(holdings=[], currency="usd", orderBy="market_cap_des
                 Accept: "application/json"
             }
         }).then((response) => {
+            console.log("get holdings")
+            console.log(response)
             if (response.status == 200) {
                 // success call
+                // customize my holdings structure
                 let myHoldings = response.data.map((item) => {
                     // retrieve current holdings
                     let coin = holdings.find(a => a.id == item.id)
@@ -81,4 +84,43 @@ export function getHoldings(holdings=[], currency="usd", orderBy="market_cap_des
 }
 
 
-//coin market
+/* coin market */
+
+export const getCoinMarketBegin = () => ({
+    type: GET_COIN_MARKET_BEGIN,
+})
+
+export  const getCoinMarketSuccess = (coins) => ({
+    type: GET_COIN_MARKET_SUCCESS,
+    payload: {coins}
+})
+
+export const getCoinMarketFailure = (error) => ({
+    type: GET_COIN_MARKET_FAILURE,
+    payload: {error}
+})
+
+export function getCoinMarket(currency='usd', orderBy='market_cap_desc', perPage=10, page=1, sparkline=true, priceChangePerc='7d') {
+    return dispatch => {
+        dispatch(getCoinMarketBegin())
+
+        let apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&sparkline=${sparkline}&price_change_percentage=${priceChangePerc}`
+
+        return axios({
+            url: apiUrl,
+            method: 'GET',
+            header: {
+                Accept: 'application/json'
+            }
+        }).then((response) => {
+            if (response.status == 200) {
+                dispatch(getCoinMarketSuccess(response.data))
+            } else (
+                dispatch(getCoinMarketFailure(response.data))
+            )
+        }).catch((error) => {
+            dispatch(getCoinMarketFailure(error))
+        })
+    }
+
+}
