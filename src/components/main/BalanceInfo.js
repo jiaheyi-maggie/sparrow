@@ -5,12 +5,12 @@ import { SIZES, COLORS, FONTS } from '../../constants/theme';
 const BalanceInfo = ({ title, displayAmount, currency, changePct }) => {
     return (
         <View>
-            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{title}</Text>
+            <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{title}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>$</Text>
                 <Text style={{...FONTS.h2, color: COLORS.white, marginHorizontal: 5}}>{displayAmount}</Text>
-                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{currency}</Text>
+                <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{currency}</Text>
             </View>
 
             <View style={{flexDirection: 'row', alignItems:'center'}}>

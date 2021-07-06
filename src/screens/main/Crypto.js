@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
 import BalanceInfo from '../../components/main/BalanceInfo';
 import { COLORS, FONTS } from '../../constants/theme';
+// import { ChartDot, ChartPath, ChartPathProvider, ChartXLabel, ChartYLabel, monotoneCubicInterpolation } from '@rainbow-me/animated-charts';
 import data from '../../constants/dummy';
-
 import styles from '../../styles/homeStyle';
 
 const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) => { 
@@ -46,7 +46,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const handleComponentDidMount = () => {
         return (
-            <SafeAreaView style={[styles.container2, {backgroundColor:'black'}]}>
+            <SafeAreaView style={[styles.container2, {backgroundColor:COLORS.primary}]}>
                 {/* My Wallet */}
                 {renderWalletInfoSection()}
                 <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
@@ -56,6 +56,8 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 </View>
 
                 {/* Chart */}
+                
+                
 
                 {/* Top currency list */}
 
