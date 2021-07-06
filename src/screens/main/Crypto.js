@@ -4,6 +4,7 @@ import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
 import BalanceInfo from '../../components/main/BalanceInfo';
+import { COLORS, FONTS } from '../../constants/theme';
 import data from '../../constants/dummy';
 
 import styles from '../../styles/homeStyle';
@@ -20,13 +21,14 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const renderWalletInfoSection = () => {
         return (
-            <View style={{borderBottomLeftRadius:25, borderBottomRightRadius:25,}}>
-                <Text style={[styles.title, {color: '#FFF4CB'}]}>My Crypto Wallet</Text>  
+            <View>
+                <Text style={{color: '#FFF4CB', ...FONTS.h2}}>My Crypto Wallet</Text>  
                 {/* Todo: change dummy data */}
                 <BalanceInfo 
-                    title="Your Crypto Wallet"
-                    displayAmount="45000"
-                    changePct="2.30"
+                    title="Current Balance"
+                    currency="USD"
+                    displayAmount={45000}
+                    changePct={2.30}
                 />
             </View>
         )

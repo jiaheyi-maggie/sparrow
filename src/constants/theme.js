@@ -12,6 +12,7 @@ export const COLORS = {
   bone: "#D7CEB2",
   red: "#E76F51",
   black: "#000000",
+  lightGreen: '#90ee90',
   gray: "#212125",
   gray1: "#1f1f1f",
   lightGray: "#3B3B3B",
@@ -48,6 +49,7 @@ export const SIZES = {
 };
 
 export const FONTS = {
+  h1: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h1, lineHeight: 30 },
   h2: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h2, lineHeight: 30 },
   h3: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h3, lineHeight: 22 },
   h4: { fontFamily: "Ubuntu-Medium", fontSize: SIZES.h4, lineHeight: 22 },

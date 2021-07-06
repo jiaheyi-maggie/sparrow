@@ -1,16 +1,17 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { Platform } from 'react-native';
+import { FONTS, COLOR } from '../constants/theme';
 
 
 const homeStyle = StyleSheet.create({
     title: {
+        ...FONTS.h1,
         color: '#264653',
         fontWeight: 'bold',
         textAlign: 'left',
         fontSize: 23,
         marginHorizontal: 10,
         marginTop: 5,
-        fontFamily: 'Ubuntu-Medium'
     },
     title2: {
         color: '#264653',
