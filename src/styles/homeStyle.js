@@ -10,6 +10,7 @@ const homeStyle = StyleSheet.create({
         fontSize: 23,
         marginHorizontal: 10,
         marginTop: 5,
+        fontFamily: 'Ubuntu-Medium'
     },
     title2: {
         color: '#264653',
@@ -17,7 +18,8 @@ const homeStyle = StyleSheet.create({
         textAlign: 'left',
         fontSize: 23,
         marginTop: 5,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+
     },
     title3: {
         color: '#fff',

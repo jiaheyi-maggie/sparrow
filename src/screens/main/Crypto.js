@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
+import BalanceInfo from '../../components/main/BalanceInfo';
 import data from '../../constants/dummy';
 
 import styles from '../../styles/homeStyle';
@@ -18,26 +18,31 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
             },[])
     )
 
+    const renderWalletInfoSection = () => {
+        return (
+            <View style={{borderBottomLeftRadius:25, borderBottomRightRadius:25,}}>
+                <Text style={[styles.title, {color: '#FFF4CB'}]}>My Crypto Wallet</Text>  
+                {/* Todo: change dummy data */}
+                <BalanceInfo 
+                    title="Your Crypto Wallet"
+                    displayAmount="45000"
+                    changePct="2.30"
+                />
+            </View>
+        )
+    }
+
     const handleComponentDidMount = () => {
         return (
-          <SafeAreaView style={styles.container2}>
-                <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center'}}>
-                    <Text style={styles.title}>My Crypto Wallet</Text>         
-                                                    
-                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                        <Image 
-                            source={require('../../assets/Icons/menu.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 23,
-                                height: 23,
-                                tintColor: '#264653',
-                                // marginRight: 8
-                            }}
-                        />
-                    </TouchableOpacity>
-                </View>
-          </SafeAreaView>
+            <SafeAreaView style={[styles.container2, {backgroundColor:'black'}]}>
+                {/* My Wallet */}
+                {renderWalletInfoSection()}
+
+                {/* Chart */}
+
+                {/* Top currency list */}
+
+            </SafeAreaView>
         );
     };
 

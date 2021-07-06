@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 import { Image, SafeAreaView } from 'react-native';
 import { NavigationContainer, useNavigationState } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -28,16 +30,15 @@ if (firebase.apps.length === 0) {
 const App = () => {
   const [loaded, setLoaded] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [fontLoaded, setFontLoaded] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(useFonts({
+    "Ubuntu-Medium": require("./src/assets/fonts/Ubuntu/Ubuntu-Medium.ttf"),
+    "Ubuntu-Light": require("./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf"),
+    "Ubuntu-Bold": require("./src/assets/fonts/Ubuntu/Ubuntu-Bold.ttf")
+  }));
 
-  const fetchFonts = () => {
-    return Font.loadAsync({
-      "ubuntu-medium": require("./src/assets/fonts/Ubuntu/Ubuntu-Medium.ttf"),
-      "ubuntu-light": require("./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf"),
-      "ubuntu-bold": require("./src/assets/fonts/Ubuntu/Ubuntu-Bold.ttf")
-    });
-  };
-
+  if (!fontLoaded) {
+    return <AppLoading />;
+  }
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
