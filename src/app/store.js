@@ -5,13 +5,15 @@ import longTerm from "./reducers/longTerm";
 import shortTerm from "./reducers/shortTerm";
 import user from "./reducers/user";
 import averagePeriod from "./reducers/averagePeriod";
+import marketReducer from "./reducers/marketReducer";
 
 const rootReducer = combineReducers({
     reducer,
     longTerm,
     shortTerm,
     user,
-    averagePeriod
+    averagePeriod,
+    marketReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
