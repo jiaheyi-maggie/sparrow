@@ -66,7 +66,7 @@ const HomeTab = () => {
                             />
                             <Text style={{
                                     color: focused ? '#E76F51' : '#748c94',
-                                    fontSize: 15
+                                    fontSize: 12
                                 }}>
                                     Dashboard
                             </Text> 
@@ -90,7 +90,7 @@ const HomeTab = () => {
                             />
                             <Text style={{
                                     color: focused ? '#E76F51' : '#748c94',
-                                    fontSize: 15
+                                    fontSize: 12
                                 }}>
                                     Accounts
                             </Text> 
@@ -114,7 +114,7 @@ const HomeTab = () => {
                             />
                             <Text style={{
                                     color: focused ?  '#E76F51' : '#748c94',
-                                    fontSize: 15
+                                    fontSize: 12
                                 }}>
                                     Crypto
                             </Text> 
@@ -138,7 +138,7 @@ const HomeTab = () => {
                             />
                             <Text style={{
                                     color: focused ?  '#E76F51' : '#748c94',
-                                    fontSize: 15
+                                    fontSize: 12
                                 }}>
                                     Notification
                             </Text> 

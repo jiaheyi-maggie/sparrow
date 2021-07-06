@@ -38,11 +38,22 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
         )
     }
 
+    const handleAddBalance = () => {
+        return (
+            console.log("add balance please")
+        )
+    }
+
     const handleComponentDidMount = () => {
         return (
             <SafeAreaView style={[styles.container2, {backgroundColor:'black'}]}>
                 {/* My Wallet */}
                 {renderWalletInfoSection()}
+                <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
+                    <TouchableOpacity onPress={() => handleAddBalance()}>
+                        <Text style={{...FONTS.h3, color: COLORS.primary}}>Add Amount to Budget</Text>
+                    </TouchableOpacity>   
+                </View>
 
                 {/* Chart */}
 
