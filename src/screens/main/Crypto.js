@@ -21,11 +21,22 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
     const handleComponentDidMount = () => {
         return (
           <SafeAreaView style={styles.container2}>
-            <ScrollView>
-            
-                {/* Display name */}
-                <Text style={styles.title}>My Crypto Wallet</Text>
-            </ScrollView>
+                <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center'}}>
+                    <Text style={styles.title}>My Crypto Wallet</Text>         
+                                                    
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                        <Image 
+                            source={require('../../assets/Icons/menu.png')}
+                            resizeMode='contain'
+                            style={{
+                                width: 23,
+                                height: 23,
+                                tintColor: '#264653',
+                                // marginRight: 8
+                            }}
+                        />
+                    </TouchableOpacity>
+                </View>
           </SafeAreaView>
         );
     };

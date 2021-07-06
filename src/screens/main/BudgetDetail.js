@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 import PieChart from '../../components/main/PieChart';
@@ -9,97 +9,85 @@ import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
 
+const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeriod }) => {
 
-export class BudgetDetail extends Component {
-
-    componentDidMount() {
-        this.props.fetchBudget();
-    };
-
-    // componentDidUpdate(prevProps) {
-    //     if (this.props.categories !== prevProps.categories) {
-    //         this.props.fetchBudget(); 
-    //     }
-    // };
-
-    roundNumbers(num) {
+    const roundNumbers = (num) => {
         return (Math.round(num * 100) / 100).toFixed(2);
     };
 
-    calculateAverage(period, value, selectedPeriod) {
+    const calculateAverage = (period, value, selectedPeriod) => {
         if (period === selectedPeriod || selectedPeriod === null) {
-            return this.roundNumbers(value);
+            return roundNumbers(value);
         }
         switch (period) {
             case 'year':
                 switch (selectedPeriod) {
                     case 'quarter':
-                        return this.roundNumbers(value / 4);
+                        return roundNumbers(value / 4);
                     case 'month':
-                        return this.roundNumbers(value / 12);
+                        return roundNumbers(value / 12);
                     case 'week':
-                        return this.roundNumbers(value / 52); 
+                        return roundNumbers(value / 52); 
                     case 'day':
-                        return this.roundNumbers(value / 365);
+                        return roundNumbers(value / 365);
                 }
             case 'quarter':
                 switch (selectedPeriod) {
                     case 'year':
-                        return this.roundNumbers(value * 4);
+                        return roundNumbers(value * 4);
                     case 'month':
-                        return this.roundNumbers(value / 4); 
+                        return roundNumbers(value / 4); 
                     case 'week':
-                        return this.roundNumbers(value / 12);
+                        return roundNumbers(value / 12);
                     case 'day':
-                        return this.roundNumbers(value / 84);
+                        return roundNumbers(value / 84);
                 }
             case 'month':
                 switch (selectedPeriod) {
                     case 'year':
-                        return this.roundNumbers(value * 12);
+                        return roundNumbers(value * 12);
                     case 'quarter':
-                        return this.roundNumbers(value * 3);
+                        return roundNumbers(value * 3);
                     case 'week':
-                        return this.roundNumbers(value / 4);
+                        return roundNumbers(value / 4);
                     case 'day':
-                        return this.roundNumbers(value / 30); 
+                        return roundNumbers(value / 30); 
                 }
             case 'week':
                 switch (selectedPeriod) {
                     case 'year':
-                        return this.roundNumbers(value * 52);
+                        return roundNumbers(value * 52);
                     case 'quarter':
-                        return this.roundNumbers(value * 12);
+                        return roundNumbers(value * 12);
                     case 'month':
-                        return this.roundNumbers(value * 4);
+                        return roundNumbers(value * 4);
                     case 'day':
-                        return this.roundNumbers(value / 7); 
+                        return roundNumbers(value / 7); 
                 }
             case 'day': 
                 switch (selectedPeriod) {
                     case 'year':
-                        return this.roundNumbers(value * 365);
+                        return roundNumbers(value * 365);
                     case 'quarter':
-                        return this.roundNumbers(value * 84);
+                        return roundNumbers(value * 84);
                     case 'month':
-                        return this.roundNumbers(value * 30); 
+                        return roundNumbers(value * 30); 
                     case 'week':
-                        return this.roundNumbers(value * 7);
+                        return roundNumbers(value * 7);
                 }
         }
     };
 
-    handleTimeSelectionRendering(period, value) {
-        if (this.props.averagePeriod === null){
+    const handleTimeSelectionRendering = (period, value) => {
+        if (averagePeriod === null){
             return value; 
         } else {
-           return this.calculateAverage(period, value, this.props.averagePeriod);
+           return calculateAverage(period, value, averagePeriod);
         }
     };
 
-
-    handleComponentDidMount(shortTerm, longTerm) {
-        var usefulCategories =  this.props.categories.filter((obj) => {
+    const handleComponentDidMount = () => {
+        var usefulCategories =  categories.filter((obj) => {
             return obj.sum !== 0;
         });
 
@@ -116,7 +104,7 @@ export class BudgetDetail extends Component {
                     }}>
 
                     {/* go back */}
-                    <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.goBack()}>
+                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                         <Image 
                             source={require('../../assets/Icons/back.png')}
                             resizeMode='contain'
@@ -124,7 +112,6 @@ export class BudgetDetail extends Component {
                                 width: 20,
                                 height: 20,
                                 tintColor: '#fff',
-                                // marginLeft: 5,
                             }}
                         />
                     </TouchableOpacity>
@@ -134,7 +121,7 @@ export class BudgetDetail extends Component {
 
 
                     {/* Menu */}
-                    <TouchableOpacity  style={styles.menuButton} onPress={() => this.props.navigation.openDrawer()}>
+                    <TouchableOpacity  style={styles.menuButton} onPress={() => navigation.openDrawer()}>
                         <Image 
                             source={require('../../assets/Icons/menu.png')}
                             resizeMode='contain'
@@ -142,7 +129,6 @@ export class BudgetDetail extends Component {
                                 width: 20,
                                 height: 20,
                                 tintColor: '#fff',
-                                // marginRight: 10
                             }}
                         />
                     </TouchableOpacity>
@@ -162,7 +148,7 @@ export class BudgetDetail extends Component {
                         <Text style={styles.cardText}>
                             Recurring: 
                         </Text>
-                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
                     </View>
 
                     {/* Non-recurring */}
@@ -170,25 +156,25 @@ export class BudgetDetail extends Component {
                         <Text style={styles.cardText}>
                             Non-Recurring:
                         </Text>
-                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {this.handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
+                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
                     </View>
                 </View>
 
                 {/* Pie chart for budget */}
-                <Text style={styles.smallTitle}> Categories</Text>
+                <Text style={styles.smallTitle}>Categories</Text>
                 <PieChart data={usefulCategories}/>
 
                 {/* Category details */}
                 <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                     {/* Delete Categories Button */}
                     <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
                             <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
                         </TouchableOpacity>
                     </View>
                     {/* Add Categories Button */}
                     <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
                             <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
                         </TouchableOpacity>
                     </View>
@@ -202,7 +188,7 @@ export class BudgetDetail extends Component {
                         return (
                             <View style={styles.listContainer}>
                                 <Text style={styles.listText}>{item.title}</Text> 
-                                <Text style={styles.listText2}>$ {this.handleTimeSelectionRendering(item.period,item.value)}</Text>
+                                <Text style={styles.listText2}>$ {handleTimeSelectionRendering(item.period,item.value)}</Text>
                             </View>
                         );
                     }}
@@ -215,18 +201,14 @@ export class BudgetDetail extends Component {
                 </ScrollView>
             </SafeAreaView>
         );
-    }
+    };
 
-    render() {
-        const { shortTerm, longTerm } = this.props;
+    return (
+        handleComponentDidMount()
+    );
 
-        return(
-            this.handleComponentDidMount(shortTerm, longTerm)
-        );
-    }
 }
 
-// allow access to data in Home component
 const mapStateToProps = (store) => ({
     categories: store.user.categories,
     longTerm: store.user.longTerm,
@@ -234,7 +216,6 @@ const mapStateToProps = (store) => ({
     averagePeriod: store.averagePeriod.averagePeriod
 });
 
-// bind component to redux
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchBudget, addBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(BudgetDetail));

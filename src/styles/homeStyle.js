@@ -137,7 +137,7 @@ const homeStyle = StyleSheet.create({
         padding: 12, 
         borderRadius: 15, 
         justifyContent: 'space-between',
-        marginHorizontal: 20
+        marginHorizontal: Platform.OS ==='android' ? 0 : 20
     },
     listText: {
         fontSize: 18,

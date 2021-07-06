@@ -1,4 +1,4 @@
-import React, { Component, PureComponent, useState, useEffect, useCallback }  from 'react';
+import React, { useState, useEffect, useCallback }  from 'react';
 import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Pressable, Image, Platform } from 'react-native';
 import { fetchUser } from '../../app/actions/fetchUser';
 import { fetchBudget } from '../../app/actions/fetchBudget';
@@ -9,22 +9,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
-import { useFocusEffect } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux';
-import store from '../../app/store';
 
 
 const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, longTerm, shortTerm }) => {
 
     useEffect(() => {
+        console.log('hi');
         fetchBudget();
         fetchUser();
     }, [])
 
     const handleComponentDidMount = () =>  {
-
-        console.log('hi');
-        // console.log(currentUser);
+        // console.log('render');
 
         if (currentUser) {
             const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -43,7 +39,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
-                        <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?5:0}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?3:0}}>
 
                             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                                 <Image
@@ -275,7 +271,7 @@ const mapStateToProps = (store) => ({
     shortTerm: store.user.shortTerm
 });
 
-// // bind component to redux
+// bind component to redux
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(withNavigation(Home));
