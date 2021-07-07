@@ -8,13 +8,15 @@
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2A94AF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "userInterfaceStyle": "automatic",
     "assetBundlePatterns": [
-      "**/*"
+      "**/*",
+      "assets/images/*"
     ],
     "ios": {
       "supportsTablet": true,

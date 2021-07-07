@@ -40,7 +40,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
             return (
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
-                        <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?3:0}}>
+                        <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?5:0}}>
 
                             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                                 <Image

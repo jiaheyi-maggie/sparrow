@@ -17,4 +17,4 @@ web-build/
 src/config/firebase/keys.js
 
 # Plaid token
-src/config/plaidIndex.js
+src/.env

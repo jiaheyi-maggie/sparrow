@@ -1,25 +1,26 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, Platform, SafeAreaView } from 'react-native';
+import React, { Component }  from 'react';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import { COLORS, FONTS } from '../../constants/theme';
 import styles from '../../styles/homeStyle';
 
-const BankAccounts = ({ navigation }) => {
+const Notifications = ({ navigation }) => {
+
+    const handleComponentDidMount = () => {
+        return (
+          <SafeAreaView style={styles.container2}>
+            <ScrollView>
+            
+                {/* Display name */}
+                <Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
+            </ScrollView>
+          </SafeAreaView>
+        );
+    };
 
     return (
-        <SafeAreaView style={styles.container}>
-        
-            {/* Display name */}
-            <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10}}>
-                <TouchableOpacity style={{backgroundColor: '#7E9181', borderRadius: Platform.OS === 'ios' ?10:10}}>
-                    <Text style={[styles.cardText,{fontSize: 40}]}>+</Text>
-                </TouchableOpacity>
-                <Text style={styles.title}>Add Bank Accounts</Text>
-            </View>
-            
-
-        </SafeAreaView>
-
-    );
-
+        handleComponentDidMount()
+    )
 };
 
-export default BankAccounts; 
+export default Notifications; 

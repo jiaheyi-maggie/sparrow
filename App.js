@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -15,6 +14,7 @@ import { Provider } from 'react-redux';
 import store from './src/app/store';
 import firebaseConfig from './src/config/firebase/keys';
 import * as firebase from 'firebase';
+import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess } from 'react-plaid-link';
 
 // initialize navigation 
 const Stack = createStackNavigator();
@@ -38,7 +38,20 @@ const App = () => {
     return <AppLoading />;
   }
 
+  const [linkToken, setLinkToken] = useState(null);
+
+  const generateToken = async () => {
+    const response = await fetch('/api/create_link_token', {
+      method: 'POST',
+    });
+    const data = await response.json();
+    setLinkToken(data.link_token);
+  };
+
   useEffect(() => {
+    // require('dotenv').config();
+    generateToken();
+
     firebase.auth().onAuthStateChanged((user) => {
       if(!user) {
         setLoggedIn(false);
@@ -48,7 +61,6 @@ const App = () => {
         setLoggedIn(true);
       }
     })
-  // }, [loaded, loggedIn]);
     }, []);
 
   const handleAppLoading = () => {
