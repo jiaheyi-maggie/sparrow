@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text, SafeAreaView, View, TouchableOpacity, Image, FlatList } from 'react-native';
-import { VictoryChart, VictoryLine, VictoryTheme } from 'victory-chart';
-import CategoryBar from '../../components/main/CategoryBar';
 import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
 import BalanceInfo from '../../components/main/BalanceInfo';
@@ -62,7 +60,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
                 {/* Chart */}
                 <View>
-                    <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : coins[0]?.sparkline_in_7d?.price} changePct={percentageChange} title={selectedCoin.name}/>
+                    <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : myHoldings.sparkline_in_7d} changePct={selectedCoin ? selectedCoin.price_change_percentage_7d_in_currency : percentageChange} title={selectedCoin ? selectedCoin.name : "Total Asset"}/>
                 </View>
                 
                 {/* Top currency list */}

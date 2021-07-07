@@ -7,7 +7,7 @@ const CryptoChart = ({ data, changePct, title }) =>  {
         <VictoryChart height={320} width={410}
             // domainPadding={{x: 5}}
             alignment="start"
-            containerComponent={<VictoryZoomContainer />}
+            // containerComponent={<VictoryZoomContainer />}
             >
 
             <VictoryLabel 
@@ -22,8 +22,9 @@ const CryptoChart = ({ data, changePct, title }) =>  {
                 style={{
                     axis: { stroke: "none" },
                     tickLabels: { fill: "none" },
-                    grid: { stroke: "gray" }
+                    grid: { stroke: "gray" },
                 }}
+                tickValues={[0, 24, 48, 72, 96, 120, 144, 168]}
             />
             
             <VictoryAxis dependentAxis
