@@ -1,17 +1,33 @@
+const plaid = require('plaid');
+const express = require('express');
+const app = express(); 
+
+app.use(express.json());
+
+const client = new plaid.Client ({
+	clientID: '60e452c919a2660010f8bcc1',
+	secret: 'b5e1e0bc4c95d7c053b38f7c17db50',
+	env: plaid.environments.sandbox
+});
+
+
+
+
+
 //canonical file: might not be necessary
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from './src/app/store';
-import { Provider } from 'react-redux';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+// import App from './App';
+// import store from './src/app/store';
+// import { Provider } from 'react-redux';
 
-ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</React.StrictMode>,
-	document.getElementById('root')
-);
+// ReactDOM.render(
+// 	<React.StrictMode>
+// 		<Provider store={store}>
+// 			<App />
+// 		</Provider>
+// 	</React.StrictMode>,
+// 	document.getElementById('root')
+// );
