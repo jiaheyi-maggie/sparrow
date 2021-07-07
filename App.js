@@ -14,7 +14,8 @@ import { Provider } from 'react-redux';
 import store from './src/app/store';
 import firebaseConfig from './src/config/firebase/keys';
 import * as firebase from 'firebase';
-import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess } from 'react-plaid-link';
+import PlaidIndex from './src/config/plaid';
+import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLink } from 'react-plaid-link';
 
 // initialize navigation 
 const Stack = createStackNavigator();
@@ -40,16 +41,34 @@ const App = () => {
 
   const [linkToken, setLinkToken] = useState(null);
 
+  const plaid = require('plaid');
+
+  const client = new plaid.Client({
+    clientID: PlaidIndex.PLAID_CLIENT_ID,
+    secret: PlaidIndex.PLAID_SECRET,
+    env: plaid.environments.sandbox,
+  });
+
+
   const generateToken = async () => {
-    const response = await fetch('https://sandbox.plaid.com', {
-      method: 'POST',
-    });
-    const data = await response.json();
-    setLinkToken(data.link_token);
+    const response = await client.createLinkToken({
+      user: {
+        client_user_id: '1234',
+      },
+      client_name: 'Sparrow',
+      products: ['auth', 'transactions'],
+      country_codes: ['US'],
+      language: 'en',
+    }).catch((error) => {
+      console.log(error);
+    })
+
+    // TODO: only generates when refreshed
+    const linkToken = response.link_token;
+    setLinkToken(linkToken);
   };
 
   useEffect(() => {
-    // require('dotenv').config();
     generateToken();
     console.log(linkToken);
 

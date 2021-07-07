@@ -43,7 +43,8 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const handleAddBalance = () => {
         return (
-            console.log("add balance please")
+            // console.log("add balance please")
+            console.log(process.env.PLAID_CLIENT_ID)
         )
     }
 
