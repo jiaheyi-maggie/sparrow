@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import { VictoryChart, VictoryLine, VictoryTheme } from 'victory-chart';
 import CategoryBar from '../../components/main/CategoryBar';
 import { connect } from 'react-redux';
@@ -29,7 +29,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
     const renderWalletInfoSection = () => {
         return (
             <View>
-                <Text style={{color: '#FFF4CB', ...FONTS.h2}}>My Crypto Wallet</Text>  
+                <Text style={{color: '#FFF4CB', ...FONTS.h2, marginBottom: 5}}>My Crypto Wallet</Text>  
                 {/* Todo: change dummy data */}
                 <BalanceInfo 
                     title="Current Balance"
@@ -59,12 +59,56 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 </View>
 
                 {/* Chart */}
-                <CryptoChart data={coins[0].sparkline_in_7d.price}/>
+                <View>
+                    <CryptoChart data={coins[0]?.sparkline_in_7d?.price} changePct={percentageChange}/>
+                </View>
                 
-                
-                
-
                 {/* Top currency list */}
+                <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5, textDecorationLine:'underline'}}>Top Cryptocurrencies</Text>
+                <FlatList
+                    data={coins}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => {
+
+                        let priceColor = (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red;
+
+                        return(
+                            <TouchableOpacity style={{flexDirection: 'row', height: 55, alignItems: 'center', justifyContent: 'space-between'}}>
+                                <View style={{flexDirection:'row', alignItems: 'center'}}>
+                                    <Image 
+                                        source={{uri: item.image}}
+                                        style={{width:20, height: 20, marginHorizontal: 10}}
+                                    />
+                                    <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{item.name}</Text>
+                                </View>
+
+                                <View style={{marginRight: 10}}>
+                                    <Text style={{...FONTS.h4, color: COLORS.white, textAlign: 'right'}}>{item.current_price} USD</Text>
+                                    <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                                        {
+                                            item.price_change_percentage_7d_in_currency != 0 && 
+                                            <Image
+                                                source={require('../../assets/Icons/up-arrow.png')}
+                                                style={{
+                                                    width: 10,
+                                                    height: 10,
+                                                    alignSelf: 'center',
+                                                    tintColor: (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red,
+                                                    transform: (item.price_change_percentage_7d_in_currency > 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
+                                                }}
+                                            />
+                                        }
+                                        <Text style={{alignSelf:'center',color: (item.price_change_percentage_7d_in_currency > 0)? COLORS.lightGreen : COLORS.red,marginHorizontal: 2}}>
+                                            {item.price_change_percentage_7d_in_currency.toFixed(2)}%
+                                        </Text>
+                                    </View>
+                                    
+                                </View>
+
+                            </TouchableOpacity>
+                        );
+                    }}
+                />
 
             </SafeAreaView>
         );

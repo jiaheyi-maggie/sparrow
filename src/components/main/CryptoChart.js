@@ -4,12 +4,12 @@ import { COLORS } from '../../constants/theme';
 
 const CryptoChart = ({ data, changePct }) =>  {
     return (
-        <VictoryChart height={350} width={410}
-            domainPadding={{x: 5}}
+        <VictoryChart height={320} width={410}
+            // domainPadding={{x: 5}}
             alignment="start"
             containerComponent={<VictoryZoomContainer />}
             >
-                
+
             <VictoryAxis
                 style={{
                     axis: { stroke: "none" },
