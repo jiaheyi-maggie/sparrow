@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text, SafeAreaView, View, TouchableOpacity, Image, FlatList } from 'react-native';
 import { VictoryChart, VictoryLine, VictoryTheme } from 'victory-chart';
@@ -13,6 +13,8 @@ import styles from '../../styles/homeStyle';
 import CryptoChart from '../../components/main/CryptoChart';
 
 const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) => { 
+
+    const [selectedCoin, setSelectedCoin] = useState(null);
 
     useFocusEffect(
         useCallback(
@@ -60,7 +62,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
                 {/* Chart */}
                 <View>
-                    <CryptoChart data={coins[0]?.sparkline_in_7d?.price} changePct={percentageChange}/>
+                    <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : coins[0]?.sparkline_in_7d?.price} changePct={percentageChange} title={selectedCoin.name}/>
                 </View>
                 
                 {/* Top currency list */}
@@ -73,11 +75,15 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                         let priceColor = (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red;
 
                         return(
-                            <TouchableOpacity style={{flexDirection: 'row', height: 55, alignItems: 'center', justifyContent: 'space-between'}}>
+                            <View>
+                            <TouchableOpacity 
+                                style={{flexDirection: 'row', height: 55, alignItems: 'center', justifyContent: 'space-between'}}
+                                onPress={() => setSelectedCoin(item)}
+                                >
                                 <View style={{flexDirection:'row', alignItems: 'center'}}>
                                     <Image 
                                         source={{uri: item.image}}
-                                        style={{width:20, height: 20, marginHorizontal: 10}}
+                                        style={{width:22, height: 22, marginHorizontal: 10}}
                                     />
                                     <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{item.name}</Text>
                                 </View>
@@ -93,19 +99,20 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                                                     width: 10,
                                                     height: 10,
                                                     alignSelf: 'center',
-                                                    tintColor: (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red,
+                                                    tintColor: priceColor,
                                                     transform: (item.price_change_percentage_7d_in_currency > 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
                                                 }}
                                             />
                                         }
-                                        <Text style={{alignSelf:'center',color: (item.price_change_percentage_7d_in_currency > 0)? COLORS.lightGreen : COLORS.red,marginHorizontal: 2}}>
+                                        <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
                                             {item.price_change_percentage_7d_in_currency.toFixed(2)}%
                                         </Text>
                                     </View>
-                                    
                                 </View>
 
                             </TouchableOpacity>
+                            <View style={{borderBottomColor: COLORS.lightGray3,borderBottomWidth: 1, }}/>
+                            </View>
                         );
                     }}
                 />

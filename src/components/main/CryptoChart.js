@@ -1,14 +1,22 @@
 import React from 'react';
 import { VictoryLabel, VictoryChart, VictoryZoomContainer, VictoryAxis, VictoryBar, VictoryTheme, VictoryLine  } from 'victory-native';
-import { COLORS } from '../../constants/theme';
+import { COLORS, FONTS } from '../../constants/theme';
 
-const CryptoChart = ({ data, changePct }) =>  {
+const CryptoChart = ({ data, changePct, title }) =>  {
     return (
         <VictoryChart height={320} width={410}
             // domainPadding={{x: 5}}
             alignment="start"
             containerComponent={<VictoryZoomContainer />}
             >
+
+            <VictoryLabel 
+                text={title}
+                x={190}
+                y={25}
+                textAnchor="middle"
+                style={{ ...FONTS.h3, fill: '#7E9181'}}
+            />
 
             <VictoryAxis
                 style={{
@@ -28,7 +36,14 @@ const CryptoChart = ({ data, changePct }) =>  {
                 style={{
                     data: { stroke: (changePct > 0) ? COLORS.lightGreen: COLORS.red }
                 }}
+            />
 
+            <VictoryLabel 
+                text="7-day period"
+                x={190}
+                y={290}
+                textAnchor="middle"
+                style={{ ...FONTS.h3, fill: '#7E9181'}}
             />
         </VictoryChart>
     );
