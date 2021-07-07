@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
   firebase.firestore().settings({ experimentalForceLongPolling: true });
-} 
+}
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +41,7 @@ const App = () => {
   const [linkToken, setLinkToken] = useState(null);
 
   const generateToken = async () => {
-    const response = await fetch('/api/create_link_token', {
+    const response = await fetch('https://sandbox.plaid.com', {
       method: 'POST',
     });
     const data = await response.json();
@@ -51,6 +51,7 @@ const App = () => {
   useEffect(() => {
     // require('dotenv').config();
     generateToken();
+    console.log(linkToken);
 
     firebase.auth().onAuthStateChanged((user) => {
       if(!user) {
