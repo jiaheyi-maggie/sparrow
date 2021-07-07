@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
+import { VictoryChart, VictoryLine, VictoryTheme } from 'victory-chart';
+import CategoryBar from '../../components/main/CategoryBar';
 import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
 import BalanceInfo from '../../components/main/BalanceInfo';
@@ -8,6 +10,7 @@ import { COLORS, FONTS } from '../../constants/theme';
 // import { ChartDot, ChartPath, ChartPathProvider, ChartXLabel, ChartYLabel, monotoneCubicInterpolation } from '@rainbow-me/animated-charts';
 import data from '../../constants/dummy';
 import styles from '../../styles/homeStyle';
+import CryptoChart from '../../components/main/CryptoChart';
 
 const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) => { 
 
@@ -56,6 +59,8 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 </View>
 
                 {/* Chart */}
+                <CryptoChart data={coins[0].sparkline_in_7d.price}/>
+                
                 
                 
 
