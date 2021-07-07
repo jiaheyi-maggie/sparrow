@@ -7,6 +7,7 @@ import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
 import * as Google from 'expo-google-app-auth';
+import { COLORS, FONTS } from '../constants/theme';
 // import { withNavigation } from 'react-navigation';
 
 export default class Login extends Component {
@@ -60,10 +61,12 @@ export default class Login extends Component {
 
             if (type === 'success') {
                 // use google rest api
-                navigation.navigate('Home');
+                this.props.navigation.navigate('Home');
+            } else {
+                this.setState({error: error})
             }
         } catch (error) {
-            console.log("google signin unsuccessful");
+            this.setState({error: error});
         }
     }
 
@@ -150,12 +153,15 @@ export default class Login extends Component {
 
                                 <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
 
-                                {/* TODO: Google OAuth */}
-                                {/* <View>
-                                    <TouchableOpacity style={{margin: 10}} onPress={() => this.props.navigation.navigate('register')}>
-                                        <Text style={[componentStyle.buttonText,{color: '#fff'}]}> Sign in with Google </Text>
-                                    </TouchableOpacity>
-                                </View> */}
+                                <TouchableOpacity onPress={() => this.onGoogleSignIn()}>
+                                    <View style={{flexDirection: 'row', alignItems: 'center', padding: 5}}> 
+                                        <Image 
+                                            source={require('../assets/onboarding/btn_google_light_ios.png')}
+                                            style={{width: 50, height: 50, marginRight: 5}}
+                                        />
+                                        <Text style={[componentStyle.buttonText,{color: COLORS.lightGray4}]}>Sign In with Google </Text>
+                                    </View>
+                                </TouchableOpacity>
 
                             </View>
                         </ScrollView>
@@ -174,16 +180,15 @@ export default class Login extends Component {
                                         alignSelf: 'center',
                                         width: 150,
                                         height: 150,
-                                        marginTop: 40,
-                                        marginBottom: 20
+                                        marginBottom: 10
                                         }}
                                 />
-                                <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 40}}>SPARROW</Text>
+                                <Text style={{fontSize: 20, fontWeight: 'bold', color:'#2A94AF', marginBottom: 20}}>SPARROW</Text>
                                 <Text style={[styles.subtitle, {fontSize: 13}]}>{this.state.error}</Text>
                             </View>
 
                             {/* Title */}
-                            <View style={{ marginBottom: 15}}> 
+                            <View style={{ marginBottom: 5}}> 
                                 <Text style={styles.title}>Sign In </Text>
                                 <Text style={styles.subtitle}>Welcome back! </Text>
                             </View>
@@ -210,7 +215,7 @@ export default class Login extends Component {
                                     />
             
                                     {/* Password */}
-                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start',alignItems: 'center'}}> 
+                                    <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}> 
                                         <Image 
                                             source={require('../assets/Icons/password.png')} 
                                             resizeMode='contain'
@@ -239,10 +244,16 @@ export default class Login extends Component {
                                     <Text style={[componentStyle.buttonText,{color: '#fff'}]}> Create an account </Text>
                                 </TouchableOpacity>
 
-                                <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
+                                <View style={{borderBottomColor: 'white',borderBottomWidth: 1, marginBottom: 10}}/>
 
-                                <TouchableOpacity onPress={() => this.onGoogleSignIn()}>
-                                    <Text> Sign In with Google </Text>
+                                <TouchableOpacity style={{backgroundColor: '#fff', borderRadius: 5, elevation:2, width: 240, height: 50, alignSelf: 'center'}} onPress={() => this.onGoogleSignIn()}>
+                                    <View style={{flexDirection: 'row', alignItems: 'center', padding: 5}}> 
+                                        <Image 
+                                            source={require('../assets/onboarding/btn_google_light_andriod.png')}
+                                            style={{width: 40, height: 40, marginRight: 24, marginLeft: 8}}
+                                        />
+                                        <Text style={{fontSize: 14, fontWeight: 'bold',color: "#757575",alignSelf: "center",textTransform: "uppercase"}}>Sign In with Google </Text>
+                                    </View>
                                 </TouchableOpacity>
 
                             </View>
