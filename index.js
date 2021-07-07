@@ -10,6 +10,26 @@ const client = new plaid.Client ({
 	env: plaid.environments.sandbox
 });
 
+app.post('/create_link_token', async (request, reponse) => {
+	try {
+
+		// create link_token
+		const tokenResponse = await client.createLinkToken({
+			user: {
+				client_user_id: '60e452c919a2660010f8bcc1',
+			},
+			client_name: "Sparrow",
+			products:['auth'],
+			country_codes:['US'],
+			language:'en',
+			webhook: 'https://sandbox.plaid.com'
+		});
+		response.json(tokenResponse);
+		console.log('server connected successful');
+	} catch (err) {
+		console.log(err);
+	}
+});
 
 
 
