@@ -1,11 +1,12 @@
 // a class component for Login (replace SignUp later)
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, Text, SafeAreaView, Image, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import firebase from 'firebase';
 import { GoogleAuthProvider, getAuth, signInWithRedirect } from 'firebase/auth';
 import store from '../app/store';
 import componentStyle from '../styles/componentStyle';
 import styles from '../styles/onboardingStyle';
+import * as Google from 'expo-google-app-auth';
 // import { withNavigation } from 'react-navigation';
 
 export default class Login extends Component {
@@ -50,9 +51,20 @@ export default class Login extends Component {
             })
     }
 
-    onGoogleSignIn() {
-        const auth = getAuth();
-        signInWithRedirect(auth, provider);
+    onGoogleSignIn = async () => {
+        try {
+            const { type, user } = await Google.logInAsync({
+                iosClientId: '212971842173-vdn2cj4buc684stiff15q0vr8ffj1nk1.apps.googleusercontent.com',
+                androidClientId: '212971842173-raoqg5tjqrljdak9e8seklm6h09fu125.apps.googleusercontent.com'
+            });
+
+            if (type === 'success') {
+                // use google rest api
+                navigation.navigate('Home');
+            }
+        } catch (error) {
+            console.log("google signin unsuccessful");
+        }
     }
 
     render() {
@@ -228,6 +240,10 @@ export default class Login extends Component {
                                 </TouchableOpacity>
 
                                 <View style={{borderBottomColor: 'white',borderBottomWidth: 1}}/>
+
+                                <TouchableOpacity onPress={() => this.onGoogleSignIn()}>
+                                    <Text> Sign In with Google </Text>
+                                </TouchableOpacity>
 
                             </View>
                         </ScrollView>
