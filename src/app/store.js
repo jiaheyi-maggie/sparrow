@@ -6,6 +6,7 @@ import shortTerm from "./reducers/shortTerm";
 import user from "./reducers/user";
 import averagePeriod from "./reducers/averagePeriod";
 import marketReducer from "./reducers/marketReducer";
+import plaidReducer from "./reducers/plaidReducer";
 
 const rootReducer = combineReducers({
     reducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     shortTerm,
     user,
     averagePeriod,
-    marketReducer
+    marketReducer,
+    plaidReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
