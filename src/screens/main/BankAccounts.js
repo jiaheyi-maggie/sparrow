@@ -9,9 +9,46 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 
-const BankAccounts = ({ navigation, link_token }) => {
+const BankAccounts = ({ navigation, link_token, client }) => {
+	const [publicToken, setPublicToken] = useState(null);
+
+	// testing info
+	const [institutionID, setInstitutionID] =  useState('ins_109508');
+	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
+
+	const onSuccessSandbox = () => {
+		return async dispatch => {
+			try {
+				const publicTokenResponse = await client.sandboxPublicTokenCreate(
+					institutionID,
+					initialProducts,
+				).catch((error) => {
+					console.log(error);
+				});
+
+				const public_token = publicTokenResponse.public_token;
+				// dispatch(pushPublicToken(publicToken));
+				setPublicToken(public_token);
+				console.log(publicToken);
+	
+				const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
+				.catch((error) => {
+					console.log(error);
+				});
+				const accessToken = exchangeTokenResponse.access_token;
+				console.log(accessToken);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	useEffect(() => {
+		
+	}, [])
 
     const handleComponentDidMount = () => {
+		// console.log(client);
         return (
 			<SafeAreaView style={[styles.container2, {backgroundColor: COLORS.bone}]}>
 				<View style={styles.genericRow}>
@@ -23,7 +60,8 @@ const BankAccounts = ({ navigation, link_token }) => {
 						tokenConfig ={{
 							token: link_token
 						}}
-						onSuccess={(success) => onSuccess(success)}
+						// onSuccess={(success) => onSuccess(success)}
+						onSuccess={() => onSuccessSandbox()}
 						onExit={(exit) => onExit(exit)}
 					>
 						<View style={[styles.genericRow, {backgroundColor: COLORS.lightSalmon, borderRadius: 15, padding: 3, elevation:2}]}>
@@ -53,7 +91,8 @@ const BankAccounts = ({ navigation, link_token }) => {
 };
 
 const mapStateToProps = (store) => ({
-    link_token: store.plaidReducer.link_token
+    link_token: store.plaidReducer.link_token,
+	client: store.plaidReducer.client,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({ onSuccess, onExit }, dispatch);

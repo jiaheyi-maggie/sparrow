@@ -74,7 +74,7 @@ const App = () => {
 			generateToken();
 			pushLinkTokenToReducer({linkToken});
 			pushClientToReducer({client});
-			console.log(store.getState().plaidReducer);
+			// console.log(store.getState().plaidReducer);
 			
 			firebase.auth().onAuthStateChanged((user) => {
 				if (!user) {
