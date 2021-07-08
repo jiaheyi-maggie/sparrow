@@ -68,13 +68,12 @@ const App = () => {
 			// TODO: only generates when refreshed
 			const linkToken = response.link_token;
 			setLinkToken(linkToken);
-			console.log(linkToken);
 		};
 		
 		useEffect(() => {
 			generateToken();
-			pushLinkTokenToReducer(linkToken);
-			console.log(store.getState().plaidReducer);
+			pushLinkTokenToReducer({linkToken});
+			// console.log(store.getState().plaidReducer);
 			
 			firebase.auth().onAuthStateChanged((user) => {
 				if (!user) {

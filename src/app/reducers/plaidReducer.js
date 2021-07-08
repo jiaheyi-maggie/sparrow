@@ -1,16 +1,14 @@
-import * as plaidActions from '../actions/plaidActions';
-
 const initialState = {
     link_token: null
 }
 
 const plaidReducer = (state = initialState, action) => {
-    switch (plaidActions.type) {
+    switch (action.type) {
         case "pushLinkToken":
-            console.log("action.payload.token");
+            // console.log("action.payload.token");
             return {
                 ...state,
-                link_token: action.payload.token
+                link_token: action.payload.linkToken
             }
         default:
             return state
