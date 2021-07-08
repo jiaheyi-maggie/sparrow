@@ -375,6 +375,11 @@ const homeStyle = StyleSheet.create({
         padding: 10,
         elevation: 2,
         margin: 10,
+    },
+    genericRow: {
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        justifyContent:'space-between',
     }
 });
 

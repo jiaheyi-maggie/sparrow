@@ -15,7 +15,7 @@ import store from "./src/app/store";
 import firebaseConfig from "./src/config/firebase/keys";
 import * as firebase from "firebase";
 import PlaidIndex from "./src/config/plaid";
-import { pushLinkTokenToReducer } from "./src/app/actions/plaidActions";
+import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
 
 // initialize navigation
 const Stack = createStackNavigator();
@@ -35,11 +35,11 @@ const App = () => {
 			"Ubuntu-Light": require("./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf"),
 			"Ubuntu-Bold": require("./src/assets/fonts/Ubuntu/Ubuntu-Bold.ttf"),
 		})
-		);
+	);
 		
-		if (!fontLoaded) {
-			return <AppLoading />;
-		}
+	if (!fontLoaded) {
+		return <AppLoading />;
+	}
 		
 		// plaid link token
 		const [linkToken, setLinkToken] = useState(null);
@@ -73,7 +73,8 @@ const App = () => {
 		useEffect(() => {
 			generateToken();
 			pushLinkTokenToReducer({linkToken});
-			// console.log(store.getState().plaidReducer);
+			pushClientToReducer({client});
+			console.log(store.getState().plaidReducer);
 			
 			firebase.auth().onAuthStateChanged((user) => {
 				if (!user) {
@@ -105,35 +106,32 @@ const App = () => {
 				if (!loggedIn) {
 					return (
 						<Provider store={store}>
-						<NavigationContainer theme={theme}>
-						<Stack.Navigator headerMode="none" initialRouteName="onboarding">
-						<Stack.Screen
-						name="onboarding"
-						component={OnboardingNavigation}
-						/>
-						<Stack.Screen name="register" component={Register} />
-						<Stack.Screen name="signin" component={Login} />
-						<Stack.Screen name="forgot" component={ForgotCred} />
-						<Stack.Screen name="home" component={HomeNavigation} />
-						</Stack.Navigator>
-						</NavigationContainer>
+							<NavigationContainer theme={theme}>
+								<Stack.Navigator headerMode="none" initialRouteName="onboarding">
+									<Stack.Screen name="onboarding" component={OnboardingNavigation} />
+									<Stack.Screen name="register" component={Register} />
+									<Stack.Screen name="signin" component={Login} />
+									<Stack.Screen name="forgot" component={ForgotCred} />
+									<Stack.Screen name="home" component={HomeNavigation} />
+								</Stack.Navigator>
+							</NavigationContainer>
 						</Provider>
 						);
 					} else {
 						return (
 							<Provider store={store}>
-							<NavigationContainer theme={theme}>
-							<Stack.Navigator headerMode="none" initialRouteName="home">
-							<Stack.Screen name="home" component={HomeNavigation} />
-							</Stack.Navigator>
-							</NavigationContainer>
+								<NavigationContainer theme={theme}>
+									<Stack.Navigator headerMode="none" initialRouteName="home">
+										<Stack.Screen name="home" component={HomeNavigation} />
+									</Stack.Navigator>
+								</NavigationContainer>
 							</Provider>
 							);
 						}
 					};
 					
 					return handleAppLoading();
-				};
+};
 				
-				export default App;
+export default App;
 				

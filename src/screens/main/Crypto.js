@@ -43,8 +43,13 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const handleAddBalance = () => {
         return (
-            // console.log("add balance please")
-            console.log(process.env.PLAID_CLIENT_ID)
+            console.log("add balance to budget")
+        )
+    }
+
+    const handleSplitBudget = () => {
+        return (
+            console.log("split balance for budget")
         )
     }
 
@@ -53,12 +58,19 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
             <SafeAreaView style={[styles.container2, {backgroundColor:COLORS.primary}]}>
                 {/* My Wallet */}
                 {renderWalletInfoSection()}
-                <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
-                    <TouchableOpacity onPress={() => handleAddBalance()}>
-                        <Text style={{...FONTS.h3, color: COLORS.primary}}>Add Amount to Budget</Text>
-                    </TouchableOpacity>   
+                <View style={styles.genericRow}>
+                    <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
+                        <TouchableOpacity onPress={() => handleAddBalance()}>
+                            <Text style={{...FONTS.h3, color: COLORS.primary}}>Add $ to Budget</Text>
+                        </TouchableOpacity>   
+                    </View>
+                    <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
+                        <TouchableOpacity onPress={() => handleSplitBudget()}>
+                            <Text style={{...FONTS.h3, color: COLORS.primary}}>Split Budget for Crypto</Text>
+                        </TouchableOpacity>   
+                    </View>
                 </View>
-
+                
                 {/* Chart */}
                 <View>
                     <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : myHoldings.sparkline_in_7d} changePct={selectedCoin ? selectedCoin.price_change_percentage_7d_in_currency : percentageChange} title={selectedCoin ? selectedCoin.name : "Total Asset"}/>

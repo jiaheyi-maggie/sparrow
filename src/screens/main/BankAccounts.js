@@ -3,34 +3,43 @@ import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpa
 import { COLORS, FONTS } from '../../constants/theme';
 // import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLink } from 'react-plaid-link';
 import { PlaidLink, LinkSuccess, LinkExit } from 'react-native-plaid-link-sdk';
-
+import { bindActionCreators } from 'redux';
+import { onSuccess, onExit } from '../../app/actions/plaidActions';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
-import store from '../../app/store';
 
 const BankAccounts = ({ navigation, link_token }) => {
 
     const handleComponentDidMount = () => {
-		// console.log(link_token);
         return (
-			<SafeAreaView style={styles.container2}>
-				
+			<SafeAreaView style={[styles.container2, {backgroundColor: COLORS.bone}]}>
+				<View style={styles.genericRow}>
 					{/* Display name */}
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
 
+					{/* Add bank account link */}
 					<PlaidLink
 						tokenConfig ={{
 							token: link_token
 						}}
-						onSuccess={(success) => {
-							console.log(success);
-						}}
-						onExit={(exit) => {
-							console.log(exit);
-						}}
+						onSuccess={(success) => onSuccess(success)}
+						onExit={(exit) => onExit(exit)}
 					>
-						<Text>Add Bank Account</Text>
+						<View style={[styles.genericRow, {backgroundColor: COLORS.lightSalmon, borderRadius: 15, padding: 3, elevation:2}]}>
+							<Image 
+								source={require('../../assets/Icons/add.png')}
+								style={{
+									height: 20,
+									width: 20,
+									tintColor: COLORS.white
+								}}
+							/>
+							<Text style={{...FONTS.h3, color: COLORS.white, marginHorizontal: 5}}>Add</Text>
+						</View>
 					</PlaidLink>
+				</View>
+				
 			</SafeAreaView>
 			
         );
@@ -47,5 +56,7 @@ const mapStateToProps = (store) => ({
     link_token: store.plaidReducer.link_token
 });
 
-export default connect(mapStateToProps, null)(BankAccounts); 
+const mapDispatchToProps = (dispatch) => bindActionCreators({ onSuccess, onExit }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(BankAccounts); 
 

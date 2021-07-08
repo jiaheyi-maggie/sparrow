@@ -1,5 +1,7 @@
 const initialState = {
-    link_token: null
+    client: null,
+    link_token: null,
+    bank_accounts: []
 }
 
 const plaidReducer = (state = initialState, action) => {
@@ -9,6 +11,11 @@ const plaidReducer = (state = initialState, action) => {
             return {
                 ...state,
                 link_token: action.payload.linkToken
+            }
+        case "pushClient":
+            return {
+                ...state, 
+                client: action.payload.client
             }
         default:
             return state

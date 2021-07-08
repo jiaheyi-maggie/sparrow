@@ -7,7 +7,6 @@ import CategoryBar from '../../components/main/CategoryBar';
 import { connect } from 'react-redux';
 // bind actions to components
 import { bindActionCreators } from 'redux';
-import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
 import { COLORS, FONTS } from '../../constants/theme';
 
@@ -263,8 +262,6 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
     );
 };
 
-
-// allow access to data in Home component
 const mapStateToProps = (store) => ({
     currentUser: store.user.currentUser,
     categories: store.user.categories,
@@ -272,7 +269,6 @@ const mapStateToProps = (store) => ({
     shortTerm: store.user.shortTerm
 });
 
-// bind component to redux
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchBudget }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Home);
