@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
-// import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLink } from 'react-plaid-link';
 import { PlaidLink, LinkSuccess, LinkExit } from 'react-native-plaid-link-sdk';
 import { bindActionCreators } from 'redux';
-import { onSuccess, onExit } from '../../app/actions/plaidActions';
+// import { onSuccess, onExit } from '../../app/actions/plaidActions';
 import axios from 'axios';
+import * as PlaidLinkConfig from './PlaidLinkConfig';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 
@@ -16,35 +16,36 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 	const [institutionID, setInstitutionID] =  useState('ins_109508');
 	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
 
-	const onSuccessSandbox = () => {
-		return async dispatch => {
-			try {
-				const publicTokenResponse = await client.sandboxPublicTokenCreate(
-					institutionID,
-					initialProducts,
-				).catch((error) => {
-					console.log(error);
-				});
-
-				const public_token = publicTokenResponse.public_token;
-				// dispatch(pushPublicToken(publicToken));
-				setPublicToken(public_token);
-				console.log(publicToken);
-	
-				const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
-				.catch((error) => {
-					console.log(error);
-				});
-				const accessToken = exchangeTokenResponse.access_token;
-				console.log(accessToken);
-			} catch (error) {
+	const onSuccessSandbox = async () => {
+		try {
+			const publicTokenResponse = await client.sandboxPublicTokenCreate(
+				institutionID,
+				initialProducts,
+			).catch((error) => {
 				console.log(error);
-			}
+			});
+
+			const public_token = publicTokenResponse.public_token;
+			// dispatch(pushPublicToken(publicToken));
+			setPublicToken(public_token);
+			console.log(publicToken);
+
+			const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
+			.catch((error) => {
+				console.log(error);
+			});
+			const accessToken = exchangeTokenResponse.access_token;
+			console.log(accessToken);
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
 	useEffect(() => {
-		
+		// if (PlaidLinkConfig.ready) {
+		// 	PlaidLinkConfig.open();
+		// }
+		onSuccessSandbox();
 	}, [])
 
     const handleComponentDidMount = () => {
@@ -55,13 +56,11 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 					{/* Display name */}
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
 
-					{/* Add bank account link */}
 					<PlaidLink
 						tokenConfig ={{
 							token: link_token
 						}}
-						// onSuccess={(success) => onSuccess(success)}
-						onSuccess={() => onSuccessSandbox()}
+						onSuccess={() => onSuccessSandbox().then(() => console.log('success'))}
 						onExit={(exit) => onExit(exit)}
 					>
 						<View style={[styles.genericRow, {backgroundColor: COLORS.lightSalmon, borderRadius: 15, padding: 3, elevation:2}]}>
@@ -95,7 +94,7 @@ const mapStateToProps = (store) => ({
 	client: store.plaidReducer.client,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ onSuccess, onExit }, dispatch);
+// const mapDispatchToProps = (dispatch) => bindActionCreators({ onSuccess, onExit }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(BankAccounts); 
+export default connect(mapStateToProps, null)(BankAccounts); 
 

@@ -121,14 +121,15 @@ const App = () => {
 			console.log(error);
 		});
 		
-		// TODO: only generates when refreshed
+		// BUG: only generates when refreshed
 		const linkToken = response.link_token;
 		setLinkToken(linkToken);
+		return linkToken;
 	};
 		
 	useEffect(() => {
-		generateToken();
-		pushLinkTokenToReducer({linkToken});
+		generateToken()
+		.then((linkToken) => pushLinkTokenToReducer({linkToken}));
 		pushClientToReducer({client});
 		// console.log(store.getState().plaidReducer);
 		registerForPushNotificationsAsync()
@@ -139,9 +140,6 @@ const App = () => {
 			if (!user) {
 				setLoggedIn(false);
 				setLoaded(true);
-				// TODO: send new user notifications
-				sendPushNotifications(notificationToken, "Welcome to Sparrow!", 
-					"Head to Bank Accounts page to get started. Or scroll under Overview to view your budget!")
 			} else {
 				setLoaded(true);
 				setLoggedIn(true);

@@ -1,5 +1,6 @@
 const initialState = {
     notification_token: null,
+    notifications: []
 }
 
 const notificationReducer = (state = initialState, action) => {
