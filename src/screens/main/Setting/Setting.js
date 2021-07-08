@@ -17,7 +17,7 @@ export class Setting extends Component {
 
     handleComponentDidMount() {
         return (
-            <SafeAreaView style={styles.container2}>
+            <SafeAreaView style={styles.container3}>
                 <ScrollView>
 
                     {/* header */}

@@ -1,39 +1,49 @@
 {
-  "expo": {
-    "name": "sparrow",
-    "slug": "sparrow",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
-    "splash": {
-      "image": "./src/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#2A94AF"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": [
-      "**/*",
-      "assets/images/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleSignIn": {
-          "reservedClientId": "com.googleusercontent.apps.212971842173-vdn2cj4buc684stiff15q0vr8ffj1nk1"
-        }
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./src/assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./src/assets/icon.png"
-    }
-  }
+	"expo": {
+		"name": "sparrow",
+		"slug": "sparrow",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./src/assets/icon.png",
+		"splash": {
+			"image": "./src/assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#2A94AF"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"userInterfaceStyle": "automatic",
+		"assetBundlePatterns": [
+			"**/*",
+			"assets/images/*"
+		],
+		"ios": {
+			"supportsTablet": true,
+			"config": {
+				"googleSignIn": {
+					"reservedClientId": "com.googleusercontent.apps.212971842173-vdn2cj4buc684stiff15q0vr8ffj1nk1"
+				}
+			}
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./src/assets/icon.png",
+				"backgroundColor": "#FFFFFF"
+			}
+		},
+		"web": {
+			"favicon": "./src/assets/icon.png"
+		},
+		"plugins": [
+			[
+			  "expo-notifications",
+			  {
+				"icon": "./scr/assets/Icons/notifications.png",
+				"color": "#ffffff",
+				"mode": "production"
+			  }
+			]
+		]
+	}
 }

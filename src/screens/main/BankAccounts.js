@@ -50,7 +50,7 @@ const BankAccounts = ({ navigation, link_token, client }) => {
     const handleComponentDidMount = () => {
 		// console.log(client);
         return (
-			<SafeAreaView style={[styles.container2, {backgroundColor: COLORS.bone}]}>
+			<SafeAreaView style={styles.container2}>
 				<View style={styles.genericRow}>
 					{/* Display name */}
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
