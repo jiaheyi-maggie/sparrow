@@ -11,12 +11,13 @@ import styles from '../../styles/homeStyle';
 
 const BankAccounts = ({ navigation, link_token, client }) => {
 	const [publicToken, setPublicToken] = useState(null);
+	const [accessToken, setAccessToken] = useState(null);
 
 	// testing info
 	const [institutionID, setInstitutionID] =  useState('ins_109508');
 	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
 
-	const onSuccessSandbox = async () => {
+	const getTokensSandbox = async () => {
 		try {
 			const publicTokenResponse = await client.sandboxPublicTokenCreate(
 				institutionID,
@@ -25,17 +26,18 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 				console.log(error);
 			});
 
+			console.log(publicTokenResponse);
+
 			const public_token = publicTokenResponse.public_token;
 			// dispatch(pushPublicToken(publicToken));
 			setPublicToken(public_token);
-			console.log(publicToken);
 
 			const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
 			.catch((error) => {
 				console.log(error);
 			});
 			const accessToken = exchangeTokenResponse.access_token;
-			console.log(accessToken);
+			setAccessToken(accessToken);
 		} catch (error) {
 			console.log(error);
 		}
@@ -45,7 +47,7 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 		// if (PlaidLinkConfig.ready) {
 		// 	PlaidLinkConfig.open();
 		// }
-		onSuccessSandbox();
+		getTokensSandbox();
 	}, [])
 
     const handleComponentDidMount = () => {
@@ -60,7 +62,17 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 						tokenConfig ={{
 							token: link_token
 						}}
-						onSuccess={() => onSuccessSandbox().then(() => console.log('success'))}
+						onSuccess={(success) => {
+							fetch('https://sandbox.plaid.com', {
+								method: 'POST',
+								body: {
+									publicToken: publicToken,
+									// accounts: linkSuccess.metadata.accounts,
+      								institution: {name: "First Platypus Bank", id:"ins_109508"},
+      								// linkSessionId: linkSuccess.metadata.linkSessionId,
+								}
+							})
+						}}
 						onExit={(exit) => onExit(exit)}
 					>
 						<View style={[styles.genericRow, {backgroundColor: COLORS.lightSalmon, borderRadius: 15, padding: 3, elevation:2}]}>
