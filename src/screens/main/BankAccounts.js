@@ -5,7 +5,7 @@ import { PlaidLink, LinkSuccess, LinkExit } from 'react-native-plaid-link-sdk';
 import { bindActionCreators } from 'redux';
 // import { onSuccess, onExit } from '../../app/actions/plaidActions';
 import axios from 'axios';
-import * as PlaidLinkConfig from './PlaidLinkConfig';
+// import * as PlaidLinkConfig from './PlaidLinkConfig';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 
@@ -63,7 +63,7 @@ const BankAccounts = ({ navigation, link_token, client }) => {
 							token: link_token
 						}}
 						onSuccess={(success) => {
-							fetch('https://sandbox.plaid.com', {
+							fetch('https://sandbox.plaid.com/exchange_public_token', {
 								method: 'POST',
 								body: {
 									publicToken: publicToken,
