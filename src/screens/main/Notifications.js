@@ -13,7 +13,7 @@ const Notifications = ({ navigation, notification_token }) => {
             <ScrollView>
                 {/* Display name */}
                 <Text style={{color: COLORS.white, ...FONTS.h2}}>Notifications</Text>
-				<TouchableOpacity onPress={() => sendPushNotifications(notification_token)}>
+				<TouchableOpacity onPress={() => sendPushNotifications(notification_token, 'Welcome to Sparrow', "Add bank accounts!")}>
 					<Text>Press to send notification</Text>
 				</TouchableOpacity>
             </ScrollView>

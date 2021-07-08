@@ -18,7 +18,7 @@ import store from "./src/app/store";
 import firebaseConfig from "./src/config/firebase/keys";
 import PlaidIndex from "./src/config/plaid";
 import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
-import { pushNotificationTokenToReducer } from "./src/app/actions/notificationActions";
+import { pushNotificationTokenToReducer, sendPushNotifications } from "./src/app/actions/notificationActions";
 
 // initialize navigation
 const Stack = createStackNavigator();
@@ -133,12 +133,15 @@ const App = () => {
 		// console.log(store.getState().plaidReducer);
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));
-		console.log(store.getState().notificationReducer);
+		
 		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (!user) {
 				setLoggedIn(false);
 				setLoaded(true);
+				// TODO: send new user notifications
+				sendPushNotifications(notificationToken, "Welcome to Sparrow!", 
+					"Head to Bank Accounts page to get started. Or scroll under Overview to view your budget!")
 			} else {
 				setLoaded(true);
 				setLoggedIn(true);

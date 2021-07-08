@@ -12,13 +12,13 @@ export function pushNotificationTokenToReducer(token) {
 };
 
 // send push notification function
-export async function sendPushNotifications(token) {
+export async function sendPushNotifications(token, title, body, data=null) {
     const message = {
         to: token,
         sound: 'default',
-        title: 'Welcome to Sparrow',
-        body: 'Go to bank accounts page -> Add',
-        data: { someData: 'data goes here' },
+        title: title,
+        body: body,
+        // data: data,
     };
 
     await fetch('https://exp.host/--/api/v2/push/send', {
