@@ -275,4 +275,4 @@ const mapStateToProps = (store) => ({
 // bind component to redux
 const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchBudget }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchProps)(withNavigation(Home));
+export default connect(mapStateToProps, mapDispatchProps)(Home);

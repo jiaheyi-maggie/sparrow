@@ -6543,6 +6543,13 @@ react-native-paper@^4.9.2:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.3.1"
 
+react-native-plaid-link-sdk@^7.0.7:
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-plaid-link-sdk/-/react-native-plaid-link-sdk-7.0.7.tgz#3304a20e7e5b7b440caf9dcf1e3246aee35aa3dd"
+  integrity sha512-jXmifw8sw3ngsqndl5dUG3pRgcNF7o+rWvSuWd0EX6vWhzfhSGhPtMIVhnCA0k1wUSEpFcrIsJweaCmRg3DPHg==
+  dependencies:
+    tsc "^1.20150623.0"
+
 react-native-reanimated@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.0.0.tgz#0eb2f196e8fde23cf918530074134177aaee8702"
@@ -7475,6 +7482,11 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+
+tsc@^1.20150623.0:
+  version "1.20150623.0"
+  resolved "https://registry.yarnpkg.com/tsc/-/tsc-1.20150623.0.tgz#4ebc3c774e169148cbc768a7342533f082c7a6e5"
+  integrity sha1-Trw8d04WkUjLx2inNCUz8ILHpuU=
 
 tslib@^1.11.1:
   version "1.14.1"
