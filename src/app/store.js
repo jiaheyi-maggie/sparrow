@@ -7,6 +7,7 @@ import user from "./reducers/user";
 import averagePeriod from "./reducers/averagePeriod";
 import marketReducer from "./reducers/marketReducer";
 import plaidReducer from "./reducers/plaidReducer";
+import notificationReducer from "./reducers/notificationReducer";
 
 const rootReducer = combineReducers({
     reducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     user,
     averagePeriod,
     marketReducer,
-    plaidReducer
+    plaidReducer,
+    notificationReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

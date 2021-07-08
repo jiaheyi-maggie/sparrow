@@ -18,6 +18,7 @@ import store from "./src/app/store";
 import firebaseConfig from "./src/config/firebase/keys";
 import PlaidIndex from "./src/config/plaid";
 import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
+import { pushNotificationTokenToReducer } from "./src/app/actions/notificationActions";
 
 // initialize navigation
 const Stack = createStackNavigator();
@@ -55,8 +56,13 @@ const App = () => {
 
 	// notifications
 	const [notificationToken, setNotificationToken] = useState('');
+	const [notification, setNotification] = useState(false);
+	const notificationListener = useRef();
+	const responseListener = useRef();
 	
+	// grab notification token
 	const registerForPushNotificationsAsync = async () => {
+		let token; 
 		if (Constants.isDevice) {
 			// check is there is existing permission for push notifications 
 			const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -66,17 +72,14 @@ const App = () => {
 				const { status } = await Notifications.requestPermissionsAsync();
 				finalStatus = status;
 			}
-
 			// user did not give permission
 			if (finalStatus !== 'granted') {
 				Alert.alert("Failed to get push token for push notifications.");
 				return;
 			}
-
 			// otherwise: get token
-			const token = (await Notifications.getExpoPushTokenAsync()).data;
+			token = (await Notifications.getExpoPushTokenAsync()).data;
 			setNotificationToken(token);
-			// console.log(notificationToken);
 		} else {
 			Alert.alert("Must use physical device for push notifications");
 		}
@@ -90,6 +93,8 @@ const App = () => {
 				lightColor: '#FF231F7C',
 			})
 		}
+
+		return token;
 	};
 		
 	// plaid link token
@@ -126,7 +131,9 @@ const App = () => {
 		pushLinkTokenToReducer({linkToken});
 		pushClientToReducer({client});
 		// console.log(store.getState().plaidReducer);
-		registerForPushNotificationsAsync();
+		registerForPushNotificationsAsync()
+			.then((token) => pushNotificationTokenToReducer(token));
+		console.log(store.getState().notificationReducer);
 		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (!user) {
@@ -137,6 +144,23 @@ const App = () => {
 				setLoggedIn(true);
 			}
 		});
+
+		// This listener is fired whenever a notification is received while the app is foregrounded
+		notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+			setNotification(notification);
+		});
+
+		// This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+		responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+			console.log(response);
+		});
+
+		// clean up
+		return () => {
+			Notifications.removeNotificationSubscription(notificationListener.current);
+			Notifications.removeNotificationSubscription(responseListener.current);
+		};
+
 	}, []);
 		
 	const handleAppLoading = () => {
