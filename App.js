@@ -129,12 +129,12 @@ const App = () => {
 		
 	useEffect(() => {
 		generateToken()
-		.then((linkToken) => pushLinkTokenToReducer({linkToken}));
+			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
 		pushClientToReducer({client});
 		// console.log(store.getState().plaidReducer);
+
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));
-		
 		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (!user) {
