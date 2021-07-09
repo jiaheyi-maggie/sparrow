@@ -68,7 +68,6 @@ const Link = ({ navigation, link_token, client }) => {
 
 	useEffect(() => {
         getPublicTokenSandbox();
-        console.log(accounts);
 	}, [])
 
     const calculateCurrentTotal = () => {
@@ -153,33 +152,60 @@ const Link = ({ navigation, link_token, client }) => {
                                         <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>({item.type})</Text>
                                     </View>
 
-                                    <TouchableOpacity style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15}}>
-                                        <View>
-                                            <Text style={{...FONTS.h3, color: COLORS.lightGray3, textAlign: 'right'}}>$ {item.balances.current}</Text>
-                                            <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
-                                                {
-                                                    item.balances.current != 0 && 
-                                                    <Image
-                                                        source={require('../../assets/Icons/up-arrow.png')}
-                                                        style={{
-                                                            width: 10,
-                                                            height: 10,
-                                                            alignSelf: 'center',
-                                                            tintColor: priceColor,
-                                                            transform: (item.balances.current - item.balances.available >= 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
-                                                        }}
-                                                    />
-                                                }
-                                                <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
-                                                    {(item.balances.available / item.balances.current).toFixed(2)}%
-                                                </Text>
+                                    <TouchableOpacity style={{flexDirection: 'row', justifyContent:'space-between'}}> 
+                                        {/* current */}
+                                        <View style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15, width: 175, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3, marginLeft: 5, textDecorationLine:'underline'}}>Current:</Text>
+                                            <View style={{marginRight: 5}}>
+                                                <Text style={{...FONTS.h3, color: COLORS.lightGray3, textAlign: 'right'}}>$ {item.balances.current}</Text>
+                                                <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                                                    {
+                                                        item.balances.current != 0 && 
+                                                        <Image
+                                                            source={require('../../assets/Icons/up-arrow.png')}
+                                                            style={{
+                                                                width: 10,
+                                                                height: 10,
+                                                                alignSelf: 'center',
+                                                                tintColor: priceColor,
+                                                                transform: (item.balances.current - item.balances.available >= 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
+                                                            }}
+                                                        />
+                                                    }
+                                                    <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
+                                                        {(item.balances.available / item.balances.current).toFixed(2)}%
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+
+                                        {/* available */}
+                                        <View style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15, width: 175, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3, marginLeft: 5, textDecorationLine:'underline'}}>Available:</Text>
+                                            <View style={{marginRight: 5}}>
+                                                <Text style={{...FONTS.h3, color: COLORS.lightGray3, textAlign: 'right'}}>$ {item.balances.available}</Text>
+                                                <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                                                    {
+                                                        item.balances.available != 0 && 
+                                                        <Image
+                                                            source={require('../../assets/Icons/up-arrow.png')}
+                                                            style={{
+                                                                width: 10,
+                                                                height: 10,
+                                                                alignSelf: 'center',
+                                                                tintColor: priceColor,
+                                                                transform: (item.balances.current - item.balances.available >= 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
+                                                            }}
+                                                        />
+                                                    }
+                                                    <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
+                                                        {(item.balances.available / item.balances.current).toFixed(2)}%
+                                                    </Text>
+                                                </View>
                                             </View>
                                         </View>
                                     </TouchableOpacity>
-
-                                    
                                 </View>
-                            
                             </View>
                         );
                     }}
