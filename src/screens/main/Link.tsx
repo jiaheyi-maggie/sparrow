@@ -68,11 +68,47 @@ const Link = ({ navigation, link_token, client }) => {
 
 	useEffect(() => {
         getPublicTokenSandbox();
+        console.log(accounts);
 	}, [])
 
+    const calculateCurrentTotal = () => {
+        const currents = accounts.map((obj) => obj.balances.current);
+        const result = currents.reduce((a,b) => a+b, 0); 
+        // setCurrentBalance(result);
+        return result.toFixed(2);
+    };
+
+    const calculateAvailableTotal = () => {
+        const availables = accounts.map((obj) => obj.balances.available);
+        const result = availables.reduce((a,b) => a+b, 0); 
+        // setTotalAvailable(result);
+        return result.toFixed(2);
+    }
+
+    // TODO: Calculate percentages
+    const calculateCurrentChangePct = () => {
+        return 2.3
+    }
+
+    const calculateTotalAvailableChangePct = () => {
+        return 3.6;
+    }
+
+    const colorSelection = (current, available) => {
+        if (available === null) {
+            return COLORS.yellow;
+        } else if (available < current) {
+            return COLORS.tea;
+        } else if (available === current) {
+            return COLORS.melon;
+        } else {
+            return COLORS.melon;
+        }
+    };
 
 
     const handleComponentDidMount = () => {
+        console.log('dad');
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
 				<View style={styles.genericRow}>
@@ -80,20 +116,26 @@ const Link = ({ navigation, link_token, client }) => {
                     <PlaidLink token={link_token} client={client}/>
 				</View>
 
-                <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
+                <View style={styles.genericRow}> 
+                    <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
+                    <TouchableOpacity>
+                        <Text>Change Period</Text>
+                    </TouchableOpacity>
+                </View>
+                
 
                 <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
                     <BankBalanceInfo 
                         title='Current Balance:'
-                        displayAmount="30000"
+                        displayAmount={calculateCurrentTotal()}
                         currency="USD"
-                        changePct="2.3"
+                        changePct={calculateCurrentChangePct()}
                     />
                     <BankBalanceInfo 
                         title='Total Available:'
-                        displayAmount="30000"
+                        displayAmount={calculateAvailableTotal()}
                         currency="USD"
-                        changePct="2.3"
+                        changePct={calculateTotalAvailableChangePct()}
                     />
                 </View>
 
@@ -101,21 +143,7 @@ const Link = ({ navigation, link_token, client }) => {
                 <FlatList
                     data={accounts}
                     renderItem={({item}) => {
-
-                        const colorSelection = (current, available) => {
-                            if (available === null) {
-                                return COLORS.yellow;
-                            } else if (available < current) {
-                                return COLORS.tea;
-                            } else if (available === current) {
-                                return COLORS.melon;
-                            } else {
-                                return COLORS.melon;
-                            }
-                        };
-
-                        let priceColor = (item.balances.current - item.balances.available >= 0) ? COLORS.grass : COLORS.red;
-
+                        let priceColor = (item.balances.available / item.balances.current > 0) ? COLORS.grass : COLORS.red;
                         return (
                             <View>
                                 <View style={{borderBottomColor: COLORS.grass, borderBottomWidth: 1.5}}/>
@@ -143,7 +171,7 @@ const Link = ({ navigation, link_token, client }) => {
                                                     />
                                                 }
                                                 <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
-                                                    {item.balances.available}%
+                                                    {(item.balances.available / item.balances.current).toFixed(2)}%
                                                 </Text>
                                             </View>
                                         </View>
@@ -175,12 +203,11 @@ const Link = ({ navigation, link_token, client }) => {
         );
     }
 
-    // return link_token === null? (
-    //     handleComponentEmptyRendering()
-    // ) : (
-    //     handleComponentDidMount()
-    // )
-    return handleComponentDidMount();
+    return (link_token === null || accounts === null)? (
+        handleComponentEmptyRendering()
+    ) : (
+        handleComponentDidMount()
+    )
 };
 
 const mapStateToProps = (store) => ({

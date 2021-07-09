@@ -131,7 +131,7 @@ const App = () => {
 		generateToken()
 			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
 		pushClientToReducer({client});
-		// console.log(store.getState().plaidReducer);
+		console.log(store.getState().plaidReducer);
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));
