@@ -9,10 +9,10 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 
     const handleComponentDidMount = () => {
         return (
-          <SafeAreaView style={[styles.container2, {backgroundColor: COLORS.desertGreen}]}>
+          <SafeAreaView style={styles.container2}>
             <ScrollView>
                 {/* Display name */}
-                <Text style={{color: COLORS.white, ...FONTS.h2}}>Notifications</Text>
+                <Text style={{color: COLORS.primary, ...FONTS.h2}}>Notifications</Text>
 				{/* dummy send notification button */}
 				<TouchableOpacity onPress={() => sendPushNotifications(notification_token, 'Welcome to Sparrow', "Add bank accounts!")}>
 					<Text>Press to send notification</Text>

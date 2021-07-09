@@ -11,6 +11,7 @@ const Link = ({ navigation, link_token, client }) => {
     const [accessToken, setAccessToken] = useState(null);
     const [institutionID, setInstitutionID] =  useState('ins_109508');
 	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
+    const [accounts, setAccounts] = useState(null);
 
     const getPublicTokenSandbox = async () => {
 		try {
@@ -20,50 +21,87 @@ const Link = ({ navigation, link_token, client }) => {
 			).catch((error) => {
 				console.log(error);
 			});
-			// const public_token = publicTokenResponse.public_token;
-			// setPublicToken(public_token);
-            console.log(publicTokenResponse);
+			const public_token = publicTokenResponse.public_token;
+			setPublicToken(public_token);
+            // console.log(publicTokenResponse);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
     const getAccessToken = async () => {
-		const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
+        try {
+            const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
 			.catch((error) => {
 				console.log(error);
 			});
-        const accessToken = exchangeTokenResponse.access_token;
-        setAccessToken(accessToken);
-        console.log(exchangeTokenResponse);
+            const accessToken = exchangeTokenResponse.access_token;
+            setAccessToken(accessToken);
+            // console.log(exchangeTokenResponse);
+        } catch (error) {
+			console.log(error);
+		}
+		
 	};
 
 
     const getAccounts = async () => {
-        client.getAccounts(accessToken, function (error, accountResponse) {
-            if (error != null) {
-                console.log(error);
-                return; 
-            }
-            console.log(accountResponse);
-        });
+        try {
+            client.getAccounts(accessToken, function (error, accountResponse) {
+                if (error != null) {
+                    console.log(error);
+                    return; 
+                }
+                setAccounts(accountResponse);
+                // console.log(accounts);
+            });
+        } catch(error) {
+            console.log(error);
+        }
     }
 
+    const extractInfo = () => {
+        const listOfAccounts = accounts['accounts'];
+        const accountNames = listOfAccounts.map(obj => obj.name);
+        console.log(accountNames);
+        return accountNames;
+    }
     
+
 	useEffect(() => {
+        console.log("NONONNONONONONN");
         getPublicTokenSandbox();
         getAccessToken();
         getAccounts();
+        console.log('NAMES');
+        extractInfo();
 	}, [])
+
+   
+
 
     const handleComponentDidMount = () => {
         return (
-			<SafeAreaView style={styles.container2}>
+			<SafeAreaView style={[styles.container2, {backgroundColor:COLORS.desertGreen}]}>
 				<View style={styles.genericRow}>
-					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
+					<Text style={{color: COLORS.white, ...FONTS.h2}}>Bank Accounts</Text>
                     <PlaidLink token={link_token} client={client}/>
 				</View>
-				
+
+                {/* list of bank accounts */}
+                <FlatList
+                    data={extractInfo()}
+                    renderItem={({item}) => {
+                        return (
+                            <View>
+                                <Text>{item}</Text>
+                            </View>
+                            
+                        );
+                    }}
+                    keyExtractor={item => item.id}
+                />
+    
 			</SafeAreaView>
 			
         );
