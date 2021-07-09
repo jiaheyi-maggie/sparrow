@@ -28,6 +28,7 @@ import ForgotCred from '../ForgotCred';
 import ChangeEmail from './Setting/ChangeEmail';
 import SignedOut from './SignedOut';
 import Crypto from './Crypto';
+import Link from './Link';
 
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
@@ -74,7 +75,8 @@ const HomeTab = () => {
                 }} 
             />
 
-            <Tab.Screen name='Accounts' component={Accounts} 
+            {/* <Tab.Screen name='Accounts' component={Accounts}  */}
+            <Tab.Screen name='Accounts' component={Link} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 

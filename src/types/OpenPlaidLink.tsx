@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FunctionComponent} from 'react';
+import React, { useEffect, useCallback, FunctionComponent} from 'react';
 import { Button } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { PlaidLinkPropTypes, usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLinkOnExit, PlaidLinkOnEvent } from 'react-plaid-link';
@@ -7,25 +7,25 @@ interface Props {
     token: string;
 }
 
-export const PlaidLink: FunctionComponent<Props> = ({token}) => {
+const OpenPlaidLink: FunctionComponent<Props> = ({token}) => {
     const onSuccess = useCallback<PlaidLinkOnSuccess>(
         (public_token, metadata) => {
             // send public_token to server
-            console.log(public_token, 'success');
+            console.log('success', public_token, metadata);
         },[]
     );
 
     const onExit = useCallback<PlaidLinkOnExit>(
         (error, metadata) => {
             // send public_token to server
-            console.log(error, 'exit');
+            console.log('exit', error, metadata);
         },[]
     );
 
     const onEvent = useCallback<PlaidLinkOnEvent>(
         (eventName, metadata) => {
             // send public_token to server
-            console.log(eventName, 'event');
+            console.log('event', eventName, metadata);
         },[]
     );
 
@@ -36,16 +36,17 @@ export const PlaidLink: FunctionComponent<Props> = ({token}) => {
         onEvent,
     };
 
-    const { open, ready, error, exit } = usePlaidLink(config);
+    const { open, ready, error } = usePlaidLink(config);
 
-    return (
-        <Button
-            title="Add"
-            onPress={() => open()}
-            disabled={!ready}
-        />
+    useEffect(() => {
+        if (!ready) {
+          return;
+        }
+        open();
+      }, [ready, open]);
 
-    );
+      return null;
 }
 
-PlaidLink.displayName = 'PlaidLink';
+// OpenPlaidLink.displayName = 'OpenPlaidLink';
+export default OpenPlaidLink;
