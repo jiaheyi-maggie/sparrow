@@ -2,13 +2,13 @@ const initialState = {
     client: null,
     link_token: null,
     public_token: null, 
+    access_token: null,
     bank_accounts: [],
 }
 
 const plaidReducer = (state = initialState, action) => {
     switch (action.type) {
         case "pushLinkToken":
-            // console.log("action.payload.token");
             return {
                 ...state,
                 link_token: action.payload.linkToken
@@ -21,7 +21,17 @@ const plaidReducer = (state = initialState, action) => {
         case "pushPublicToken":
             return {
                 ...state,
-                public_token: action.payload.token
+                public_token: action.payload.publicToken
+            }
+        case "pushAccessToken":
+            return {
+                ...state,
+                access_token: action.payload.accessToken
+            }
+        case "pushBankAccounts":
+            return {
+                ...state,
+                bank_accounts: action.payload.accounts
             }
         default:
             return state
