@@ -12,57 +12,26 @@ interface Props {
 }
 
 export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
-    const [publicToken, setPublicToken] = useState(null);
-    const [accessToken, setAccessToken] = useState(null);
-    const [institutionID, setInstitutionID] =  useState('ins_109508');
-	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
-
-    const getPublicTokenSandbox = async () => {
-		try {
-			const publicTokenResponse = await client.sandboxPublicTokenCreate(
-				institutionID,
-				initialProducts,
-			).catch((error) => {
-				console.log(error);
-			});
-			// const public_token = publicTokenResponse.public_token;
-			// setPublicToken(public_token);
-            console.log(publicTokenResponse);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-    const getAccessToken = async () => {
-		const exchangeTokenResponse = await client.exchangePublicToken(publicToken)
-			.catch((error) => {
-				console.log(error);
-			});
-        const accessToken = exchangeTokenResponse.access_token;
-        setAccessToken(accessToken);
-        console.log(exchangeTokenResponse);
-	};
-
+   
     const onSuccess = useCallback<PlaidLinkOnSuccess>(
         (public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
             // send public_token to server
-            getPublicTokenSandbox()
-            // fetch('/api/set_access_token', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({
-            //         public_token: public_token,
-            //         metadata: metadata,
-            //     })
-            // })
-            // .then((response) => {
-            //     console.log('success', response);
-            // })
-            // .catch((error) => {
-            //     console.log(error);
-            // })
+            fetch('/api/set_access_token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    public_token: public_token,
+                    metadata: metadata,
+                })
+            })
+            .then((response) => {
+                console.log('success', response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         },[]
     );
 
@@ -98,7 +67,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         <Button
             title="Add"
             onPress={() => open()}
-            disabled={!ready}
+            // disabled={!ready}
         />
 
     );

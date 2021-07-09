@@ -7,6 +7,7 @@ import styles from '../../styles/homeStyle';
 import OpenPlaidLink from '../../types/OpenPlaidLink';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
+import { Searchbar } from 'react-native-paper';
 
 const Link = ({ navigation, link_token, client }) => {
     const [publicToken, setPublicToken] = useState(null);
@@ -14,6 +15,8 @@ const Link = ({ navigation, link_token, client }) => {
     const [accounts, setAccounts] = useState(null);
     const [institutionID, setInstitutionID] =  useState('ins_109508');
 	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
+    const [searchQuery, setSearchQuery] = React.useState('');
+
 
     const getPublicTokenSandbox = async () => {
         try {
@@ -105,21 +108,30 @@ const Link = ({ navigation, link_token, client }) => {
         }
     };
 
+    // search bar function
+    const onChangeSearch = query => setSearchQuery(query);
 
     const handleComponentDidMount = () => {
-        console.log('dad');
+        // console.log('dad');
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
-				<View style={styles.genericRow}>
+				<View style={[styles.genericRow, {marginBottom: 10}]}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
+                    {/* TODO: PlaidLink leads to OAuth */}
                     <PlaidLink token={link_token} client={client}/>
 				</View>
 
                 <View style={styles.genericRow}> 
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
-                    <TouchableOpacity>
-                        <Text>Change Period</Text>
+                    {/* TODO: switch viewing periods */}
+                    <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                        <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Change Period</Text>
+                        <Image
+                            source={require('../../assets/Icons/down-arrow.png')}
+                            style={{width: 13, height: 13, tintColor: COLORS.white, margin: 5, marginTop: 6}}
+                        />
                     </TouchableOpacity>
+                    
                 </View>
                 
 
@@ -137,6 +149,17 @@ const Link = ({ navigation, link_token, client }) => {
                         changePct={calculateTotalAvailableChangePct()}
                     />
                 </View>
+
+                {/* search bar */}
+                {/* TODO: filter bank accounts */}
+                <Searchbar
+                    placeholder="Search Bank Accounts"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    style={{width: 370, height: 40, marginBottom: 8, elevation:3}}
+                    inputStyle={{...FONTS.h33}}
+                    iconColor={COLORS.lightSalmon}
+                />
 
                 {/* list of bank accounts */}
                 <FlatList
@@ -210,7 +233,7 @@ const Link = ({ navigation, link_token, client }) => {
                         );
                     }}
                     keyExtractor={item => item.id}
-                    ListHeaderComponent={<Text style={{...FONTS.h3, color: COLORS.secondary}}>Details</Text>}
+                    ListHeaderComponent={<Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Details</Text>}
                     ListFooterComponent={<View style={{height: 50}}></View>}
                 />
     

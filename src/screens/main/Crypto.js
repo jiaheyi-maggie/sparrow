@@ -9,10 +9,12 @@ import { COLORS, FONTS } from '../../constants/theme';
 import data from '../../constants/dummy';
 import styles from '../../styles/homeStyle';
 import CryptoChart from '../../components/main/CryptoChart';
+import { Searchbar } from 'react-native-paper';
 
 const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) => { 
 
     const [selectedCoin, setSelectedCoin] = useState(null);
+    const [searchQuery, setSearchQuery] = React.useState('');
 
     useFocusEffect(
         useCallback(
@@ -53,6 +55,10 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
         )
     }
 
+    // search bar function
+    const onChangeSearch = query => setSearchQuery(query);
+
+
     const handleComponentDidMount = () => {
         return (
             <SafeAreaView style={[styles.container2, {backgroundColor:COLORS.primary}]}>
@@ -75,14 +81,32 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 <View>
                     <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : myHoldings.sparkline_in_7d} changePct={selectedCoin ? selectedCoin.price_change_percentage_7d_in_currency : percentageChange} title={selectedCoin ? selectedCoin.name : "Total Asset"}/>
                 </View>
+
+                {/* TODO: search bar filter */}
+                <Searchbar
+                    placeholder="Search Bank Accounts"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    style={{width: 370, height: 40, marginBottom: 8, elevation:3, backgroundColor:'aliceblue'}}
+                    inputStyle={{...FONTS.h33}}
+                    iconColor={COLORS.lightSalmon}
+                />
                 
                 {/* Top currency list */}
-                <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5, textDecorationLine:'underline'}}>Top Cryptocurrencies</Text>
+                <View style={styles.genericRow}>
+                    <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5, textDecorationLine:'underline'}}>Top Cryptocurrencies</Text>
+                    <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                        <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Sort</Text>
+                        <Image
+                            source={require('../../assets/Icons/down-arrow.png')}
+                            style={{width: 13, height: 13, tintColor: COLORS.white, margin: 5, marginTop: 6}}
+                        />
+                    </TouchableOpacity>
+                </View>
                 <FlatList
                     data={coins}
                     keyExtractor={item => item.id}
                     renderItem={({item}) => {
-
                         let priceColor = (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red;
 
                         return(
@@ -126,6 +150,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                             </View>
                         );
                     }}
+                    ListFooterComponent={<View style={{height:55}}></View>}
                 />
 
             </SafeAreaView>
