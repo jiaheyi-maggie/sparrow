@@ -4,13 +4,13 @@ import { SIZES, COLORS, FONTS } from '../../constants/theme';
 
 const BankBalanceInfo = ({ title, displayAmount, currency, changePct }) => {
     return (
-        <View>
-            <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{title}</Text>
+        <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
+            <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>{title}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>$</Text>
-                <Text style={{...FONTS.h2, color: COLORS.white, marginHorizontal: 5}}>{displayAmount}</Text>
-                <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{currency}</Text>
+                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{displayAmount}</Text>
+                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{currency}</Text>
             </View>
 
             <View style={{flexDirection: 'row', alignItems:'center'}}>
@@ -31,7 +31,7 @@ const BankBalanceInfo = ({ title, displayAmount, currency, changePct }) => {
                     {changePct}%
                 </Text>
 
-                <Text style={{...FONTS.h4, color: COLORS.lightGray3, alignSelf:'flex-end'}}> over a 7-day period</Text>
+                <Text style={{...FONTS.h4, color: COLORS.lightGray3, alignSelf:'flex-end'}}> over 7 days</Text>
 
             </View>
 

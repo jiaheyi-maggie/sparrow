@@ -76,16 +76,26 @@ const Link = ({ navigation, link_token, client }) => {
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
 				<View style={styles.genericRow}>
-					<Text style={{color: COLORS.desertGreen, ...FONTS.h2}}>Bank Accounts</Text>
+					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     <PlaidLink token={link_token} client={client}/>
 				</View>
 
-                <BankBalanceInfo 
-                    title='Total Available'
-                    displayAmount="30000"
-                    currency="USD"
-                    changePct="2.3"
-                />
+                <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
+
+                <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
+                    <BankBalanceInfo 
+                        title='Current Balance:'
+                        displayAmount="30000"
+                        currency="USD"
+                        changePct="2.3"
+                    />
+                    <BankBalanceInfo 
+                        title='Total Available:'
+                        displayAmount="30000"
+                        currency="USD"
+                        changePct="2.3"
+                    />
+                </View>
 
                 {/* list of bank accounts */}
                 <FlatList
@@ -97,29 +107,57 @@ const Link = ({ navigation, link_token, client }) => {
                                 return COLORS.yellow;
                             } else if (available < current) {
                                 return COLORS.tea;
-                            } else if (available == current) {
+                            } else if (available === current) {
+                                return COLORS.melon;
+                            } else {
                                 return COLORS.melon;
                             }
                         };
 
+                        let priceColor = (item.balances.current - item.balances.available >= 0) ? COLORS.grass : COLORS.red;
+
                         return (
-                            <View style={{marginBottom: 8}}>
-                                <View style={styles.genericRow}>
-                                    <Text style={{...FONTS.h3, color: COLORS.primary, textDecorationLine: 'underline'}}>{item.name}</Text>
-                                    <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>({item.type})</Text>
+                            <View>
+                                <View style={{borderBottomColor: COLORS.grass, borderBottomWidth: 1.5}}/>
+                                <View style={{marginBottom: 15, backgroundColor: "#fffee9", padding: 8, borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderWidth: 1, borderColor: COLORS.grass}}>
+                                    <View style={styles.genericRow}>
+                                        <Text style={{...FONTS.h3, color: COLORS.grass}}>{item.name}</Text>
+                                        <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>({item.type})</Text>
+                                    </View>
+
+                                    <TouchableOpacity style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15}}>
+                                        <View>
+                                            <Text style={{...FONTS.h3, color: COLORS.lightGray3, textAlign: 'right'}}>$ {item.balances.current}</Text>
+                                            <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                                                {
+                                                    item.balances.current != 0 && 
+                                                    <Image
+                                                        source={require('../../assets/Icons/up-arrow.png')}
+                                                        style={{
+                                                            width: 10,
+                                                            height: 10,
+                                                            alignSelf: 'center',
+                                                            tintColor: priceColor,
+                                                            transform: (item.balances.current - item.balances.available >= 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
+                                                        }}
+                                                    />
+                                                }
+                                                <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
+                                                    {item.balances.available}%
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                    
                                 </View>
-
-                                <TouchableOpacity style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15}}>
-                                    <Text>{item.balances.current}</Text>
-                                    <Text>{item.balances.available}</Text>
-                                    <Text>{item.balances.iso_currency_code}</Text>
-                                </TouchableOpacity>
-
-                                <View style={{borderBottomColor: COLORS.bone,borderBottomWidth: 1, }}/>
+                            
                             </View>
                         );
                     }}
                     keyExtractor={item => item.id}
+                    ListHeaderComponent={<Text style={{...FONTS.h3, color: COLORS.secondary}}>Details</Text>}
+                    ListFooterComponent={<View style={{height: 50}}></View>}
                 />
     
 			</SafeAreaView>
