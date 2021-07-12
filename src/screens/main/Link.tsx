@@ -43,6 +43,7 @@ const Link = ({ navigation, link_token, client }) => {
             const accessTokenResponse = exchangeTokenResponse.access_token;
 
             setAccessToken(accessTokenResponse);
+            // this token is permenant
             store.dispatch({
                 type: 'pushAccessToken',
                 payload: {accessToken}

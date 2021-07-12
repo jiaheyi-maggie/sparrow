@@ -30,6 +30,7 @@ import SignedOut from './SignedOut';
 import Crypto from './Crypto';
 import Link from './Link';
 
+
 /* Add the onboarding navigation stack here */
 const Tab = createBottomTabNavigator();
 const DrawerNav = createDrawerNavigator();

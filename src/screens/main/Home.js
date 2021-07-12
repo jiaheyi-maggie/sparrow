@@ -45,23 +45,23 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                 <Image
                                     source={require('../../assets/Icons/profile.png')}
                                     style={{
-                                        width: 27,
-                                        height: 27,
+                                        width: 23,
+                                        height: 23,
                                         tintColor: '#e1e1e1',
                                         marginLeft: 8
                                     }}
                                 />
                             </TouchableOpacity>
 
-                            <Text style={{color: '#fff', ...FONTS.h2}}>Hi, {currentUser.firstName}</Text>             
+                            <Text style={{color: '#fff', ...FONTS.h3}}>Hi, {currentUser.firstName}</Text>             
                                                             
                             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <Image 
                                     source={require('../../assets/Icons/menu.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 23,
-                                        height: 23,
+                                        width: 20,
+                                        height: 20,
                                         tintColor: '#e1e1e1',
                                         marginRight: 8
                                     }}
@@ -70,156 +70,154 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
 
                         </View>
 
-                        <View> 
+                        <View>
+                            
                             <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.smallTitle2}>Overview</Text>  
+                                <View style={[styles.genericRow, {margin:5}]}>
+                                    <Text style={{...FONTS.h3, color: COLORS.yellow}}>Overview</Text>
+                                    <Image 
+                                        source={require('../../assets/Icons/transfer.png')}
+                                        resizeMode='contain'
+                                        style={{
+                                            width: 20,
+                                            height: 20,
+                                            tintColor: '#e1e1e1',
+                                            marginLeft: 8,
+                                        }}
+                                    />
                                 </View>
-                                <Image 
-                                    source={require('../../assets/Icons/transfer.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 23,
-                                        height: 23,
-                                        tintColor: '#e1e1e1',
-                                        marginRight: 8,
-                                    }}
-                                />
                             </View>
                             
 
                             <ScrollView horizontal={true} >
+                                {/* Remaining */}
+                                <View>
+                                    <Pressable 
+                                        style={({ pressed }) => [
+                                            {
+                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                borderRadius: 10,
+                                                padding: 8,
+                                                elevation: 2,
+                                                margin:5
+                                            }
+                                        ]} 
+                                        onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
+                                    >
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Remaining</Text>
 
-                                <Pressable 
-                                    style={({ pressed }) => [
-                                        {
-                                            backgroundColor: pressed ? 'aliceblue' : 'white',
-                                            borderRadius: 20,
-                                            padding: 5,
-                                            elevation: 2,
-                                            margin:5
-                                        }
-                                    ]} 
-                                    onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
-                                >
-                                    <Text style={styles.subtitle2}>Remaining</Text>
-
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
-                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{shortTerm[0]}</Text>
+                                            </View>
                                         </View>
-                                       
 
-                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ {shortTerm[0]}</Text>
+
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{y}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{longTerm[0]}</Text>
+                                            </View>
                                         </View>
-                                    </View>
 
 
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
-                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        <View style={styles.statusContainer}>
+                                            <Text style={{...FONTS.h4, color: COLORS.orange, marginHorizontal: 20}}>View Details</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, margin: 2, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ {longTerm[0]}</Text>
-                                        </View>
-                                    </View>
+                                    </Pressable>
+                                </View> 
 
-
-                                    <View style={styles.statusContainer}>
-                                        <Text style={styles.viewDetailText}>View Details</Text> 
-                                    </View>
-                                </Pressable>
-
-                                <View style={{marginTop: 75}}>
+                                <View style={{marginTop: 60}}>
                                     <Text style={styles.operation}> = </Text>
                                 </View>
 
+                                {/* Budget */}
+                                <View>
+                                    <Pressable 
+                                        style={({ pressed }) => [
+                                            {
+                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                borderRadius: 10,
+                                                padding: 8,
+                                                elevation: 2,
+                                                margin:5
+                                            }
+                                        ]} 
+                                        onPress={()=>{navigation.navigate("Average Budget")}}
+                                    >
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Budget</Text>
 
-                                <Pressable 
-                                    style={({ pressed }) => [
-                                        {
-                                            backgroundColor: pressed ? 'aliceblue' : 'white',
-                                            borderRadius: 20,
-                                            padding: 5,
-                                            elevation: 2,
-                                            margin:5
-                                        }
-                                    ]} 
-                                    onPress={()=>{navigation.navigate("Average Budget")}}
-                                >
-                                    <Text style={styles.subtitle2}>Budget</Text>
-
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
-                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{shortTerm[0]}</Text>
+                                            </View>
                                         </View>
-                                       
-                                        <View style={{backgroundColor: '#D7CEB2', borderRadius: 20, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ {shortTerm[0]}</Text>
+
+
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{y}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{longTerm[0]}</Text>
+                                            </View>
                                         </View>
-                                    </View>
 
 
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
-                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        <View style={styles.statusContainer}>
+                                            <Text style={{...FONTS.h4, color: COLORS.orange, marginHorizontal: 20}}>View Details</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#D7CEB2', borderRadius: 20, margin: 2, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ {longTerm[0]}</Text>
-                                        </View>
-                                    </View>
+                                    </Pressable>
+                                </View>
 
-
-                                    <View style={styles.statusContainer}>
-                                        <Text style={styles.viewDetailText}>View Details</Text> 
-                                    </View>
-                                </Pressable>
-
-                                <View style={{marginTop: 75}}>
-                                    <Text style={styles.operation}> — </Text>
+                                <View style={{marginTop: 60}}>
+                                    <Text style={styles.operation}> - </Text>
                                 </View>
 
 
-                                <Pressable 
-                                    style={({ pressed }) => [
-                                        {
-                                            backgroundColor: pressed ? 'aliceblue' : 'white',
-                                            borderRadius: 20,
-                                            padding: 5,
-                                            elevation: 2,
-                                            margin:5
-                                        }
-                                    ]} 
-                                    onPress={()=>{navigation.navigate("Spending Detail")}}
-                                >
-                                    <Text style={styles.subtitle2}>Spending</Text>
+                                {/* Spending */}
+                                <View> 
+                                    <Pressable 
+                                        style={({ pressed }) => [
+                                            {
+                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                borderRadius: 10,
+                                                padding: 8,
+                                                elevation: 2,
+                                                margin:5
+                                            }
+                                        ]} 
+                                        onPress={()=>{navigation.navigate("Spending Detail")}}
+                                    >
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Spending</Text>
 
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20}}>
-                                            <Text style={styles.subtitle}>{m}:</Text>
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>0</Text>
+                                            </View>
                                         </View>
-                                       
-                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ 0</Text>
+
+
+                                        <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
+                                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{y}:</Text>
+                                            <View style={styles.genericRow}>
+                                                <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                                                <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>0</Text>
+                                            </View>
                                         </View>
-                                    </View>
 
 
-                                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                                        <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 2}}>
-                                            <Text style={styles.subtitle}>{y}:</Text>
+                                        <View style={styles.statusContainer}>
+                                            <Text style={{...FONTS.h4, color: COLORS.orange, marginHorizontal: 20}}>View Details</Text>
                                         </View>
-                                        <View style={{backgroundColor: '#99A672', borderRadius: 20, margin: 2, marginRight: 5}}>
-                                            <Text style={styles.number2}>$ 0</Text>
-                                        </View>
-                                    </View>
-
-
-                                    <View style={styles.statusContainer}>
-                                        <Text style={styles.viewDetailText}>View Details</Text> 
-                                    </View>
-                                </Pressable>
+                                    </Pressable>
+                                </View>
 
                             </ScrollView>
 
@@ -227,9 +225,8 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
 
 
                         <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.smallTitle2}>Budget Categories</Text>  
-                                </View>
+                            <View style={[styles.genericRow, {margin:5}]}>
+                                <Text style={{...FONTS.h3, color: COLORS.yellow}}>Budget Categories</Text>
                                 <Image 
                                     source={require('../../assets/Icons/zoom-in.png')}
                                     resizeMode='contain'
@@ -237,9 +234,10 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                         width: 25,
                                         height: 25,
                                         tintColor: '#e1e1e1',
-                                        marginRight: 8,
+                                        marginLeft: 8,
                                     }}
                                 />
+                                </View>
                         </View>
 
 

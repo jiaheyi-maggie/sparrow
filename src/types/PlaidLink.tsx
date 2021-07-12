@@ -1,7 +1,7 @@
 import { Client } from 'plaid';
 import React, { useState, useCallback, FunctionComponent} from 'react';
 import { Button } from 'react-native';
-import { usePlaidLink, PlaidLinkOptions,  PlaidLinkError,
+import { usePlaidLink, PlaidLinkOptions, PlaidLinkError,
     PlaidLinkOnSuccess, PlaidLinkOnSuccessMetadata,
     PlaidLinkOnExit, PlaidLinkOnExitMetadata,
     PlaidLinkOnEvent, PlaidLinkOnEventMetadata, PlaidLinkStableEvent } from 'react-plaid-link';
@@ -16,7 +16,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
     const onSuccess = useCallback<PlaidLinkOnSuccess>(
         (public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
             // send public_token to server
-            fetch('/api/set_access_token', {
+            fetch('https://sandbox.plaid.com/exchange-public-token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,7 +42,20 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
 
             if (error != null && error.error_code === 'INVALID_LINK_TOKEN') {
                 // TODO: generate new link token
-                console.log(error);
+                const response = client
+                .createLinkToken({
+                    user: {
+                        client_user_id: "1234",
+                    },
+                    client_name: "Sparrow",
+                    products: ["auth", "transactions"],
+                    country_codes: ["US"],
+                    language: "en",
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+                console.log(response);
             }
         },[]
     );
@@ -63,11 +76,12 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
 
     const { open, ready, error, exit } = usePlaidLink(config);
 
+    // TODO: button is not ready
     return (
         <Button
             title="Add"
             onPress={() => open()}
-            // disabled={!ready}
+            disabled={!ready}
         />
 
     );

@@ -118,11 +118,11 @@ const homeStyle = StyleSheet.create({
     },
     statusContainer: {
         borderRadius: 20,
-        padding: 7,
+        padding: 5,
         elevation: 2,
         backgroundColor: "#FFF4CB",
-        margin: 10,
-        alignItems: 'center'
+        margin: 5,
+        alignItems: 'center',
     },
     number: {
         color: '#2A94AF',

@@ -20,6 +20,7 @@ import PlaidIndex from "./src/config/plaid";
 import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
 import { pushNotificationTokenToReducer, sendPushNotifications } from "./src/app/actions/notificationActions";
 
+
 // initialize navigation
 const Stack = createStackNavigator();
 
@@ -124,8 +125,10 @@ const App = () => {
 		// BUG: only generates when refreshed
 		const linkToken = response.link_token;
 		setLinkToken(linkToken);
+		console.log(response);
 		return linkToken;
 	};
+
 		
 	useEffect(() => {
 		generateToken()
