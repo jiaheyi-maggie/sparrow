@@ -107,40 +107,49 @@ const App = () => {
 		
 	// plaid link token
 	const [linkToken, setLinkToken] = useState(null);
-	const plaid = require("plaid");
-	const client = new plaid.Client({
-		clientID: PlaidIndex.PLAID_CLIENT_ID,
-		secret: PlaidIndex.PLAID_SECRET,
-		env: plaid.environments.sandbox,
-	});
+	// const plaid = require("plaid");
+	// const client = new plaid.Client({
+	// 	clientID: PlaidIndex.PLAID_CLIENT_ID,
+	// 	secret: PlaidIndex.PLAID_SECRET,
+	// 	env: plaid.environments.sandbox,
+	// });
 		
+	// const generateToken = async () => {
+	// 	const response = await client
+	// 	.createLinkToken({
+	// 		user: {
+	// 			client_user_id: "1234",
+	// 		},
+	// 		client_name: "Sparrow",
+	// 		products: ["auth", "transactions"],
+	// 		country_codes: ["US"],
+	// 		language: "en",
+	// 	})
+	// 	.catch((error) => {
+	// 		console.log(error);
+	// 	});
+		
+	// 	// BUG: only generates when refreshed
+	// 	const linkToken = response.link_token;
+	// 	setLinkToken(linkToken);
+	// 	console.log(response);
+	// 	return linkToken;
+	// };
+
 	const generateToken = async () => {
-		const response = await client
-		.createLinkToken({
-			user: {
-				client_user_id: "1234",
-			},
-			client_name: "Sparrow",
-			products: ["auth", "transactions"],
-			country_codes: ["US"],
-			language: "en",
-		})
-		.catch((error) => {
-			console.log(error);
+		const response = await fetch('/api/create_link_token', {
+			method: 'POST',
 		});
-		
-		// BUG: only generates when refreshed
-		const linkToken = response.link_token;
-		setLinkToken(linkToken);
-		console.log(response);
-		return linkToken;
-	};
+		const data = await response.json();
+		setLinkToken(data.link_token);
+		console.log(linkToken);
+	}
 
 		
 	useEffect(() => {
 		generateToken()
 			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		pushClientToReducer({client});
+		// pushClientToReducer({client});
 		console.log(store.getState().plaidReducer);
 
 		registerForPushNotificationsAsync()

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, FunctionComponent} from 'react';
+import React, { useEffect, useCallback, FunctionComponent } from 'react';
 import { Button } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { PlaidLinkPropTypes, usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLinkOnExit, PlaidLinkOnEvent } from 'react-plaid-link';

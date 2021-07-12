@@ -16,17 +16,15 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
     const onSuccess = useCallback<PlaidLinkOnSuccess>(
         (public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
             // send public_token to server
-            fetch('https://sandbox.plaid.com/exchange-public-token', {
+            fetch('http://192.168.1.129:19002/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    public_token: public_token,
-                    metadata: metadata,
-                })
+                body: JSON.stringify({ public_token })
             })
             .then((response) => {
+                // TODO: handle response
                 console.log('success', response);
             })
             .catch((error) => {
@@ -81,7 +79,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         <Button
             title="Add"
             onPress={() => open()}
-            disabled={!ready}
+            // disabled={!ready}
         />
 
     );
