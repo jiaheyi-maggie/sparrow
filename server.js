@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
     response.send("hello world");
 })
 
-app.post('/link/token/create', async (request, response) => {
+app.post('/', async (request, response) => {
     try {
         const tokenResponse = await client.createLinkToken({
             user: {
@@ -31,7 +31,6 @@ app.post('/link/token/create', async (request, response) => {
         });
         response.send(resonse.json(tokenResponse));
         return response.json(tokenResponse);
-        //   console.log(response.json(tokenResponse));
     } catch (e) {
         // display in local host 
         return response.send({ error: e.message });
@@ -39,5 +38,5 @@ app.post('/link/token/create', async (request, response) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`app listening at http://localhost:${port}`)
 })

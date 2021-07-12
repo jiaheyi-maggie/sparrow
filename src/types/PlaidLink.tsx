@@ -79,7 +79,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         <Button
             title="Add"
             onPress={() => open()}
-            disabled={!ready}
+            // disabled={!ready}
         />
 
     );
