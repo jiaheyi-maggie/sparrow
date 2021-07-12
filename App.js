@@ -20,6 +20,13 @@ import PlaidIndex from "./src/config/plaid";
 import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
 import { pushNotificationTokenToReducer, sendPushNotifications } from "./src/app/actions/notificationActions";
 
+// const express = require('express');
+// const app = express();
+// const PORT = 19002;
+// app.use(express.json());
+// app.listen(PORT, () => {
+// 	console.log(`server running on ${PORT}`);
+// })
 
 // initialize navigation
 const Stack = createStackNavigator();
