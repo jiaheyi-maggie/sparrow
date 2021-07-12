@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Modal, TouchableOpacity, SafeAreaView, Text, StyleSheet, View, Image, FlatList } from 'react-native';
 import store from '../../app/store';
 import periods from '../../data/periods';
+import { COLORS, FONTS } from '../../constants/theme';
 
 
 const AveragePeriodPicker = () => {
@@ -58,12 +59,11 @@ const AveragePeriodPicker = () => {
       {/* Time Period closed picker view */}
       <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() => handleClickOpen()}>
         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Text style={styles.textStyle}>  {chosen}  </Text>
-          <Image 
-            source={require('../../assets/Icons/down-arrow.png')} 
-            resizeMode='contain'
-            style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff', marginRight: 5}}
-          />
+			<Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>  {chosen}  </Text>
+			<Image
+				source={require('../../assets/Icons/down-arrow.png')}
+				style={{width: 13, height: 13, tintColor: COLORS.white, margin: 5, marginTop: 6}}
+			/>
         </View>
       </TouchableOpacity>
     </SafeAreaView>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 	},
 	buttonOpen: {
 		backgroundColor: "#D7CEB2",
-		width: 130
+		width: 100
 	},
 	buttonClose: {
 		backgroundColor: "#7E9181",

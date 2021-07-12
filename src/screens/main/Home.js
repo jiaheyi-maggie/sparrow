@@ -95,14 +95,14 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                     <Pressable 
                                         style={({ pressed }) => [
                                             {
-                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                backgroundColor: pressed ? COLORS.tea : 'aliceblue',
                                                 borderRadius: 10,
                                                 padding: 8,
                                                 elevation: 2,
                                                 margin:5
                                             }
                                         ]} 
-                                        onPress={()=>{this.props.navigation.navigate("Remaining Detail")}}
+                                        onPress={()=>{navigation.navigate("Remaining Detail")}}
                                     >
                                         <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Remaining</Text>
 
@@ -139,7 +139,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                     <Pressable 
                                         style={({ pressed }) => [
                                             {
-                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                backgroundColor: pressed ? COLORS.tea : 'aliceblue',
                                                 borderRadius: 10,
                                                 padding: 8,
                                                 elevation: 2,
@@ -184,7 +184,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                     <Pressable 
                                         style={({ pressed }) => [
                                             {
-                                                backgroundColor: pressed ? COLORS.yellow : 'aliceblue',
+                                                backgroundColor: pressed ? COLORS.tea : 'aliceblue',
                                                 borderRadius: 10,
                                                 padding: 8,
                                                 elevation: 2,

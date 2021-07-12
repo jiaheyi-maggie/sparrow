@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../../styles/homeStyle';
+import { COLORS, FONTS } from '../../../constants/theme';
 
 
 export class Setting extends Component {
@@ -22,22 +23,21 @@ export class Setting extends Component {
 
                     {/* header */}
                     <View style={{flexDirection: 'row', alignItems:'center'}}>
-                        
                         {/* go back */}
-                        <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
+                        <TouchableOpacity  onPress={() => this.props.navigation.navigate('Home')}>
                             <Image 
                             source={require('../../../assets/Icons/back.png')}
                             resizeMode='contain'
                             style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
+                                width: 17,
+                                height: 17,
+                                tintColor: COLORS.primary,
                             }}
                             />
                         </TouchableOpacity>
 
                         {/* Display name */}
-                        <Text style={styles.title}>Settings</Text>   
+                        <Text style={{color: COLORS.primary, ...FONTS.h2, marginLeft: 10}}>Settings</Text>
                     </View>
 
                     {/* main setting content */}

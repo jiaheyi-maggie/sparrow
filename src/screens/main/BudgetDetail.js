@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withNavigation } from 'react-navigation';
 import styles from '../../styles/homeStyle';
+import { COLORS, FONTS } from '../../constants/theme';
 
 const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeriod }) => {
 
@@ -93,93 +94,70 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
 
         console.log("hmm");
         return (
-            <SafeAreaView style={styles.container2}>
-                <ScrollView>
-                
+            <SafeAreaView style={styles.container3}>
+                {/* <ScrollView> */}
                 {/* Header */}
-                <View style={{
-                    flexDirection: 'row', 
-                    justifyContent:'space-between',
-                    alignItems: 'baseline'
-                    }}>
-
-                    {/* go back */}
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Image 
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
-
-                    {/* Display name */}
-                    <Text style={styles.title}>Overview</Text> 
-
-
+                <View style={styles.genericRow}>
+                    <Text style={{color: COLORS.primary, ...FONTS.h3}}>Budget Details</Text>
                     {/* Menu */}
-                    <TouchableOpacity  style={styles.menuButton} onPress={() => navigation.openDrawer()}>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <Image 
                             source={require('../../assets/Icons/menu.png')}
                             resizeMode='contain'
                             style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: '#fff',
+                                width: 17,
+                                height: 17,
+                                tintColor: COLORS.primary,
                             }}
                         />
                     </TouchableOpacity>
                 </View>
 
-                {/* time period selection */}
-                <View style={{flexDirection: 'row', alignItems: 'baseline', paddingLeft: 10, backgroundColor: '#F8FAFB', padding: 5, marginTop: 5}}>
-                    <Text style={styles.listText3}> Select a time period: </Text>
-                    <AveragePeriodPicker />
+                <View style={styles.genericRow}> 
+                    <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
+                    <View style={{alignSelf:'flex-end'}}>
+                        <AveragePeriodPicker />
+                    </View>
                 </View>
 
                 {/* Budget overview card */}
-                <View style={styles.cardContainer}>
+                <View style={[styles.genericRow, {marginTop: 10}]}>
+                    <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
+                        <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Recurring</Text>
 
-                    {/* Recurring */}
-                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={styles.cardText}>
-                            Recurring: 
-                        </Text>
-                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                            <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{handleTimeSelectionRendering(shortTerm[1], shortTerm[0])}</Text>
+                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>USD</Text>
+                        </View>
+
                     </View>
 
-                    {/* Non-recurring */}
-                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                        <Text style={styles.cardText}>
-                            Non-Recurring:
-                        </Text>
-                        <Text style={[styles.number, {color: '#264653', fontSize: 19}]}>$ {handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
+                    <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
+                        <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Non-Recurring</Text>
+
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>
+                            <Text style={{...FONTS.h2, color: COLORS.bluebell, marginHorizontal: 5}}>{handleTimeSelectionRendering(longTerm[1], longTerm[0])}</Text>
+                            <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>USD</Text>
+                        </View>
+
                     </View>
                 </View>
 
-                {/* Pie chart for budget */}
-                <Text style={styles.smallTitle}>Categories</Text>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <Text style={{...FONTS.h3, color: COLORS.secondary}}>Categories</Text>
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 15, padding: 5, width: 60, marginRight:10}}>
+                            <Text style={{...FONTS.h4, color: COLORS.white, alignSelf:'center'}}>Delete</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 15, padding: 5, width: 60}}>
+                            <Text style={{...FONTS.h4, color: COLORS.white, alignSelf:'center'}}>Add</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                
                 <PieChart data={usefulCategories}/>
-
-                {/* Category details */}
-                <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-                    {/* Delete Categories Button */}
-                    <View style={{alignItems: 'center', paddingLeft: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 20, padding: 8, width: 150, textAlign: 'center'}}>
-                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Delete Categories</Text>
-                        </TouchableOpacity>
-                    </View>
-                    {/* Add Categories Button */}
-                    <View style={{alignItems: 'center', paddingRight: 15, alignItems: 'flex-end', paddingBottom: 5}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Add Categories')} style={{backgroundColor:'#7E9181', elevation: 2, borderRadius: 20, padding: 8, width: 135, textAlign: 'center'}}>
-                            <Text style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}> Add Categories</Text>
-                        </TouchableOpacity>
-                    </View>
-                    
-                </View>
 
                 {/* List */}
                 <FlatList 
@@ -198,7 +176,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                     }}
                 />  
 
-                </ScrollView>
+                {/* </ScrollView> */}
             </SafeAreaView>
         );
     };
