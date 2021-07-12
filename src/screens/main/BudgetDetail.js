@@ -98,7 +98,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                 {/* <ScrollView> */}
                 {/* Header */}
                 <View style={styles.genericRow}>
-                    <Text style={{color: COLORS.primary, ...FONTS.h3}}>Budget Details</Text>
+                    <Text style={{color: COLORS.primary, ...FONTS.h2}}>Budget Details</Text>
                     {/* Menu */}
                     <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <Image 
@@ -164,9 +164,11 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                     data={usefulCategories}
                     renderItem={({ item }) => {
                         return (
-                            <View style={styles.listContainer}>
-                                <Text style={styles.listText}>{item.title}</Text> 
-                                <Text style={styles.listText2}>$ {handleTimeSelectionRendering(item.period,item.value)}</Text>
+                            <View> 
+                                <View style={{marginBottom: 15, backgroundColor: "#fffee9", padding: 8, borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderWidth: 1, borderColor: COLORS.grass, borderTopWidth: 2, flexDirection:'row', justifyContent:'space-between'}}>
+                                    <Text style={{...FONTS.h3, color: COLORS.purple, textAlign: 'right'}}>{item.title}</Text>
+                                    <Text style={{...FONTS.h3, color: COLORS.orange, textAlign: 'right'}}>$ {handleTimeSelectionRendering(item.period,item.value)}</Text>
+                                </View>
                             </View>
                         );
                     }}

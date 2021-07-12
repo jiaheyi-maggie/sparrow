@@ -109,23 +109,14 @@ const styles = StyleSheet.create({
 	buttonClose: {
 		backgroundColor: "#7E9181",
 		width: 280,
-		height: 50,
-		paddingTop: 8,
+		height: 40,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		textAlign: 'center'
 	},
-	textStyle: {
-		color: "white",
-		fontWeight: 'bold',
-		textAlign: "center",
-		fontSize: 20
-	},
 	selectionTextStyle: {
+		...FONTS.h2,
 		color: "white",
-		fontWeight: "bold",
-		textAlign: "center",
-		fontSize: 23
 	},
 	modalText: {
 		marginBottom: 15,

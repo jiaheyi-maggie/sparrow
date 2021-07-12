@@ -8,6 +8,7 @@ import { withNavigation } from 'react-navigation';
 import periods from '../../data/periods';
 import styles from '../../styles/homeStyle';
 import store from '../../app/store';
+import { FONTS } from '../../constants/theme';
 
 export class AddCategoriesDetail extends Component {
 
@@ -15,7 +16,6 @@ export class AddCategoriesDetail extends Component {
         super(props);
 
         this.state={
-            // modalVisible: true,
             title: '',
             value: 0,
             period: 'time period',
@@ -24,7 +24,7 @@ export class AddCategoriesDetail extends Component {
             id: `${this.props.categories.length}`,
             sum: 0,
             modalVisible: false,
-            keyboardOffset: 0,
+            keyboardOffset: 100,
             pageOffset: 0
         }
 
@@ -35,9 +35,6 @@ export class AddCategoriesDetail extends Component {
         this.handleAddCategories = this.handleAddCategories.bind(this);
         this.calculateRecurring = this.calculateRecurring.bind(this);
         this.calculateSum = this.calculateSum.bind(this);
-        this._keyboardDidHide = this._keyboardDidHide.bind(this);
-        this._keyboardDidShow = this._keyboardDidShow.bind(this);
-
     }
 
     componentDidMount() {
@@ -54,37 +51,7 @@ export class AddCategoriesDetail extends Component {
             }
             
         });
-
-        // keyboard listeners
-        this.keyboardDidShowListener = Keyboard.addListener(
-            'keyboardDidShow',
-            this._keyboardDidShow,
-        );
-
-        this.keyboardDidHideListener = Keyboard.addListener(
-            'keyboardDidHide',
-            this._keyboardDidHide,
-        );
-
     };
-
-    /* For Keyboard events */
-    componentWillUnmount() {
-        this.keyboardDidShowListener.remove();
-        this.keyboardDidHideListener.remove();
-    }
-
-    _keyboardDidShow(event) {
-        this.setState({
-            keyboardOffset: event.endCoordinates.height - 130,
-        })
-    }
-
-    _keyboardDidHide() {
-        this.setState({
-            keyboardOffset: 0,
-        })
-    }
 
     // calculate annual sum based on selection
     calculateSum(p, v, o) {
@@ -195,18 +162,18 @@ export class AddCategoriesDetail extends Component {
                         <Text style={styles.title2}>New Category</Text>
                         {/* add button */}
                         <TouchableOpacity onPress={() => this.handleAddCategories()} style={styles.addButtonContainer}>
-                            <View style={{flexDirection: 'row'}}>
-                            <Image 
-                                source={require('../../assets/Icons/add.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 23,
-                                    height: 23,
-                                    tintColor: '#264653',
-                                    marginRight: 15
-                                }}
-                            />
-                            <Text style={styles.addText}>Add</Text>
+                            <View style={{flexDirection: 'row', alignItems:'center'}}>
+                                <Image 
+                                    source={require('../../assets/Icons/add.png')}
+                                    resizeMode='contain'
+                                    style={{
+                                        width: 20,
+                                        height: 20,
+                                        tintColor: '#264653',
+                                        marginRight: 10
+                                    }}
+                                />
+                                <Text style={styles.addText}>Add</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -214,114 +181,109 @@ export class AddCategoriesDetail extends Component {
                     {/* Main Content */}
 
                     {/* Title */}
-                    <View style={styles.textInputContainer}>
-                        <Text style={styles.listText}>Category Name</Text>
-                        <TextInput
-                            value={this.state.title}
-                            onChangeText={(text) => this.onTitleChange(text)}
-                            style={styles.textInput}
-                            placeholder='Shopping...'
-                        />
-                    </View>
+                    <Text style={styles.listText}>Category Name</Text>
+                    <TextInput
+                        value={this.state.title}
+                        onChangeText={(text) => this.onTitleChange(text)}
+                        style={styles.textInput}
+                        placeholder='Shopping...'
+                    />
 
                     {/* Value + Period */}
-                    <View style={styles.textInputContainer}>
-                        <Text style={styles.listText}>Value + Period</Text>
-                        <View style={styles.textInputContainerValue}>
-                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Text style={styles.addTextGuide}>I want to spend $ </Text>
-                                <TextInput
-                                    value={this.state.value}
-                                    onChangeText={(value) => this.onValueChange(value)}
-                                    style={styles.textInputValue}
-                                    keyboardType='numeric'
-                                    placeholder='289...'
-                                />
-                            </View>
+                    <Text style={[styles.listText,{marginTop:10}]}>Value + Period</Text>
+                    <View style={styles.textInputContainerValue}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.addTextGuide}>I want to spend $ </Text>
+                            <TextInput
+                                value={this.state.value}
+                                onChangeText={(value) => this.onValueChange(value)}
+                                style={styles.textInputValue}
+                                keyboardType='numeric'
+                                placeholder='289...'
+                            />
+                        </View>
 
-                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Text style={styles.addTextGuide}>per </Text>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.addTextGuide}>per </Text>
 
-                                {/* Period Dropdown */}
-                                <SafeAreaView style={styles.startView}>
-                                    <Modal
-                                        animationType="fade"
-                                        transparent={true}
-                                        visible={this.state.modalVisible}
-                                        onRequestClose={() => this.setState({modalVisible: !this.state.modalVisible})}
-                                    >
-                                        {/* View for the list of time periods */}
-                                        <View style={styles.centeredView}>
-                                            <View style={styles.modalView}>
-                                                <Text style={styles.listText2}>Select a time period</Text>
-                                                <FlatList 
-                                                    data={periods}
-                                                    renderItem={({ item }) => (
-                                                        <TouchableOpacity
-                                                            style={[styles.button, styles.buttonClose]}
-                                                            onPress={() => {
-                                                                this.setState({modalVisible: false}); 
-                                                                this.setState({period: item.title});
-                                                                store.dispatch(
-                                                                    {
-                                                                        type: "updateNewCategory",
-                                                                        newCategory: {
-                                                                            ...this.props.newCategory,
-                                                                            period: item.title
-                                                                        }
+                            {/* Period Dropdown */}
+                            <SafeAreaView style={styles.startView}>
+                                <Modal
+                                    animationType="fade"
+                                    transparent={true}
+                                    visible={this.state.modalVisible}
+                                    onRequestClose={() => this.setState({modalVisible: !this.state.modalVisible})}
+                                >
+                                    {/* View for the list of time periods */}
+                                    <View style={styles.centeredView}>
+                                        <View style={styles.modalView}>
+                                            <Text style={styles.listText2}>Select a time period</Text>
+                                            <FlatList 
+                                                data={periods}
+                                                renderItem={({ item }) => (
+                                                    <TouchableOpacity
+                                                        style={[styles.button, styles.buttonClose]}
+                                                        onPress={() => {
+                                                            this.setState({modalVisible: false}); 
+                                                            this.setState({period: item.title});
+                                                            store.dispatch(
+                                                                {
+                                                                    type: "updateNewCategory",
+                                                                    newCategory: {
+                                                                        ...this.props.newCategory,
+                                                                        period: item.title
                                                                     }
-                                                                );
-                                                            }}
-                                                        >
-                                                            <Text style={styles.textStyle}>{item.title}</Text>
-                                                        </TouchableOpacity>
-                                                    )}
-                                                    keyExtractor={item => item.id}
-                                                />
-                                            </View>
-                                        </View>
-                                    </Modal>
-
-                                    <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() => this.handleClickOpen()}>
-                                        <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                                            <Text style={styles.textStyle2}> {this.state.period} </Text>
-                                            <Image 
-                                            source={require('../../assets/Icons/down-arrow.png')} 
-                                            resizeMode='contain'
-                                            style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
+                                                                }
+                                                            );
+                                                        }}
+                                                    >
+                                                        <Text style={styles.textStyle}>{item.title}</Text>
+                                                    </TouchableOpacity>
+                                                )}
+                                                keyExtractor={item => item.id}
                                             />
                                         </View>
-                                    </TouchableOpacity>
-                                </SafeAreaView>
-                            </View>
+                                    </View>
+                                </Modal>
 
-                            {/* Optional */}
-                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                <Text style={styles.addTextGuide}>for </Text>
-                                <TextInput
-                                    value={this.state.optional}
-                                    onChangeText={(option) => this.onOptionalChange(option)}
-                                    style={styles.textInputValue}
-                                    keyboardType='numeric'
-                                    placeholder='3...'
-                                />
-                                <Text style={styles.addTextGuide2}> {this.state.period}s</Text>
-                                <Text style={styles.addTextGuide}> per year.</Text>
-                            </View>
+                                <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() => this.handleClickOpen()}>
+                                    <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                                        <Text style={styles.textStyle2}> {this.state.period} </Text>
+                                        <Image 
+                                        source={require('../../assets/Icons/down-arrow.png')} 
+                                        resizeMode='contain'
+                                        style={{marginTop: 5, width: 20, height: 20, tintColor: '#fff'}}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                            </SafeAreaView>
+                        </View>
+
+                        {/* Optional */}
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={styles.addTextGuide}>for </Text>
+                            <TextInput
+                                value={this.state.optional}
+                                onChangeText={(option) => this.onOptionalChange(option)}
+                                style={styles.textInputValue}
+                                keyboardType='numeric'
+                                placeholder='3...'
+                            />
+                            <Text style={styles.addTextGuide2}> {this.state.period}s</Text>
+                            <Text style={styles.addTextGuide}> per year.</Text>
                         </View>
                     </View>
 
                     {/* Note */}
-                    <View style={styles.textInputContainer}>
-                        <Text style={styles.listText}>Note to Self</Text>
+                        <Text style={[styles.listText,{marginTop:10}]}>Note to Self</Text>
                         <View style={styles.textInputContainerValue2}>
                             <TextInput
                                 value={this.state.notes}
                                 maxLength={32}
-                                // onPressIn={() => this.setState({pageOffset: this.state.keyboardOffset})}
                                 onFocus={() => this.setState({pageOffset: this.state.keyboardOffset})}
                                 onChangeText={(text) => this.setState({notes: text, pageOffset: this.state.keyboardOffset})}
                                 style={{
+                                    ...FONTS.body2,
                                     backgroundColor: '#fff',
                                     borderRadius: 15,
                                     paddingVertical: 10,
@@ -336,24 +298,20 @@ export class AddCategoriesDetail extends Component {
                                 placeholder='Not essential for me this month...'
                                 onEndEditing={() => {
                                     this.setState({pageOffset: 0});
-                                    Keyboard.dismiss;
                                 }}
                                 onSubmitEditing={() => {
                                     this.setState({pageOffset: 0});
-                                    Keyboard.dismiss;
                                 }}
                                 returnKeyLabel='done'
                             />
                         </View>
-                    </View>
 
-                    <View style={{height: 120}}></View>
-                    {/* Cancel Button */}
-                    <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.cancelButtonContainer}>
-                            <Text style={styles.cancelText}>Cancel</Text>
-                        </TouchableOpacity>
-                    </View>
+                        {/* Cancel Button */}
+                        <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 170}}>
+                            <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.cancelButtonContainer}>
+                                <Text style={styles.cancelText}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
 
                 </SafeAreaView>
             </Modal>

@@ -68,6 +68,7 @@ export const FONTS = {
 	h5: { fontFamily: "Ubuntu-Medium", fontSize: SIZES.h5, lineHeight: 22 },
 	body1: { fontFamily: "Ubuntu-Light", fontSize: SIZES.body1, lineHeight: 36 },
 	body2: { fontFamily: "Ubuntu-Light", fontSize: SIZES.body2, lineHeight: 30 },
+	body22: { fontFamily: "Ubuntu-Medium", fontSize: 20, lineHeight: 30 },
 	body3: { fontFamily: "Ubuntu-Light", fontSize: SIZES.body3, lineHeight: 22 },
 	body4: { fontFamily: "Ubuntu-Regular", fontSize: SIZES.body4, lineHeight: 22 },
 	body5: { fontFamily: "Ubuntu-Regular", fontSize: SIZES.body5, lineHeight: 22 },

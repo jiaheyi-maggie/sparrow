@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { Platform } from 'react-native';
-import { FONTS, COLOR } from '../constants/theme';
+import { FONTS, COLORS } from '../constants/theme';
 
 
 const homeStyle = StyleSheet.create({
@@ -14,13 +14,8 @@ const homeStyle = StyleSheet.create({
         marginTop: 5,
     },
     title2: {
-        color: '#264653',
-        fontWeight: 'bold',
-        textAlign: 'left',
-        fontSize: 23,
-        marginTop: 5,
-        marginHorizontal: 10,
-
+        color: COLORS.primary, 
+        ...FONTS.h2,
     },
     title3: {
         color: '#fff',
@@ -150,14 +145,12 @@ const homeStyle = StyleSheet.create({
         marginHorizontal: Platform.OS ==='android' ? 0 : 20
     },
     listText: {
-        fontSize: 18,
-        fontWeight: 'bold',
+        ...FONTS.h3,
         color:'#706993',
         marginBottom: 5
     },
     listText2: {
-        fontSize: 18,
-        fontWeight: 'bold',
+        ...FONTS.h3,
         color:'#E76F51'
     },
     listText3: {
@@ -176,14 +169,14 @@ const homeStyle = StyleSheet.create({
     modalContainer: {
         backgroundColor: '#fff',
         flex: 1,
-        paddingTop: 10,
+        margin: 10
     },
     addButtonContainer: {
         backgroundColor: "#F4A261",
-        borderRadius: 20,
+        borderRadius: 15,
         paddingLeft: 15,
+        paddingRight: 15,
         paddingVertical: 5,
-        marginRight: 10,
         elevation: 2
     },
     settingsButton: {
@@ -205,24 +198,20 @@ const homeStyle = StyleSheet.create({
         marginVertical: Platform.OS === 'ios' ? 5 : 0
     },
     addText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: "#264653",
-        marginRight: 10,
-        paddingRight: 8
+        ...FONTS.h3,
+        color: COLORS.primary,
     },
     textInput: {
+        ...FONTS.h3, 
         backgroundColor: '#FFF4CB',
         borderRadius: 15,
-        paddingVertical: 10,
-        fontSize: 20,
-        fontWeight: 'bold',
+        paddingVertical: 8,
         color: '#E76F51',
         elevation: 2,
         textAlign: 'center'
     },
     textInputContainer: {
-       margin: 10,
+    //    margin: 10,
        backgroundColor: 'white'
     },
     textInputValue: {
@@ -252,14 +241,12 @@ const homeStyle = StyleSheet.create({
         height: 200
     },
     addTextGuide: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color:'#264653'
+        ...FONTS.body22,
+        color: COLORS.primary
     },
     addTextGuide2: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color:'#2A94AF'
+        ...FONTS.body22,
+        color: COLORS.secondary
     },
     startView: {
         flex: 1,
@@ -291,7 +278,7 @@ const homeStyle = StyleSheet.create({
         paddingHorizontal: 8,
         elevation: 2,
         padding: 2,
-        marginVertical:10,
+        marginVertical:5,
         width: 150
     },
     buttonOpen: {
@@ -300,23 +287,18 @@ const homeStyle = StyleSheet.create({
     buttonClose: {
         backgroundColor: "#7E9181",
         width: 280,
-        height: 40,
         padding: 8,
         flexDirection: 'row',
         justifyContent: 'center',
         textAlignVertical: 'center'
     },
     textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontSize: 20
+        ...FONTS.h2,
+        color: COLORS.white
     },
     textStyle2: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontSize: 20
+        ...FONTS.body22,
+        color: COLORS.white
     },
     modalText: {
         marginBottom: 15,
@@ -330,9 +312,8 @@ const homeStyle = StyleSheet.create({
         alignItems: 'center'
     },
     cancelText: {
+        ...FONTS.h3,
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 20
     },
     titleContainer: {
         width: 200,
