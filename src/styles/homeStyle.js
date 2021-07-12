@@ -5,11 +5,9 @@ import { FONTS, COLORS } from '../constants/theme';
 
 const homeStyle = StyleSheet.create({
     title: {
-        ...FONTS.h1,
-        color: '#264653',
-        fontWeight: 'bold',
+        ...FONTS.h2,
+        color: COLORS.primary,
         textAlign: 'left',
-        fontSize: 23,
         marginHorizontal: 10,
         marginTop: 5,
     },
@@ -187,10 +185,8 @@ const homeStyle = StyleSheet.create({
         elevation: 2
     },
     settingsText: {
-        fontSize: 17,
-        fontStyle:'italic',
-        fontWeight:'bold',
-        color: '#2A94AF',
+        ...FONTS.h3,
+        color: COLORS.secondary,
         
     },
     settingsInput: {
@@ -209,10 +205,6 @@ const homeStyle = StyleSheet.create({
         color: '#E76F51',
         elevation: 2,
         textAlign: 'center'
-    },
-    textInputContainer: {
-    //    margin: 10,
-       backgroundColor: 'white'
     },
     textInputValue: {
         backgroundColor: '#FFF4CB',

@@ -5,6 +5,7 @@ import {  useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
 import styles from '../../../styles/homeStyle';
 import store from '../../../app/store';
+import { COLORS, FONTS } from '../../../constants/theme';
 
 
 const EditProfile = ({ navigation }) => {
@@ -108,7 +109,7 @@ const EditProfile = ({ navigation }) => {
                 {/* header */}
                 <View style={{alignItems:'center'}}>
                     <Text style={styles.title}>Edit Profile</Text>   
-                    <Text style={styles.subtitle, {color: '#E76F51', marginBottom: 5}}>Tap on fields to edit</Text>
+                    <Text style={{...FONTS.body4, color: COLORS.orange, marginBottom: 5}}>Tap on fields to edit</Text>
                 </View>
 
                 {/* main setting content */}
@@ -116,7 +117,7 @@ const EditProfile = ({ navigation }) => {
                 <TouchableOpacity onPress={() => pickImage()}>
                 <View style={{alignItems: 'center'}}>
                     {handleImageRendering(photoURL)}
-                    <Text style={[styles.listText2, {fontWeight: 'normal', fontSize: 15, marginBottom: 5, color: '#7E9181'}]}>(Change Profile Picture)</Text>
+                    <Text style={{...FONTS.h4, marginBottom: 5, color: COLORS.desertGreen}}>(Change Profile Picture)</Text>
                 </View>
                 </TouchableOpacity>
 
@@ -156,24 +157,18 @@ const EditProfile = ({ navigation }) => {
 
                 <View style={{margin: Platform.OS === 'ios'?10:5}}>
                     <Text style={styles.settingsText}>E-mail:</Text>
-                    {/* <TextInput
-                        value={email}
-                        onChangeText={(email) => setEmail(email)}
-                        style={styles.settingsInput}
-                    /> */}
                     <Text style={[styles.settingsInput, {color: 'gray', marginBottom: 5}]}>{email}</Text>
                     <View style={{borderBottomColor: '#D7CEB2',borderBottomWidth: 1}}/>
                 </View>
 
-
                 <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignContent:'center'}}>
                     <TouchableOpacity style={styles.settingsButton}
                         onPress={()=> onSave()}>
-                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Save</Text> 
+                        <Text style={{...FONTS.h3, color:COLORS.primary}}>Save</Text> 
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.settingsButton}
                         onPress={()=> navigation.goBack()}>
-                        <Text style={{fontSize: 16, fontWeight: 'bold', color: '#264653'}}>Cancel</Text> 
+                        <Text style={{...FONTS.h3, color:COLORS.primary}}>Cancel</Text> 
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>

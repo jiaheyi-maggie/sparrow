@@ -24,15 +24,15 @@ export class Setting extends Component {
                     {/* header */}
                     <View style={{flexDirection: 'row', alignItems:'center'}}>
                         {/* go back */}
-                        <TouchableOpacity  onPress={() => this.props.navigation.navigate('Home')}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
                             <Image 
-                            source={require('../../../assets/Icons/back.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 17,
-                                height: 17,
-                                tintColor: COLORS.primary,
-                            }}
+                                source={require('../../../assets/Icons/back.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 17,
+                                    height: 17,
+                                    tintColor: COLORS.primary,
+                                }}
                             />
                         </TouchableOpacity>
 
@@ -42,67 +42,67 @@ export class Setting extends Component {
 
                     {/* main setting content */}
                     {/* Account Section */}
-                    <View style={{margin: 10}}>
+                    <View style={{marginVertical: 10}}>
                         <Text style={styles.listText}>Account</Text>
                         <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("EditProfile")}>
-                                <Text style={{fontSize: 16}}>Edit Profile</Text> 
+                                <Text style={{...FONTS.body3}}>Edit Profile</Text> 
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("BankAccounts")}>
-                                <Text style={{fontSize: 16}}>Bank Accounts</Text> 
+                                <Text style={{...FONTS.body3}}>Bank Accounts</Text> 
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("PaymentAccounts")}>
-                                <Text style={{fontSize: 16}}>Payment Accounts</Text> 
+                                <Text style={{...FONTS.body3}}>Payment Accounts</Text> 
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.settingList}>
                             <TouchableOpacity
                                 onPress={()=> this.props.navigation.navigate("NotificationSettings")}>
-                                <Text style={{fontSize: 16}}>Notification Settings</Text> 
+                                <Text style={{...FONTS.body3}}>Notification Settings</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>
 
                     {/* Security Section */}
-                    <View style={{margin: 10}}>
+                    <View style={{marginVertical: 10}}>
                         <Text style={styles.listText}>Security</Text>
                         <View style={styles.settingList}>
                             <TouchableOpacity>
                                 {/* onPress={()=> this.props.navigation.navigate("EditProfile")} */}
-                                <Text style={{fontSize: 16}}>Biometrics</Text> 
+                                <Text style={{...FONTS.body3}}>Biometrics</Text> 
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.settingList}>
                             <TouchableOpacity onPress={()=> this.props.navigation.navigate("ChangePassword")}>
-                                <Text style={{fontSize: 16}}>Change Password</Text> 
+                                <Text style={{...FONTS.body3}}>Change Password</Text> 
                             </TouchableOpacity>
                         </View>
 
                         <View style={styles.settingList}>
                             <TouchableOpacity onPress={()=> this.props.navigation.navigate("ChangeEmail")}>
-                                <Text style={{fontSize: 16}}>Change E-mail</Text> 
+                                <Text style={{...FONTS.body3}}>Change E-mail</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>
                     
                     {/* Policy Section */}
-                    <View style={{margin: 10}}>
+                    <View style={{marginVertical: 10}}>
                         <Text style={styles.listText}>Policy</Text>
                         <View style={styles.settingList}>
                             <TouchableOpacity>
                                 {/* onPress={()=> this.props.navigation.navigate("EditProfile")} */}
-                                <Text style={{fontSize: 16}}>Data Protection Agreement</Text> 
+                                <Text style={{...FONTS.body3}}>Data Protection Agreement</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>

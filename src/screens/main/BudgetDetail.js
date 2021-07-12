@@ -105,8 +105,8 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                             source={require('../../assets/Icons/menu.png')}
                             resizeMode='contain'
                             style={{
-                                width: 17,
-                                height: 17,
+                                width: 20,
+                                height: 20,
                                 tintColor: COLORS.primary,
                             }}
                         />
