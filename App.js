@@ -20,14 +20,6 @@ import PlaidIndex from "./src/config/plaid";
 import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
 import { pushNotificationTokenToReducer, sendPushNotifications } from "./src/app/actions/notificationActions";
 
-// const express = require('express');
-// const app = express();
-// const PORT = 19002;
-// app.use(express.json());
-// app.listen(PORT, () => {
-// 	console.log(`server running on ${PORT}`);
-// })
-
 // initialize navigation
 const Stack = createStackNavigator();
 
@@ -107,50 +99,54 @@ const App = () => {
 		
 	// plaid link token
 	const [linkToken, setLinkToken] = useState(null);
-	// const plaid = require("plaid");
-	// const client = new plaid.Client({
-	// 	clientID: PlaidIndex.PLAID_CLIENT_ID,
-	// 	secret: PlaidIndex.PLAID_SECRET,
-	// 	env: plaid.environments.sandbox,
-	// });
-		
-	// const generateToken = async () => {
-	// 	const response = await client
-	// 	.createLinkToken({
-	// 		user: {
-	// 			client_user_id: "1234",
-	// 		},
-	// 		client_name: "Sparrow",
-	// 		products: ["auth", "transactions"],
-	// 		country_codes: ["US"],
-	// 		language: "en",
-	// 	})
-	// 	.catch((error) => {
-	// 		console.log(error);
-	// 	});
-		
-	// 	// BUG: only generates when refreshed
-	// 	const linkToken = response.link_token;
-	// 	setLinkToken(linkToken);
-	// 	console.log(response);
-	// 	return linkToken;
-	// };
+	const [fakeToken, setFakeToken] = useState(null);
 
+	const plaid = require("plaid");
+	const client = new plaid.Client({
+		clientID: PlaidIndex.PLAID_CLIENT_ID,
+		secret: PlaidIndex.PLAID_SECRET,
+		env: plaid.environments.sandbox,
+	});
+		
 	const generateToken = async () => {
-		const response = await fetch('/api/create_link_token', {
+		const response = await client
+		.createLinkToken({
+			user: {
+				client_user_id: "1234",
+			},
+			client_name: "Sparrow",
+			products: ["auth", "transactions"],
+			country_codes: ["US"],
+			language: "en",
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+		
+		// BUG: only generates when refreshed
+		const linkToken = response.link_token;
+		setLinkToken(linkToken);
+		console.log(response);
+		return linkToken;
+	};
+
+	// TODO: does not fetch link from server
+	const generateTokenServer = async () => {
+		const response = await fetch('/link/token/create', {
 			method: 'POST',
 		});
 		const data = await response.json();
-		setLinkToken(data.link_token);
-		console.log(linkToken);
+		setFakeToken(data.link_token);
 	}
 
 		
 	useEffect(() => {
 		generateToken()
 			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		// pushClientToReducer({client});
-		console.log(store.getState().plaidReducer);
+		generateTokenServer();
+		console.log(fakeToken);
+		pushClientToReducer({client});
+		// console.log(store.getState().plaidReducer);
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));

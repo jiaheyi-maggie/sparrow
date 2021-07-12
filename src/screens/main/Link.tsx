@@ -4,7 +4,6 @@ import { COLORS, FONTS } from '../../constants/theme';
 import { PlaidLink } from '../../types/PlaidLink';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
-import OpenPlaidLink from '../../types/OpenPlaidLink';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
