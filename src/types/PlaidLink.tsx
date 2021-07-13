@@ -16,7 +16,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
     const onSuccess = useCallback<PlaidLinkOnSuccess>(
         (public_token: string, metadata: PlaidLinkOnSuccessMetadata) => {
             // send public_token to server
-            fetch('http://192.168.1.20:19002/', {
+            fetch('http://192.168.1.20:19002/exchange-public-token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,6 +70,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         onSuccess,
         onExit,
         onEvent,
+        isWebView: true
     };
 
     const { open, ready, error, exit } = usePlaidLink(config);
@@ -79,7 +80,7 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         <Button
             title="Add"
             onPress={() => open()}
-            // disabled={!ready}
+            disabled={!ready}
         />
 
     );

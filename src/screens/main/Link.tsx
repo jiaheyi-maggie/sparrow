@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
-import { PlaidLink } from '../../types/PlaidLink';
+// import { PlaidLink } from '../../types/PlaidLink';
+import { PlaidLink } from 'react-native-plaid-link-sdk';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
+import { usePlaidLink, PlaidLinkOnSuccess, PlaidLinkOptions } from 'react-plaid-link';
 
 const Link = ({ navigation, link_token, client }) => {
     const [publicToken, setPublicToken] = useState(null);
@@ -15,6 +17,7 @@ const Link = ({ navigation, link_token, client }) => {
     const [institutionID, setInstitutionID] =  useState('ins_109508');
 	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
     const [searchQuery, setSearchQuery] = React.useState('');
+
 
 
     const getPublicTokenSandbox = async () => {
@@ -68,9 +71,20 @@ const Link = ({ navigation, link_token, client }) => {
         }
     }
     
+    // const getLinkTokenFromServer = async () => {
+    //     try {
+    //         let response = await fetch('http://localhost:19002/create_link_token');
+    //         let json = await response.json();
+    //         console.log(json);
+    //         return json;
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
 
 	useEffect(() => {
         getPublicTokenSandbox();
+        // getLinkTokenFromServer();
 	}, [])
 
     const calculateCurrentTotal = () => {
@@ -118,7 +132,18 @@ const Link = ({ navigation, link_token, client }) => {
 				<View style={[styles.genericRow, {marginBottom: 10}]}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     {/* TODO: PlaidLink leads to OAuth */}
-                    <PlaidLink token={link_token} client={client}/>
+                    {/* <PlaidLink token={link_token} client={client}/> */}
+                    <PlaidLink
+                        tokenConfig={{token: link_token}}
+                        onSuccess={(success) => {
+                            console.log(success);
+                        }}
+                        onExit={(exit) => {
+                            console.log(exit);
+                        }}
+                    >
+                        <Text>Add</Text>
+                    </PlaidLink>
 				</View>
 
                 <View style={styles.genericRow}> 

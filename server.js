@@ -14,28 +14,45 @@ const client = new plaid.Client({
     env: plaid.environments.sandbox,
 });
 
+// console.log(client);
+
 app.get('/', (request, response) => {
     response.send("hello world");
 })
 
-app.post('/', async (request, response) => {
-    try {
-        const tokenResponse = await client.createLinkToken({
-            user: {
-              client_user_id: '1234',
-            },
-            client_name: 'Sparrow',
-            products: ["auth", "transactions"],
-            country_codes: ['US'],
-            language: 'en',
-        });
-        response.send(resonse.json(tokenResponse));
-        return response.json(tokenResponse);
-    } catch (e) {
-        // display in local host 
-        return response.send({ error: e.message });
-    }
-})
+app.post('/create_link_token',  async () => {
+    const token_response = await client.createLinkToken({
+			user: {
+				client_user_id: "1234",
+			},
+			client_name: "Sparrow",
+			products: ["auth", "transactions"],
+			country_codes: ["US"],
+			language: "en",
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+    console.log(cleint);
+
+    // try {
+    //     const tokenResponse = await client.createLinkToken({
+    //         user: {
+    //           client_user_id: '1234',
+    //         },
+    //         client_name: 'Sparrow',
+    //         products: ["auth", "transactions"],
+    //         country_codes: ['US'],
+    //         language: 'en',
+    //     });
+    //     response.json(tokenResponse);
+    //     console.log(response.json(tokenResponse));
+    // } catch (e) {
+    //     // display in local host 
+    //     return response.send({ error: e.message });
+    // }
+}) 
+
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)

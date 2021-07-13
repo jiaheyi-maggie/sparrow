@@ -126,27 +126,15 @@ const App = () => {
 		// BUG: only generates when refreshed
 		const linkToken = response.link_token;
 		setLinkToken(linkToken);
-		console.log(response);
 		return linkToken;
 	};
-
-	// TODO: does not fetch link from server
-	const generateTokenServer = async () => {
-		const response = await fetch('/link/token/create', {
-			method: 'POST',
-		});
-		const data = await response.json();
-		setFakeToken(data.link_token);
-	}
 
 		
 	useEffect(() => {
 		generateToken()
 			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		generateTokenServer();
 		console.log(fakeToken);
 		pushClientToReducer({client});
-		// console.log(store.getState().plaidReducer);
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));
