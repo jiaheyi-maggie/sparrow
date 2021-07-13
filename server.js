@@ -1,56 +1,48 @@
 // nodeJS server
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const port = 19002;
 
 const app = express();
-app.use(express.json());
+dotenv.config(); 
+// app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const plaid = require('plaid');
 
 const client = new plaid.Client({
-    clientID: "60e452c919a2660010f8bcc1",
-    secret: "b5e1e0bc4c95d7c053b38f7c17db50",
+    clientID: process.env.PLAID_CLIENT_ID,
+    secret: process.env.PLAID_SECRET,
     env: plaid.environments.sandbox,
 });
 
-// console.log(client);
+console.log(client);
 
 app.get('/', (request, response) => {
-    response.send("hello world");
+    // response.send("hello world");
+    response.json({
+        message: 'Hello World'
+    })
 })
 
-app.post('/create_link_token',  async () => {
-    const token_response = await client.createLinkToken({
-			user: {
-				client_user_id: "1234",
-			},
-			client_name: "Sparrow",
-			products: ["auth", "transactions"],
-			country_codes: ["US"],
-			language: "en",
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+function handleError(error) {
+    console.log(error);
+}
 
-    // try {
-    //     const tokenResponse = await client.createLinkToken({
-    //         user: {
-    //           client_user_id: '1234',
-    //         },
-    //         client_name: 'Sparrow',
-    //         products: ["auth", "transactions"],
-    //         country_codes: ['US'],
-    //         language: 'en',
-    //     });
-    //     response.json(tokenResponse);
-    //     console.log(response.json(tokenResponse));
-    // } catch (e) {
-    //     // display in local host 
-    //     return response.send({ error: e.message });
-    // }
-}) 
+app.post('/plaid_token_exchange', async (request, response) => {
+    const { publicToken } = request.body;
+
+    const { access_token } = await client.exchangePublicToken(publicToken).catch(handleError);
+
+    const { accounts, item } = await client.getAccounts(access_token).catch(handleError);
+
+    console.log({
+        accounts,
+        item
+    })
+})
 
 
 app.listen(port, () => {
