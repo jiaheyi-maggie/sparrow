@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const plaid = require('plaid');
+let link_token = null;
 
 const client = new plaid.Client({
     clientID: process.env.PLAID_CLIENT_ID,
@@ -55,11 +56,14 @@ app.get('/create_link_token', async (req, res) => {
         language: "en",
     }).catch(handleError);
 
-    const linkToken = response.link_token;
-    res.send(linkToken);
-
+    link_token = response.link_token;
+    res.send(link_token);
 })
 
+// replace link token instead of generating multiple sockets
+app.put('/create_link_token', (req, res) => {
+    res.send(link_token);
+})
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
