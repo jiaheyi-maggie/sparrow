@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const path = require('path');
 const port = 19002;
 
 const app = express();
@@ -18,12 +19,8 @@ const client = new plaid.Client({
     env: plaid.environments.sandbox,
 });
 
-// console.log(client);
-
 app.get('/', (request, response) => {
-    response.json({
-        message: 'Hello World'
-    })
+    response.sendFile(path.join(__dirname, 'src/types/plaid-link.html'));
 })
 
 app.get('/client', (req, res) => {

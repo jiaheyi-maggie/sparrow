@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    </head>
+    <body>
+        <button id="link-button">Link Account</button>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                // event handler 
+                var link_token = $.get('/create_link_token');
+                console.log(link_token);
+                var handler = Plaid.create({
+                    token: '',
+                    onSuccess: (public_token, metadata) => {
+                        $.post("/plaid_token_exchange", {
+                            public_token: public_token
+                        })
+                    },
+                    onLoad: () => {},
+                    onExit: (err, metadata) => {
+
+                    },
+                    onEvent: (eventName, metadata) =>  {},
+                    receivedRedirectUri: null
+                })
+            })
+
+        </script>
+    </body>
+
+</html>
