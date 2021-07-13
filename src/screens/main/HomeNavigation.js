@@ -29,6 +29,7 @@ import ChangeEmail from './Setting/ChangeEmail';
 import SignedOut from './SignedOut';
 import Crypto from './Crypto';
 import Link from './Link';
+import WebPlaidLink from '../../types/WebPlaidLink';
 
 
 /* Add the onboarding navigation stack here */
@@ -143,6 +144,30 @@ const HomeTab = () => {
                                     fontSize: 12
                                 }}>
                                     Notification
+                            </Text> 
+                        </View>
+                    ),
+                }} 
+            />
+
+            <Tab.Screen name='WebPlaidLink' component={WebPlaidLink} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/link.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#E76F51' : '#748c94'
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ? '#E76F51' : '#748c94',
+                                    fontSize: 12
+                                }}>
+                                    Link
                             </Text> 
                         </View>
                     ),

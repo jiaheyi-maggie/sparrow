@@ -1,8 +1,8 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Text, SafeAreaView, View, ScrollView, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
-// import { PlaidLink } from '../../types/PlaidLink';
-import { PlaidLink } from 'react-native-plaid-link-sdk';
+import { PlaidLink } from '../../types/PlaidLink';
+// import { PlaidLink } from 'react-native-plaid-link-sdk';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
@@ -132,18 +132,7 @@ const Link = ({ navigation, link_token, client }) => {
 				<View style={[styles.genericRow, {marginBottom: 10}]}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     {/* TODO: PlaidLink leads to OAuth */}
-                    {/* <PlaidLink token={link_token} client={client}/> */}
-                    <PlaidLink
-                        tokenConfig={{token: link_token}}
-                        onSuccess={(success) => {
-                            console.log(success);
-                        }}
-                        onExit={(exit) => {
-                            console.log(exit);
-                        }}
-                    >
-                        <Text>Add</Text>
-                    </PlaidLink>
+                    <PlaidLink token={link_token} client={client}/>
 				</View>
 
                 <View style={styles.genericRow}> 

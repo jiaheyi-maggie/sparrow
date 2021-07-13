@@ -33,7 +33,6 @@ app.post('/create_link_token',  async () => {
 		.catch((error) => {
 			console.log(error);
 		});
-    console.log(cleint);
 
     // try {
     //     const tokenResponse = await client.createLinkToken({
