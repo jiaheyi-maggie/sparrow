@@ -18,13 +18,16 @@ const client = new plaid.Client({
     env: plaid.environments.sandbox,
 });
 
-console.log(client);
+// console.log(client);
 
 app.get('/', (request, response) => {
-    // response.send("hello world");
     response.json({
         message: 'Hello World'
     })
+})
+
+app.get('/client', (req, res) => {
+    res.send(client);
 })
 
 function handleError(error) {
@@ -42,6 +45,22 @@ app.post('/plaid_token_exchange', async (request, response) => {
         accounts,
         item
     })
+})
+
+app.get('/create_link_token', async (req, res) => {
+    const response = await client.createLinkToken({
+        user: {
+            client_user_id: "1234",
+        },
+        client_name: "Sparrow",
+        products: ["auth", "transactions"],
+        country_codes: ["US"],
+        language: "en",
+    }).catch(handleError);
+
+    const linkToken = response.link_token;
+    res.send(linkToken);
+
 })
 
 

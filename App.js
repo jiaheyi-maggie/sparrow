@@ -99,7 +99,6 @@ const App = () => {
 		
 	// plaid link token
 	const [linkToken, setLinkToken] = useState(null);
-	const [fakeToken, setFakeToken] = useState(null);
 
 	const plaid = require("plaid");
 	const client = new plaid.Client({
@@ -133,8 +132,8 @@ const App = () => {
 	useEffect(() => {
 		generateToken()
 			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		console.log(fakeToken);
 		pushClientToReducer({client});
+		// console.log(linkToken);
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));
