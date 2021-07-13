@@ -100,6 +100,7 @@ const App = () => {
 	// plaid link token
 	const [linkToken, setLinkToken] = useState(null);
 
+
 	const plaid = require("plaid");
 	const client = new plaid.Client({
 		clientID: PlaidIndex.PLAID_CLIENT_ID,
@@ -122,18 +123,28 @@ const App = () => {
 			console.log(error);
 		});
 		
-		// BUG: only generates when refreshed
 		const linkToken = response.link_token;
 		setLinkToken(linkToken);
 		return linkToken;
 	};
 
+
+	const getLinkTokenFromServer = async () => {
+		try {
+			let response = await fetch('http://192.168.1.20:19002/create_link_token');
+			const result = JSON.stringify(response);
+			console.log(result);
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
 		
 	useEffect(() => {
-		generateToken()
-			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
+		// generateToken()
+		// 	.then((linkToken) => pushLinkTokenToReducer({linkToken}));
+		getLinkTokenFromServer();
 		pushClientToReducer({client});
-		// console.log(linkToken);
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));

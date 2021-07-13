@@ -15,10 +15,13 @@
                 var link_token = $.get('/create_link_token');
                 console.log(link_token);
                 var handler = Plaid.create({
-                    token: '',
+                    token: link_token,
                     onSuccess: (public_token, metadata) => {
-                        $.post("/plaid_token_exchange", {
-                            public_token: public_token
+                        $.post('/plaid_token_exchange', {
+                            public_token: public_token,
+                            accounts: metadata.accounts,
+                            institution: metadata.institution,
+                            link_session_id: metadata.link_session_id,
                         })
                     },
                     onLoad: () => {},
@@ -29,7 +32,7 @@
                     receivedRedirectUri: null
                 })
             })
-
+            handler.open()
         </script>
     </body>
 
