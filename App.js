@@ -141,9 +141,9 @@ const App = () => {
 
 		
 	useEffect(() => {
-		// generateToken()
-		// 	.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		getLinkTokenFromServer();
+		generateToken()
+			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
+		// getLinkTokenFromServer();
 		pushClientToReducer({client});
 
 		registerForPushNotificationsAsync()
