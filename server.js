@@ -1,8 +1,10 @@
-// nodeJS server
+// nodeJS + mongoDB server
 const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+// allow json inspection
+const util = require('util'); 
 const port = 19002;
 
 const mongoose = require('mongoose');
@@ -13,9 +15,14 @@ const User = require('./src/models/user');
 const app = express();
 dotenv.config(); 
 app.use(bodyParser.urlencoded({extended: true}));
+// going to use json when calling bodyParser
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useCreateIndex', true);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, "MongoDB connection error: "));
 
 const plaid = require('plaid');
 
@@ -42,7 +49,7 @@ const formatError = (error) => {
 };
 
 // front page: link
-app.get('/', (request, response) => {
+app.get('/', async (request, response) => {
     response.sendFile(path.join(__dirname, 'src/types/plaid-link.html'));
 })
 
@@ -52,21 +59,21 @@ app.get('/client', (req, res) => {
 })
 
 // logic to create link token: call in html files
-app.post('/create_link_token', async (req, res) => {
+app.get('/create_link_token', async (req, res) => {
     const configs = {
         user: {
             client_user_id: "1234",
         },
         client_name: "Sparrow",
-        products: ["auth", "transactions"],
+        products: ["auth", "transactions", 'identity'],
         country_codes: ["US"],
         language: "en",
     }
 
     // for oauth
-    if (process.env.PLAID_REDIRECT_URI != '') {
-        configs.redirect_uri = PLAID_REDIRECT_URI;
-    }
+    // if (process.env.PLAID_REDIRECT_URI != '') {
+    //     configs.redirect_uri = PLAID_REDIRECT_URI;
+    // }
 
     const response = await client.createLinkToken(configs);
     const linkToken = response.link_token;
@@ -75,30 +82,51 @@ app.post('/create_link_token', async (req, res) => {
 })
 
 // exchange public token for access token
-app.post('/plaid_token_exchange', async (request, response) => {
-    const { publicToken } = request.body.public_token;
+app.post('/plaid_token_exchange', async (req, res) => {
+    // const { publicToken } = req.body.public_token;
+    const { publicToken } = req.body;
     PUBLIC_TOKEN = publicToken;
 
-    try {
-        // const tokenResponse = await client.exchangePublicToken({public_token: PUBLIC_TOKEN});
-        const tokenResponse = await client.exchangePublicToken(publicToken);
-        const { access_token } = tokenResponse.data.access_token;
-        const { item_id } = tokenResponse.data.item_id;
+    // try {
+    //     // const tokenResponse = await client.exchangePublicToken({public_token: PUBLIC_TOKEN});
+    //     const tokenResponse = await client.exchangePublicToken(publicToken);
+    //     const { access_token } = tokenResponse.data.access_token;
+    //     const { item_id } = tokenResponse.data.item_id;
 
-        ACCESS_TOKEN = access_token;
-        ITEM_ID = item_id;
+    //     ACCESS_TOKEN = access_token;
+    //     ITEM_ID = item_id;
 
-        response.json({
-            access_token: access_token,
-            item_id: item_id,
-            error: null,
-        });
-    } catch(error) {
-        handleError(error);
-        return response.json(formatError(error.response));
-    }
-    // const { access_token } = await client.exchangePublicToken(publicToken).catch(handleError);
+    //     res.json({
+    //         access_token: access_token,
+    //         item_id: item_id,
+    //         error: null,
+    //     });
+    // } catch(error) {
+    //     handleError(error);
+    //     return res.json(formatError(error.response));
+    // }
+    const { access_token } = await client.exchangePublicToken(publicToken).catch(handleError);
+    ACCESS_TOKEN = access_token;
     // const { accounts, item } = await client.getAccounts(access_token).catch(handleError);
+
+    // api
+    const authResponse = await client.getAuth(access_token);
+    console.log('_________');
+    console.log("auth response");
+    console.log(util.inspect(authResponse, false, nul, true));
+
+    const identityResponse = await client.getIdentity(access_token);
+    console.log('_________');
+    console.log("identity response");
+    console.log(util.inspect(identityResponse, false, nul, true));
+
+    const balanceResponse = await client.getBalance(access_token);
+    console.log('_________');
+    console.log("balance response");
+    console.log(util.inspect(balanceResponse, false, nul, true));
+
+    res.sendStatus(200);
+    
 })
 
 // app.get('/create_link_token', async (req, res) => {
