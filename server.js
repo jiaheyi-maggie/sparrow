@@ -4,10 +4,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const port = 19002;
+
+const mongoose = require('mongoose');
+const PlaidItem = require('./src/models/plaid-item');
+const PlaidAccounts = require('./src/models/plaid-account');
+const User = require('./src/models/user');
+
 const app = express();
 dotenv.config(); 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+mongoose.connect(process.env.DB_CONNECTION_STRING);
 
 const plaid = require('plaid');
 
@@ -43,7 +51,7 @@ app.get('/client', (req, res) => {
     res.send(client);
 })
 
-// create link token
+// logic to create link token: call in html files
 app.post('/create_link_token', async (req, res) => {
     const configs = {
         user: {

@@ -10,12 +10,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
         <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
         <script type="text/javascript">
-            (function($) {
-                // event handler 
-                var link_token = $.get('/create_link_token');
-                console.log(link_token);
+            (async function($) {
+                
                 var handler = Plaid.create({
-                    token: link_token,
+                    // create a new link_token to initialize Link
+                    token: (await $.post('/create_link_token')).link_token,
                     onSuccess: (public_token, metadata) => {
                         $.post('/plaid_token_exchange', {
                             public_token: public_token,
