@@ -6,7 +6,6 @@ import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
-import WebPlaidLink from '../../types/WebPlaidLink';
 import { usePlaidLink, PlaidLinkOnSuccess, PlaidLinkOptions } from 'react-plaid-link';
 
 const Link = ({ navigation, link_token, client }) => {
