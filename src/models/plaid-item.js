@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+const { model, Schema } = require('mongoose');
 
 module.exports = model('PlaidItem', new Schema({
     available_products: Array,
