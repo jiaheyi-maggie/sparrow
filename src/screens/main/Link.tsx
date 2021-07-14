@@ -1,12 +1,12 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Text, SafeAreaView, View, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
-import { PlaidLink } from '../../types/PlaidLink';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
+import WebPlaidLink from '../../types/WebPlaidLink';
 import { usePlaidLink, PlaidLinkOnSuccess, PlaidLinkOptions } from 'react-plaid-link';
 
 const Link = ({ navigation, link_token, client }) => {
@@ -132,6 +132,7 @@ const Link = ({ navigation, link_token, client }) => {
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     {/* TODO: PlaidLink leads to OAuth */}
                     {/* <PlaidLink token={link_token} client={client}/> */}
+
                     <Button
                         title="Add"
                         onPress={() => navigation.navigate("WebPlaidLink")}

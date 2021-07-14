@@ -13,16 +13,24 @@
             (async function($) {
 
                 const fetchLinkToken = async () => {
-                    const response = await fetch('/create_link_token');
-                    const { linkToken } = await response.json();
+                    const response = await fetch('/create_link_token')
+                        .catch((error) => {
+                            console.log(error)
+                        });
+
+                    const { linkToken } = await response.json()
+                        .catch((error) => {
+                            console.log(error)
+                        });
+                    
                     return linkToken;
                 };
                 
                 // link flow
                 const handler = Plaid.create({
                     token: await fetchLinkToken(),
-                    onSuccess: async (public_token, metadata) => {
-                        console.log(public_token);
+                    onSuccess: async (publicToken, metadata) => {
+                        console.log(publicToken);
                         console.log(metadata);
 
                         // send public token to the front end for exchanging
@@ -35,11 +43,11 @@
 
                         await fetch('/plaid_token_exchange', {
                             method: 'POST',
-                            body: JSON.stringify({public_token}),
+                            body: JSON.stringify({ publicToken }),
                             // letting the api know that the data is coming in with JSON payload
                             headers: {
                                 'Content-Type' : "application/json",
-                            }
+                            },
                         });
                     },
                     onLoad: () => {},

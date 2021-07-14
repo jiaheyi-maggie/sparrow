@@ -1,22 +1,16 @@
 import React, { FunctionComponent, useCallback, useEffect } from 'react';
 import WebView from 'react-native-webview';
-import { usePlaidLink, PlaidLinkOptions,
-    PlaidLinkOnSuccess, PlaidLinkOnSuccessMetadata, 
-    PlaidLinkOnEventMetadata, PlaidLinkStableEvent, PlaidLinkOnEvent,
-    PlaidLinkOnExitMetadata, PlaidLinkOnExit, PlaidLinkError } from 'react-plaid-link';
 import { Client } from 'plaid';
 import { connect } from 'react-redux';
-import { COLORS, FONTS } from '../constants/theme';
 
-interface Props {
-    token: string;
-    client: Client;
-}
+// interface Props {
+//     token: string;
+//     client: Client;
+// }
 
-const WebPlaidLink: FunctionComponent<Props>  = ({ token, client }) => {
-
+const WebPlaidLink = () => {
     return (
-        <WebView source={{uri: 'http://192.168.1.20:19002'}} style={{marginTop:50}}/>
+        <WebView source={{uri: 'http://192.168.1.20:19002'}} style={{flex:1, marginTop: 50}}/>
     );
 }
 
