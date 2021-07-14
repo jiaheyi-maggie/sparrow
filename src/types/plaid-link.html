@@ -6,32 +6,56 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     </head>
     <body>
-        <button id="link-button">Link Account</button>
+        <button id="link-button">Link Bank Accounts</button>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
         <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
         <script type="text/javascript">
             (async function($) {
+
+                const fetchLinkToken = async () => {
+                    const response = await fetch('/create_link_token');
+                    const { linkToken } = await response.json();
+                    return linkToken;
+                };
                 
-                var handler = Plaid.create({
-                    // create a new link_token to initialize Link
-                    token: (await $.post('/create_link_token')).link_token,
-                    onSuccess: (public_token, metadata) => {
-                        $.post('/plaid_token_exchange', {
-                            public_token: public_token,
-                            accounts: metadata.accounts,
-                            institution: metadata.institution,
-                            link_session_id: metadata.link_session_id,
-                        })
+                // link flow
+                const handler = Plaid.create({
+                    token: await fetchLinkToken(),
+                    onSuccess: async (public_token, metadata) => {
+                        console.log(public_token);
+                        console.log(metadata);
+
+                        // send public token to the front end for exchanging
+                        // $.post('/plaid_token_exchange', {
+                        //     public_token: public_token,
+                        //     accounts: metadata.accounts,
+                        //     institution: metadata.institution,
+                        //     link_session_id: metadata.link_session_id,
+                        // })
+
+                        await fetch('/plaid_token_exchange', {
+                            method: 'POST',
+                            body: JSON.stringify({public_token}),
+                            // letting the api know that the data is coming in with JSON payload
+                            headers: {
+                                'Content-Type' : "application/json",
+                            }
+                        });
                     },
                     onLoad: () => {},
-                    onExit: (err, metadata) => {
-
+                    onExit: async (err, metadata) => {
+                        console.log(err);
+                        console.log(metadata);
                     },
-                    onEvent: (eventName, metadata) =>  {},
+                    onEvent: async (eventName, metadata) =>  {
+                        console.log(metadata);
+                    },
                     receivedRedirectUri: null
                 })
-            })
-            handler.open()
+
+                // actions when button is clicked
+                $('#link-button').on('click', function(e) { handler.open();});
+            })(jQuery);
         </script>
     </body>
 

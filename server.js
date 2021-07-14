@@ -75,17 +75,15 @@ app.get('/create_link_token', async (req, res) => {
     //     configs.redirect_uri = PLAID_REDIRECT_URI;
     // }
 
-    const response = await client.createLinkToken(configs);
-    const linkToken = response.link_token;
-    LINK_TOKEN = linkToken;
-    res.json(linkToken);
+    const { link_token: linkToken } = await client.createLinkToken(configs);
+
+    res.json({ linkToken });
 })
 
 // exchange public token for access token
 app.post('/plaid_token_exchange', async (req, res) => {
     // const { publicToken } = req.body.public_token;
     const { publicToken } = req.body;
-    PUBLIC_TOKEN = publicToken;
 
     // try {
     //     // const tokenResponse = await client.exchangePublicToken({public_token: PUBLIC_TOKEN});
@@ -105,25 +103,24 @@ app.post('/plaid_token_exchange', async (req, res) => {
     //     handleError(error);
     //     return res.json(formatError(error.response));
     // }
-    const { access_token } = await client.exchangePublicToken(publicToken).catch(handleError);
-    ACCESS_TOKEN = access_token;
+    const { access_token: accessToken } = await client.exchangePublicToken(publicToken).catch(handleError);
     // const { accounts, item } = await client.getAccounts(access_token).catch(handleError);
 
     // api
-    const authResponse = await client.getAuth(access_token);
+    const authResponse = await client.getAuth(accessToken);
     console.log('_________');
     console.log("auth response");
-    console.log(util.inspect(authResponse, false, nul, true));
+    console.log(util.inspect(authResponse, false, null, true));
 
-    const identityResponse = await client.getIdentity(access_token);
+    const identityResponse = await client.getIdentity(accessToken);
     console.log('_________');
     console.log("identity response");
-    console.log(util.inspect(identityResponse, false, nul, true));
+    console.log(util.inspect(identityResponse, false, null, true));
 
-    const balanceResponse = await client.getBalance(access_token);
+    const balanceResponse = await client.getBalance(accessToken);
     console.log('_________');
     console.log("balance response");
-    console.log(util.inspect(balanceResponse, false, nul, true));
+    console.log(util.inspect(balanceResponse, false, null, true));
 
     res.sendStatus(200);
     
@@ -146,6 +143,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
 //     // console.log(LINK_TOKEN);
 //     res.send(link_token);
 // })
+
 
 // investment transavtions for an Item
 app.get('/transactions', async (req, res) => {
