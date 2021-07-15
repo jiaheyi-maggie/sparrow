@@ -121,7 +121,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         if (error) {
             console.log(error);
         }
-        // console.log(doc);
+        console.log(doc);
     })
 
     const balanceResponse = await client.getBalance(accessToken)
@@ -148,7 +148,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
 })
 
 
-app.get('/api', async (req, res) => {
+app.get('/api/accounts', async (req, res) => {
     PlaidAccounts.find({})
     .then((data) => {
         res.send(data);

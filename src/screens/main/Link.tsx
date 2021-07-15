@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
-import { Text, SafeAreaView, View, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, SafeAreaView, View, FlatList, TouchableOpacity, Image, Button } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
@@ -9,11 +9,13 @@ import { Searchbar } from 'react-native-paper';
 
 const Link = ({ navigation, link_token, client }) => {
     const [accounts, setAccounts] = useState(null);
+    const [loans, setLoans] = useState(null);
+    const [credit, setCredit] = useState(null);
     const [searchQuery, setSearchQuery] = React.useState('');
     
     const getAccountsFromMongo = async () => {
         try {
-            const response = await fetch('http://192.168.1.20:19002/api');
+            const response = await fetch('http://192.168.1.20:19002/api/accounts');
             const json = await response.json();
             setAccounts(json);
           } catch (error) {
@@ -26,18 +28,39 @@ const Link = ({ navigation, link_token, client }) => {
 	}, [])
 
     const calculateCurrentTotal = () => {
-        const currents = accounts.map((obj) => obj.balances.current);
-        const result = currents.reduce((a,b) => a+b, 0); 
-        // setCurrentBalance(result);
+        const depository = accounts.filter(obj => obj.type==='depository');
+        const amounts = depository.map(obj => obj.balances.current);
+        const result = amounts.reduce((a, b) => a+b, 0);
         return result.toFixed(2);
     };
 
     const calculateAvailableTotal = () => {
         const availables = accounts.map((obj) => obj.balances.available);
         const result = availables.reduce((a,b) => a+b, 0); 
-        // setTotalAvailable(result);
         return result.toFixed(2);
     }
+
+    const calculateLoansTotal  = () => {
+        const loans = accounts.filter(obj => obj.type==='loan');
+        const amounts = loans.map(obj => obj.balances.current);
+        const result = amounts.reduce((a, b) => a+b, 0);
+        return result.toFixed(2);
+    }
+
+    const calculateCreditTotal = () => {
+        const credits = accounts.filter(obj => obj.type==='credit');
+        const amounts = credits.map(obj => obj.balances.current);
+        const result = amounts.reduce((a, b) => a+b, 0);
+        return result.toFixed(2);
+    }
+
+    const calculateInvestmentsTotal = () => {
+        const investments = accounts.filter(obj => obj.type==='investment');
+        const amounts = investments.map(obj => obj.balances.current);
+        const result = amounts.reduce((a, b) => a+b, 0);
+        return result.toFixed(2);
+    }
+
 
     // TODO: Calculate percentages
     const calculateCurrentChangePct = () => {
@@ -64,19 +87,35 @@ const Link = ({ navigation, link_token, client }) => {
     const onChangeSearch = query => setSearchQuery(query);
 
     const handleComponentDidMount = () => {
-        console.log('dad');
+
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
 				<View style={[styles.genericRow, {marginBottom: 10}]}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
-                    {/* TODO: PlaidLink leads to OAuth */}
-                    {/* <PlaidLink token={link_token} client={client}/> */}
 
-                    <Button
-                        title="Add"
-                        onPress={() => navigation.navigate("WebPlaidLink")}
-                    />
+
+                    <TouchableOpacity 
+                        style={{
+                            backgroundColor: COLORS.yellow, 
+                            borderRadius: 15,
+                            paddingVertical: 3,
+                            paddingHorizontal: 8
+                        }} 
+                        onPress={() => navigation.navigate("WebPlaidLink")}>
+                        <Text>Add Account</Text>
+                    </TouchableOpacity>
 				</View>
+
+                {/* search bar */}
+                {/* TODO: filter bank accounts */}
+                <Searchbar
+                    placeholder="Search Bank Accounts"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    style={{width: 370, height: 40, marginBottom: 8, elevation:3}}
+                    inputStyle={{...FONTS.h33}}
+                    iconColor={COLORS.lightSalmon}
+                />
 
                 <View style={styles.genericRow}> 
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
@@ -94,7 +133,7 @@ const Link = ({ navigation, link_token, client }) => {
 
                 <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
                     <BankBalanceInfo 
-                        title='Current Balance:'
+                        title='Current Depositories:'
                         displayAmount={calculateCurrentTotal()}
                         currency="USD"
                         changePct={calculateCurrentChangePct()}
@@ -107,16 +146,29 @@ const Link = ({ navigation, link_token, client }) => {
                     />
                 </View>
 
-                {/* search bar */}
-                {/* TODO: filter bank accounts */}
-                <Searchbar
-                    placeholder="Search Bank Accounts"
-                    onChangeText={onChangeSearch}
-                    value={searchQuery}
-                    style={{width: 370, height: 40, marginBottom: 8, elevation:3}}
-                    inputStyle={{...FONTS.h33}}
-                    iconColor={COLORS.lightSalmon}
-                />
+                <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
+                    <BankBalanceInfo 
+                        title='Loans/Mortgages:'
+                        displayAmount={calculateLoansTotal()}
+                        currency="USD"
+                        changePct={calculateCurrentChangePct()}
+                    />
+                    <BankBalanceInfo 
+                        title='Credits:'
+                        displayAmount={calculateCreditTotal()}
+                        currency="USD"
+                        changePct={calculateTotalAvailableChangePct()}
+                    />
+                </View>
+
+                <BankBalanceInfo 
+                        title='Investments:'
+                        displayAmount={calculateInvestmentsTotal()}
+                        currency="USD"
+                        changePct={calculateTotalAvailableChangePct()}
+                    />
+
+                
 
                 {/* list of bank accounts */}
                 <FlatList
