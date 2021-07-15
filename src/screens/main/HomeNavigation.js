@@ -102,7 +102,7 @@ const HomeTab = () => {
                 }} 
             />
 
-            <Tab.Screen name='WebPlaidLink' component={WebPlaidLink} 
+            {/* <Tab.Screen name='WebPlaidLink' component={WebPlaidLink} 
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}> 
@@ -124,7 +124,7 @@ const HomeTab = () => {
                         </View>
                     ),
                 }} 
-            />
+            /> */}
 
             <Tab.Screen name='Crypto' component={Crypto} 
                 options={{
@@ -227,6 +227,8 @@ const HomeNavigation = () => {
             <DrawerNav.Screen name="Login" component={Login} />
             <DrawerNav.Screen name="SignedOut" component={SignedOut} />
             <DrawerNav.Screen name="Profile" component={ProfileModal} />
+            <DrawerNav.Screen name="WebPlaidLink" component={WebPlaidLink} />
+
         </DrawerNav.Navigator>
     );
 };

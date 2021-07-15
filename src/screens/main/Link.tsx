@@ -1,15 +1,11 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Text, SafeAreaView, View, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
-import axios from 'axios';
 import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
-
-
-// move all the mongo stuff here?
 
 const Link = ({ navigation, link_token, client }) => {
     const [accounts, setAccounts] = useState(null);
@@ -68,7 +64,7 @@ const Link = ({ navigation, link_token, client }) => {
     const onChangeSearch = query => setSearchQuery(query);
 
     const handleComponentDidMount = () => {
-        // console.log('dad');
+        console.log('dad');
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
 				<View style={[styles.genericRow, {marginBottom: 10}]}>
@@ -205,7 +201,7 @@ const Link = ({ navigation, link_token, client }) => {
         return (
             <SafeAreaView style={styles.container2}>
                 <View style={styles.genericRow}>
-                    <Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
+                    <Text style={{color: COLORS.primary, ...FONTS.h2}}>Add Bank Accounts</Text>
                     <Button
                         title="Add"
                         onPress={() => navigation.navigate("WebPlaidLink")}
