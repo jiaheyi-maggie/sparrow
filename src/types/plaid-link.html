@@ -13,20 +13,8 @@
                 text-decoration: none;
                 display: inline-block;
                 font-size: 12px;
-                margin: 4px 2px;
+                margin: 4px 0px;
                 background-color: #2A94AF;
-                border-radius: 15px;
-            }
-            .back-button {
-                border: none;
-                color:#FFF4CB;
-                padding: 8px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 12px;
-                margin: 4px 2px;
-                background-color: #F4A261;
                 border-radius: 15px;
             }
             .horizontal {
@@ -38,16 +26,25 @@
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
                 color:#264653;
             }
+            .text {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color:#2A94AF;
+                font-style: italic;
+                font-weight: normal;
+            }
         </style>
     </head>
     <body>
         <div class='horizontal'>
             <button id="link-button" class='button'>Link Bank Accounts</button>
-            <button id='go-back' class='back-button'>Back</button>
         </div>
 
         <h4 class='title'>You are about to link your bank accounts to this app</h4>
-        <img src='../assets/home/bank-getty.jpg' alt="Italian Trulli">
+        <!-- TODO: image doesn't render -->
+        <!-- <img src='../assets/home/bank-getty.jpg'> -->
+
+        <h5 class='text'> Sparrow uses Plaid to link your bank accounts to the app securely and privately.</h5>
+        <h5 class='text'> To learn more about how the linking works, click on "Link Bank Accounts" and navigate to "Plaid End User Privacy Policy"</h5>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
         <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
