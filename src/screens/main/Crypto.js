@@ -31,7 +31,21 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
     const renderWalletInfoSection = () => {
         return (
             <View>
-                <Text style={{color: '#FFF4CB', ...FONTS.h2, marginBottom: 5}}>My Crypto Wallet</Text>  
+                <View style={styles.genericRow}>
+                    <Text style={{color: '#FFF4CB', ...FONTS.h2, marginBottom: 5}}>My Crypto Wallet</Text>  
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+						<Image 
+							source={require('../../assets/Icons/menu.png')}
+							resizeMode='contain'
+							style={{
+								width: 20,
+								height: 20,
+								tintColor: COLORS.yellow,
+							}}
+						/>
+					</TouchableOpacity>
+                </View>
+                
                 {/* Todo: change dummy data */}
                 <BalanceInfo 
                     title="Current Balance"
@@ -61,7 +75,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const handleComponentDidMount = () => {
         return (
-            <SafeAreaView style={[styles.container2, {backgroundColor:COLORS.primary}]}>
+            <SafeAreaView style={[styles.container3, {backgroundColor:COLORS.primary}]}>
                 {/* My Wallet */}
                 {renderWalletInfoSection()}
                 <View style={styles.genericRow}>

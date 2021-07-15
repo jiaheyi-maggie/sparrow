@@ -40,7 +40,6 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                 <SafeAreaView style={styles.homeContainer}>
                     <ScrollView>
                         <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'center',marginTop: Platform.OS ==='android'?5:0}}>
-
                             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                                 <Image
                                     source={require('../../assets/Icons/profile.png')}
@@ -53,7 +52,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                 />
                             </TouchableOpacity>
 
-                            <Text style={{color: '#fff', ...FONTS.h3}}>Hi, {currentUser.firstName}</Text>             
+                            <Text style={{color: '#fff', ...FONTS.h2}}>Hi, {currentUser.firstName}</Text>             
                                                             
                             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <Image 

@@ -9,9 +9,19 @@ const RemainingDetail = ({ navigation }) => {
 
     const handleComponentDidMount = () => {
         return (
-            <SafeAreaView style={styles.container2}>
+            <SafeAreaView style={styles.container3}>
                 {/* Header */}
                 <View style={styles.genericRow}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image 
+                            source={require('../../assets/Icons/back.png')}
+                            style={{
+                                width: 18,
+                                height: 18,
+                                tintColor: COLORS.primary,
+                            }}
+                        />
+                    </TouchableOpacity>
                     <Text style={{color: COLORS.primary, ...FONTS.h2}}>Remaining</Text>
                     {/* Menu */}
                     <TouchableOpacity onPress={() => navigation.openDrawer()}>

@@ -228,7 +228,6 @@ const HomeNavigation = () => {
             <DrawerNav.Screen name="SignedOut" component={SignedOut} />
             <DrawerNav.Screen name="Profile" component={ProfileModal} />
             <DrawerNav.Screen name="WebPlaidLink" component={WebPlaidLink} />
-
         </DrawerNav.Navigator>
     );
 };

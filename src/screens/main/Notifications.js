@@ -9,16 +9,27 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 
     const handleComponentDidMount = () => {
         return (
-          <SafeAreaView style={styles.container2}>
-            <ScrollView>
-                {/* Display name */}
-                <Text style={{color: COLORS.primary, ...FONTS.h2}}>Notifications</Text>
+			<SafeAreaView style={styles.container2}>
+				<View style={styles.genericRow}>
+					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Notifications</Text>
+					<TouchableOpacity onPress={() => navigation.openDrawer()}>
+						<Image 
+							source={require('../../assets/Icons/menu.png')}
+							resizeMode='contain'
+							style={{
+								width: 20,
+								height: 20,
+								tintColor: COLORS.primary,
+							}}
+						/>
+					</TouchableOpacity>
+				</View> 
+				
 				{/* dummy send notification button */}
 				<TouchableOpacity onPress={() => sendPushNotifications(notification_token, 'Welcome to Sparrow', "Add bank accounts!")}>
 					<Text>Press to send notification</Text>
 				</TouchableOpacity>
-            </ScrollView>
-          </SafeAreaView>
+			</SafeAreaView>
         );
     };
 
