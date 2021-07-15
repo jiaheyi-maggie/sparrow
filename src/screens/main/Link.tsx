@@ -8,6 +8,7 @@ import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
 
+
 // move all the mongo stuff here?
 
 const Link = ({ navigation, link_token, client }) => {
@@ -70,17 +71,16 @@ const Link = ({ navigation, link_token, client }) => {
             console.log(error);
         }
     }
+
     
     const getAccountsFromMongo = async () => {
-        axios.get('/api')
-        .then((response) => {
-            const data = response.data;
-            console.log('Data has been received!!');
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-        
+        try {
+            const response = await fetch('http://192.168.1.20:19002/api');
+            const json = await response.json();
+            console.log(json);
+          } catch (error) {
+            console.error(error);
+          }
     };
 
 	useEffect(() => {

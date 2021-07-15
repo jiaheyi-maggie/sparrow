@@ -147,6 +147,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
     res.sendStatus(200);
 })
 
+
 app.get('/api', async (req, res) => {
     PlaidAccounts.find({})
     .then((data) => {
