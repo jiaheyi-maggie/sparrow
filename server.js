@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const PlaidItem = require('./src/models/plaid-item');
 const PlaidAccounts = require('./src/models/plaid-account');
 const PlaidNumbers = require('./src/models/plaid-numbers');
+const PlaidToken = require('./src/models/plaid-token');
 const User = require('./src/models/user');
 
 const app = express();
@@ -77,6 +78,17 @@ app.post('/plaid_token_exchange', async (req, res) => {
         console.log(error)
     });
 
+    const tokenModel = new PlaidToken({
+        publicToken: publicToken,
+        accessToken: accessToken,
+    });
+
+    tokenModel.save(function (error, doc){
+        if (error) {
+            console.log(error);
+        }
+    })
+
     // api
     const authResponse = await client.getAuth(accessToken)
         .catch((error) => {
@@ -90,6 +102,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         if (error) {
             console.log(error);
         }
+
         console.log(doc);
     })
 
