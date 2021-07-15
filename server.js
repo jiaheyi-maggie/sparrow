@@ -10,6 +10,7 @@ const port = 19002;
 const mongoose = require('mongoose');
 const PlaidItem = require('./src/models/plaid-item');
 const PlaidAccounts = require('./src/models/plaid-account');
+const PlaidNumbers = require('./src/models/plaid-numbers');
 const User = require('./src/models/user');
 
 const app = express();
@@ -84,6 +85,14 @@ app.post('/plaid_token_exchange', async (req, res) => {
     console.log('_________');
     console.log("auth response");
     // console.log(util.inspect(authResponse, false, null, true));
+    const numberModel = new PlaidNumbers(authResponse.numbers);
+    numberModel.save(function (error, doc){
+        if (error) {
+            console.log(error);
+        }
+        console.log(doc);
+    })
+
 
     const identityResponse = await client.getIdentity(accessToken)
         .catch((error) => {
@@ -92,6 +101,17 @@ app.post('/plaid_token_exchange', async (req, res) => {
     console.log('_________');
     console.log("identity response");
     // console.log(util.inspect(identityResponse, false, null, true));
+    
+    const itemModel = new PlaidItem(identityResponse.item);
+    itemModel.save(function (error, doc) {
+        if (error) {
+            console.log(error);
+        }
+        // console.log(doc);
+    })
+
+
+
 
     const balanceResponse = await client.getBalance(accessToken)
         .catch((error) => {
@@ -110,7 +130,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
             if (error) {
                 console.log(error);
             }
-            console.log(doc);
+            // console.log(doc);
         })
     }
 
