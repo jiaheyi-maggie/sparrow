@@ -16,8 +16,6 @@ import ForgotCred from "./src/screens/ForgotCred";
 import theme from "./src/constants/theme";
 import store from "./src/app/store";
 import firebaseConfig from "./src/config/firebase/keys";
-import PlaidIndex from "./src/config/plaid";
-import { pushLinkTokenToReducer, pushClientToReducer } from "./src/app/actions/plaidActions";
 import { pushNotificationTokenToReducer, sendPushNotifications } from "./src/app/actions/notificationActions";
 
 // initialize navigation
@@ -97,54 +95,9 @@ const App = () => {
 		return token;
 	};
 		
-	// plaid link token
-	const [linkToken, setLinkToken] = useState(null);
-
-
-	const plaid = require("plaid");
-	const client = new plaid.Client({
-		clientID: PlaidIndex.PLAID_CLIENT_ID,
-		secret: PlaidIndex.PLAID_SECRET,
-		env: plaid.environments.sandbox,
-	});
-		
-	const generateToken = async () => {
-		const response = await client
-		.createLinkToken({
-			user: {
-				client_user_id: "1234",
-			},
-			client_name: "Sparrow",
-			products: ["auth", "transactions"],
-			country_codes: ["US"],
-			language: "en",
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-		
-		const linkToken = response.link_token;
-		setLinkToken(linkToken);
-		return linkToken;
-	};
-
-
-	const getLinkTokenFromServer = async () => {
-		try {
-			let response = await fetch('http://192.168.1.20:19002/create_link_token');
-			const result = JSON.stringify(response);
-			console.log(result);
-		} catch (e) {
-			console.log(e);
-		}
-	}
 
 		
 	useEffect(() => {
-		generateToken()
-			.then((linkToken) => pushLinkTokenToReducer({linkToken}));
-		// getLinkTokenFromServer();
-		pushClientToReducer({client});
 
 		registerForPushNotificationsAsync()
 			.then((token) => pushNotificationTokenToReducer(token));

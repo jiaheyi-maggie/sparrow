@@ -87,23 +87,25 @@ const Link = ({ navigation, link_token, client }) => {
     const onChangeSearch = query => setSearchQuery(query);
 
     const handleComponentDidMount = () => {
-
         return (
 			<SafeAreaView style={[styles.container2, {flexGrow: 1}]}>
 				<View style={[styles.genericRow, {marginBottom: 10}]}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
-
-
-                    <TouchableOpacity 
-                        style={{
-                            backgroundColor: COLORS.yellow, 
-                            borderRadius: 15,
-                            paddingVertical: 3,
-                            paddingHorizontal: 8
-                        }} 
-                        onPress={() => navigation.navigate("WebPlaidLink")}>
-                        <Text>Add Account</Text>
-                    </TouchableOpacity>
+                    <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
+                        <Image
+                            source={require('../../assets/Icons/add.png')}
+                            style={{
+                                width: 14,
+                                height: 14,
+                                tintColor: COLORS.secondary,
+                                marginRight: 3
+                            }}
+                        />
+                        <TouchableOpacity onPress={() => navigation.navigate("WebPlaidLink")}>
+                            <Text style={{...FONTS.h4, color: COLORS.secondary}}>Add Account</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
 				</View>
 
                 {/* search bar */}
@@ -148,7 +150,7 @@ const Link = ({ navigation, link_token, client }) => {
 
                 <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
                     <BankBalanceInfo 
-                        title='Loans/Mortgages:'
+                        title='Loans / Mortgages:'
                         displayAmount={calculateLoansTotal()}
                         currency="USD"
                         changePct={calculateCurrentChangePct()}
@@ -250,20 +252,50 @@ const Link = ({ navigation, link_token, client }) => {
     };
 
     const handleComponentEmptyRendering = () => {
-        return (
-            <SafeAreaView style={styles.container2}>
-                <View style={styles.genericRow}>
-                    <Text style={{color: COLORS.primary, ...FONTS.h2}}>Add Bank Accounts</Text>
-                    <Button
-                        title="Add"
-                        onPress={() => navigation.navigate("WebPlaidLink")}
+
+        const render = () => {
+            return (
+                <View style={styles.container3}>
+                    <View style={styles.genericRow}>
+                        <Text style={{color: COLORS.primary, ...FONTS.h2}}>Add Bank Accounts</Text>
+                        <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
+                            <Image
+                                source={require('../../assets/Icons/add.png')}
+                                style={{
+                                    width: 14,
+                                    height: 14,
+                                    tintColor: COLORS.secondary,
+                                    marginRight: 3
+                                }}
+                            />
+                            <TouchableOpacity onPress={() => navigation.navigate("WebPlaidLink")}>
+                                <Text style={{...FONTS.h4, color: COLORS.secondary}}>Add Account</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Text style={{...FONTS.h4, color: COLORS.orange, marginTop: 10}}>Thank you for using Sparrow! Let's make budgetting easy for you with more information.{"\n"}{"\n"}
+                        If you haven't added bank accounts yet, try linking them securly by clicking on the "Add Account"
+                        button.
+                    </Text>
+                    <Image 
+                        source={require('../../assets/onboarding/long-term.png')}
+                        style={{
+                            width: 380,
+                            height: 300,
+                            marginTop:80
+
+                        }}
                     />
                 </View>
-            </SafeAreaView>
+            );
+        }
+        return (
+            render()
+            
         );
     }
 
-    return (link_token === null || accounts === null)? (
+    return (accounts === null)? (
         handleComponentEmptyRendering()
     ) : (
         handleComponentDidMount()
