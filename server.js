@@ -45,6 +45,7 @@ app.get('/', async (request, response) => {
     response.sendFile(path.join(__dirname, 'src/types/plaid-link.html'));
 })
 
+
 // client
 app.get('/client', (req, res) => {
     res.send(client);
@@ -83,10 +84,11 @@ app.post('/plaid_token_exchange', async (req, res) => {
         accessToken: accessToken,
     });
 
-    tokenModel.save(function (error, doc){
+    await tokenModel.save(function (error, doc){
         if (error) {
             console.log(error);
         }
+        console.log(doc);
     })
 
     // api
@@ -102,8 +104,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         if (error) {
             console.log(error);
         }
-
-        console.log(doc);
+        // console.log(doc);
     })
 
 
@@ -122,9 +123,6 @@ app.post('/plaid_token_exchange', async (req, res) => {
         }
         // console.log(doc);
     })
-
-
-
 
     const balanceResponse = await client.getBalance(accessToken)
         .catch((error) => {
@@ -146,13 +144,19 @@ app.post('/plaid_token_exchange', async (req, res) => {
             // console.log(doc);
         })
     }
-
-
-
-
     res.sendStatus(200);
-    
 })
+
+app.get('/api', async (req, res) => {
+    PlaidAccounts.find({})
+    .then((data) => {
+        res.send(data);
+    })
+    .catch((error) => {
+        res.send(error);
+    });
+})
+
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)

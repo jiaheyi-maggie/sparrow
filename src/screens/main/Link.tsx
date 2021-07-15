@@ -1,12 +1,14 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
 import { Text, SafeAreaView, View, FlatList, Pressable, TouchableOpacity, Image, NativeEventEmitter, NativeModules, Platform, Button } from 'react-native';
+import axios from 'axios';
 import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
-import { usePlaidLink, PlaidLinkOnSuccess, PlaidLinkOptions } from 'react-plaid-link';
+
+// move all the mongo stuff here?
 
 const Link = ({ navigation, link_token, client }) => {
     const [publicToken, setPublicToken] = useState(null);
@@ -69,20 +71,21 @@ const Link = ({ navigation, link_token, client }) => {
         }
     }
     
-    // const getLinkTokenFromServer = async () => {
-    //     try {
-    //         let response = await fetch('http://localhost:19002/create_link_token');
-    //         let json = await response.json();
-    //         console.log(json);
-    //         return json;
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    const getAccountsFromMongo = async () => {
+        axios.get('/api')
+        .then((response) => {
+            const data = response.data;
+            console.log('Data has been received!!');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+        
+    };
 
 	useEffect(() => {
         getPublicTokenSandbox();
-        // getLinkTokenFromServer();
+        getAccountsFromMongo();
 	}, [])
 
     const calculateCurrentTotal = () => {
@@ -262,6 +265,10 @@ const Link = ({ navigation, link_token, client }) => {
             <SafeAreaView style={styles.container2}>
                 <View style={styles.genericRow}>
                     <Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
+                    <Button
+                        title="Add"
+                        onPress={() => navigation.navigate("WebPlaidLink")}
+                    />
                 </View>
             </SafeAreaView>
         );
