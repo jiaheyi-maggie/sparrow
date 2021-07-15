@@ -32,7 +32,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
         return (
             <View>
                 <View style={styles.genericRow}>
-                    <Text style={{color: '#FFF4CB', ...FONTS.h2, marginBottom: 5}}>My Crypto Wallet</Text>  
+                    <Text style={{color: '#FFF4CB', ...FONTS.h2}}>My Crypto Wallet</Text>  
                     <TouchableOpacity onPress={() => navigation.openDrawer()}>
 						<Image 
 							source={require('../../assets/Icons/menu.png')}
