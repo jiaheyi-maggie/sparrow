@@ -7,7 +7,7 @@
         <style>
             .button {
                 border: none;
-                color:beige;
+                color:#FFF4CB;
                 padding: 8px 10px;
                 text-align: center;
                 text-decoration: none;
@@ -17,11 +17,38 @@
                 background-color: #2A94AF;
                 border-radius: 15px;
             }
+            .back-button {
+                border: none;
+                color:#FFF4CB;
+                padding: 8px 5px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 12px;
+                margin: 4px 2px;
+                background-color: #F4A261;
+                border-radius: 15px;
+            }
+            .horizontal {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .title {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color:#264653;
+            }
         </style>
     </head>
     <body>
-        <button id="link-button" class='button'>Link Bank Accounts</button>
-        <!-- <h3> Add Bank Accounts</h2> -->
+        <div class='horizontal'>
+            <button id="link-button" class='button'>Link Bank Accounts</button>
+            <button id='go-back' class='back-button'>Back</button>
+        </div>
+
+        <h4 class='title'>You are about to link your bank accounts to this app</h4>
+        <img src='../assets/home/bank-getty.jpg' alt="Italian Trulli">
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
         <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
         <script type="text/javascript">
