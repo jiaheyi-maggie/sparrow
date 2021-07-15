@@ -242,7 +242,12 @@ const Link = ({ navigation, link_token, client }) => {
                         );
                     }}
                     keyExtractor={item => item.id}
-                    ListHeaderComponent={<Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Details</Text>}
+                    ListHeaderComponent={
+                        <View style={styles.genericRow}>
+                            <Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Details</Text>
+                            <Text style={{...FONTS.h4, color: COLORS.lightGray4, marginBottom:5}}>(Bold amounts are period independent)</Text>
+                        </View>
+                    }
                     ListFooterComponent={<View style={{height: 50}}></View>}
                 />
     

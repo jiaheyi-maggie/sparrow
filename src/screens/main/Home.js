@@ -11,6 +11,7 @@ import styles from '../../styles/homeStyle';
 import { COLORS, FONTS } from '../../constants/theme';
 
 
+
 const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, longTerm, shortTerm }) => {
 
     useEffect(() => {
@@ -18,6 +19,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
         fetchBudget();
         fetchUser();
     }, [])
+
 
     const handleComponentDidMount = () =>  {
         // console.log('render');
@@ -243,6 +245,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                         <View style={{backgroundColor: '#fff', borderRadius: 20, margin: 5, paddingLeft: 5}}>
                             <CategoryBar data={usefulCategories}/>
                         </View>
+                        
                         
                     </ScrollView>
                 </SafeAreaView>

@@ -45,6 +45,10 @@ app.get('/', async (request, response) => {
     response.sendFile(path.join(__dirname, 'src/types/plaid-link.html'));
 })
 
+app.get('/bank/visual', async (request, response) => {
+    response.sendFile(path.join(__dirname, 'src/screens/main/MongoGraph.html'));
+})
+
 
 // client
 app.get('/client', (req, res) => {
