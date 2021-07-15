@@ -23,6 +23,9 @@ mongoose.set('useCreateIndex', true);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error: "));
+db.once('open', () => {
+    console.log('connected to mongoDB server');
+})
 
 const plaid = require('plaid');
 

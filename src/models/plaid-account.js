@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose');
 
-module.exports = model('PlaidAccounts', new Schema({
+const accountSchema = new Schema({
     accountId: {
         type: String,
         required: true,
@@ -17,4 +17,5 @@ module.exports = model('PlaidAccounts', new Schema({
     official_name: String,
     subtype: String,
     type: String,
-}))
+})
+module.exports = model('PlaidAccounts', accountSchema);

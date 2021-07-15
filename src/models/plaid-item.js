@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose');
 
-module.exports = model('PlaidItem', new Schema({
+const itemSchema = new Schema({
     available_products: Array,
     billed_products: Array,
     error: String,
@@ -9,4 +9,6 @@ module.exports = model('PlaidItem', new Schema({
     update_type: String,
     webhook: String,
     consent_expiration_time: String
-}))
+})
+
+module.exports = model('PlaidItem', itemSchema);
