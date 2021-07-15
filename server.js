@@ -24,6 +24,7 @@ mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error: "));
 db.once('open', () => {
+    // callback function for successful connection
     console.log('connected to mongoDB server');
 })
 
@@ -82,7 +83,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         });
     console.log('_________');
     console.log("auth response");
-    console.log(util.inspect(authResponse, false, null, true));
+    // console.log(util.inspect(authResponse, false, null, true));
 
     const identityResponse = await client.getIdentity(accessToken)
         .catch((error) => {
@@ -90,7 +91,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         });
     console.log('_________');
     console.log("identity response");
-    console.log(util.inspect(identityResponse, false, null, true));
+    // console.log(util.inspect(identityResponse, false, null, true));
 
     const balanceResponse = await client.getBalance(accessToken)
         .catch((error) => {
@@ -98,7 +99,23 @@ app.post('/plaid_token_exchange', async (req, res) => {
         });
     console.log('_________');
     console.log("balance response");
-    console.log(util.inspect(balanceResponse, false, null, true));
+    // console.log(util.inspect(balanceResponse, false, null, true));
+    
+    // save to mongoDB by iterating through the array of "accounts"
+    for (var i = 0; i < balanceResponse.accounts.length; i++) {
+        const doc = balanceResponse.accounts[i];
+        const docModel = new PlaidAccounts(doc);
+
+        docModel.save(function (error, doc) {
+            if (error) {
+                console.log(error);
+            }
+            console.log(doc);
+        })
+    }
+
+
+
 
     res.sendStatus(200);
     

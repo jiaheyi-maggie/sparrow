@@ -1,7 +1,7 @@
 const { model, Schema } = require('mongoose');
 
 const accountSchema = new Schema({
-    accountId: {
+    account_id: {
         type: String,
         required: true,
     },
