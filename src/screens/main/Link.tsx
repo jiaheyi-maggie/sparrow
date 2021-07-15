@@ -12,79 +12,20 @@ import { Searchbar } from 'react-native-paper';
 // move all the mongo stuff here?
 
 const Link = ({ navigation, link_token, client }) => {
-    const [publicToken, setPublicToken] = useState(null);
-    const [accessToken, setAccessToken] = useState(null);
     const [accounts, setAccounts] = useState(null);
-    const [institutionID, setInstitutionID] =  useState('ins_109508');
-	const [initialProducts, setInitialProducts] = useState(['auth', 'assets', 'balance', 'transactions']);
     const [searchQuery, setSearchQuery] = React.useState('');
-
-
-
-    const getPublicTokenSandbox = async () => {
-        try {
-            const publicTokenResponse = await client.sandboxPublicTokenCreate(
-                institutionID,
-                initialProducts,
-            ).catch((error) => {
-                console.log(error);
-            });
-            const public_token = publicTokenResponse.public_token;
-            setPublicToken(public_token);
-
-            store.dispatch({
-                type: 'pushPublicToken',
-                payload: {publicToken}
-            })
-
-            // access token
-            const exchangeTokenResponse = await client.exchangePublicToken(public_token)
-            .catch((error) => {
-                console.log(error);
-            });
-            
-            const accessTokenResponse = exchangeTokenResponse.access_token;
-
-            setAccessToken(accessTokenResponse);
-            // this token is permenant
-            store.dispatch({
-                type: 'pushAccessToken',
-                payload: {accessToken}
-            })
-
-            // account 
-            client.getAccounts(accessToken, function (error, accountResponse) {
-                if (error !== null) {
-                    console.log(error);
-                    return; 
-                }
-
-                setAccounts(accountResponse['accounts']);
-                store.dispatch({
-                    type: 'pushBankAccounts',
-                    payload: {accounts}
-                })
-
-            });
-
-        } catch(error) {
-            console.log(error);
-        }
-    }
-
     
     const getAccountsFromMongo = async () => {
         try {
             const response = await fetch('http://192.168.1.20:19002/api');
             const json = await response.json();
-            console.log(json);
+            setAccounts(json);
           } catch (error) {
             console.error(error);
           }
     };
 
 	useEffect(() => {
-        getPublicTokenSandbox();
         getAccountsFromMongo();
 	}, [])
 
