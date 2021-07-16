@@ -10,7 +10,7 @@ const chart = sdk.createChart({
 });
 
 async function renderChart() {
-  await chart.render(document.getElementById("chart"));
+    await chart.render(document.getElementById("chart"));
 }
 
 renderChart().catch((e) => window.alert(e.message));

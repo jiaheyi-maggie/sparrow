@@ -39,6 +39,8 @@ const client = new plaid.Client({
     env: plaid.environments.sandbox,
 });
 
+// const ACCESS_TOKEN = null;
+
 
 // front page: link
 app.get('/', async (request, response) => {
@@ -83,10 +85,14 @@ app.post('/plaid_token_exchange', async (req, res) => {
         console.log(error)
     });
 
+    // ACCESS_TOKEN = accessToken;
+
     const tokenModel = new PlaidToken({
         publicToken: publicToken,
         accessToken: accessToken,
     });
+
+    // console.log(accessToken);
 
     await tokenModel.save(function (error, doc){
         if (error) {
@@ -160,6 +166,52 @@ app.get('/api/accounts', async (req, res) => {
     .catch((error) => {
         res.send(error);
     });
+})
+
+function replaceAt(string, index, replacement) {
+    return string.substring(0, index) + replacement + string.substring(index+1, string.length);
+}
+
+async function getTransactions(token, start, end, params=null) {
+    const response = await client.getTransactions(token, start, end, params)
+    .catch((error) => {
+        console.log(error)
+    });
+    let transactions = response.transactions;
+    let total_transactions = response.total_transactions;
+    return {transactions, total_transactions};
+}
+
+app.get('/transactions/get', async (req, res) => {
+    const date = new Date();
+    const prevMonth = date.getMonth()-1; 
+    const currDateString = date.toISOString().substring(0, 10);
+    const prevDateString = replaceAt(currDateString, 6, prevMonth);
+
+    PlaidToken.find({})
+    .then((data) => {
+        const token = data[data.length-1].accessToken;
+        const result = getTransactions(token, prevDateString, currDateString);
+        console.log(result);
+        const transactions = result.transactions;
+        const total_transactions = result.total_transactions;
+
+        // // handle parameters for pagination && retrieve a month of data
+        // while (transactions.length < total_transactions) {
+        //     const paginationTransactionResponse = getTransactions(token, prevDateString, currDateString, {
+        //         offset: transactions.length,
+        //     })
+
+        //     transactions = transactions.concat(paginationTransactionResponse.transactions);
+        // }
+        res.send(transactions);
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+
+
+    
 })
 
 
