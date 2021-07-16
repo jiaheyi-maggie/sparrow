@@ -229,6 +229,16 @@ app.get('/transactions/get', async (req, res) => {
 
 })
 
+app.get('/api/accounts/map', async (req, res) => {
+    AccountMap.find({})
+    .then((data) => {
+        res.send(data);
+    })
+    .catch((error) => {
+        console.log(error)
+    });
+})
+
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)

@@ -10,6 +10,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 	const [transactions, setTransactions] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 	let accountIDs = new Array();
+	const [accountMap, setAccountMap] = useState(null);
 
 	const onChangeSearch = query => setSearchQuery(query);
 
@@ -32,8 +33,27 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
           }
     };
 
+	const getAccountMap = async () => {
+        try {
+            await fetch('http://192.168.1.20:19002/api/accounts/map')
+				.then(response => response.json())
+				.then(response => {
+					setAccountMap(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		
+		} catch (error) {
+			console.error(error);
+		}
+    };
+
+
 	useEffect(() => {
         getTransactionsFromMongo();
+		getAccountMap();
+		// console.log(accountMap);
 	}, [])
 
     const handleComponentDidMount = () => {

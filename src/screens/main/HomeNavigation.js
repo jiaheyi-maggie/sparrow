@@ -62,11 +62,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 23,
                                     height: 23,
-                                    tintColor: focused ? '#E76F51' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#E76F51' : '#748c94',
+                                    color: focused ? '#E76F51' : COLORS.lightGray4,
                                     fontSize: 10
                                 }}>
                                     Dashboard
@@ -87,11 +87,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 23,
                                     height: 23,
-                                    tintColor: focused ? '#E76F51' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
                                 }}
                             />
                             <Text style={{
-                                    color: focused ? '#E76F51' : '#748c94',
+                                    color: focused ? '#E76F51' : COLORS.lightGray4,
                                     fontSize: 10
                                 }}>
                                     Accounts
@@ -111,11 +111,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 23,
                                     height: 23,
-                                    tintColor: focused ? '#E76F51' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
                                 }}
                             />
                             <Text style={{
-                                    color: focused ?  '#E76F51' : '#748c94',
+                                    color: focused ?  '#E76F51' : COLORS.lightGray4,
                                     fontSize: 10
                                 }}>
                                     Crypto
@@ -135,11 +135,11 @@ const HomeTab = () => {
                                 style={{
                                     width: 23,
                                     height: 23,
-                                    tintColor: focused ? '#E76F51' : '#748c94'
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
                                 }}
                             />
                             <Text style={{
-                                    color: focused ?  '#E76F51' : '#748c94',
+                                    color: focused ?  '#E76F51' : COLORS.lightGray4,
                                     fontSize: 10
                                 }}>
                                     Transactions
