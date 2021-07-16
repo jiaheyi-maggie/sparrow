@@ -8,15 +8,21 @@ import styles from '../../styles/homeStyle';
 
 const Notifications = ({ navigation, notification_token, notifications }) => {
 	const [transactions, setTransactions] = useState(null);
-    const [searchQuery, setSearchQuery] = React.useState('');
-	// search bar function
+    const [searchQuery, setSearchQuery] = useState('');
+	let accountIDs = new Array();
+
 	const onChangeSearch = query => setSearchQuery(query);
 
     const getTransactionsFromMongo = async () => {
         try {
             await fetch('http://192.168.1.20:19002/transactions/get')
 				.then(response => response.json())
-				.then(response => setTransactions(response))
+				.then(response => {
+					setTransactions(response);
+					for (var i = 0; i < response.length; i++) {
+						accountIDs.push(response[i].account_id);
+					}
+				})
 				.catch((error) => {
 					console.log(error);
 				});
@@ -48,9 +54,10 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					</TouchableOpacity>
 				</View> 
 				
-				{/* dummy send notification button */}
-				<TouchableOpacity onPress={() => sendPushNotifications(notification_token, 'Welcome to Sparrow', "Add 	bank accounts!")}>
-					<Text>Press to send notification</Text>
+				<TouchableOpacity>
+					<Image
+
+					/>
 				</TouchableOpacity>
 
 				<Searchbar
@@ -105,7 +112,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
                         );
                     }}
                     keyExtractor={item => item.id}
-                    ListFooterComponent={<View style={{height: 60}}></View>}
+                    ListFooterComponent={<View style={{height: 10}}></View>}
                 />
 			</SafeAreaView>
         );

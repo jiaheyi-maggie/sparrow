@@ -13,6 +13,7 @@ const PlaidAccounts = require('./src/models/plaid-account');
 const PlaidNumbers = require('./src/models/plaid-numbers');
 const PlaidToken = require('./src/models/plaid-token');
 const PlaidTransaction = require('./src/models/plaid-transaction');
+const AccountMap = require('./src/models/account-map');
 const User = require('./src/models/user');
 
 const app = express();
@@ -157,7 +158,21 @@ app.post('/plaid_token_exchange', async (req, res) => {
                 console.log(error);
             }
             // console.log(doc);
+            
         })
+
+        /* build an {account_id: name} mapping for reference */
+        const mapModel = new AccountMap({
+            account_id: doc.account_id,
+            name: doc.name,
+        })
+
+        mapModel.save(function (error, doc) {
+            if (error) {
+                console.log(error);
+            }
+        })
+        // console.log(mapModel);
     }
 
     /* Transactions */
@@ -185,6 +200,9 @@ app.post('/plaid_token_exchange', async (req, res) => {
             // console.log(doc);
         })
     }
+
+   
+
     res.sendStatus(200);
 })
 

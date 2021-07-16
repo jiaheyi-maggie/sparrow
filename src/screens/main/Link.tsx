@@ -89,7 +89,7 @@ const Link = ({ navigation, link_token, client }) => {
     const handleComponentDidMount = () => {
         return (
 			<SafeAreaView style={[styles.container3, {flexGrow: 1}]}>
-				<View style={[styles.genericRow, {marginBottom: 10}]}>
+				<View style={styles.genericRow}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
                         <Image

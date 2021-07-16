@@ -7,7 +7,7 @@ import { DrawerContent } from '../../components/main/DrawerContent';
 import Home from './Home';
 
 import styles from '../../styles/homeStyle';
-// import Settings from './Setting/Setting';
+import { COLORS, FONTS } from '../../constants/theme';
 import BudgetDetail from './BudgetDetail';
 import AddCategoriesDetail from './AddCategoriesDetail';
 import Calculator from './Calculator';
@@ -19,7 +19,6 @@ import BankAccounts from './Setting/BankAccounts';
 import NotificationSettings from './Setting/NotificationSettings';
 import PaymentAccounts from './Setting/PaymentAccounts';
 import Notifications from './Notifications';
-import Accounts from './BankAccounts';
 import DeleteCategories from './DeleteCategories';
 import ProfileModal from './ProfileModal';
 import Login from '../Login';
@@ -43,11 +42,11 @@ const HomeTab = () => {
             tabBarOptions={{
                 showLabel: false,
                 style: {
-                    position: 'absolute',
-                    backgroundColor: '#fff',
+                    // position: 'absolute',
+                    backgroundColor: 'black',
                     height:Platform.OS === 'ios'?70: 60,
                     paddingTop: Platform.OS ==='ios'?20:0,
-                    ...styles.shadow
+                    // ...styles.shadow
                 }
               }}
             
@@ -61,14 +60,14 @@ const HomeTab = () => {
                                 source={require('../../assets/Icons/home.png')}
                                 resizeMode='contain'
                                 style={{
-                                    width: 25,
-                                    height: 25,
+                                    width: 23,
+                                    height: 23,
                                     tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
                                     color: focused ? '#E76F51' : '#748c94',
-                                    fontSize: 12
+                                    fontSize: 10
                                 }}>
                                     Dashboard
                             </Text> 
@@ -86,14 +85,14 @@ const HomeTab = () => {
                                 source={require('../../assets/Icons/bank.png')}
                                 resizeMode='contain'
                                 style={{
-                                    width: 25,
-                                    height: 25,
+                                    width: 23,
+                                    height: 23,
                                     tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
                                     color: focused ? '#E76F51' : '#748c94',
-                                    fontSize: 12
+                                    fontSize: 10
                                 }}>
                                     Accounts
                             </Text> 
@@ -101,30 +100,6 @@ const HomeTab = () => {
                     ),
                 }} 
             />
-
-            {/* <Tab.Screen name='WebPlaidLink' component={WebPlaidLink} 
-                options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
-                            <Image 
-                                source={require('../../assets/Icons/link.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 25,
-                                    height: 25,
-                                    tintColor: focused ? '#E76F51' : '#748c94'
-                                }}
-                            />
-                            <Text style={{
-                                    color: focused ? '#E76F51' : '#748c94',
-                                    fontSize: 12
-                                }}>
-                                    Link
-                            </Text> 
-                        </View>
-                    ),
-                }} 
-            /> */}
 
             <Tab.Screen name='Crypto' component={Crypto} 
                 options={{
@@ -134,14 +109,14 @@ const HomeTab = () => {
                                 source={require('../../assets/Icons/crypto.png')}
                                 resizeMode='contain'
                                 style={{
-                                    width: 25,
-                                    height: 25,
+                                    width: 23,
+                                    height: 23,
                                     tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
                                     color: focused ?  '#E76F51' : '#748c94',
-                                    fontSize: 12
+                                    fontSize: 10
                                 }}>
                                     Crypto
                             </Text> 
@@ -158,14 +133,14 @@ const HomeTab = () => {
                                 source={require('../../assets/Icons/notification.png')}
                                 resizeMode='contain'
                                 style={{
-                                    width: 25,
-                                    height: 25,
+                                    width: 23,
+                                    height: 23,
                                     tintColor: focused ? '#E76F51' : '#748c94'
                                 }}
                             />
                             <Text style={{
                                     color: focused ?  '#E76F51' : '#748c94',
-                                    fontSize: 12
+                                    fontSize: 10
                                 }}>
                                     Transactions
                             </Text> 
@@ -173,12 +148,6 @@ const HomeTab = () => {
                     ),
                 }} 
             />
-
-
-
-            
-                
-
         </Tab.Navigator>
     );
 }
