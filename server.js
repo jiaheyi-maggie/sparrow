@@ -12,6 +12,7 @@ const PlaidItem = require('./src/models/plaid-item');
 const PlaidAccounts = require('./src/models/plaid-account');
 const PlaidNumbers = require('./src/models/plaid-numbers');
 const PlaidToken = require('./src/models/plaid-token');
+const PlaidTransaction = require('./src/models/plaid-transaction');
 const User = require('./src/models/user');
 
 const app = express();
@@ -39,7 +40,11 @@ const client = new plaid.Client({
     env: plaid.environments.sandbox,
 });
 
-// const ACCESS_TOKEN = null;
+/* functions */
+function replaceAt(string, index, replacement) {
+    return string.substring(0, index) + replacement + string.substring(index+1, string.length);
+}
+
 
 
 // front page: link
@@ -131,7 +136,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
         if (error) {
             console.log(error);
         }
-        console.log(doc);
+        // console.log(doc);
     })
 
     const balanceResponse = await client.getBalance(accessToken)
@@ -154,6 +159,33 @@ app.post('/plaid_token_exchange', async (req, res) => {
             // console.log(doc);
         })
     }
+
+    /* Transactions */
+    const date = new Date();
+    const prevMonth = date.getMonth()-1; 
+    const currDateString = date.toISOString().substring(0, 10);
+    const prevDateString = replaceAt(currDateString, 6, prevMonth);
+
+    const transactionResponse = await client.getTransactions(accessToken, prevDateString, currDateString)
+        .catch((error) => {
+            console.log(error);
+        });
+    console.log('_________');
+    console.log("transaction response");
+    // console.log(util.inspect(transactionResponse, false, null, true));
+
+    for (var i = 0; i < transactionResponse.transactions.length; i++) {
+        const transaction = transactionResponse.transactions[i];
+        const transactionModel = new PlaidTransaction(transaction);
+
+        transactionModel.save(function (error, doc) {
+            if (error) {
+                console.log(error);
+            }
+            // console.log(doc);
+        })
+    }
+    
     res.sendStatus(200);
 })
 
@@ -168,50 +200,16 @@ app.get('/api/accounts', async (req, res) => {
     });
 })
 
-function replaceAt(string, index, replacement) {
-    return string.substring(0, index) + replacement + string.substring(index+1, string.length);
-}
-
-async function getTransactions(token, start, end, params=null) {
-    const response = await client.getTransactions(token, start, end, params)
-    .catch((error) => {
-        console.log(error)
-    });
-    let transactions = response.transactions;
-    let total_transactions = response.total_transactions;
-    return {transactions, total_transactions};
-}
 
 app.get('/transactions/get', async (req, res) => {
-    const date = new Date();
-    const prevMonth = date.getMonth()-1; 
-    const currDateString = date.toISOString().substring(0, 10);
-    const prevDateString = replaceAt(currDateString, 6, prevMonth);
-
-    PlaidToken.find({})
+    PlaidTransaction.find({})
     .then((data) => {
-        const token = data[data.length-1].accessToken;
-        const result = getTransactions(token, prevDateString, currDateString);
-        console.log(result);
-        const transactions = result.transactions;
-        const total_transactions = result.total_transactions;
-
-        // // handle parameters for pagination && retrieve a month of data
-        // while (transactions.length < total_transactions) {
-        //     const paginationTransactionResponse = getTransactions(token, prevDateString, currDateString, {
-        //         offset: transactions.length,
-        //     })
-
-        //     transactions = transactions.concat(paginationTransactionResponse.transactions);
-        // }
-        res.send(transactions);
+        res.send(data);
     })
     .catch((error) => {
         console.log(error)
     });
 
-
-    
 })
 
 
