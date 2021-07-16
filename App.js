@@ -78,6 +78,7 @@ const App = () => {
 			// otherwise: get token
 			token = (await Notifications.getExpoPushTokenAsync()).data;
 			setNotificationToken(token);
+			console.log(notificationToken);
 		} else {
 			Alert.alert("Must use physical device for push notifications");
 		}

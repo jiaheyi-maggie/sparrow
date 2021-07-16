@@ -185,7 +185,6 @@ app.post('/plaid_token_exchange', async (req, res) => {
             // console.log(doc);
         })
     }
-    
     res.sendStatus(200);
 })
 

@@ -167,7 +167,7 @@ const HomeTab = () => {
                                     color: focused ?  '#E76F51' : '#748c94',
                                     fontSize: 12
                                 }}>
-                                    Notification
+                                    Transactions
                             </Text> 
                         </View>
                     ),

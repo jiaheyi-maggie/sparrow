@@ -107,8 +107,6 @@ export class Setting extends Component {
                         </View>
                     </View>
                     
-
-
                 </ScrollView>
             </SafeAreaView>
         );

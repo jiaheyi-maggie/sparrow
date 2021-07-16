@@ -232,8 +232,8 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                     source={require('../../assets/Icons/zoom-in.png')}
                                     resizeMode='contain'
                                     style={{
-                                        width: 25,
-                                        height: 25,
+                                        width: 18,
+                                        height: 18,
                                         tintColor: '#e1e1e1',
                                         marginLeft: 8,
                                     }}
