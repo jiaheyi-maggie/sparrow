@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import store from '../../app/store';
 
 
+
 export class DrawerContent extends Component {
 
     constructor(props) {
@@ -19,11 +20,9 @@ export class DrawerContent extends Component {
             lastName: '',
             email: '',
             username: '',
-            avatar: null,
             isSignedOut: false,
             // BEWARE: this might cause problems when first login
             photoURL: '',
-            isMounted: false,
         }
  
         this.getUserName = this.getUserName.bind(this);
@@ -32,8 +31,9 @@ export class DrawerContent extends Component {
         this.handleRendering = this.handleRendering.bind(this);
     }
 
-    getUserName= async () => {
-        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+    getUserName = async () => {
+        const firebaseUID = firebase.auth().currentUser.uid;
+        firebase.firestore().collection("users").doc(firebaseUID).get()
         .then((doc) => {
             if (doc.exists) {
                 var user = doc.data();
@@ -46,10 +46,7 @@ export class DrawerContent extends Component {
     };
 
     componentDidMount() {
-        if (!this.state.isMounted) {
-            this.setState({isMounted: true})
-            this.getUserName();
-        }
+        this.getUserName();
     }
 
     handleSignOut() {
@@ -211,8 +208,8 @@ export class DrawerContent extends Component {
                                 source={require('../../assets/Icons/logout.png')}
                                 resizeMode='contain'
                                 style={{
-                                width: 23,
-                                height: 23,
+                                width: 20,
+                                height: 20,
                                 tintColor: '#7E9181',
                                 marginRight: 15
                                 }}
