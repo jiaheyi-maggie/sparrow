@@ -4,15 +4,11 @@ import { COLORS, FONTS } from '../constants/theme';
 
 const componentStyle = StyleSheet.create({
   input: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    color: '#F4A261',
+	  ...FONTS.h1, 
+    color: COLORS.yellow,
     textAlign: 'center',
-    height: 40,
-    marginTop:10,
-    borderBottomColor: '#264653',
-    borderBottomWidth: 5,
-    alignContent: 'center'
+    borderBottomColor: COLORS.desertGreen,
+    borderBottomWidth: 3,
   },
   container: {
     flex: 1, 
@@ -54,10 +50,8 @@ const componentStyle = StyleSheet.create({
     fontSize: 40
   },
   reviewText: {
-    color: '#264653',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: 20,
+	  ...FONTS.h3, 
+    color: COLORS.lightSalmon,
   },
   infofieldtitle: {
     color: '#fff',

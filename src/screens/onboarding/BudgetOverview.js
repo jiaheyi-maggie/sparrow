@@ -4,7 +4,9 @@ import SummaryListItem from '../../components/SummaryListItem';
 import store from '../../app/store';
 import styles from '../../styles/onboardingStyle';
 import style from '../../styles/componentStyle';
+import {COLORS, FONTS} from '../../constants/theme';
 import periods from '../../data/periods';
+
 
 const BudgetOverview = ({ navigation }) => {
 
@@ -36,42 +38,30 @@ const BudgetOverview = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             {/* Header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Image 
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 18,
-                                height: 18,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.goBack()}>
+                    <Image 
+                        source={require('../../assets/Icons/back.png')}
+                        resizeMode='contain'
+                        style={styles.backButton}
+                    />
                     <Text style={styles.forwardButtonText}> Back </Text>
-                </View>
-
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('register')}>
                     <Text style={styles.forwardButtonText}> Looks Good </Text>
-                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('register')}>
-                        <Image 
-                            source={require('../../assets/Icons/right-arrow.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 18,
-                                height: 18,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
-                </View>
+                    <Image 
+                        source={require('../../assets/Icons/right-arrow.png')}
+                        resizeMode='contain'
+                        style={styles.backButton}
+                    />
+                </TouchableOpacity>
             </View>
 
-            <Text style={styles.title}>Budget Overview</Text>
+            <Text style={styles.longtitle}>Budget Overview</Text>
 
             {/* Edit numbers */}
-            <View style={{backgroundColor: 'aliceblue', padding: 5, borderRadius: 15, marginHorizontal: Platform.OS ==='ios'?10:0}}> 
-                <Text style={styles.subtitle2}>Options to edit numbers:</Text>
+            <View style={{backgroundColor: 'aliceblue', padding: 5,  borderRadius: 15, marginHorizontal: Platform.OS ==='ios'?10:0}}> 
+                <Text style={[styles.subtitle, {color: COLORS.desertGreen}]}>Options to edit numbers:</Text>
                 {/* Button View */}
                 <View style={styles.multipleButtonContainer}> 
                     {/* Back Button */}
@@ -96,13 +86,13 @@ const BudgetOverview = ({ navigation }) => {
                     <Text style={style.reviewText}>Non-Recurring</Text>
                         <View style={style.budgetCircle}>
                             <View style={{flexDirection:'row'}}>
-                                <Text style={{color: '#FFF4CB', fontSize: 30, fontWeight: 'bold'}}>$ </Text>
-                                <Text style={{fontSize: 30, fontWeight: 'bold', color: '#FFF4CB'}}> {longTerm}</Text>
+                                <Text style={{...FONTS.h1, color: COLORS.yellow}}>$ </Text>
+                                <Text style={{...FONTS.h1, color: COLORS.yellow}}> {longTerm}</Text>
                             </View>
                         </View>
                     </SafeAreaView>
 
-                    <View style={[styless.button, styless.buttonOpen, {padding: 7, elevation: 2}]}>
+                    <View style={[styless.button, styless.buttonOpen]}>
                         <Text style={styless.textStyle}> {longTermPeriod} </Text>
                     </View>
                 </View>
@@ -115,8 +105,8 @@ const BudgetOverview = ({ navigation }) => {
                     <Text style={style.reviewText}>Recurring</Text>
                         <View style={style.budgetCircle}>
                             <View style={{flexDirection:'row'}}>
-                                <Text style={{color: '#FFF4CB', fontSize: 30, fontWeight: 'bold'}}>$ </Text>
-                                <Text style={{fontSize: 30, fontWeight: 'bold', color: '#FFF4CB'}}> {shortTerm}</Text>
+                                <Text style={{...FONTS.h1, color: COLORS.yellow}}>$ </Text>
+                                <Text style={{...FONTS.h1, color: COLORS.yellow}}> {shortTerm}</Text>
                             </View>
                         </View>
                     </SafeAreaView>
@@ -153,7 +143,7 @@ const BudgetOverview = ({ navigation }) => {
                             <Image 
                                 source={require('../../assets/Icons/down-arrow.png')} 
                                 resizeMode='contain'
-                                style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
+                                style={{alignSelf: 'center', width: 18, height: 18, tintColor: '#fff'}}
                             />
                             </View>
                         </TouchableOpacity>
@@ -184,8 +174,8 @@ const styless = StyleSheet.create({
       },
     modalView: {
       backgroundColor: "#EDFFEC",
-      width: 350,
-      borderRadius: 5,
+      width: 380,
+      borderRadius: 10,
       padding: 10,
       alignItems: 'center',
       shadowColor: "#000",
@@ -201,26 +191,22 @@ const styless = StyleSheet.create({
       borderRadius: 20,
       paddingHorizontal: 10,
       elevation: 2,
-      padding: 5,
       marginVertical: 5
     },
     buttonOpen: {
-      backgroundColor: "#D7CEB2",
+      backgroundColor: COLORS.bone,
       width: 150,
     },
     buttonClose: {
       backgroundColor: "#7E9181",
-      width: 280,
+      width: 300,
       flexDirection: 'row',
       justifyContent: 'center',
-      textAlignVertical: 'center',
-      padding: 8
+      padding: 5
     },
     textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center",
-      fontSize: 20
+      ...FONTS.h22b,
+      color: COLORS.white
     },
     textStyle2: {
       color: "#264653",

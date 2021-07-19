@@ -6,6 +6,7 @@ import store from '../../app/store';
 import periods from '../../data/periods';
 import componentStyle from '../../styles/componentStyle';
 import styles from '../../styles/onboardingStyle';
+import { COLORS, FONTS } from '../../constants/theme';
 
 const LongTerm = ({ navigation }) => {
 
@@ -90,51 +91,32 @@ const LongTerm = ({ navigation }) => {
         <SafeAreaView style={[styles.container, {justifyContent: 'flex-start'}]}>
             {/* header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Image 
-                            source={require('../../assets/Icons/back.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 18,
-                                height: 18,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.goBack()}>
+                    <Image 
+                        source={require('../../assets/Icons/back.png')}
+                        resizeMode='contain'
+                        style={styles.backButton}
+                    />
                     <Text style={styles.forwardButtonText}> Back </Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('budgetOverview')}>
+                    <Image 
+                        source={require('../../assets/Icons/skip.png')}
+                        resizeMode='contain'
+                        style={styles.backButton}
+                    />
                     <Text style={styles.forwardButtonText}> Skip </Text>
-                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('budgetOverview')}>
-                        <Image 
-                            source={require('../../assets/Icons/skip.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 18,
-                                height: 18,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('budgetOverview')}>
                     <Text style={styles.forwardButtonText}> Next </Text>
-                    <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('budgetOverview')}>
-                        <Image 
-                            source={require('../../assets/Icons/right-arrow.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 18,
-                                height: 18,
-                                tintColor: '#fff',
-                            }}
-                        />
-                    </TouchableOpacity>
-                </View>
+                    <Image 
+                        source={require('../../assets/Icons/right-arrow.png')}
+                        resizeMode='contain'
+                        style={styles.backButton}
+                    />
+                </TouchableOpacity>
             </View>
 
             {/* Main */}
@@ -143,60 +125,57 @@ const LongTerm = ({ navigation }) => {
                 <Text style={styles.subtitle}>This could be non-periodical vacation, gift expenses and so on.</Text>
             </View>
 
-            <View style={styles.longtermCenter}>
-                <Text style={styles.longtitle}>I plan to spend</Text>
-                <View style={styles.genericRowAlign}>
-                    <Text style={styles.title}>$ </Text>
-                    <TextInput
-                        style={[componentStyle.input, {marginRight: 1, width: 150}]}
-                        onChangeText={(input) => inputHandler(input)}
-                        value={input}
-                        placeholder="5000"
-                        placeholderTextColor='#FFF4CB'
-                    />
-                </View>
+            <Text style={[styles.longtitle, { color: COLORS.desertGreen, alignSelf:'center'}]}>I plan to spend</Text>
+            <View style={styles.genericRowAlign}>
+                <Text style={[styles.title, { color: COLORS.desertGreen }]}>$ </Text>
+                <TextInput
+                    style={[componentStyle.input, {marginRight: 1, width: 150, color: COLORS.orange}]}
+                    onChangeText={(input) => inputHandler(input)}
+                    value={input}
+                    placeholder="5000"
+                    placeholderTextColor='#FFF4CB'
+                />
+            </View>
 
-                <View style={{flexDirection:'row', paddingLeft:40, alignItems: 'baseline'}}>
-                    <Text style={styles.longtitle}>per </Text>
+            <View style={{flexDirection:'row', alignItems: 'center', paddingLeft: 60}}>
+                <Text style={[styles.longtitle, { color: COLORS.desertGreen}]}>per </Text>
 
-                    {/* Time Period Picker */}
-                    <SafeAreaView style={style.startView}>
-                        <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}}>
-                            <View style={style.centeredView}>
-                                <View style={style.modalView}>
-                                    <Text style={style.textStyle2}>Select time period:</Text>
-                                    <FlatList 
-                                        data={periods}
-                                        renderItem={({ item }) => (
-                                            <TouchableOpacity style={[style.button, style.buttonClose]}
-                                            onPress={() => {
-                                                setModalVisible(false); 
-                                                setPeriod(item.title);
-                                                store.dispatch(changeLongTermPeriod(item.title));
-                                            }}>
-                                                <Text style={style.textStyle3}>{item.title}</Text>
-                                            </TouchableOpacity>
-                                        )}
-                                        keyExtractor={item => item.id}
-                                    />
-                                </View>
+                {/* Time Period Picker */}
+                <SafeAreaView style={style.startView}>
+                    <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}}>
+                        <View style={style.centeredView}>
+                            <View style={style.modalView}>
+                                <Text style={style.textStyle2}>Select time period:</Text>
+                                <FlatList 
+                                    data={periods}
+                                    renderItem={({ item }) => (
+                                        <TouchableOpacity style={[style.button, style.buttonClose]}
+                                        onPress={() => {
+                                            setModalVisible(false); 
+                                            setPeriod(item.title);
+                                            store.dispatch(changeLongTermPeriod(item.title));
+                                        }}>
+                                            <Text style={style.textStyle3}>{item.title}</Text>
+                                        </TouchableOpacity>
+                                    )}
+                                    keyExtractor={item => item.id}
+                                />
                             </View>
-                        </Modal>
+                        </View>
+                    </Modal>
 
-                            {/* Time Period closed picker view */}
-                            <TouchableOpacity style={[style.button, style.buttonOpen]} onPress={() => handleClickOpen()}>
-                                <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                                    <Text style={style.textStyle}> {period} </Text>
-                                    <Image 
-                                    source={require('../../assets/Icons/down-arrow.png')} 
-                                    resizeMode='contain'
-                                    style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        </SafeAreaView>
-
-                </View>
+                        {/* Time Period closed picker view */}
+                        <TouchableOpacity style={[style.button, style.buttonOpen]} onPress={() => handleClickOpen()}>
+                            <View style={{flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                                <Text style={style.textStyle}> {period} </Text>
+                                <Image 
+                                source={require('../../assets/Icons/down-arrow.png')} 
+                                resizeMode='contain'
+                                style={{alignSelf:'center', width: 18, height: 18, tintColor: '#fff'}}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </SafeAreaView>
             </View>
 
         </SafeAreaView>
@@ -215,8 +194,8 @@ const style = StyleSheet.create({
         alignItems: 'center',
       },
     modalView: {
-      backgroundColor: "#EDFFEC",
-      width: 350,
+      backgroundColor: 'aliceblue',
+      width: 380,
       borderRadius: 5,
       padding: 10,
       alignItems: 'center',
@@ -242,27 +221,23 @@ const style = StyleSheet.create({
     },
     buttonClose: {
         backgroundColor: "#7E9181",
-        width: 280,
+        width: 300,
         flexDirection: 'row',
         justifyContent: 'center',
         textAlignVertical: 'center',
-        padding: 8
+        padding: 5
     },
     textStyle: {
+        ...FONTS.h2, 
       color: "white",
-      fontWeight: "bold",
-      textAlign: "center",
-      fontSize: 25
     },
     textStyle2: {
-      color: "#264653",
-      fontSize: 20
+        ...FONTS.h3, 
+      color: COLORS.red,
     },
     textStyle3: {
+        ...FONTS.h22b,
         color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontSize: 22
     },
     modalText: {
       marginBottom: 15,

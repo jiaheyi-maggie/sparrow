@@ -158,7 +158,7 @@ const CategoryDetailItem = ({ item }) => {
                                 <Image 
                                     source={require('../assets/Icons/down-arrow.png')} 
                                     resizeMode='contain'
-                                    style={{ width: 15, height: 15, tintColor: '#fff'}}
+                                    style={{alignSelf:'center',width: 15, height: 15, tintColor: '#fff'}}
                                 />
                             </View>
                         </TouchableOpacity>
@@ -250,6 +250,6 @@ const style = StyleSheet.create({
       marginBottom: 15,
       textAlign: "center"
     }
-  });
+});
 
 export default CategoryDetailItem;

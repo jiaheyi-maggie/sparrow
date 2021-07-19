@@ -67,15 +67,6 @@ const SummaryListItem = ({ item }) => {
             </View>
             <View style={{flexDirection: 'row', alignItems:'center'}}>
                 <Text style={styles.listSummaryTitle}>${val}</Text>
-                {/* <TextInput
-                    onChangeText={(value) => onChangeNumber(value)}
-                    value={val}
-                    placeholder='?'
-                    keyboardType="phone-pad"
-                    selectionColor='#C2A878'
-                    textAlign= 'center'
-                    style={styles.listSummaryTextInput}
-                /> */}
             </View>
         </View>
     );

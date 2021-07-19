@@ -76,12 +76,13 @@ const onboardingStyle = StyleSheet.create({
 	},
 	cuteButtonContainer: {
 		elevation: 2,
-		backgroundColor: "#FAA381",
+		backgroundColor: COLORS.desertGreen,
 		borderRadius: 15,
-		padding: 8,
+		padding:5,
 	},
 	cuteButtonText: {
-		fontSize: 16,
+		...FONTS.body4, 
+		// fontSize: 16,
 		color: "#fff",
 		alignSelf: "center",
 	},
@@ -137,27 +138,29 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// budget summary list container
 	listSummaryItem: {
-		backgroundColor: "#FFF4CB",
+		backgroundColor: COLORS.yellow,
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
-		padding: 10,
+		paddingHorizontal: 15,
+		paddingVertical: 10,
 		marginVertical: 5,
-		borderRadius: 20,
+		borderWidth: 1,
+		borderColor: COLORS.grass,
+		borderBottomLeftRadius: 15,
+		borderBottomRightRadius: 15,
+		borderTopWidth:2,
 		margin: Platform.OS === "ios" ? 10 : 0,
 	},
 	// list item text for BudgetOverview
 	listSummaryTitle: {
-		fontWeight: "bold",
-		textDecorationLine: "underline",
-		textAlign: "left",
-		fontSize: 20,
-		color: "#E76F51",
+		...FONTS.h3, 
+		color: COLORS.red,
+		textDecorationLine: "underline",	
 	},
 	listSummaryPeriod: {
-		textAlign: "left",
-		fontSize: 20,
-		color: "#E76F51",
+		...FONTS.h33, 
+		color: COLORS.red,
 	},
 	listSummaryTextInput: {
 		fontSize: 20,
@@ -181,16 +184,7 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// long term center screen text
 	longtermCenter: {
-		alignContent: "center",
-		justifyContent: "center",
-		alignItems: "center",
-		flexDirection: "column",
-		},
-		forwardButton: {
-		backgroundColor: "#2A94AF",
-		marginRight: 5,
-		borderRadius: 10,
-		padding: 5,
+		// alignSelf:'center'
 	},
 	backButton: {
 		width: 18,
@@ -198,8 +192,8 @@ const onboardingStyle = StyleSheet.create({
 		tintColor: COLORS.secondary,
 	},
 	forwardButtonText: {
-		fontSize: 16,
-		color: "#2A94AF",
+		...FONTS.body4, 
+		color: COLORS.secondary,
 	},
 	signupTitle: {
 		flexDirection: "row",
