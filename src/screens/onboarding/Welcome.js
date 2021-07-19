@@ -3,6 +3,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from "../../styles/onboardingStyle";
 import componentStyle from '../../styles/componentStyle';
+import { COLORS, FONTS } from '../../constants/theme';
 
 const Welcome = ({ navigation }) => {
     return (
@@ -28,7 +29,7 @@ const Welcome = ({ navigation }) => {
 
                 {/* Sounds good (Continue to next page) Button */}
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('selectCategory')}>
-                    <Text style={styles.buttonText}> Sounds good </Text>
+                    <Text style={styles.buttonText}>Sounds good</Text>
                 </TouchableOpacity>
 
 

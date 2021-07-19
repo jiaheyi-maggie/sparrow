@@ -282,10 +282,10 @@ const Link = ({ navigation, link_token, client }) => {
                         button.
                     </Text>
                     <Image 
-                        source={require('../../assets/onboarding/long-term.png')}
+                        source={require('../../assets/home/add-account.png')}
                         style={{
                             width: 380,
-                            height: 300,
+                            height: 330,
                             marginTop:80
 
                         }}
@@ -303,6 +303,7 @@ const Link = ({ navigation, link_token, client }) => {
         handleComponentEmptyRendering()
     ) : (
         handleComponentDidMount()
+        // handleComponentEmptyRendering()
     )
 };
 

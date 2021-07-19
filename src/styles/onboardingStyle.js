@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Platform } from "react-native";
+import { COLORS, FONTS } from '../constants/theme';
 
 const onboardingStyle = StyleSheet.create({
   // onboarding page container
@@ -25,18 +26,15 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// title for onboarding
 	title: {
-		color: "#264653",
-		fontWeight: "bold",
-		fontSize: 35,
-		textAlign: "left",
-		marginLeft: 10,
+		...FONTS.h1,
+		color: COLORS.primary,
+		// marginHorizontal: 10,
 	},
 	// subtitle for onboarding
 	subtitle: {
-		color: "#E76F51",
-		textAlign: "left",
-		fontSize: 20,
-		marginHorizontal: 10,
+		...FONTS.h33, 
+		color: COLORS.secondary,
+		// marginHorizontal: 10,
 		marginVertical: 5,
 	},
 	subtitle2: {
@@ -74,8 +72,7 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// button text inside button
 	buttonText: {
-		fontSize: 18,
-		fontWeight: "bold",
+		...FONTS.h22,
 		color: "#fff",
 		alignSelf: "center",
 		textTransform: "uppercase",

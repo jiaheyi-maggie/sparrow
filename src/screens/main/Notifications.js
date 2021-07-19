@@ -15,62 +15,40 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 	const onChangeSearch = query => setSearchQuery(query);
 
     const getTransactionsFromMongo = async () => {
-        // try {
-            await fetch('http://192.168.1.20:19002/transactions/get')
-				.then(response => response.json())
-				.then(response => {
-					setTransactions(response);
-					for (var i = 0; i < response.length; i++) {
-						accountIDs.push(response[i].account_id);
-					}
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-          
-        //   } catch (error) {
-        //     console.error(error);
-        //   }
+        try {
+            const response = await fetch('http://192.168.1.20:19002/transactions/get');
+			const json = await response.json()
+			setTransactions(json);
+			for (var i = 0; i < json.length; i++) {
+				accountIDs.push(json[i].account_id);
+			}
+		} catch (error) {
+			console.error(error);
+		}
     };
 
 	const getAccountMap = async () => {
-        // try {
-            await fetch('http://192.168.1.20:19002/api/accounts/map')
-				.then(response => response.json())
-				.then(response => {
-					setAccountMap(response);
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+        try {
+            const response = await fetch('http://192.168.1.20:19002/api/accounts/map');
+			const json = await response.json();
+			setAccountMap(json);
+		} catch (error) {
+			console.error(error);
+		}
     };
 
-	const findAccountName = async (id) => {
-		try {
-			const response = accountMap.filter(obj => obj.account_id === id);
-			// console.log(response);
-			return response.name;
-		} catch (error) {
-			console.log(error);
-		}
-	}
+
 
 	useEffect(() => {
         getTransactionsFromMongo();
 		getAccountMap();
-		findAccountName("EMkJoZBJeaCvAnxkPeDLCxLN9AVDlVujWQNq7");
-		// console.log(accountMap);
 	}, [])
 
     const handleComponentDidMount = () => {
         return (
 			<SafeAreaView style={styles.container2}>
 				<View style={styles.genericRow}>
-					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Notifications</Text>
+					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Transactions</Text>
 					<TouchableOpacity onPress={() => navigation.openDrawer()}>
 						<Image 
 							source={require('../../assets/Icons/menu.png')}
@@ -94,14 +72,10 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					placeholder="Search Transactions"
 					onChangeText={onChangeSearch}
 					value={searchQuery}
-					style={{width: 370, height: 40, marginBottom: 8, elevation:3}}
+					style={{width: 370, height: 40, marginVertical: 8, elevation:3}}
 					inputStyle={{...FONTS.h33}}
 					iconColor={COLORS.lightSalmon}
 				/>
-
-				<View style={styles.genericRow}>
-					<Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Transactions</Text>
-				</View>
 
 				<View style={[styles.genericRow, {marginBottom: 5}]}>
 					<TouchableOpacity style={{backgroundColor:COLORS.desertGreen, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -128,6 +102,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
                         let priceColor = (item.amount < 0) ? COLORS.grass : COLORS.red;
 						let itemName = (item.merchant_name == null) ? item.name : item.merchant_name;
 						let itemAccount; 
+						
 						// TODO: optimize the runtime O(n^2) right now
 						for (var i = 0; i < accountMap.length; i++) {
 							if (accountMap[i].account_id === item.account_id) {
@@ -152,6 +127,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
                         );
                     }}
                     keyExtractor={item => item.id}
+					// TODO: when click on load more transactions
                     ListFooterComponent={() => {
 						return (
 							<View style={{alignSelf:'center'}}>
@@ -170,8 +146,52 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
         );
     };
 
-    return (
+	const handleComponentEmptyRendering = () => {
+        const render = () => {
+            return (
+                <View style={styles.container3}>
+                    <View style={styles.genericRow}>
+                        <Text style={{color: COLORS.primary, ...FONTS.h2}}>No Transactions</Text>
+                        <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
+                            <Image
+                                source={require('../../assets/Icons/add.png')}
+                                style={{
+                                    width: 14,
+                                    height: 14,
+                                    tintColor: COLORS.secondary,
+                                    marginRight: 3
+                                }}
+                            />
+                            <TouchableOpacity onPress={() => navigation.navigate("WebPlaidLink")}>
+                                <Text style={{...FONTS.h4, color: COLORS.secondary}}>Add Account</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Text style={{...FONTS.h4, color: COLORS.orange, marginTop: 10}}>This could be because you haven't added bank accounts yet. Add accounts
+						to get your transaction data.
+                    </Text>
+                    <Image 
+                        source={require('../../assets/home/transactions.png')}
+                        style={{
+                            width: 380,
+                            height: 330,
+                            marginTop: 80,
+                        }}
+                    />
+                </View>
+            );
+        }
+        return (
+            render()
+            
+        );
+    }
+
+    return (accountMap === null)? (
+        handleComponentEmptyRendering()
+    ) : (
         handleComponentDidMount()
+		// handleComponentEmptyRendering()
     )
 };
 

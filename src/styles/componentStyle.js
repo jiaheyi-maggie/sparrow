@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { Platform } from 'react-native';
+import { COLORS, FONTS } from '../constants/theme';
 
 const componentStyle = StyleSheet.create({
   input: {
@@ -87,9 +88,9 @@ const componentStyle = StyleSheet.create({
     alignContent: 'center'
   },
   buttonText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: "#2A94AF",
+
+    ...FONTS.h3, 
+    color: COLORS.red,
     alignSelf: "center",
     textTransform: "uppercase"
   },
