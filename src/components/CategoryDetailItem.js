@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View, TextInput, Alert, StyleSheet, Modal, Keyboard
 import store from '../app/store';
 import styles from '../styles/onboardingStyle';
 import periods from '../data/periods';
+import { COLORS, FONTS } from '../constants/theme';
 
 const CategoryDetailItem = ({ item }) => {
 
@@ -115,7 +116,7 @@ const CategoryDetailItem = ({ item }) => {
                     <View style={styles.textInputContainer}>
                         <Text style={styles.itemDescription}>$</Text>
                         <TextInput
-                            style={[styles.itemDescription, {marginRight: 15, color: "#F4A261"}]}
+                            style={[styles.itemDescription, {marginRight: 10, color: "#F4A261"}]}
                             value={value}
                             onChangeText={(value) => handleTextInput(value)}
                             placeholder=" 200 "
@@ -130,35 +131,35 @@ const CategoryDetailItem = ({ item }) => {
                         <Modal animationType="fade" transparent={true} visible={modalVisible} onRequestClose={() => {setModalVisible(!modalVisible)}}>
                             {/* View for the list of time periods */}
                             <View style={style.centeredView}>
-                            <View style={style.modalView}>
-                                <Text style={style.textStyle2}>Select time period:</Text>
-                                <FlatList 
-                                    data={periods}
-                                    renderItem={({ item }) => (
-                                        <TouchableOpacity
-                                        style={[style.button, style.buttonClose]}
-                                        onPress={() => {
-                                            setModalVisible(false); 
-                                            setPeriod(item.title);
-                                            store.dispatch(updatePeriod(item.title));
-                                        }}>
-                                        <Text style={style.textStyle}>{item.title}</Text>
-                                        </TouchableOpacity>
-                                    )}
-                                    keyExtractor={item => item.id}
-                                />
-                            </View>
+                                <View style={style.modalView}>
+                                    <Text style={style.textStyle2}>Select time period:</Text>
+                                    <FlatList 
+                                        data={periods}
+                                        renderItem={({ item }) => (
+                                            <TouchableOpacity
+                                                style={[style.button, style.buttonClose]}
+                                                onPress={() => {
+                                                    setModalVisible(false); 
+                                                    setPeriod(item.title);
+                                                    store.dispatch(updatePeriod(item.title));
+                                                }}>
+                                                <Text style={style.textStyle}>{item.title}</Text>
+                                            </TouchableOpacity>
+                                        )}
+                                        keyExtractor={item => item.id}
+                                    />
+                                </View>
                             </View>
                         </Modal>
 
                         <TouchableOpacity style={[style.button, style.buttonOpen]} onPress={() => handleClickOpen()}>
                             <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-                            <Text style={style.textStyle}> {period} </Text>
-                            <Image 
-                                source={require('../assets/Icons/down-arrow.png')} 
-                                resizeMode='contain'
-                                style={{marginTop: 5, width: 25, height: 25, tintColor: '#fff'}}
-                            />
+                                <Text style={style.textStyle}> {period} </Text>
+                                <Image 
+                                    source={require('../assets/Icons/down-arrow.png')} 
+                                    resizeMode='contain'
+                                    style={{ width: 15, height: 15, tintColor: '#fff'}}
+                                />
                             </View>
                         </TouchableOpacity>
                     </SafeAreaView>
@@ -203,9 +204,9 @@ const style = StyleSheet.create({
         alignItems: 'center',
       },
     modalView: {
-      backgroundColor: "#EDFFEC",
-      width: 350,
-      borderRadius: 5,
+      backgroundColor: COLORS.tea,
+      width: 380,
+      borderRadius: 8,
       padding: 10,
       alignItems: 'center',
       shadowColor: "#000",
@@ -221,7 +222,7 @@ const style = StyleSheet.create({
       borderRadius: 20,
       paddingHorizontal: 10,
       elevation: 2,
-      padding: 5,
+    //   padding: 2,
       marginVertical: 5
     },
     buttonOpen: {
@@ -229,22 +230,21 @@ const style = StyleSheet.create({
       width: 180,
     },
     buttonClose: {
-      backgroundColor: "#7E9181",
-      width: 280,
+      backgroundColor: COLORS.desertGreen,
+      width: 300,
       flexDirection: 'row',
       justifyContent: 'center',
       textAlignVertical: 'center',
-      padding: 8
+      padding: 5
     },
     textStyle: {
+        ...FONTS.h22b, 
       color: "white",
-      fontWeight: "bold",
       textAlign: "center",
-      fontSize: 22
     },
     textStyle2: {
-      color: "#264653",
-      fontSize: 20
+        ...FONTS.h3, 
+      color: COLORS.primary,
     },
     modalText: {
       marginBottom: 15,

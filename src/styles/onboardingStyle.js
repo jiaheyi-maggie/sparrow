@@ -33,7 +33,7 @@ const onboardingStyle = StyleSheet.create({
 	// subtitle for onboarding
 	subtitle: {
 		...FONTS.h33, 
-		color: COLORS.secondary,
+		color: COLORS.red,
 		// marginHorizontal: 10,
 		marginVertical: 5,
 	},
@@ -45,11 +45,8 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// when onboarding title is long
 	longtitle: {
-		color: "#264653",
-		fontWeight: "bold",
-		fontSize: 28,
-		textAlign: "left",
-		marginHorizontal: 10,
+		...FONTS.h2, 
+		color: COLORS.primary,
 	},
 	// semi long title
 	semiLongTitle: {
@@ -109,12 +106,10 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// text to indicate optional
 	optionalText: {
-		color: "#2A94AF",
-		textAlign: "left",
-		fontSize: 18,
+		...FONTS.h3, 
+		color: COLORS.white,
 		paddingVertical: 5,
 		marginHorizontal: 10,
-		fontWeight: "bold",
 	},
 	// blue category card
 	categoryCard: {
@@ -122,7 +117,7 @@ const onboardingStyle = StyleSheet.create({
 		alignItems: "flex-start",
 		borderRadius: 15,
 		padding: Platform.OS === "ios" ? 20 : 10,
-		margin: 10,
+		marginVertical: 8,
 	},
 	// for aligning generic texts + other components
 	genericRowAlign: {
@@ -134,12 +129,11 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// text with $
 	textInputContainer: {
-		backgroundColor: "#FFF4CB",
+		backgroundColor: COLORS.yellow,
 		borderRadius: 20,
 		paddingHorizontal: 10,
-		paddingVertical: 5,
 		flexDirection: "row",
-		width: 100,
+		width: 80,
 	},
 	// budget summary list container
 	listSummaryItem: {
@@ -173,16 +167,16 @@ const onboardingStyle = StyleSheet.create({
 	},
 	// blue card title
 	itemTitle: {
-		color: "#FAA381",
-		fontWeight: "bold",
-		fontSize: 24,
+		...FONTS.h22b,
+		color: COLORS.lightSalmon,
+		// fontWeight: "bold",
+		// fontSize: 24,
 		marginTop: Platform.OS === "ios" ? 10 : 0,
 	},
 	// view containing text input
 	itemDescription: {
-		color: "#264653",
-		fontWeight: "bold",
-		fontSize: 24,
+		...FONTS.h22b,
+		color: COLORS.primary,
 		marginRight: 2,
 	},
 	// long term center screen text
@@ -199,10 +193,9 @@ const onboardingStyle = StyleSheet.create({
 		padding: 5,
 	},
 	backButton: {
-		backgroundColor: "#2A94AF",
-		marginLeft: 5,
-		borderRadius: 10,
-		padding: 5,
+		width: 18,
+		height: 18,
+		tintColor: COLORS.secondary,
 	},
 	forwardButtonText: {
 		fontSize: 16,

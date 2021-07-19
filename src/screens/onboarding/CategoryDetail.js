@@ -4,6 +4,7 @@ import { SafeAreaView, Text, TouchableOpacity, View, Image, FlatList, ScrollView
 import CategoryDetailItem from '../../components/CategoryDetailItem';
 import styles from '../../styles/onboardingStyle';
 import store from '../../app/store';
+import { COLORS, FONTS } from '../../constants/theme';
 
  
 const CategoryDetail = ({ navigation }) => {
@@ -19,35 +20,23 @@ const CategoryDetail = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
                     {/* header */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                                <Image 
-                                    source={require('../../assets/Icons/back.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 18,
-                                        height: 18,
-                                        tintColor: '#fff',
-                                    }}
-                                />
-                            </TouchableOpacity>
+                        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.goBack()}>
+                            <Image 
+                                source={require('../../assets/Icons/back.png')}
+                                resizeMode='contain'
+                                style={styles.backButton}
+                            />
                             <Text style={styles.forwardButtonText}> Back </Text>
-                        </View>
-
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('longTerm')}>
                             <Text style={styles.forwardButtonText}> Next </Text>
-                            <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('longTerm')}>
-                                <Image 
-                                    source={require('../../assets/Icons/right-arrow.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 18,
-                                        height: 18,
-                                        tintColor: '#fff',
-                                    }}
-                                />
-                            </TouchableOpacity>
-                        </View>
+                            <Image 
+                                source={require('../../assets/Icons/right-arrow.png')}
+                                resizeMode='contain'
+                                style={styles.backButton}
+                            />
+                        </TouchableOpacity>
                     </View>
                     
                     <ScrollView>
@@ -132,46 +121,31 @@ const CategoryDetail = ({ navigation }) => {
                 <SafeAreaView style={[styles.container, {justifyContent: 'flex-start'}]}>
                     {/* header */}
                     <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                                <Image 
-                                    source={require('../../assets/Icons/back.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 18,
-                                        height: 18,
-                                        tintColor: '#fff',
-                                    }}
-                                />
-                            </TouchableOpacity>
+                        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.goBack()}>
+                            <Image 
+                                source={require('../../assets/Icons/back.png')}
+                                resizeMode='contain'
+                                style={styles.backButton}
+                            />
                             <Text style={styles.forwardButtonText}> Back </Text>
-                        </View>
-
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('longTerm')}>
                             <Text style={styles.forwardButtonText}> Next </Text>
-                            <TouchableOpacity style={styles.forwardButton} onPress={() => navigation.navigate('longTerm')}>
-                                <Image 
-                                    source={require('../../assets/Icons/right-arrow.png')}
-                                    resizeMode='contain'
-                                    style={{
-                                        width: 18,
-                                        height: 18,
-                                        tintColor: '#fff',
-                                    }}
-                                />
-                            </TouchableOpacity>
-                        </View>
+                            <Image 
+                                source={require('../../assets/Icons/right-arrow.png')}
+                                resizeMode='contain'
+                                style={styles.backButton}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <Text style={styles.title}>No worries!</Text>
                     <Text style={styles.subtitle}>Let's see if you have a plan for non-recurring spendings.</Text>
                     <View style={{width: 400, height: 70}}><Text></Text></View>
                     <Image 
-                        source={require('../../assets/onboarding/long-term.png')} 
+                        source={require('../../assets/onboarding/relax.png')} 
                         resizeMode='contain'
-                        style={{
-                            width: 400,
-                            height: 300,
-                        }}
+                        style={styles.imageContainer}
                     />
                 </SafeAreaView>
             );

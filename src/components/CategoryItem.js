@@ -4,13 +4,14 @@ import Checkbox from '@react-native-community/checkbox';
 import store from '../app/store';
 import styles from '../styles/componentStyle';
 import { useSelector } from 'react-redux';
+import { COLORS, FONTS } from '../constants/theme';
 
 const CategoryItem = ({ item }) => {
 
     /* Redux data flow */
     // get most updated state for re-rendering
     const checked = useSelector((state) => state.reducer[item.id].checked);
-    const colors = ['#FFF4CB', "#FAA381"];
+    const colors = [COLORS.yellow, COLORS.orange];
     const [buttonColor, setButtonColor] = useState(colors[0]);
 
     // action for reducer

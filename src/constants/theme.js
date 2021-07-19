@@ -63,6 +63,7 @@ export const FONTS = {
 	h1: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h1, lineHeight: 30 },
 	h2: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h2, lineHeight: 30 },
 	h22: { fontFamily: "Ubuntu-Medium", fontSize: SIZES.h22, lineHeight: 30 },
+	h22b: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h22, lineHeight: 30 },
 	h3: { fontFamily: "Ubuntu-Bold", fontSize: SIZES.h3, lineHeight: 22 },
 	h33: { fontFamily: "Ubuntu-Medium", fontSize: SIZES.h3, lineHeight: 22 },
 	h4: { fontFamily: "Ubuntu-Medium", fontSize: SIZES.h4, lineHeight: 22 },

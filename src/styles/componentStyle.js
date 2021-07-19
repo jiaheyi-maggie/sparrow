@@ -88,30 +88,27 @@ const componentStyle = StyleSheet.create({
     alignContent: 'center'
   },
   buttonText: {
-
     ...FONTS.h3, 
-    color: COLORS.red,
+    color: COLORS.secondary,
     alignSelf: "center",
     textTransform: "uppercase"
   },
-  clickContainer: {
-    backgroundColor: '#FFF4CB', 
-    borderRadius: 20, 
-    margin: 10,
-    padding: 10,
-  },
+	clickContainer: {
+		backgroundColor: '#FFF4CB', 
+		borderRadius: 20, 
+		marginVertical: 5,
+		padding: 8,
+	},
   listTextAlign: {
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      flexWrap: 'wrap'
+		flexDirection: 'row',
+		alignItems: 'flex-start',
+		flexWrap: 'wrap'
   },
-  clickTitle: {
-      color: '#264653',
-      fontWeight: 'bold',
-      textAlign: 'left',
-      fontSize: 22,
-      marginLeft: 50
-  },
+	clickTitle: {
+		...FONTS.h22, 
+		color: COLORS.primary,
+		marginLeft: 50
+	},
   budgetCircle : {
     borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
     width: Dimensions.get('window').width * 0.42,
