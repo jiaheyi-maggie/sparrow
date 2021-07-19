@@ -70,7 +70,6 @@ export const PlaidLink: FunctionComponent<Props> = ({token, client}) => {
         onSuccess,
         onExit,
         onEvent,
-        isWebView: true
     };
 
     const { open, ready, error, exit } = usePlaidLink(config);

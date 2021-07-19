@@ -15,7 +15,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 	const onChangeSearch = query => setSearchQuery(query);
 
     const getTransactionsFromMongo = async () => {
-        try {
+        // try {
             await fetch('http://192.168.1.20:19002/transactions/get')
 				.then(response => response.json())
 				.then(response => {
@@ -28,13 +28,13 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					console.log(error);
 				});
           
-          } catch (error) {
-            console.error(error);
-          }
+        //   } catch (error) {
+        //     console.error(error);
+        //   }
     };
 
 	const getAccountMap = async () => {
-        try {
+        // try {
             await fetch('http://192.168.1.20:19002/api/accounts/map')
 				.then(response => response.json())
 				.then(response => {
@@ -44,15 +44,27 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					console.log(error);
 				});
 		
-		} catch (error) {
-			console.error(error);
-		}
+		// } catch (error) {
+		// 	console.error(error);
+		// }
     };
+
+	const findAccountName = async (id) => {
+		try {
+			const response = accountMap.filter(obj => obj.account_id === id);
+			// console.log(response);
+			return response.name;
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 
 
 	useEffect(() => {
         getTransactionsFromMongo();
 		getAccountMap();
+		findAccountName("EMkJoZBJeaCvAnxkPeDLCxLN9AVDlVujWQNq7");
 		// console.log(accountMap);
 	}, [])
 
@@ -117,15 +129,25 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
                     renderItem={({item}) => {
                         let priceColor = (item.amount < 0) ? COLORS.grass : COLORS.red;
 						let itemName = (item.merchant_name == null) ? item.name : item.merchant_name;
+						let itemAccount; 
+						// TODO: optimize the runtime O(n^2) right now
+						for (var i = 0; i < accountMap.length; i++) {
+							if (accountMap[i].account_id === item.account_id) {
+								itemAccount = accountMap[i].name; 
+							}
+						}
+						// const obj = accountMap.filter(obj => obj.account_id === item.account_id);
+						// itemAccount = obj.name; 
                         return (
-							<View style={{borderBottomWidth: 1, borderBottomColor: COLORS.bone}}>
+							<View style={{borderWidth: 1,margin: 5,  borderBottomColor: COLORS.bone}}>
+								<Text style={{...FONTS.body4, color: COLORS.orange, marginTop: 10}}>{itemAccount}</Text>
 								<View style={styles.genericRow}>
-									<Text style={{...FONTS.h4, color: COLORS.lightGray3, margin: 10}}>{itemName}</Text>
-									<Text style={{...FONTS.h3, color: priceColor, margin: 10}}>$ {item.amount}</Text>
+									<Text style={{...FONTS.h4, color: COLORS.bluebell, marginHorizontal: 10}}>{itemName}</Text>
+									<Text style={{...FONTS.h3, color: priceColor, marginHorizontal: 10}}>$ {item.amount}</Text>
 								</View>
 								<View style={styles.genericRow}>
-									<Text>{item.category[0]}: {item.category[1]}</Text>
-									<Text>{item.date}</Text>
+									<Text style={{...FONTS.body4, color: COLORS.lightGray3, marginHorizontal: 10}}>{item.category[0]}: {item.category[1]}</Text>
+									<Text style={{...FONTS.body4, color: COLORS.lightGray3, marginHorizontal: 10}}>{item.date}</Text>
 								</View>
 						
 							</View>

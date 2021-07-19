@@ -208,7 +208,7 @@ app.post('/plaid_token_exchange', async (req, res) => {
 
 
 app.get('/api/accounts', async (req, res) => {
-    PlaidAccounts.find({})
+    await PlaidAccounts.find({})
     .then((data) => {
         res.send(data);
     })
@@ -219,7 +219,7 @@ app.get('/api/accounts', async (req, res) => {
 
 
 app.get('/transactions/get', async (req, res) => {
-    PlaidTransaction.find({})
+    await PlaidTransaction.find({})
     .then((data) => {
         res.send(data);
     })
@@ -230,7 +230,7 @@ app.get('/transactions/get', async (req, res) => {
 })
 
 app.get('/api/accounts/map', async (req, res) => {
-    AccountMap.find({})
+    await AccountMap.find({})
     .then((data) => {
         res.send(data);
     })
