@@ -59,8 +59,6 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 		}
 	}
 
-
-
 	useEffect(() => {
         getTransactionsFromMongo();
 		getAccountMap();
@@ -105,9 +103,9 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					<Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Transactions</Text>
 				</View>
 
-				<View style={styles.genericRow}>
+				<View style={[styles.genericRow, {marginBottom: 5}]}>
 					<TouchableOpacity style={{backgroundColor:COLORS.desertGreen, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-						<Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Filter</Text>
+						<Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Filter by</Text>
 						<Image
 							source={require('../../assets/Icons/filter.png')}
 							style={{width: 13, height: 13, tintColor: COLORS.white, margin: 5, marginTop: 6}}
@@ -139,23 +137,35 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 						// const obj = accountMap.filter(obj => obj.account_id === item.account_id);
 						// itemAccount = obj.name; 
                         return (
-							<View style={{borderWidth: 1,margin: 5,  borderBottomColor: COLORS.bone}}>
-								<Text style={{...FONTS.body4, color: COLORS.orange, marginTop: 10}}>{itemAccount}</Text>
-								<View style={styles.genericRow}>
-									<Text style={{...FONTS.h4, color: COLORS.bluebell, marginHorizontal: 10}}>{itemName}</Text>
-									<Text style={{...FONTS.h3, color: priceColor, marginHorizontal: 10}}>$ {item.amount}</Text>
+							<View style={{borderWidth: 1, margin: 5,  borderColor: COLORS.bone, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopWidth: 3}}>
+								<Text style={{...FONTS.body4, color: COLORS.orange, marginHorizontal: 5}}>{itemAccount}</Text>
+								<View style={[styles.genericRow, {marginHorizontal: 10}]}>
+									<Text style={{...FONTS.h4, color: COLORS.bluebell}}>{itemName}</Text>
+									<Text style={{...FONTS.h3, color: priceColor}}>$ {item.amount}</Text>
 								</View>
-								<View style={styles.genericRow}>
-									<Text style={{...FONTS.body4, color: COLORS.lightGray3, marginHorizontal: 10}}>{item.category[0]}: {item.category[1]}</Text>
-									<Text style={{...FONTS.body4, color: COLORS.lightGray3, marginHorizontal: 10}}>{item.date}</Text>
+								<View style={[styles.genericRow, {marginHorizontal: 10}]}>
+									<Text style={{...FONTS.body4, color: COLORS.lightGray3}}>{item.category[0]}: {item.category[1]}</Text>
+									<Text style={{...FONTS.body4, color: COLORS.lightGray3}}>{item.date}</Text>
 								</View>
 						
 							</View>
                         );
                     }}
                     keyExtractor={item => item.id}
-                    ListFooterComponent={<View style={{height: 10}}></View>}
-                />
+                    ListFooterComponent={() => {
+						return (
+							<View style={{alignSelf:'center'}}>
+								<TouchableOpacity>
+									<Text style={{...FONTS.body4, color: COLORS.lightGray4}}>Load more transactions...</Text>
+								</TouchableOpacity>
+								
+							</View>
+						)
+					}
+						
+						
+					}
+                />	
 			</SafeAreaView>
         );
     };

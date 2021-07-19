@@ -28,7 +28,6 @@ const WebPlaidLink = ({ navigation }) => {
                         />
                         <Text style={{...FONTS.h4, color: COLORS.primary}}>Back</Text>
                     </View>
-                    
                 </TouchableOpacity>
                 <WebView source={{uri: 'http://192.168.1.20:19002'}} 
                     style={{flex:1,  height: 200}}

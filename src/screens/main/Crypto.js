@@ -110,7 +110,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 <View style={styles.genericRow}>
                     <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5, textDecorationLine:'underline'}}>Top Cryptocurrencies</Text>
                     <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-                        <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Sort</Text>
+                        <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Sort by</Text>
                         <Image
                             source={require('../../assets/Icons/down-arrow.png')}
                             style={{width: 13, height: 13, tintColor: COLORS.white, margin: 5, marginTop: 6}}
