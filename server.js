@@ -247,8 +247,6 @@ const fetch = require("node-fetch");
 
 
 app.get('/paypal/token', async (req, res) => {
-    // TODO: grand type is null
-
     // var paypalHeaders= new fetch.Headers();
     // paypalHeaders.append('Accept', 'application/json');
     // paypalHeaders.append("Accept-Language", 'en_US');
@@ -256,7 +254,7 @@ app.get('/paypal/token', async (req, res) => {
     // // paypalHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
     // var urlencoded = new URLSearchParams();
-    // // urlencoded.append("grant-type", "client-credentials");
+    // // urlencoded.append({"grant-type", "client-credentials"});
 
     // var requestOptions = {
     //     method: "POST",
@@ -270,29 +268,28 @@ app.get('/paypal/token', async (req, res) => {
     // .then(response => console.log(response))
 
     // res.send(result);
-    var data = qs.stringify({
-        'grant_type': 'client_credentials' 
-      });
-      var config = {
+    var data = qs.stringify({'grant_type': 'client_credentials'});
+    var config = {
         method: 'post',
         url: 'https://api-m.sandbox.paypal.com/v1/oauth2/token',
         headers: { 
-          'Accept': 'application/json', 
-          'Accept-Language': 'en_US', 
-          'Authorization': 'Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=', 
-          'Content-Type': 'application/x-www-form-urlencoded'
+            'Accept': 'application/json', 
+            'Accept-Language': 'en_US', 
+            'Authorization': 'Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=', 
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
         data : data
-      };
-      
-      axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      
+    };
+        
+    axios(config)
+        .then(function (response) {
+            // console.log(response);
+            res.send(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    
 
 })
 
