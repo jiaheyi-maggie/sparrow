@@ -108,8 +108,8 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 
                 {/* Top currency list */}
                 <View style={styles.genericRow}>
-                    <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5, textDecorationLine:'underline'}}>Top Cryptocurrencies</Text>
-                    <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                    <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5}}>Top Cryptocurrencies</Text>
+                    <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:5}}>
                         <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Sort by</Text>
                         <Image
                             source={require('../../assets/Icons/down-arrow.png')}
@@ -124,47 +124,45 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                         let priceColor = (item.price_change_percentage_7d_in_currency > 0) ? COLORS.lightGreen : COLORS.red;
 
                         return(
-                            <View>
-                            <TouchableOpacity 
-                                style={{flexDirection: 'row', height: 55, alignItems: 'center', justifyContent: 'space-between'}}
-                                onPress={() => setSelectedCoin(item)}
-                                >
-                                <View style={{flexDirection:'row', alignItems: 'center'}}>
-                                    <Image 
-                                        source={{uri: item.image}}
-                                        style={{width:22, height: 22, marginHorizontal: 10}}
-                                    />
-                                    <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{item.name}</Text>
-                                </View>
-
-                                <View style={{marginRight: 10}}>
-                                    <Text style={{...FONTS.h4, color: COLORS.white, textAlign: 'right'}}>{item.current_price} USD</Text>
-                                    <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
-                                        {
-                                            item.price_change_percentage_7d_in_currency != 0 && 
-                                            <Image
-                                                source={require('../../assets/Icons/up-arrow.png')}
-                                                style={{
-                                                    width: 10,
-                                                    height: 10,
-                                                    alignSelf: 'center',
-                                                    tintColor: priceColor,
-                                                    transform: (item.price_change_percentage_7d_in_currency > 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
-                                                }}
-                                            />
-                                        }
-                                        <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
-                                            {item.price_change_percentage_7d_in_currency.toFixed(2)}%
-                                        </Text>
+                            <View style={{borderWidth:1, borderColor: COLORS.bone, margin: 3, borderBottomLeftRadius: 15, borderBottomRightRadius:15, borderTopWidth: 2}}>
+                                <TouchableOpacity 
+                                    style={{flexDirection: 'row', height: 55, alignItems: 'center', justifyContent: 'space-between'}}
+                                    onPress={() => setSelectedCoin(item)}
+                                    >
+                                    <View style={{flexDirection:'row', alignItems: 'center'}}>
+                                        <Image 
+                                            source={{uri: item.image}}
+                                            style={{width:22, height: 22, marginHorizontal: 10}}
+                                        />
+                                        <Text style={{...FONTS.h4, color: COLORS.lightGray4}}>{item.name}</Text>
                                     </View>
-                                </View>
 
-                            </TouchableOpacity>
-                            <View style={{borderBottomColor: COLORS.lightGray3,borderBottomWidth: 1, }}/>
+                                    <View style={{marginRight: 10}}>
+                                        <Text style={{...FONTS.h4, color: COLORS.white, textAlign: 'right'}}>{item.current_price} USD</Text>
+                                        <View style={{flexDirection:'row', alignSelf:'flex-end'}}>
+                                            {
+                                                item.price_change_percentage_7d_in_currency != 0 && 
+                                                <Image
+                                                    source={require('../../assets/Icons/up-arrow.png')}
+                                                    style={{
+                                                        width: 10,
+                                                        height: 10,
+                                                        alignSelf: 'center',
+                                                        tintColor: priceColor,
+                                                        transform: (item.price_change_percentage_7d_in_currency > 0) ? [{rotate: '45deg'}] : [{rotate:'125deg'}]
+                                                    }}
+                                                />
+                                            }
+                                            <Text style={{alignSelf:'center',color: priceColor, marginHorizontal: 2}}>
+                                                {item.price_change_percentage_7d_in_currency.toFixed(2)}%
+                                            </Text>
+                                        </View>
+                                    </View>
+
+                                </TouchableOpacity>
                             </View>
                         );
                     }}
-                    ListFooterComponent={<View style={{height:55}}></View>}
                 />
 
             </SafeAreaView>

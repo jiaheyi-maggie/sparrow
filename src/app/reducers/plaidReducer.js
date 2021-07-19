@@ -4,6 +4,7 @@ const initialState = {
     public_token: null, 
     access_token: null,
     bank_accounts: [],
+    transactions: [],
 }
 
 const plaidReducer = (state = initialState, action) => {
@@ -32,6 +33,11 @@ const plaidReducer = (state = initialState, action) => {
             return {
                 ...state,
                 bank_accounts: action.payload.accounts
+            }
+        case "updateTransactions":
+            return {
+                ...state,
+                transactions: action.payload.transactions
             }
         default:
             return state

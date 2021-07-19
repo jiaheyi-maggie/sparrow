@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { updateUser } from '../../app/actions/updateUser';
 import styles from '../../styles/homeStyle';
 import store from '../../app/store';
+import { COLORS, FONTS } from '../../constants/theme';
 
 const ProfileModal = ({ navigation }) => {
     const currentUser = store.getState().user.currentUser;
@@ -44,14 +45,14 @@ const ProfileModal = ({ navigation }) => {
             {/* header */}
             <View style={{flexDirection: 'row', justifyContent:'space-between',alignItems: 'baseline'}}>
                 {/* go back */}
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity style={{marginLeft: 5}} onPress={() => navigation.navigate('Home')}>
                     <Image 
                     source={require('../../assets/Icons/back.png')}
                     resizeMode='contain'
                     style={{
                         width: 20,
                         height: 20,
-                        tintColor: '#fff',
+                        tintColor: COLORS.secondary,
                     }}
                     />
                 </TouchableOpacity>
@@ -75,11 +76,11 @@ const ProfileModal = ({ navigation }) => {
                 <View style={[styles.cardContainer, {paddingLeft: 0}]}>
                     <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
                         <Text style={styles.cardText}>Monthly:</Text>
-                        <Text style={ {color: '#264653', fontSize: 19}}>${shortTerm[0]}</Text>
+                        <Text style={ {...FONTS.h22, color: COLORS.primary}}>${shortTerm[0]}</Text>
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
                         <Text style={styles.cardText}>Yearly:</Text>
-                        <Text style={ {color: '#264653', fontSize: 19}}>${longTerm[0]}</Text>
+                        <Text style={ {...FONTS.h22, color: COLORS.primary}}>${longTerm[0]}</Text>
                     </View>
                     
                 </View>
@@ -91,11 +92,11 @@ const ProfileModal = ({ navigation }) => {
                 <View style={[styles.cardContainer, {paddingLeft: 0}]}>
                     <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
                         <Text style={styles.cardText}>Monthly:</Text>
-                        <Text style={ {color: '#264653', fontSize: 19}}>$0</Text>
+                        <Text style={ {...FONTS.h22, color: COLORS.primary}}>$0</Text>
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 5}}>
                         <Text style={styles.cardText}>Yearly:</Text>
-                        <Text style={ {color: '#264653', fontSize: 19}}>$0</Text>
+                        <Text style={ {...FONTS.h22, color: COLORS.primary}}>$0</Text>
                     </View>
                     
                 </View>

@@ -77,13 +77,13 @@ export default class Register extends Component {
                         <ScrollView style={{marginTop: 40}}>
                             {/* Title */}
                             <Text style={styles.title}>Sign Up </Text>
-                            <Text style={styles.subtitle}>Create an account for much more.</Text>
+                            <Text style={styles.subtitle}>Create an account to manage your budgets in detail and interact with bank accounts.</Text>
                             <View style={{backgroundColor: "#2a94af", borderRadius: 20, padding: 10}}>
                                 <View style={{flexDirection: 'column', marginBottom: 20}}>
                                     {/* First Name */}
                                     <View style={styles.signupTitle}> 
                                         <Image 
-                                            source={require('../assets/Icons/first-name.png')} 
+                                            source={require('../assets/Icons/profile.png')} 
                                             resizeMode='contain'
                                             style={componentStyle.infoIcon}
                                         />
@@ -103,7 +103,7 @@ export default class Register extends Component {
                                     {/* Last Name */}
                                     <View style={styles.signupTitle}> 
                                         <Image 
-                                            source={require('../assets/Icons/last-name.png')} 
+                                            source={require('../assets/Icons/profile.png')} 
                                             resizeMode='contain'
                                             style={componentStyle.infoIcon}
                                         />
@@ -208,16 +208,16 @@ export default class Register extends Component {
             
             case "android":
                 return (
-                    <ScrollView style={{marginTop: 40, marginHorizontal: 10}}>
+                    <ScrollView style={{marginTop: 50, marginHorizontal: 10}}>
                         {/* Title */}
                         <Text style={styles.title}>Sign Up </Text>
-                        <Text style={styles.subtitle}>Create an account for much more.</Text>
+                        <Text style={styles.subtitle}>Create an account to manage your budgets in detail and interact with bank accounts.</Text>
                         <View style={{backgroundColor: "#2a94af", borderRadius: 20, padding: 10}}>
                             <View style={{flexDirection: 'column', marginBottom: 20}}>
                                 {/* First Name */}
                                 <View style={styles.signupTitle}> 
                                     <Image 
-                                        source={require('../assets/Icons/first-name.png')} 
+                                        source={require('../assets/Icons/profile.png')} 
                                         resizeMode='contain'
                                         style={componentStyle.infoIcon}
                                     />
@@ -237,7 +237,7 @@ export default class Register extends Component {
                                 {/* Last Name */}
                                 <View style={styles.signupTitle}> 
                                     <Image 
-                                        source={require('../assets/Icons/last-name.png')} 
+                                        source={require('../assets/Icons/profile.png')} 
                                         resizeMode='contain'
                                         style={componentStyle.infoIcon}
                                     />

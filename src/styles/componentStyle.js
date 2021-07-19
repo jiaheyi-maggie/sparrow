@@ -54,9 +54,8 @@ const componentStyle = StyleSheet.create({
     color: COLORS.lightSalmon,
   },
   infofieldtitle: {
+	  ...FONTS.body3, 
     color: '#fff',
-    fontSize: 17,
-    textAlign: 'left',
     padding: 5,
     paddingTop: 15
   },

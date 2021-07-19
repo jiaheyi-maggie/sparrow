@@ -5,11 +5,11 @@ import { sendPushNotifications } from '../../app/actions/notificationActions';
 import { Searchbar } from 'react-native-paper';
 import { COLORS, FONTS } from '../../constants/theme';
 import styles from '../../styles/homeStyle';
+import store from '../../app/store';
 
 const Notifications = ({ navigation, notification_token, notifications }) => {
 	const [transactions, setTransactions] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-	let accountIDs = new Array();
 	const [accountMap, setAccountMap] = useState(null);
 
 	const onChangeSearch = query => setSearchQuery(query);
@@ -19,9 +19,6 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
             const response = await fetch('http://192.168.1.20:19002/transactions/get');
 			const json = await response.json()
 			setTransactions(json);
-			for (var i = 0; i < json.length; i++) {
-				accountIDs.push(json[i].account_id);
-			}
 		} catch (error) {
 			console.error(error);
 		}
@@ -37,16 +34,21 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 		}
     };
 
-
-
 	useEffect(() => {
         getTransactionsFromMongo();
 		getAccountMap();
+		
+		// update redux
+		store.dispatch({
+			type:"updateTransactions",
+			payload: {transactions}
+		})
+		console.log(store.getState().plaidReducer.transactions);
 	}, [])
 
     const handleComponentDidMount = () => {
         return (
-			<SafeAreaView style={styles.container2}>
+			<SafeAreaView style={styles.container3}>
 				<View style={styles.genericRow}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Transactions</Text>
 					<TouchableOpacity onPress={() => navigation.openDrawer()}>

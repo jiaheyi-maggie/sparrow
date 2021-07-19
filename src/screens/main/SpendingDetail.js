@@ -1,11 +1,32 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import styles from '../../styles/homeStyle';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
+import periods from '../../data/periods';
 
-const SpendingDetail = ({ navigation }) => {
+const SpendingDetail = ({ navigation, transactions }) => {
+
+    const [period, setPeriod] = useState("month");
+
+    const calculateSum = (period) => {
+        switch (period) {
+            // case 'year':
+            // case 'quarter':
+            case 'month':
+                let currentMonth = new Date().getMonth();
+            // case 'week':
+            // case 'day':
+        }
+    }
+
+    const [spendingSum, setSpendingSum] = useState(0);
+
+
+    useEffect(() => {
+        console.log(transactions);
+    }, [])
 
     const handleComponentDidMount = () => {
         return (
@@ -80,4 +101,8 @@ const SpendingDetail = ({ navigation }) => {
     )
 }
 
-export default SpendingDetail;
+const mapStateToProps = (store) => ({
+    transactions: store.plaidReducer.transactions,
+});
+
+export default connect(mapStateToProps, null)(SpendingDetail);

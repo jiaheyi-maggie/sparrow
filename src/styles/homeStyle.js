@@ -88,11 +88,8 @@ const homeStyle = StyleSheet.create({
         padding: (Platform.OS === 'ios') ? 20: 10,
     },
     subtitle: {
-        color:'#562C2C',
-        textAlign: 'left',
-        fontSize: 17,
-        paddingVertical: 5,
-        marginHorizontal: 10
+        ...FONTS.h4,
+        color: COLORS.lightGray3,
     },
     viewDetailText:{
         color: '#F4A261',
@@ -101,13 +98,10 @@ const homeStyle = StyleSheet.create({
         fontWeight: 'bold'
     },
     subtitle2: {
-        color: '#264653',
-        fontWeight: 'bold',
-        textAlign: 'left',
-        fontSize: 17,
-        paddingVertical: 5,
-        marginHorizontal: 10,
-        textDecorationLine:'underline'
+        ...FONTS.h33,
+        color: COLORS.primary,
+        textDecorationLine:'underline',
+        paddingHorizontal: 10
     },
     statusContainer: {
         borderRadius: 20,
@@ -342,10 +336,8 @@ const homeStyle = StyleSheet.create({
         padding: 5
     },
     cardText: {
+        ...FONTS.h3, 
         color: '#fff',
-        fontWeight: 'bold',
-        textAlign: 'left',
-        fontSize: 19,
         marginHorizontal: Platform.OS === 'ios'? 10: 15
     },
     cardContainer: {
