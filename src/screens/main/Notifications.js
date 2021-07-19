@@ -50,7 +50,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
         return (
 			<SafeAreaView style={styles.container3}>
 				<View style={styles.genericRow}>
-					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Transactions</Text>
+					<Text style={styles.title}>Transactions</Text>
 					<TouchableOpacity onPress={() => navigation.openDrawer()}>
 						<Image 
 							source={require('../../assets/Icons/menu.png')}

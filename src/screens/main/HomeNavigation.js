@@ -29,6 +29,7 @@ import SignedOut from './SignedOut';
 import Crypto from './Crypto';
 import Link from './Link';
 import WebPlaidLink from '../../types/WebPlaidLink';
+import BillSplitting from './BillSplitting';
 
 
 /* Add the onboarding navigation stack here */
@@ -143,6 +144,30 @@ const HomeTab = () => {
                                     fontSize: 10
                                 }}>
                                     Transactions
+                            </Text> 
+                        </View>
+                    ),
+                }} 
+            />
+
+        <Tab.Screen name='BillSplitting' component={BillSplitting} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/split.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 23,
+                                    height: 23,
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ?  '#E76F51' : COLORS.lightGray4,
+                                    fontSize: 10
+                                }}>
+                                    Bill Split
                             </Text> 
                         </View>
                     ),

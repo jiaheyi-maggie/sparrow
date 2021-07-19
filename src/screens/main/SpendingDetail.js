@@ -25,7 +25,7 @@ const SpendingDetail = ({ navigation, transactions }) => {
 
 
     useEffect(() => {
-        console.log(transactions);
+        // console.log(transactions);
     }, [])
 
     const handleComponentDidMount = () => {

@@ -6,6 +6,8 @@ const path = require('path');
 // allow json inspection
 const util = require('util'); 
 const port = 19002;
+const axios = require('axios');
+const qs = require('querystring');
 
 const mongoose = require('mongoose');
 const PlaidItem = require('./src/models/plaid-item');
@@ -237,6 +239,61 @@ app.get('/api/accounts/map', async (req, res) => {
     .catch((error) => {
         console.log(error)
     });
+})
+
+
+const fetch = require("node-fetch");
+
+
+
+app.get('/paypal/token', async (req, res) => {
+    // TODO: grand type is null
+
+    // var paypalHeaders= new fetch.Headers();
+    // paypalHeaders.append('Accept', 'application/json');
+    // paypalHeaders.append("Accept-Language", 'en_US');
+    // paypalHeaders.append("Authorization", "Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=");
+    // // paypalHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    // var urlencoded = new URLSearchParams();
+    // // urlencoded.append("grant-type", "client-credentials");
+
+    // var requestOptions = {
+    //     method: "POST",
+    //     headers: paypalHeaders,
+    //     body: urlencoded,
+    //     redirect: 'follow'
+    // };
+
+    // const result = await fetch('https://api-m.sandbox.paypal.com/v1/oauth2/token', requestOptions)
+    // .then(response => response.json())
+    // .then(response => console.log(response))
+
+    // res.send(result);
+    var data = qs.stringify({
+        'grant_type': 'client_credentials' 
+      });
+      var config = {
+        method: 'post',
+        url: 'https://api-m.sandbox.paypal.com/v1/oauth2/token',
+        headers: { 
+          'Accept': 'application/json', 
+          'Accept-Language': 'en_US', 
+          'Authorization': 'Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=', 
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
+
 })
 
 

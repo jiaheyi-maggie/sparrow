@@ -7,9 +7,8 @@ const homeStyle = StyleSheet.create({
     title: {
         ...FONTS.h2,
         color: COLORS.primary,
-        textAlign: 'left',
-        marginHorizontal: 10,
-        marginTop: 5,
+        // marginHorizontal: 10,
+        // marginTop: 5,
     },
     title2: {
         color: COLORS.primary, 
