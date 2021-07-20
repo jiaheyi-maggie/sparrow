@@ -256,7 +256,6 @@ const Link = ({ navigation, link_token, client }) => {
     };
 
     const handleComponentEmptyRendering = () => {
-
         const render = () => {
             return (
                 <View style={styles.container3}>

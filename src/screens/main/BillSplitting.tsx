@@ -40,7 +40,7 @@ const BillSplitting = ({ navigation }) => {
                     </View>
 
                     <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
-                        <TouchableOpacity onPress={() => navigation.navigate("PaymentModal")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("RequestModal")}>
                             <Text style={{...FONTS.h4, color: COLORS.primary}}>Request Payment</Text>
                         </TouchableOpacity>   
                     </View>

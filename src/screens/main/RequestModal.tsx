@@ -4,87 +4,20 @@ import styles from '../../styles/homeStyle';
 import { COLORS, FONTS } from '../../constants/theme';
 /* Keep track of the bill splitting payment history */
 
-const PaymentModal = ({ navigation }) => {
-    const [paypalAccessToken, setPaypalAccessToken] = useState(null);
-    const [expirationTime, setExpirationTime] = useState(null);
-    const [orderId, setOrderId] = useState(null);
-    const [payeeEmail, setPayeeEmail] = useState(null);
+const RequestModal = ({ navigation }) => {
+    const [payerEmail, setPayerEmail] = useState(null);
     const [amount, setAmount] = useState(null);
     const [notes, setNotes] = useState(null);
-    const [modalVisible, setModalVisible] = useState(true);
-  
-    const getPaypalAccessToken = async () => {
-        const response = await fetch('http://192.168.1.20:19002/paypal/token')
-            .then(response => response.json())
-            .then(response => {
-                setPaypalAccessToken(response.access_token);
-                setExpirationTime(response.expires_in);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    };
-    
-    const makePayment = (amount) => {
-        var axios = require('axios');
-        var data = JSON.stringify({
-            "intent": "CAPTURE",
-            "purchase_units": [
-                    {
-                    "amount": {
-                        "currency_code": "USD",
-                        "value": `${amount}`
-                    }
-                }
-            ]
-        });
 
-        var config = {
-            method: 'post',
-            url: 'https://api-m.sandbox.paypal.com/v2/checkout/orders',
-            headers: { 
-                'Content-Type': 'application/json', 
-                'Authorization': `Bearer ${paypalAccessToken}`
-            },
-            data : data
-        };
 
-        axios(config)
-            .then(function (response) {
-                setOrderId(response.data.id);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        // get payment details
-        var details = {
-            method: 'get',
-            url: `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}`,
-            headers: {
-                'Content-Type': "application/json",
-                "Authorization": `Bearer ${paypalAccessToken}`
-            }
-        }
-
-        axios(details)
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    };
-
-    useEffect(() => {
-        getPaypalAccessToken();
-    }, [])
+    // useEffect(() => {
+    // }, [])
 
     const handleComponentRendering = () => {
         return (
             <SafeAreaView style={[styles.container3, {backgroundColor: COLORS.desertGreen}]}>
                 <View style={styles.genericRow}>
-                    <Text style={[styles.title, {color:COLORS.white}]}>New Payment</Text>
+                    <Text style={[styles.title, {color:COLORS.white}]}>New Payment Request</Text>
                     <TouchableOpacity  onPress={() => {
                         navigation.goBack();
                         }}>
@@ -98,10 +31,10 @@ const PaymentModal = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={[styles.listText,{marginTop:10, color: COLORS.yellow}]}>Payee Email</Text>
+                <Text style={[styles.listText,{marginTop:10, color: COLORS.yellow}]}>Payer Email</Text>
                 <TextInput 
-                    value={payeeEmail}
-                    onChangeText={(text) => setPayeeEmail(text)}
+                    value={payerEmail}
+                    onChangeText={(text) => setPayerEmail(text)}
                     placeholder='myfriend@gmail.com'
                     style={{
                         ...FONTS.body3,
@@ -134,7 +67,6 @@ const PaymentModal = ({ navigation }) => {
                     <TextInput
                         value={notes}
                         maxLength={32}
-                        // onFocus={() => this.setState({pageOffset: this.state.keyboardOffset})}
                         onChangeText={(text) => setNotes(text)}
                         style={{
                             ...FONTS.body3,
@@ -172,4 +104,4 @@ const PaymentModal = ({ navigation }) => {
     );
 }
 
-export default PaymentModal; 
+export default RequestModal; 

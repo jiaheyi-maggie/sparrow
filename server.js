@@ -1,6 +1,7 @@
 // nodeJS + mongoDB server
 const dotenv = require('dotenv');
 const express = require('express');
+const router = express.Router();
 const bodyParser = require('body-parser');
 const path = require('path');
 // allow json inspection
@@ -293,7 +294,22 @@ app.get('/braintree/client', async (req, res) => {
     });
 })
 
-
+// app.get('/braintree/client', async (req, res) => {
+//     const nonceFromClient = req.body.paymentMethodNonce;
+//     const dummyTransaction = gateway.transaction.sale({
+//         amount: '10.0',
+//         paymentMethodNonce: nonceFromClient,
+//         options: {
+//             submitForSettelment: true
+//         }
+//     }, (error, result) => {
+//         if (result) {
+//             res.send(result);
+//         } else {
+//             res.status(500).send(error);
+//         }
+//     })
+// })
 
 
 app.listen(port, () => {
