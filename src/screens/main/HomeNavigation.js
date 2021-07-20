@@ -30,6 +30,7 @@ import Crypto from './Crypto';
 import Link from './Link';
 import WebPlaidLink from '../../types/WebPlaidLink';
 import BillSplitting from './BillSplitting';
+import PaymentModal from './PaymentModal';
 
 
 /* Add the onboarding navigation stack here */
@@ -102,30 +103,6 @@ const HomeTab = () => {
                 }} 
             />
 
-            <Tab.Screen name='Crypto' component={Crypto} 
-                options={{
-                    tabBarIcon: ({focused}) => (
-                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
-                            <Image 
-                                source={require('../../assets/Icons/crypto.png')}
-                                resizeMode='contain'
-                                style={{
-                                    width: 23,
-                                    height: 23,
-                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
-                                }}
-                            />
-                            <Text style={{
-                                    color: focused ?  '#E76F51' : COLORS.lightGray4,
-                                    fontSize: 10
-                                }}>
-                                    Crypto
-                            </Text> 
-                        </View>
-                    ),
-                }} 
-            />
-
             <Tab.Screen name='Notification' component={Notifications} 
                 options={{
                     tabBarIcon: ({focused}) => (
@@ -168,6 +145,30 @@ const HomeTab = () => {
                                     fontSize: 10
                                 }}>
                                     Bill Split
+                            </Text> 
+                        </View>
+                    ),
+                }} 
+            />
+
+            <Tab.Screen name='Crypto' component={Crypto} 
+                options={{
+                    tabBarIcon: ({focused}) => (
+                        <View style={{alignItems: 'center', justifyContent: 'center'}}> 
+                            <Image 
+                                source={require('../../assets/Icons/crypto.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 23,
+                                    height: 23,
+                                    tintColor: focused ? '#E76F51' : COLORS.lightGray4
+                                }}
+                            />
+                            <Text style={{
+                                    color: focused ?  '#E76F51' : COLORS.lightGray4,
+                                    fontSize: 10
+                                }}>
+                                    Crypto
                             </Text> 
                         </View>
                     ),
@@ -222,6 +223,7 @@ const HomeNavigation = () => {
             <DrawerNav.Screen name="SignedOut" component={SignedOut} />
             <DrawerNav.Screen name="Profile" component={ProfileModal} />
             <DrawerNav.Screen name="WebPlaidLink" component={WebPlaidLink} />
+            <DrawerNav.Screen name="PaymentModal" component={PaymentModal} />
         </DrawerNav.Navigator>
     );
 };

@@ -81,12 +81,12 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 <View style={styles.genericRow}>
                     <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
                         <TouchableOpacity onPress={() => handleAddBalance()}>
-                            <Text style={{...FONTS.h3, color: COLORS.primary}}>Add $ to Budget</Text>
+                            <Text style={{...FONTS.h4, color: COLORS.primary}}>Add $ to Budget</Text>
                         </TouchableOpacity>   
                     </View>
                     <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
                         <TouchableOpacity onPress={() => handleSplitBudget()}>
-                            <Text style={{...FONTS.h3, color: COLORS.primary}}>Split Budget for Crypto</Text>
+                            <Text style={{...FONTS.h4, color: COLORS.primary}}>Split Budget for Crypto</Text>
                         </TouchableOpacity>   
                     </View>
                 </View>
@@ -158,7 +158,6 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                                             </Text>
                                         </View>
                                     </View>
-
                                 </TouchableOpacity>
                             </View>
                         );
