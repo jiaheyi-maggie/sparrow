@@ -8,6 +8,7 @@ const util = require('util');
 const port = 19002;
 const axios = require('axios');
 const qs = require('querystring');
+const braintree = require('braintree');
 
 const mongoose = require('mongoose');
 const PlaidItem = require('./src/models/plaid-item');
@@ -48,7 +49,9 @@ function replaceAt(string, index, replacement) {
     return string.substring(0, index) + replacement + string.substring(index+1, string.length);
 }
 
-
+app.get('/payment', async (request, response) => {
+    response.sendFile(path.join(__dirname, 'src/screens/main/Venmo.html'));
+})
 
 // front page: link
 app.get('/', async (request, response) => {
@@ -266,9 +269,31 @@ app.get('/paypal/token', async (req, res) => {
         .catch(function (error) {
             console.log(error);
         });
-    
-
 })
+
+
+const gateway = new braintree.BraintreeGateway({
+    environment: braintree.Environment.Sandbox,
+    merchantId: "tyzv6s7y3v2vmp24",
+    publicKey: "c53qj2cs3rj55g88",
+    privateKey: "cc4dd96ad148cd71dcb2f80b3c4650b7",
+});
+
+app.get('/braintree/client', async (req, res) => {
+    // braintree client for payment methods
+    gateway.clientToken.generate({
+        // customerId: "AU93c9DXBz_i2UoEd77SJGmT3oL0wPzT6F14IsJC9T02fdw_jdon7SayH2WH3E0LcYdCuY1Nbel89l3-"
+    })
+    .then(response => {
+        const clientToken = response.clientToken;
+        res.send(clientToken);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+})
+
+
 
 
 app.listen(port, () => {

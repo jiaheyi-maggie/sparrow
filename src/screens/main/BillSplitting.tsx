@@ -23,6 +23,7 @@ const BillSplitting = ({ navigation }) => {
 
     useEffect(() => {
         getPaypalAccessToken();
+        // console.log(paypalAccessToken);
     }, [])
 
     const handleComponentRendering = () => {

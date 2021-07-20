@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
+    </head>
+    <body>
+        <div id="dropin-container"></div>
+
+        <script type='text/javascript'>
+            var button = document.querySelector('#submit-button');
+        
+            braintree.dropin.create({
+                authorization: 'sandbox_3879n4rc_tyzv6s7y3v2vmp24',
+                container: document.getElementById('dropin-container'),
+                paypal: {
+                    flow: 'vault'
+                },
+                venmo:{}
+            }, function (createErr, instance) {
+              button.addEventListener('click', function () {
+                instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+                  // Submit payload.nonce to your server
+                  console.log(payload);
+                });
+              });
+            });
+        </script>
+    </body>
+
+</html>
