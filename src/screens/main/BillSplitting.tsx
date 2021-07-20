@@ -6,8 +6,21 @@ import { COLORS, FONTS } from '../../constants/theme';
 
 
 const BillSplitting = ({ navigation }) => {
+    const [paypalAccessToken, setPaypalAccessToken] = useState(null);
+    const [expirationTime, setExpirationTime] = useState(null);
+ 
+    const getPaypalAccessToken = async () => {
+        const response = await fetch('http://192.168.1.20:19002/paypal/token')
+            .then(response => response.json())
+            .then(response => {
+                setPaypalAccessToken(response.access_token);
+                setExpirationTime(response.expires_in);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
     
-
     // todo: dummy amount
     const requestPayment = () => {
         var axios = require('axios');
@@ -24,24 +37,27 @@ const BillSplitting = ({ navigation }) => {
         });
 
         var config = {
-        method: 'post',
-        url: 'https://api-m.sandbox.paypal.com/v2/checkout/orders',
-        headers: { 
-            'Content-Type': 'application/json', 
-            'Authorization': 'Bearer A21AAJoU8NqmrxRrq-1X1yP6GuXHXEJeMB7cs_FwuzUy6TnmCOwqTu4v0sbFEkmvztIILKwMNRkIr-mSo9Yidz98Dp6Va-XrA'
-        },
-        data : data
+            method: 'post',
+            url: 'https://api-m.sandbox.paypal.com/v2/checkout/orders',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${paypalAccessToken}`
+            },
+            data : data
         };
 
         axios(config)
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
-    }
+    useEffect(() => {
+        getPaypalAccessToken();
+    }, [])
 
     const handleComponentRendering = () => {
         return (

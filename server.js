@@ -242,32 +242,9 @@ app.get('/api/accounts/map', async (req, res) => {
 })
 
 
-const fetch = require("node-fetch");
-
 
 
 app.get('/paypal/token', async (req, res) => {
-    // var paypalHeaders= new fetch.Headers();
-    // paypalHeaders.append('Accept', 'application/json');
-    // paypalHeaders.append("Accept-Language", 'en_US');
-    // paypalHeaders.append("Authorization", "Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=");
-    // // paypalHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    // var urlencoded = new URLSearchParams();
-    // // urlencoded.append({"grant-type", "client-credentials"});
-
-    // var requestOptions = {
-    //     method: "POST",
-    //     headers: paypalHeaders,
-    //     body: urlencoded,
-    //     redirect: 'follow'
-    // };
-
-    // const result = await fetch('https://api-m.sandbox.paypal.com/v1/oauth2/token', requestOptions)
-    // .then(response => response.json())
-    // .then(response => console.log(response))
-
-    // res.send(result);
     var data = qs.stringify({'grant_type': 'client_credentials'});
     var config = {
         method: 'post',
