@@ -252,7 +252,7 @@ app.get('/paypal/token', async (req, res) => {
         headers: { 
             'Accept': 'application/json', 
             'Accept-Language': 'en_US', 
-            'Authorization': 'Basic QVJ0QmNfTVRJWjJFbkhvd0lTQVQ5WFZ1Slk5QmhxLVBFcXU0RWZNaC1wRnlwYUlMTzl4MHJySHJ2NXNMckZDWWFRVEhHM2E4RF84X0RtdXg6RUk3ek5iMFI2OFlsU0x0cG1jRnJuUGhNY1hldTBtU25NY0dnclFzc0dFcEl0SjFVY2ZvNm0tTm9mbHE0VkVuc0s5T19rTGR4bzdVMkZXT0Q=', 
+            'Authorization': "Basic QVU5M2M5RFhCel9pMlVvRWQ3N1NKR21UM29MMHdQelQ2RjE0SXNKQzlUMDJmZHdfamRvbjdTYXlIMldIM0UwTGNZZEN1WTFOYmVsODlsMy06RU9nQ1k4UWp5d1ZaeXlMenJkZjhJc2pJR2NuaTVGNDZzQmszZWVXVEdsSmhneDlqWVViM3FUTmdVNnZmcWZ0b2VjaVByLW9jR3dDWTMzU18=", 
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         data : data

@@ -82,23 +82,17 @@ const PaymentModal = ({ navigation }) => {
 
     const handleComponentRendering = () => {
         return (
-            // <Modal animationType="slide"> 
-                <SafeAreaView style={styles.container3}>
+                <SafeAreaView style={[styles.container3, {backgroundColor: COLORS.desertGreen}]}>
                     <View style={styles.genericRow}>
-                        <Text style={styles.title2}>New Payment</Text>
+                        <Text style={[styles.title, {color:COLORS.white}]}>New Payment</Text>
                         <TouchableOpacity  onPress={() => {
-                            // setModalVisible(!modalVisible);
                             navigation.goBack();
                             }}>
                             <View style={{flexDirection: 'row', alignItems:'center'}}>
                                 <Image 
                                     source={require('../../assets/Icons/close.png')}
                                     resizeMode='contain'
-                                    style={{
-                                        width: 15,
-                                        height: 15,
-                                        tintColor: COLORS.primary,
-                                    }}
+                                    style={{width: 15,height: 15,tintColor: COLORS.white}}
                                 />
                             </View>
                         </TouchableOpacity>
@@ -138,8 +132,10 @@ const PaymentModal = ({ navigation }) => {
 
                         {/* Pay Button */}
                         <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 170}}>
-                            <TouchableOpacity onPress={() => makePayment(100)} style={{borderRadius: 15, backgroundColor:COLORS.secondary}}>
-                                <Text style={styles.cancelText}>Pay</Text>
+                            <TouchableOpacity 
+                                onPress={() => makePayment(100)} 
+                                style={{borderRadius: 15, backgroundColor:'white', paddingVertical: 10, width: 300}}>
+                                <Text style={{...FONTS.h2, color: COLORS.red, alignSelf:'center'}}>Pay</Text>
                             </TouchableOpacity>
                         </View>
 
