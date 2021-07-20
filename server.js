@@ -274,9 +274,9 @@ app.get('/paypal/token', async (req, res) => {
 
 const gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
-    merchantId: "tyzv6s7y3v2vmp24",
-    publicKey: "c53qj2cs3rj55g88",
-    privateKey: "cc4dd96ad148cd71dcb2f80b3c4650b7",
+    merchantId: process.env.MERCHANT_ID,
+    publicKey: process.env.PUBLIC_KEY,
+    privateKey: process.env.PRIVATE_KEY,
 });
 
 app.get('/braintree/client', async (req, res) => {

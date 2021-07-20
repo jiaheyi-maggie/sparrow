@@ -41,14 +41,15 @@
 			}
 		</style>
         <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     </head>
     <body>
+		<div id="checkout-message"></div>
         <div id="dropin-container"></div>
 		<button id="submit-button" class="button button--small button--green">Pay</button>
         <script type='text/javascript'>
+		(async function($) {
             var button = document.querySelector('#submit-button');
-			
-
 			// TODO: doesn't show up
             const fetchClientToken = async () => {
 				const response = await fetch("http://192.168.1.20:19002/braintree/client")
@@ -73,10 +74,31 @@
 					instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
 						// Submit payload.nonce to your server
 						console.log(payload);
+						$.ajax({
+							type:"POST",
+							url: '/checkout',
+							data: {"paymentMethodNonce": payload.nonce}
+						}).done(function (result) {
+							instance.teardown(function (error) {
+								if(error) {
+									console.log(error);
+								} else {
+									console.log("Drop in UI has been torn down");
+									$('#submit-button').remove(); 
+								}
+							})
+
+							if (result.success) {
+								$("#checkout-message").html('<h1>Success</h1><p>Your Drop-in UI is working!</p>')
+							} else {
+								console.log(result);
+								$("#checkout-message").html('<h1>Failed</h1><p>Something went wrong. Try again.</p>')
+							}
+						})
 					});
 				});
             });
-			
+		})(jQuery);
         </script>
     </body>
 
