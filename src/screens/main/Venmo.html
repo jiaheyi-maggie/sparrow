@@ -4,29 +4,79 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<style>
+			.button {
+				cursor: pointer;
+				font-weight: 500;
+				left: 3px;
+				line-height: inherit;
+				position: relative;
+				text-decoration: none;
+				text-align: center;
+				border-style: solid;
+				border-width: 1px;
+				border-radius: 3px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				display: inline-block;
+				align-self: center;
+			}
+
+			.button--small {
+			padding: 10px 20px;
+			font-size: 0.875rem;
+			}
+
+			.button--green {
+			outline: none;
+			background-color: #64d18a;
+			border-color: #64d18a;
+			color: white;
+			transition: all 200ms ease;
+			}
+
+			.button--green:hover {
+			background-color: #8bdda8;
+			color: white;
+			}
+		</style>
         <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
     </head>
     <body>
         <div id="dropin-container"></div>
-
+		<button id="submit-button" class="button button--small button--green">Pay</button>
         <script type='text/javascript'>
             var button = document.querySelector('#submit-button');
+			
+
+			// TODO: doesn't show up
+            const fetchClientToken = async () => {
+				const response = await fetch("http://192.168.1.20:19002/braintree/client")
+				.catch((error) => {
+					console.log(error)
+				});
+				console.log(token);
+				return token;
+            }
         
             braintree.dropin.create({
                 authorization: 'sandbox_3879n4rc_tyzv6s7y3v2vmp24',
+                // authorization: fetchClientToken(),
                 container: document.getElementById('dropin-container'),
                 paypal: {
                     flow: 'vault'
                 },
-                venmo:{}
+                venmo:{},
+
             }, function (createErr, instance) {
               button.addEventListener('click', function () {
-                instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-                  // Submit payload.nonce to your server
-                  console.log(payload);
-                });
-              });
+					instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+						// Submit payload.nonce to your server
+						console.log(payload);
+					});
+				});
             });
+			
         </script>
     </body>
 

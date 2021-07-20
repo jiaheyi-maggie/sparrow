@@ -31,6 +31,7 @@ import Link from './Link';
 import WebPlaidLink from '../../types/WebPlaidLink';
 import BillSplitting from './BillSplitting';
 import PaymentModal from './PaymentModal';
+import WebPaypalLink from './WebPaypalLink';
 
 
 /* Add the onboarding navigation stack here */
@@ -223,6 +224,7 @@ const HomeNavigation = () => {
             <DrawerNav.Screen name="SignedOut" component={SignedOut} />
             <DrawerNav.Screen name="Profile" component={ProfileModal} />
             <DrawerNav.Screen name="WebPlaidLink" component={WebPlaidLink} />
+            <DrawerNav.Screen name="WebPaypalLink" component={WebPaypalLink} />
             <DrawerNav.Screen name="PaymentModal" component={PaymentModal} />
         </DrawerNav.Navigator>
     );

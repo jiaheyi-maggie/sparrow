@@ -133,7 +133,7 @@ const PaymentModal = ({ navigation }) => {
                         {/* Pay Button */}
                         <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 170}}>
                             <TouchableOpacity 
-                                onPress={() => makePayment(100)} 
+                                onPress={() => navigation.navigate("WebPaypalLink")} 
                                 style={{borderRadius: 15, backgroundColor:'white', paddingVertical: 10, width: 300}}>
                                 <Text style={{...FONTS.h2, color: COLORS.red, alignSelf:'center'}}>Pay</Text>
                             </TouchableOpacity>
