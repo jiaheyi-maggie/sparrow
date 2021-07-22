@@ -114,10 +114,10 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 						// const obj = accountMap.filter(obj => obj.account_id === item.account_id);
 						// itemAccount = obj.name; 
                         return (
-							<View style={{borderWidth: 1, margin: 5,  borderColor: COLORS.bone, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopWidth: 3}}>
-								<Text style={{...FONTS.body4, color: COLORS.orange, marginHorizontal: 5}}>{itemAccount}</Text>
+							<View style={{borderWidth: 1, margin: 5,  borderColor: COLORS.bone, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopWidth: 3, backgroundColor:COLORS.white}}>
+								<Text style={{...FONTS.body4, fontStyle:'italic', color: COLORS.orange, marginHorizontal: 5}}>{itemAccount}</Text>
 								<View style={[styles.genericRow, {marginHorizontal: 10}]}>
-									<Text style={{...FONTS.h4, color: COLORS.bluebell}}>{itemName}</Text>
+									<Text style={{...FONTS.h4, fontWeight:'bold', color: COLORS.bluebell}}>{itemName}</Text>
 									<Text style={{...FONTS.h3, color: priceColor}}>$ {item.amount}</Text>
 								</View>
 								<View style={[styles.genericRow, {marginHorizontal: 10}]}>

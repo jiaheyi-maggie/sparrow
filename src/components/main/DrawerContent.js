@@ -40,7 +40,7 @@ export class DrawerContent extends Component {
                 this.setState({firstName: user.firstName, lastName: user.lastName, email: user.email, username: user.username, photoURL: user.photoURL})
             }
         }).catch((error) => {
-            this.props.navigation.navigate("SignedOut");
+            this.props.navigation.navigate("Login");
             console.log(error);
         })
     };
@@ -53,7 +53,7 @@ export class DrawerContent extends Component {
         this.setState({isSignedOut: true});
         firebase.auth().signOut()
         .then(() => {
-            this.props.navigation.navigate("SignedOut");
+            this.props.navigation.navigate("Login");
         }).catch((error) => {
             console.log(error.message);
         })

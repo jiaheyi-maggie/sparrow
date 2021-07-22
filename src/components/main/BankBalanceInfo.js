@@ -5,7 +5,7 @@ import { SIZES, COLORS, FONTS } from '../../constants/theme';
 const BankBalanceInfo = ({ title, displayAmount, currency, changePct }) => {
     return (
         <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
-            <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>{title}</Text>
+            <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start', fontWeight:'bold'}}>{title}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>$</Text>

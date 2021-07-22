@@ -46,6 +46,7 @@ export default class Login extends Component {
                 console.log(result);
                 // TODO: navigate to home (login successful)
                 // store.dispatch({type: "userSignedOut"})
+                this.props.navigation.navigate('Home');
             })
             .catch((err) => {
                 this.setState({error: "Email or password incorrect. Try again."});

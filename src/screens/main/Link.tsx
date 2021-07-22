@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, View, FlatList, TouchableOpacity, Image, Button } from 'react-native';
+import { Text, SafeAreaView, View, FlatList, TouchableOpacity, Image, Button, Platform } from 'react-native';
 import { COLORS, FONTS } from '../../constants/theme';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
@@ -88,7 +88,7 @@ const Link = ({ navigation, link_token, client }) => {
 
     const handleComponentDidMount = () => {
         return (
-			<SafeAreaView style={[styles.container3, {flexGrow: 1}]}>
+			<SafeAreaView style={[styles.container3, {flexGrow: 1, margin: Platform.OS === 'ios' ? 10 : 0}]}>
 				<View style={styles.genericRow}>
 					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
                     <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8, marginBottom: 8}]}>
@@ -244,7 +244,7 @@ const Link = ({ navigation, link_token, client }) => {
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
                             <View style={styles.genericRow}>
-                                <Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5}}>Accounts</Text>
+                                <Text style={{...FONTS.h3, color: COLORS.secondary, marginBottom:5, fontWeight:'bold'}}>Accounts</Text>
                                 <Text style={{...FONTS.h4, color: COLORS.lightGray4, marginBottom:5}}>(Bold amounts are period independent)</Text>
                             </View>
                     }
@@ -260,7 +260,7 @@ const Link = ({ navigation, link_token, client }) => {
             return (
                 <View style={styles.container3}>
                     <View style={styles.genericRow}>
-                        <Text style={{color: COLORS.primary, ...FONTS.h2}}>Add Bank Accounts</Text>
+                        <Text style={{...FONTS.h2, color: COLORS.primary, fontWeight:'bold'}}>Add Bank Accounts</Text>
                         <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
                             <Image
                                 source={require('../../assets/Icons/add.png')}

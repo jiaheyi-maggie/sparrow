@@ -40,17 +40,17 @@ Notifications.setNotificationHandler({
 const App = () => {
 	const [loaded, setLoaded] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [fontLoaded, setFontLoaded] = useState(
-		useFonts({
-			"Ubuntu-Medium": require("./src/assets/fonts/Ubuntu/Ubuntu-Medium.ttf"),
-			"Ubuntu-Light": require("./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf"),
-			"Ubuntu-Bold": require("./src/assets/fonts/Ubuntu/Ubuntu-Bold.ttf"),
-		})
-	);
+	// const [fontLoaded, setFontLoaded] = useState(
+	// 	useFonts({
+	// 		"Ubuntu-Medium": require("./src/assets/fonts/Ubuntu/Ubuntu-Medium.ttf"),
+	// 		"Ubuntu-Light": require("./src/assets/fonts/Ubuntu/Ubuntu-Light.ttf"),
+	// 		"Ubuntu-Bold": require("./src/assets/fonts/Ubuntu/Ubuntu-Bold.ttf"),
+	// 	})
+	// );
 		
-	if (!fontLoaded) {
-		return <AppLoading />;
-	}
+	// if (!fontLoaded) {
+	// 	return <AppLoading />;
+	// }
 
 	// notifications
 	const [notificationToken, setNotificationToken] = useState('');
