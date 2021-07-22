@@ -63,12 +63,12 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 						/>
 					</TouchableOpacity>
 				</View> 
-				
+				{/* 				
 				<TouchableOpacity>
 					<Image
 
 					/>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 
 				<Searchbar
 					placeholder="Search Transactions"

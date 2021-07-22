@@ -105,7 +105,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                         ]} 
                                         onPress={()=>{navigation.navigate("Remaining Detail")}}
                                     >
-                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Remaining</Text>
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start', fontWeight:'bold'}}>Remaining</Text>
 
                                         <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
                                             <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
@@ -149,7 +149,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                         ]} 
                                         onPress={()=>{navigation.navigate("Average Budget")}}
                                     >
-                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Budget</Text>
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start', fontWeight:'bold'}}>Budget</Text>
 
                                         <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
                                             <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
@@ -194,7 +194,7 @@ const Home = ({ navigation, fetchUser, fetchBudget, currentUser, categories, lon
                                         ]} 
                                         onPress={()=>{navigation.navigate("Spending Detail")}}
                                     >
-                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Spending</Text>
+                                        <Text style={{...FONTS.h4, color: COLORS.primary, textDecorationLine: 'underline', alignSelf:'flex-start', fontWeight:'bold'}}>Spending</Text>
 
                                         <View style={{flexDirection: 'row', justifyContent:'space-around', alignItems: 'center'}}>
                                             <Text style={{...FONTS.h4, color: COLORS.lightGray3}}>{m}:</Text>
