@@ -80,7 +80,7 @@ const SpendingDetail = ({ navigation }) => {
 
                 {/* TODO: Number calculations */}
                 {/* Budget overview card */}
-                <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
+                <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, alignItems:'center'}}>
                     <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start', fontWeight:'bold'}}>Total</Text>
 
                     <View style={{flexDirection: 'row', alignItems: 'center'}}>

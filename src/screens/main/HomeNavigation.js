@@ -33,6 +33,7 @@ import BillSplitting from './BillSplitting';
 import PaymentModal from './PaymentModal';
 import WebPaypalLink from './WebPaypalLink';
 import RequestModal from './RequestModal';
+import SortModal from '../../components/main/SortModal';
 
 
 /* Add the onboarding navigation stack here */
@@ -228,6 +229,7 @@ const HomeNavigation = () => {
             <DrawerNav.Screen name="WebPaypalLink" component={WebPaypalLink} />
             <DrawerNav.Screen name="PaymentModal" component={PaymentModal} />
             <DrawerNav.Screen name="RequestModal" component={RequestModal} />
+            <DrawerNav.Screen name="SortModal" component={SortModal} />
         </DrawerNav.Navigator>
     );
 };
