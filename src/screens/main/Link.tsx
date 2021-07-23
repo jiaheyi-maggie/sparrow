@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Text, SafeAreaView, View, FlatList, TouchableOpacity, Image, Button, Platform } from 'react-native';
-import { COLORS, FONTS } from '../../constants/theme';
+import { COLORS, FONTS, deviceWidth } from '../../constants/theme';
 import { connect } from 'react-redux';
 import styles from '../../styles/homeStyle';
 import BankBalanceInfo from '../../components/main/BankBalanceInfo';
 import store from '../../app/store';
 import { Searchbar } from 'react-native-paper';
+
+
 
 const Link = ({ navigation, link_token, client }) => {
     const [accounts, setAccounts] = useState(null);
@@ -88,10 +90,10 @@ const Link = ({ navigation, link_token, client }) => {
 
     const handleComponentDidMount = () => {
         return (
-			<SafeAreaView style={[styles.container3, {flexGrow: 1, margin: Platform.OS === 'ios' ? 10 : 0}]}>
+			<SafeAreaView style={[styles.container3, {flexGrow: 1, backgroundColor: 'white'}]}>
 				<View style={styles.genericRow}>
-					<Text style={{color: COLORS.primary, ...FONTS.h2}}>Bank Accounts</Text>
-                    <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8, marginBottom: 8}]}>
+					<Text style={{color: COLORS.primary, ...FONTS.h2, marginLeft: Platform.OS == 'ios' ? 10:0}}>Bank Accounts</Text>
+                    <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8, marginBottom: 8, marginRight: Platform.OS == 'ios'?10:0}]}>
                         <Image
                             source={require('../../assets/Icons/add.png')}
                             style={{
@@ -114,12 +116,12 @@ const Link = ({ navigation, link_token, client }) => {
                     placeholder="Search Bank Accounts"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
-                    style={{width: 370, height: 40, marginBottom: 8, elevation:3}}
+                    style={{width: deviceWidth-20, height: 40, marginBottom: 8, elevation:3, marginLeft: Platform.OS == 'ios' ? 10:0}}
                     inputStyle={{...FONTS.h33}}
                     iconColor={COLORS.lightSalmon}
                 />
 
-                <View style={styles.genericRow}> 
+                <View style={[styles.genericRow, {marginHorizontal: Platform.OS == 'ios'?10:0, marginVertical: Platform.OS == 'ios'?5:0}]}> 
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
                     {/* TODO: switch viewing periods */}
                     <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -133,7 +135,7 @@ const Link = ({ navigation, link_token, client }) => {
                 </View>
                 
 
-                <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
+                <View style={[styles.genericRow, {justifyContent:'space-evenly', marginHorizontal: Platform.OS == 'ios'?10:0}]}>
                     <BankBalanceInfo 
                         title='Current Depositories:'
                         displayAmount={calculateCurrentTotal()}
@@ -148,7 +150,7 @@ const Link = ({ navigation, link_token, client }) => {
                     />
                 </View>
 
-                <View style={[styles.genericRow, {justifyContent:'space-evenly'}]}>
+                <View style={[styles.genericRow, {justifyContent:'space-evenly', marginHorizontal: Platform.OS == 'ios'?10:0}]}>
                     <BankBalanceInfo 
                         title='Loans / Mortgages:'
                         displayAmount={calculateLoansTotal()}
@@ -186,7 +188,7 @@ const Link = ({ navigation, link_token, client }) => {
 
                                 <TouchableOpacity style={{flexDirection: 'row', justifyContent:'space-between'}}> 
                                     {/* current */}
-                                    <View style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), marginVertical: 5, padding: 5, borderRadius: 15, width: 175, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+                                    <View style={{backgroundColor: colorSelection(item.balances.current, item.balances.available), margin: 5, padding: 5, borderRadius: 15, width: 150, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
                                         <Text style={{...FONTS.h4, color: COLORS.lightGray3, marginLeft: 5, textDecorationLine:'underline'}}>Current:</Text>
                                         <View style={{marginRight: 5}}>
                                             <Text style={{...FONTS.h3, color: COLORS.lightGray3, textAlign: 'right'}}>$ {item.balances.current}</Text>
@@ -248,6 +250,7 @@ const Link = ({ navigation, link_token, client }) => {
                                 <Text style={{...FONTS.h4, color: COLORS.lightGray4, marginBottom:5}}>(Bold amounts are period independent)</Text>
                             </View>
                     }
+                    style={{marginHorizontal: Platform.OS == 'ios'?10:0}}
                 />
     
 			</SafeAreaView>

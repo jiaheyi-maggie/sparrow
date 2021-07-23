@@ -75,10 +75,10 @@ export const FONTS = {
 	// body4: { fontFamily: "Ubuntu-Light", fontSize: SIZES.body4, lineHeight: 22 },
 	// body5: { fontFamily: "Ubuntu-Light", fontSize: SIZES.body5, lineHeight: 22 },
 	h1: { fontWeight: "bold", fontSize: SIZES.h1, lineHeight: 30 },
-	h2: { fontWeight: "bold", fontSize: SIZES.h2, lineHeight: 30 },
+	h2: {  fontSize: SIZES.h2, lineHeight: 30 },
 	h22: { fontSize: SIZES.h22, lineHeight: 30 },
 	h22b: { fontWeight: "bold", fontSize: SIZES.h22, lineHeight: 30 },
-	h3: { fontWeight: "bold", fontSize: SIZES.h3, lineHeight: 22 },
+	h3: { fontSize: SIZES.h3, lineHeight: 22 },
 	h33: { fontSize: SIZES.h3, lineHeight: 22 },
 	h4: {  fontSize: SIZES.h4, lineHeight: 22 },
 	h5: {  fontSize: SIZES.h5, lineHeight: 22 },
@@ -99,5 +99,11 @@ const theme = {
 	border: '#fff',
 	},
 };
+
+export const deviceWidth = Dimensions.get('window').width;
+
+
+export const deviceHeight = Dimensions.get('window').height;
+
 
 export default theme;

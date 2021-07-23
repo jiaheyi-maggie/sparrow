@@ -84,7 +84,8 @@ const homeStyle = StyleSheet.create({
         // backgroundColor: '#fff',
         flex: 1,
         paddingTop: (Platform.OS === 'ios') ? 0: 45,
-        padding: (Platform.OS === 'ios') ? 20: 10,
+        padding: (Platform.OS === 'ios') ? 30: 10,
+        // margin: (Platform.OS === 'ios') ? 10: 0
     },
     subtitle: {
         ...FONTS.h4,

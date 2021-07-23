@@ -9,6 +9,7 @@ import styles from '../../styles/homeStyle';
 import store from '../../app/store';
 
 const deviceHeight = Dimensions.get('window').height; 
+const deviceWidth = Dimensions.get('window').width;
 
 const Notifications = ({ navigation, notification_token, notifications }) => {
 	const [transactions, setTransactions] = useState(null);
@@ -84,7 +85,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					placeholder="Search Transactions"
 					onChangeText={onChangeSearch}
 					value={searchQuery}
-					style={{width: 370, height: 40, marginVertical: 8, elevation:3}}
+					style={{width: deviceWidth-20, height: 40, marginVertical: 8, elevation:3}}
 					inputStyle={{...FONTS.h33}}
 					iconColor={COLORS.lightSalmon}
 				/>
