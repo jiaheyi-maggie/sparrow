@@ -60,7 +60,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
     const handleComponentDidMount = () => {
         return (
 			<SafeAreaView style={styles.container3}>
-				<View style={styles.genericRow}>
+				<View style={[styles.genericRow, {marginHorizontal: Platform.OS == 'ios'?10:0}]}>
 					<Text style={styles.title}>Transactions</Text>
 					<TouchableOpacity onPress={() => navigation.openDrawer()}>
 						<Image 
@@ -85,12 +85,12 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 					placeholder="Search Transactions"
 					onChangeText={onChangeSearch}
 					value={searchQuery}
-					style={{width: deviceWidth-20, height: 40, marginVertical: 8, elevation:3}}
+					style={{width: deviceWidth-20, height: 40, marginVertical: 8, elevation:3, marginHorizontal: Platform.OS == 'ios'?10:0}}
 					inputStyle={{...FONTS.h33}}
 					iconColor={COLORS.lightSalmon}
 				/>
 
-				<View style={[styles.genericRow, {marginBottom: 5}]}>
+				<View style={[styles.genericRow, {marginBottom: 5, marginHorizontal: Platform.OS == 'ios'?10:0}]}>
 					<TouchableOpacity style={{backgroundColor:COLORS.desertGreen, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
 						<Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Filter by</Text>
 						<Image
@@ -170,10 +170,9 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 								
 							</View>
 						)
+						}
 					}
-						
-						
-					}
+					style={{marginHorizontal: Platform.OS == 'ios'?5:0}}
                 />	
 			</SafeAreaView>
         );

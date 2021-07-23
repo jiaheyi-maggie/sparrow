@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Platform } from 'react-native';
 import styles from '../../styles/homeStyle';
 import { COLORS, FONTS } from '../../constants/theme';
 
@@ -28,7 +28,7 @@ const BillSplitting = ({ navigation }) => {
 
     const handleComponentRendering = () => {
         return (
-            <View style={[styles.container3, {backgroundColor:COLORS.desertGreen}]}>
+            <View style={[styles.container3, {backgroundColor:COLORS.desertGreen, paddingTop:(Platform.OS === 'ios') ? 40: 45,}]}>
                 <Text style={[styles.title, {color: COLORS.white}]}>Bill Splitting</Text>
 
                 {/* Buttons */}

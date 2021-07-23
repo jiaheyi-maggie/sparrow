@@ -261,7 +261,7 @@ const Link = ({ navigation, link_token, client }) => {
     const handleComponentEmptyRendering = () => {
         const render = () => {
             return (
-                <View style={styles.container3}>
+                <View style={[styles.container3, {paddingTop: 40}]}>
                     <View style={styles.genericRow}>
                         <Text style={{...FONTS.h2, color: COLORS.primary, fontWeight:'bold'}}>Add Bank Accounts</Text>
                         <View style={[styles.genericRow,{backgroundColor: COLORS.yellow, borderRadius: 15,paddingVertical: 3,paddingHorizontal: 8}]}>
@@ -286,10 +286,9 @@ const Link = ({ navigation, link_token, client }) => {
                     <Image 
                         source={require('../../assets/home/add-account.png')}
                         style={{
-                            width: 380,
+                            width: deviceWidth-20,
                             height: 330,
                             marginTop:80
-
                         }}
                     />
                 </View>

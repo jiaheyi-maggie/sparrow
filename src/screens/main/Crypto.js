@@ -4,7 +4,7 @@ import { Text, SafeAreaView, View, TouchableOpacity, Image, FlatList } from 'rea
 import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../../app/actions/marketActions';
 import BalanceInfo from '../../components/main/BalanceInfo';
-import { COLORS, FONTS } from '../../constants/theme';
+import { COLORS, FONTS, deviceWidth } from '../../constants/theme';
 // import { ChartDot, ChartPath, ChartPathProvider, ChartXLabel, ChartYLabel, monotoneCubicInterpolation } from '@rainbow-me/animated-charts';
 import data from '../../constants/dummy';
 import styles from '../../styles/homeStyle';
@@ -30,9 +30,9 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
     const renderWalletInfoSection = () => {
         return (
-            <View>
+            <View style={{paddingHorizontal: (Platform.OS === 'ios') ? 10: 0,}}>
                 <View style={styles.genericRow}>
-                    <Text style={{color: '#FFF4CB', ...FONTS.h2}}>My Crypto Wallet</Text>  
+                    <Text style={{color: '#FFF4CB', ...FONTS.h2}}>Crypto Wallet</Text>  
                     <TouchableOpacity onPress={() => navigation.openDrawer()}>
 						<Image 
 							source={require('../../assets/Icons/menu.png')}
@@ -78,7 +78,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
             <SafeAreaView style={[styles.container3, {backgroundColor:COLORS.primary}]}>
                 {/* My Wallet */}
                 {renderWalletInfoSection()}
-                <View style={styles.genericRow}>
+                <View style={[styles.genericRow, {paddingHorizontal: (Platform.OS === 'ios') ? 10: 0}]}>
                     <View style={{backgroundColor: 'aliceblue', borderRadius: 20, paddingVertical: 5,paddingHorizontal:10, alignSelf: 'flex-start', marginVertical: 5}}>
                         <TouchableOpacity onPress={() => handleAddBalance()}>
                             <Text style={{...FONTS.h4, color: COLORS.primary}}>Add $ to Budget</Text>
@@ -92,7 +92,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                 </View>
                 
                 {/* Chart */}
-                <View>
+                <View style={{paddingHorizontal: (Platform.OS === 'ios') ? 5: 0}}>
                     <CryptoChart data={selectedCoin ? selectedCoin.sparkline_in_7d.price : myHoldings.sparkline_in_7d} changePct={selectedCoin ? selectedCoin.price_change_percentage_7d_in_currency : percentageChange} title={selectedCoin ? selectedCoin.name : "Total Asset"}/>
                 </View>
 
@@ -101,13 +101,13 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                     placeholder="Search Bank Accounts"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
-                    style={{width: 370, height: 40, marginBottom: 8, elevation:3, backgroundColor:'aliceblue'}}
+                    style={{width: deviceWidth-20, height: 40, marginBottom: 8, elevation:3, backgroundColor:'aliceblue', marginLeft: (Platform.OS === 'ios') ? 10: 0}}
                     inputStyle={{...FONTS.h33}}
                     iconColor={COLORS.lightSalmon}
                 />
                 
                 {/* Top currency list */}
-                <View style={styles.genericRow}>
+                <View style={[styles.genericRow, {marginHorizontal: (Platform.OS === 'ios') ? 10: 0}]}>
                     <Text style={{...FONTS.h3, fontSize: 17, color: COLORS.white, marginHorizontal: 5}}>Top Cryptocurrencies</Text>
                     <TouchableOpacity style={{backgroundColor:COLORS.lightSalmon, borderRadius:15, padding: 3, flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:5}}>
                         <Text style={{...FONTS.h4, color: COLORS.white, marginLeft: 5}}>Sort by</Text>
@@ -162,6 +162,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
                             </View>
                         );
                     }}
+                    style={{marginHorizontal: (Platform.OS === 'ios') ? 10: 0}}
                 />
 
             </SafeAreaView>
