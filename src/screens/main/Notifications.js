@@ -82,7 +82,7 @@ const Notifications = ({ navigation, notification_token, notifications }) => {
 				</TouchableOpacity> */}
 
 				<Searchbar
-					placeholder="Search Transactions"
+					placeholder="Search by name, amount, date..."
 					onChangeText={onChangeSearch}
 					value={searchQuery}
 					style={{width: deviceWidth-20, height: 40, marginVertical: 8, elevation:3, marginHorizontal: Platform.OS == 'ios'?10:0}}

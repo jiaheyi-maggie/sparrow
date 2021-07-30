@@ -165,12 +165,14 @@ const Link = ({ navigation, link_token, client }) => {
                     />
                 </View>
 
+                <View style={{marginHorizontal: Platform.OS == 'ios'?20:0}}>
                 <BankBalanceInfo 
-                        title='Investments:'
-                        displayAmount={calculateInvestmentsTotal()}
-                        currency="USD"
-                        changePct={calculateTotalAvailableChangePct()}
-                    />
+                    title='Investments:'
+                    displayAmount={calculateInvestmentsTotal()}
+                    currency="USD"
+                    changePct={calculateTotalAvailableChangePct()}
+                />
+                </View>
 
                 
 

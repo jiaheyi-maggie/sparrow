@@ -98,7 +98,7 @@ const Crypto = ({ navigation, getHoldings, getCoinMarket, myHoldings, coins }) =
 
                 {/* TODO: search bar filter */}
                 <Searchbar
-                    placeholder="Search Bank Accounts"
+                    placeholder="Search by name"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
                     style={{width: deviceWidth-20, height: 40, marginBottom: 8, elevation:3, backgroundColor:'aliceblue', marginLeft: (Platform.OS === 'ios') ? 10: 0}}
