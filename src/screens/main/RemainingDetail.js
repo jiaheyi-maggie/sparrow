@@ -11,7 +11,7 @@ const RemainingDetail = ({ navigation }) => {
         return (
             <SafeAreaView style={styles.container3}>
                 {/* Header */}
-                <View style={styles.genericRow}>
+                <View style={[styles.genericRow, {marginHorizontal: Platform.OS ==="ios"? 10:0}]}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image 
                             source={require('../../assets/Icons/back.png')}
@@ -39,7 +39,7 @@ const RemainingDetail = ({ navigation }) => {
 
                 {/* Main Content */}
 
-                <View style={styles.genericRow}> 
+                <View style={[styles.genericRow, {marginHorizontal: Platform.OS ==="ios"? 10:0}]}> 
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
                     <View style={{alignSelf:'flex-end'}}>
                         <AveragePeriodPicker />
@@ -48,7 +48,7 @@ const RemainingDetail = ({ navigation }) => {
 
                 {/* TODO: Number calculations */}
                 {/* Budget overview card */}
-                <View style={[styles.genericRow, {marginTop: 10}]}>
+                <View style={[styles.genericRow, {marginTop: 10, marginHorizontal: Platform.OS ==="ios"? 10:0}]}>
                     <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
                         <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Recurring</Text>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, FlatList, TouchableOpacity, Image, Slice, Platform } from 'react-native';
 import AveragePeriodPicker from '../../components/picker/AveragePeriodPicker';
 import PieChart from '../../components/main/PieChart';
 import { fetchBudget } from '../../app/actions/fetchBudget';
@@ -97,7 +97,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
             <SafeAreaView style={styles.container3}>
                 {/* <ScrollView> */}
                 {/* Header */}
-                <View style={styles.genericRow}>
+                <View style={[styles.genericRow, {marginHorizontal: Platform.OS ==="ios"? 10:0}]}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Image 
                             source={require('../../assets/Icons/back.png')}
@@ -123,7 +123,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.genericRow}> 
+                <View style={[styles.genericRow, {marginHorizontal: Platform.OS ==="ios"? 10:0}]}> 
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Summary</Text>
                     <View style={{alignSelf:'flex-end'}}>
                         <AveragePeriodPicker />
@@ -131,7 +131,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                 </View>
 
                 {/* Budget overview card */}
-                <View style={[styles.genericRow, {marginTop: 10}]}>
+                <View style={[styles.genericRow, {marginTop: 10, marginHorizontal: Platform.OS ==="ios"? 10:0}]}>
                     <View style={{backgroundColor:'aliceblue', margin: 5, padding: 8, width: 180, marginBottom: 10, alignItems:'center'}}>
                         <Text style={{...FONTS.h4, color: COLORS.lightGray3, textDecorationLine: 'underline', alignSelf:'flex-start'}}>Recurring</Text>
 
@@ -155,7 +155,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                     </View>
                 </View>
 
-                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal: Platform.OS ==="ios"? 10:0}}>
                     <Text style={{...FONTS.h3, color: COLORS.secondary}}>Categories</Text>
                     <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                         <TouchableOpacity onPress={() => navigation.navigate('Delete Categories')} style={{backgroundColor:'#bfbfbf', elevation: 2, borderRadius: 15, padding: 5, width: 60, marginRight:10}}>
@@ -185,6 +185,7 @@ const BudgetDetail = ({ navigation, categories, longTerm, shortTerm, averagePeri
                     keyExtractor={item => item.id}
                     contentContainerStyle={{
                         flexGrow: 1,
+                        marginHorizontal: Platform.OS ==="ios"? 10:0
                     }}
                 />  
 

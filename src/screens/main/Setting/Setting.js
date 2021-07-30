@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, ScrollView, TouchableOpacity, Image, Platform} from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
@@ -19,7 +19,7 @@ export class Setting extends Component {
     handleComponentDidMount() {
         return (
             <SafeAreaView style={styles.container3}>
-                <ScrollView>
+                <ScrollView style={{marginHorizontal: Platform.OS === 'ios' ? 10 : 0}}>
 
                     {/* header */}
                     <View style={{flexDirection: 'row', alignItems:'center'}}>

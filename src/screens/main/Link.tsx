@@ -27,6 +27,11 @@ const Link = ({ navigation, link_token, client }) => {
 
 	useEffect(() => {
         getAccountsFromMongo();
+        store.dispatch({
+            type: "pushBankAccounts",
+            payload: {accounts}
+        })
+        console.log(store.getState().plaidReducer.bank_accounts);
 	}, [])
 
     const calculateCurrentTotal = () => {
